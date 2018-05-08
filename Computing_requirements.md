@@ -20,6 +20,7 @@ software is given below.
 In addition, please install/update the following R packages:
 
  - devtools
+ - pkgdown
  - roxygen2
  - testthat
  - tidyverse
@@ -30,7 +31,7 @@ In addition, please install/update the following R packages:
 Download the pre-compiled binary for your OS from https://cloud.r-project.org/ 
 and install. More specifically:
 
-**For Windows **
+**For Windows**
 
 Click "Download R for Windows", then "base", then "Download R 3.5.0 for 
 Windows". This will download an `.exe` file; once downloaded, open to start the 
@@ -127,7 +128,7 @@ Open RStudio. In the menus go to Tools > Global Options > Git/SVN. Under
 are hidden it will show as `git` rather than `git.exe`. Restart RStudio before 
 trying to use git.
 
-** For all other cases **
+**For all other cases**
 
 Install as advised on https://git-scm.com/downloads.
 
