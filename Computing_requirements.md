@@ -1,10 +1,6 @@
----
-title: "Preparation for Forwards Workshop"
-date: "4 May 2018"
-output: github_document
----
+# Preparation for Forwards Workshop
 
-# Computing requirements
+## Computing requirements
 
 Participants are required to bring their own laptops. Laptops should have the following installed **prior** to attending the workshop:
 
@@ -26,7 +22,7 @@ In addition, please install/update the following R packages:
  - tidyverse
  - usethis
 
-# Installing R
+## Installing R
 
 Download the pre-compiled binary for your OS from https://cloud.r-project.org/ 
 and install. More specifically:
@@ -50,7 +46,7 @@ Click "Download R for Linux". Instructions on installing are given for Debian,
 Redhat, Suse and Ubuntu distributions. Where there is a choice, install both 
 `r-base` and `r-base-dev`.
 
-# Installing R Studio
+## Installing R Studio
 
 Downloads are available from https://www.rstudio.com/products/rstudio/download3/ (scroll to the end of the page to see the downloads).
 
@@ -68,7 +64,7 @@ Double-click the executable or use the shortcut to open.
 Download the relevant installer for your OS listed under "Installers for 
 Supported Platforms". Run the installer to complete installation.
  
-# Development Tools
+## Development Tools
 
 Some additional tools may be required to compile R packages from source.
 
@@ -106,7 +102,7 @@ to build packages from source. Otherwise return to the instructions for
 installing R for your distribution and follow the instructions there to install 
 the additional tools.
 
-# Git
+## Git
 
 We highly recommend using git for version control. We will provide a basic 
 introduction to git using GitHub, but ultimately you will want git installed on 
@@ -132,7 +128,7 @@ trying to use git.
 
 Install as advised on https://git-scm.com/downloads.
 
-# Issues 
+## Issues 
 
 If you have problems setting up your laptop we will try to help in the first 
 hour or so of the workshop - arrive early if you can! If we cannot get you set 
