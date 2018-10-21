@@ -6,6 +6,7 @@
 9:50-10:15 Overview of Data Analysis - diagram and motivating example
 
 10:15-10:40 Introduction to R
+
     - 3 panes (console, Global environment, files), basic arithmetic and running code in console
     1. Getting started.R: Opening R file and running code from R file
         - Comments
