@@ -1,15 +1,14 @@
 ***9:30-10*  Breakfast**
-             Final RStudio Cloud setup
+             - Final RStudio Cloud setup
              
 ***10-noon*  Introduction to Data Analysis, R, and Tidyverse**
-            9:50-10:15 Overview of Data Analysis - diagram and motivating example
-            10:15-10:40 Introduction to R
-                        3 panes: console, Global environment, files
-                        Basic arithmetic and running code in console
+            - 9:50-10:15 Overview of Data Analysis - diagram and motivating example
+            - 10:15-10:40 Introduction to R
+                        - 3 panes (console, Global environment, files), basic arithmetic and running code in console
                         1. Getting started.R: Opening R file and running code from R file
-                           Comments
-                           Making changes to file
-                           Packages and data frames (head, str, data types)
+                           - Comments
+                           - Making changes to file
+                           - Packages and data frames (head, str, data types)
                         Practice -- saving, opening, arithmetic
             10:40-11:00 Break with Icebreakder
             11-11:30    2. Plots with ggplot2 in Markdown document -- scatterplot, bar plot, histogram, line chart
