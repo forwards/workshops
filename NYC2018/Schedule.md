@@ -1,4 +1,5 @@
 *9:30-10*     Breakfast and Icebreaker
+
 *10-noon*     Introduction to Data Analysis, R, and Tidyverse
             
 *Noon-12:45*  Lunch roundtable discussions
