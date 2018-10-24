@@ -1,13 +1,19 @@
+EMILY
 Cleaned data sets for hackathon
-Certificate of completion
-Metro cards
+Cheat sheets: ggplot2 and dplyr cheat sheets (Joyce is backup)
+Water bottles, soda, juice (apple and orange)
+Saturday morning -- bagels
+Pizza and salad
 Assigned groups of students for morning (mixed levels), lunch, and afternoon
-Halloween candy for afternoon snack
-Water bottles
-
-Emails:
+Afternoon snack (Halloween candy?)
+Email students with instructions, forms
+Email students with RCloud
 Helpers: upon confirmation, invite to workspace
-Students: Media release, confirm laptop
 
-Morning -- bagels and juice
-Lunch -- pizza and salads, paper plates, sodas and water
+
+JOYCE
+Paper goods
+Name tags
+Metro Cards
+Email John Mertic with budget and get invoice instructions
+Certificate of completion
