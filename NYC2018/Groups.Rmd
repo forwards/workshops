@@ -1,0 +1,99 @@
+---
+title: "Groups"
+date: "10/26/2018"
+output: pdf_document
+df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+
+# keep name file out of GitHub for privacy reasons
+names <- read_csv("~/Downloads/attendees.csv")
+```
+
+
+```{r}
+
+assign_groups <- function(names, size) {
+ num_groups <- floor(nrow(names)/size)
+ group_list <- rep(1:num_groups, size +1)
+ group_list <- sample(group_list[1:nrow(names)])
+ assign_groups <- names %>% 
+     mutate(group = group_list) %>% 
+     arrange(group)
+}
+
+has_repeats <- function(g1, g2) {
+    partner_repeat <- FALSE
+    names <- g1$`First Name`
+    for (i in seq_along(g1)) {
+        for (j in seq_along(i)) {
+            stud1_g1 <- g1$group[g1$`First Name` == names[i]]
+            stud1_g2 <- g2$group[g2$`First Name` == names[i]]
+            stud2_g1 <- g1$group[g1$`First Name` == names[j]]
+            stud2_g2 <- g2$group[g2$`First Name` == names[j]]
+            if ((stud1_g1 == stud2_g1) &  # together in group 1
+                (stud1_g2 == stud2_g2) &  # together in group 2
+                (i != j)) partner_repeat <- TRUE # not the same person
+        }
+    }
+    return(partner_repeat)
+}
+
+```
+
+
+
+
+# Project Groups
+
+```{r}
+#set.seed(1027)
+#
+# needs to be a data frame
+firstnames <- names[,2]  
+
+# assign first group
+group1 <- assign_groups(firstnames, size = 2) 
+
+# assign second group
+group2 <- assign_groups(firstnames, size = 2)
+
+# reassign second group until there are no repeats
+while(has_repeats(group1, group2)) {
+    group2 <- assign_groups(firstnames, size = 2)
+}
+
+# assign third group
+group3 <- assign_groups(firstnames, size = 3)
+
+# reassign third group until there are no repeats
+# (must check for repeats in both groups 1 and 2)
+while(has_repeats(group1, group3) | has_repeats(group2, group3)) {
+    print("trying again")
+    group3 <- assign_groups(firstnames, size = 3)
+}
+```
+
+Group 1
+```{r}
+knitr::kable(group1)
+```
+
+Group2 
+```{r}
+knitr::kable(group2)
+```
+
+Group3
+```{r}
+knitr::kable(group3)
+```
+
