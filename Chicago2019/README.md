@@ -2,6 +2,14 @@
 
 This repo contains materials and documentation for students in the [R Forwards Package Workshop in Chicago on February 23, 2019](http://forwards.github.io/edu/chicago/).
 
+## Surveys
+We want to make sure you have a good experience, and learn more about how we can do better! 
+Please complete these completely anonymous surveys for us if you participate.
+
+[Pre-Workshop Survey](https://goo.gl/forms/tScx0XYAQbZLqako2) - Do me BEFORE class starts!!
+
+[Post-Workshop Survey](https://goo.gl/forms/BEpfiUTACgmfuQb53) - Do me AFTER class is over!
+
 ## Slides
 
 * [Welcome](https://drive.google.com/open?id=1KWMDZBIcVTIITDUgqGUA_nSHOQw1l3LFbA8z-ySW3OU)  
