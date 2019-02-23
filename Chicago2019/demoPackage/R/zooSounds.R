@@ -13,5 +13,5 @@ goToTheZoo <- function(animal, sound){
     assertthat::is.string(animal),
     assertthat::is.string(sound))
 
-    glue::glue("The ", animal, " goes ", sound,"!", sep = " ")
+    glue::glue("The ", animal, " goes ", sound,"!", .sep = "")
 }
