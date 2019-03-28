@@ -2,7 +2,10 @@
 output: html_document
 ---
 
-# Developing R package workshop - April 6th 2019, University College Dublin, Ireland
+# Develop Packages in R - workshop for R users who identify as female
+## April 6th 2019, University College Dublin, Ireland
+
+Tickets are on sale via Eventbrite (€5.85): https://www.eventbrite.ie/e/develop-packages-in-r-workshop-for-r-users-who-identify-as-female-tickets-59353553075
 
 ## Set up
 
