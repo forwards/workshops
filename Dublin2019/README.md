@@ -5,13 +5,22 @@ output: html_document
 # Develop Packages in R - workshop for R users who identify as female
 ## April 6th 2019, University College Dublin, Ireland
 
+**Schedule**
+
+- 09:30 - 10:00 Registration
+- 10:00 - 11:20 Session 1: Make code into R package
+- 11:20 - 11:45 Coffee Break
+- 11:45 - 13:00 Session 2: Document Package and Functions
+- 13:00 - 14:00 Lunch break
+- 14:00 - 16:00 Session 3: Include Package Dependencies + Session 4: Project work.
+
 Tickets are on sale via Eventbrite (€5.85): https://www.eventbrite.ie/e/develop-packages-in-r-workshop-for-r-users-who-identify-as-female-tickets-59353553075
 
 ## Set up
 
 **Download all material from:** 
 
-- Lecture Slides (available soon): https://github.com/forwards/workshops > `Dublin2019`
+- Lecture Slides (Part 3 will be available soon): https://github.com/forwards/workshops > `Dublin2019`
 
 - Folder for exercise Part 1: https://github.com/forwards/mylittlepony > Click over `Clone or download` > `Download ZIP`
 
