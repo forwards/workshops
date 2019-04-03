@@ -77,7 +77,6 @@ group3 <- assign_groups(firstnames, size = 3)
 # reassign third group until there are no repeats
 # (must check for repeats in both groups 1 and 2)
 while(has_repeats(group1, group3) | has_repeats(group2, group3)) {
-    print("trying again")
     group3 <- assign_groups(firstnames, size = 3)
 }
 ```
