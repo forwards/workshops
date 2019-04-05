@@ -16,6 +16,11 @@ output: html_document
 
 Tickets are on sale via Eventbrite (€5.85): https://www.eventbrite.ie/e/develop-packages-in-r-workshop-for-r-users-who-identify-as-female-tickets-59353553075
 
+**References**
+- Wickham, Hadley (2015) *R packages: organize, test, document, and share your code* "O'Reilly Media, Inc." http://r-pkgs.had.co.nz/
+- [RStudio Package Development Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf)
+
+
 ## Set up
 
 **Download all material from:** 
