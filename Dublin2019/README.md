@@ -20,12 +20,15 @@ Tickets are on sale via Eventbrite (€5.85): https://www.eventbrite.ie/e/develo
 - Wickham, Hadley (2015) *R packages: organize, test, document, and share your code* "O'Reilly Media, Inc." http://r-pkgs.had.co.nz/
 - [RStudio Package Development Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf)
 
+**RStudio Cloud Project**
+
+RStudio Cloud Project for this workshop is [here](https://rstudio.cloud/spaces/14324/join?access_code=gVnAWglEBrDEb1FFoXuBfLitHpTr1%2FQ4dK4XIiCy)
 
 ## Set up
 
 **Download all material from:** 
 
-- Lecture Slides (Part 3 will be available soon): https://github.com/forwards/workshops > `Dublin2019`
+- Lecture Slides: https://github.com/forwards/workshops > `Dublin2019`
 
 - Folder for exercise Part 1: https://github.com/forwards/mylittlepony > Click over `Clone or download` > `Download ZIP`
 
@@ -43,6 +46,7 @@ In addition, please install/update the following R packages:
  - `testthat`
  - `tidyverse`
  - `usethis`
+ - `available`
 
 Some additional tools may be required to compile R packages from source:
 
