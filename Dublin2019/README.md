@@ -22,7 +22,7 @@ Tickets are on sale via Eventbrite (€5.85): https://www.eventbrite.ie/e/develo
 
 **RStudio Cloud Project**
 
-RStudio Cloud Project for this workshop is [here](https://rstudio.cloud/spaces/14324/join?access_code=gVnAWglEBrDEb1FFoXuBfLitHpTr1%2FQ4dK4XIiCy)
+RStudio Cloud Project for this workshop is [here](https://rstudio.cloud/spaces/14324/join?access_code=gVnAWglEBrDEb1FFoXuBfLitHpTr1%2FQ4dK4XIiCy). To access the Project you will be asked to log in or sign up to RStudio Cloud.
 
 ## Set up
 
