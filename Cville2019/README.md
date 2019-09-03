@@ -12,6 +12,7 @@ Please complete these completely anonymous surveys for us if you participate.
 
 ## Slides
 
+* [Welcome](https://docs.google.com/presentation/d/1Ng9gRzhVpw66Qt3T1cgRSP86JWVR63Q-IV9iV1yy2ZY/edit?usp=sharing)
 * TBD
 
 ## Code
