@@ -6,9 +6,9 @@ This repo contains materials and documentation for students in the [R Forwards P
 We want to make sure you have a good experience, and learn more about how we can do better! 
 Please complete these completely anonymous surveys for us if you participate.
 
-[Pre-Workshop Survey]() - Do me BEFORE class starts!
+[Pre-Workshop Survey](https://docs.google.com/forms/d/1gyuCrFro0Odippol7eh3zKwruGM0kuFcJVLPHj2o6bI/) - Do me BEFORE the workshop!
 
-[Post-Workshop Survey]() - Do me AFTER class is over!
+[Post-Workshop Survey](https://docs.google.com/forms/d/1ony9SKffDAO7h_2WuqOE0qkZt1FrW4h15qWCnK3WcvA/) - Do me AFTER the workshop!
 
 ## Slides
 
