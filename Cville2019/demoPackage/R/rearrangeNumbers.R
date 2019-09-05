@@ -1,11 +1,11 @@
-#' rearrange_numbers
+#' rearrangeNumbers
 #'
 #' @param numberVec Vector of numbers
 #'
 #' @return New vector of same length as input.
 #' @importFrom assertthat assert_that not_empty
 #' @export
-rearrange_numbers <- function(numberVec){
+rearrangeNumbers <- function(numberVec){
     assertthat::assert_that(
         assertthat::not_empty(numberVec),
         class(numberVec) == "numeric")
