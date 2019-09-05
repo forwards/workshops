@@ -17,4 +17,6 @@ Please complete these completely anonymous surveys for us if you participate.
 
 ## Code
 
-There is a completed sample package you can use as reference in the afternoon session - you can see it [here!](https://github.com/forwards/workshops/tree/master/Cville2019/demoPackage)
+In this workshop you will build a package from scratch! You can see a completed version of this package with code updates, documentation, and tests [here](https://github.com/forwards/workshops/tree/master/Cville2019/demoPackage). 
+
+
