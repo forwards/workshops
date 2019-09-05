@@ -1,4 +1,4 @@
-#' goToTheZoo
+#' zoo_sounds
 #'
 #' @param animal String
 #' @param sound String
@@ -7,7 +7,7 @@
 #' @importFrom glue glue
 #' @importFrom assertthat assert_that is.string
 #' @export
-goToTheZoo <- function(animal, sound){
+zoo_sounds <- function(animal, sound){
 
     assertthat::assert_that(
     assertthat::is.string(animal),
