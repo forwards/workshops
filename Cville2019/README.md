@@ -13,7 +13,12 @@ Please complete these completely anonymous surveys for us if you participate.
 ## Slides
 
 * [Welcome](https://docs.google.com/presentation/d/1Ng9gRzhVpw66Qt3T1cgRSP86JWVR63Q-IV9iV1yy2ZY/edit?usp=sharing)
-* TBD
+* [Package Orientation](https://docs.googlehttps://docs.google.com/presentation/d/1mUWDA_OiCO4C1pb_1yFXzNWKehpcLTL_p7tp4u4QAvI/edit?usp=sharing)
+* [Package Development](https://docs.google.com/presentation/d/1WYWxcebXItjphqK11czI74MATV9FrirKbvOe5LspTYw/edit?usp=sharing)
+* [Documentation](https://docs.google.com/presentation/d/1Q_7v0F6q64pegsBFaod0Ivn3xlUA80eNELfX7VuOlj0/edit?usp=sharing)
+* [Testing](https://docs.google.com/presentation/d/12qwGdQxup0pohDwm4CZ6zTAyhEv3ea6gv-D9okRlTXE/edit?usp=sharing)
+* [Sharing](https://docs.google.com/presentation/d/1DlTZZLLlQlOHndZ9rHzYArykWxNDIj3ZMaSBDjGrljc/edit?usp=sharing)
+* [Version Control](https://docs.google.com/presentation/d/1UIM_k_bYjJ4Ys_MbZfEdPlPC-T2dXIipgQ99dw1GxNU/edit?usp=sharing)
 
 ## Code
 
