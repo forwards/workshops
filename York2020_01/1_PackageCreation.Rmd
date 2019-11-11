@@ -65,6 +65,49 @@ Updated: `r Sys.Date()`
 
 ]
 ---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Preliminaries.
+---
+
+# Preliminaries. 
+
+## Welcome! Who are we?
+
+.pull-left[
+
+```{r, out.width = "200px", echo=FALSE}
+knitr::include_graphics("pics/emma.png")
+```
+
+### Emma Rand
+Lecturer (Assistant Professor), Department of Biology University of York, UK
+
+I'm a biologist by training. 
+
+Long time R user, relatively new to Python.
+
+]
+
+.pull-right[
+
+```{r, out.width = "200px", echo=FALSE}
+knitr::include_graphics("pics/emma.png")
+```
+
+### Susannah Cowtan
+Postgraduate Student, Department of xx University of Sheffield, UK
+
+biography.
+
+]
+---
+
+
 # Preliminaries. 
 
 ## The material is mostly drawn from:
@@ -211,6 +254,143 @@ All the libraries R knows about:
 ## Before we start:
 
 ### Make sure you have recent versions of:
+
+`devtools`  
+`pkgdown`  
+`roxygen2`  
+`testthat`   
+`tidyverse`  
+`usethis`  
+
+### Load`devtools`
+
+```{r}
+library(devtools)
+```
+
+
+---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Your first package.
+
+---
+# Your first package.
+
+## To create a package.
+
+Be deliberate about where you create your package.
+
+Do not nest inside another RStudio project, R package or git repo
+
+```{r eval=FALSE}
+usethis::create_package("path/to/mypackage")
+```
+
+This will:
+
+* create a new R project called mypackage. which is a package and an RStudio package.
+* restart R in the new project.
+* create a skeleton structure for your package.
+* start an RStudio helper menu.
+
+---
+
+# Your first package.
+
+## What is in this skeleton?
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/createpkg1.png")
+```
+
+
+
+---
+
+# Your first package.
+
+## What is in this skeleton?
+
+### Files and directories.
+
+* `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source. e.g., the `.Rproj file and the LICENSE
+* `.Rproj.user`, if you have it, is a directory used internally by RStudio.
+* `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
+* `DESCRIPTION` provides metadata about your package. We will need to edit this.
+* `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
+* The `R/` directory is the “business end” of your package. It will contain .R files with function definitions.
+* `mypackage.Rproj` is the file that makes this directory an RStudio Project.
+
+
+---
+
+# Your first package.
+
+## Build pane appears.
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/createpkg2.png")
+```
+
+
+---
+
+# Your first package.
+
+## Use version control.
+
+This is optional but strongly recommended.
+
+```{r eval=FALSE}
+use_git()
+```
+
+---
+
+# Your first package.
+
+## Version control: commit files
+
+There are 5 uncommitted files:
+
+Is it OK to commit them?
+
+Say "I agree" (option 3):
+
+```{r, out.width = "600px", echo=FALSE}
+knitr::include_graphics("pics/git_agree.png")
+```
+
+
+---
+
+# Your first package.
+
+## Version control: Restart R
+
+A restart of R is required to activate the Git pane. Restart now?
+
+Say "Yup" (option 3): 
+
+```{r, out.width = "600px", echo=FALSE}
+knitr::include_graphics("pics/git_yup.png")
+```
+
+
+---
+# Your first package.
+
+## Version control:  RStudio Git pane.
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/git_pane.png")
+```
+
 
 ---
 # References
