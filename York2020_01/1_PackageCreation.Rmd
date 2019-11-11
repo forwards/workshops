@@ -107,7 +107,6 @@ biography.
 ]
 ---
 
-
 # Preliminaries. 
 
 ## The material is mostly drawn from:
@@ -188,6 +187,7 @@ list.files(R.home())
 ```{r}
 R.version
 ```
+
 ---
 # Preliminaries.
 
@@ -206,6 +206,7 @@ install.packages("foo")
 library(devtools)
 install_github("jane/foo")
 ```
+
 ---
 # Preliminaries.
 
@@ -216,7 +217,6 @@ knitr::include_graphics("pics/library.png")
 ```
 
 --
-
 ### R packages live in a library.
 
 ---
@@ -299,7 +299,6 @@ This will:
 * start an RStudio helper menu.
 
 ---
-
 # Your first package.
 
 ## What is in this skeleton?
@@ -311,14 +310,14 @@ knitr::include_graphics("pics/createpkg1.png")
 
 
 ---
-
 # Your first package.
 
 ## What is in this skeleton?
 
 ### Files and directories.
 
-* `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source. e.g., the `.Rproj file and the LICENSE
+
+* `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
 * `.Rproj.user`, if you have it, is a directory used internally by RStudio.
 * `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
 * `DESCRIPTION` provides metadata about your package. We will need to edit this.
@@ -328,7 +327,6 @@ knitr::include_graphics("pics/createpkg1.png")
 
 
 ---
-
 # Your first package.
 
 ## Build pane appears.
@@ -339,7 +337,6 @@ knitr::include_graphics("pics/createpkg2.png")
 
 
 ---
-
 # Your first package.
 
 ## Use version control.
@@ -351,7 +348,6 @@ use_git()
 ```
 
 ---
-
 # Your first package.
 
 ## Version control: commit files
@@ -368,7 +364,6 @@ knitr::include_graphics("pics/git_agree.png")
 
 
 ---
-
 # Your first package.
 
 ## Version control: Restart R
