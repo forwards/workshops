@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-12
+Updated: 2019-11-13
 
 .footnote[
 [1] https://github.com/forwards/workshops/blob/master/Computing_requirements.md  
@@ -183,7 +183,7 @@ sum((height - mean(height))^2)
 ```
 
 ```
-## [1] 52.21155
+## [1] 60.45138
 ```
 
 ---
@@ -214,7 +214,7 @@ sums_squares(height)
 ```
 
 ```
-## [1] 52.21155
+## [1] 60.45138
 ```
 
 
@@ -268,6 +268,9 @@ load_all()
 
 `load_all()` will make `sums_squares()` (and any other functions) available for use.
 
+.footnote[
+[1] The Build pane includes a menu item to run `load_all()` under More.
+]
 --
 
 Note, you will not see it in your environment! 
@@ -291,16 +294,60 @@ You will get lots of output. It will end with:
 &lt;img src="pics/check.png" width="500px" /&gt;
 
 Which tells you that your package is unlicensed and undocumented. We will fix these issues later.
----
 
 ---
 # Create your first package.
 
 ## Commit your changes with Git.
 
+Go to the Git pane and check the box to "Stage" the changes you want to commit.
+
+&lt;img src="pics/git_stage.png" width="500px" /&gt;
+
+Then click Commit
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+This will open a "Review Changes" window:
+
+&lt;img src="pics/git_commit_review.png" width="500px" /&gt;
+
+This allows you to see what has changed since your last commit. Green means added; pink means deleted.
+
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+You need to add a Commit message. Something like "Added sum_squares function."
+
+&lt;img src="pics/git_commit_message.png" width="500px" /&gt;
+
+Now hit Commit!
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+A window will appear showing the process occuring.
+
+&lt;img src="pics/git_commit_window.png" width="500px" /&gt;
+
+Choose close when it is finished.
+
+You will find "Review Changes" window is now empty because everything is up-to-date.
+
+---
+# Please tell me more about Git!
+
+Oh, okay then 😃
 
 Before adding a license and documentation to our package we will take a short diversion to cover Git and GitHub.
 
+
+---
 # References
 
 [1] H. Wickham and G. Grolemund. _R for Data Science: Import,

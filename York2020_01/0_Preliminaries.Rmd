@@ -27,10 +27,6 @@ options(htmltools.dir.version = FALSE)
 
 ```{r pkgs, include=FALSE}
 library(RefManageR)
-library(kableExtra)
-library(dplyr)
-library(png)
-library(grid)
 ```
 
 ```{r, load-refs, include=FALSE, cache=FALSE}

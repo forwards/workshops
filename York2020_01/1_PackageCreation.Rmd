@@ -27,10 +27,8 @@ options(htmltools.dir.version = FALSE)
 
 ```{r pkgs, include=FALSE}
 library(RefManageR)
-library(kableExtra)
 library(tidyverse)
-library(png)
-library(grid)
+
 ```
 
 ```{r, load-refs, include=FALSE, cache=FALSE}
@@ -286,6 +284,9 @@ load_all()
 
 `load_all()` will make `sums_squares()` (and any other functions) available for use.
 
+.footnote[
+[1] The Build pane includes a menu item to run `load_all()` under More.
+]
 --
 
 Note, you will not see it in your environment! 
@@ -310,16 +311,68 @@ knitr::include_graphics("pics/check.png")
 ```
 
 Which tells you that your package is unlicensed and undocumented. We will fix these issues later.
----
 
 ---
 # Create your first package.
 
 ## Commit your changes with Git.
 
+Go to the Git pane and check the box to "Stage" the changes you want to commit.
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/git_stage.png")
+```
+
+Then click Commit
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+This will open a "Review Changes" window:
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/git_commit_review.png")
+```
+
+This allows you to see what has changed since your last commit. Green means added; pink means deleted.
+
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+You need to add a Commit message. Something like "Added sum_squares function."
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/git_commit_message.png")
+```
+
+Now hit Commit!
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+A window will appear showing the process occuring.
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("pics/git_commit_window.png")
+```
+
+Choose close when it is finished.
+
+You will find "Review Changes" window is now empty because everything is up-to-date.
+
+---
+# Please tell me more about Git!
+
+Oh, okay then `r emo::ji("smiley")`
 
 Before adding a license and documentation to our package we will take a short diversion to cover Git and GitHub.
 
+
+---
 # References
 
 ```{r refs, echo=FALSE, results="asis"}
