@@ -1,0 +1,128 @@
+---
+title: "Package development."
+subtitle: "Creating impact from code."
+author: "Emma Rand and Susannah Cowtan."
+institute: "Forwards"
+date: "updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: [metropolis, default, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+```{r pkgs, include=FALSE}
+library(RefManageR)
+library(tidyverse)
+
+```
+
+```{r, load-refs, include=FALSE, cache=FALSE}
+BibOptions(check.entries = FALSE,
+           bib.style = "numeric",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("bibliography.bib", check = FALSE)
+```
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+# Package development.
+
+## Creating impact from code.
+
+### Emma Rand and Susannah Cowtan. 
+
+### York January 2020.
+
+Updated: `r Sys.Date()`
+
+.footnote[
+[1] https://github.com/forwards/workshops/blob/master/Computing_requirements.md  
+[2] Made with xaringan `r Cite(myBib, "xaringan")`
+
+]
+---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Git and GitHub.
+
+.center[
+## A very brief guide!
+]
+---
+
+# Git and GitHub.
+
+## What is Git?
+Git is a version control system:
+
+* changes to your code are tracked and can be shared.
+* to commit means to save a version.
+
+## what is GitHub??
+
+GitHub is a website that hosts Git projects. 
+
+---
+
+# Git and GitHub.
+
+## Why use Git and GitHub.
+
+* collaborate on code more easily.
+* share your code with the world.
+* allow others to install your packages.
+* have a package website.
+* track 'issues'.
+* have others suggest improvements via pull requests.
+
+Git and GitHub are generally useful for all software development and data analysis
+
+---
+
+# Git and GitHub.
+
+---
+
+# Git and GitHub.
+
+ 
+
+
+---
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+
+---
+# License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
