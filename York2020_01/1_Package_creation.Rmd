@@ -58,7 +58,7 @@ class: inverse
 Updated: `r Sys.Date()`
 
 .footnote[
-[1] https://github.com/forwards/workshops/blob/master/Computing_requirements.md  
+[1]   
 [2] Made with xaringan `r Cite(myBib, "xaringan")`
 
 ]

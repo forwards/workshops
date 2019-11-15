@@ -1,0 +1,52 @@
+---
+title: "Package development."
+subtitle: "Creating impact from code."
+author: "Emma Rand and Susannah Cowtan."
+institute: "Forwards"
+date: "updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: [metropolis, default, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+# Package development.
+
+## Creating impact from code.
+
+### Emma Rand and Susannah Cowtan. 
+
+### York January 2020.
+
+Updated: `r Sys.Date()`
+
+[Preliminaries](York2020_01/0_Preliminaries.html)
+
+[Package creation ](York2020_01/1_Package_creation.html)
+
+[Git and GitHub](York2020_01/2_Git_and_GitHub.html)
+
+[Package documentation](York2020_01/3_Package_documentation.html)
+
+[Package testing](York2020_01/4_Package_testing.html)
