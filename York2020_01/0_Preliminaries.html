@@ -32,11 +32,10 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-15
+Updated: 2019-11-16
 
 .footnote[
-[1]   
-[2] Made with xaringan (Xie, 2019)
+Made with xaringan (Xie, 2019)
 
 ]
 ---
@@ -141,7 +140,7 @@ R.home()
 ```
 
 ```
-## [1] "C:/PROGRA~1/R/R-36~1.0"
+## [1] "C:/PROGRA~1/R/R-36~1.1"
 ```
 
 The R home directory is the top-level directory of the R installation being run.
@@ -159,7 +158,7 @@ list.files(R.home())
 ```
 ##  [1] "bin"            "CHANGES"        "COPYING"        "doc"           
 ##  [5] "etc"            "include"        "library"        "MD5"           
-##  [9] "modules"        "README"         "README.R-3.6.0" "share"         
+##  [9] "modules"        "README"         "README.R-3.6.1" "share"         
 ## [13] "src"            "Tcl"            "tests"          "unins000.dat"  
 ## [17] "unins000.exe"
 ```
@@ -182,14 +181,14 @@ R.version
 ## system         x86_64, mingw32             
 ## status                                     
 ## major          3                           
-## minor          6.0                         
+## minor          6.1                         
 ## year           2019                        
-## month          04                          
-## day            26                          
-## svn rev        76424                       
+## month          07                          
+## day            05                          
+## svn rev        76782                       
 ## language       R                           
-## version.string R version 3.6.0 (2019-04-26)
-## nickname       Planting of a Tree
+## version.string R version 3.6.1 (2019-07-05)
+## nickname       Action of the Toes
 ```
 
 ---
@@ -243,7 +242,7 @@ The default library:
 ```
 
 ```
-## [1] "C:/PROGRA~1/R/R-36~1.0/library"
+## [1] "C:/PROGRA~1/R/R-36~1.1/library"
 ```
 
 --
@@ -255,9 +254,8 @@ All the libraries R knows about:
 ```
 
 ```
-## [1] "H:/rlibs/3.6.0"                                 
-## [2] "T:/Applications/Departments/Biology/Rlibs/3.6.0"
-## [3] "C:/Program Files/R/R-3.6.0/library"
+## [1] "C:/Users/Emma Rand/Documents/R/win-library/3.6"
+## [2] "C:/Program Files/R/R-3.6.1/library"
 ```
 
 
@@ -270,7 +268,7 @@ All the libraries R knows about:
 * Other R users maintain, or have access to, multiple libraries.
 * You may not have write access to the default library.
 * For example, you can put add-on packages in a user-level library:
-H:/rlibs/3.6.0
+C:/Users/Emma Rand/Documents/R/win-library/3.6
 
 ---
 # Preliminaries.
@@ -321,11 +319,11 @@ A successful particpant will be able to:
 ---
 # References
 
-[1] H. Wickham. _R Packages_. 1st. O'Reilly Media, Inc., 2015.
-ISBN: 1491910593, 9781491910597.
+[1] H. Wickham. _R Packages_. 1st. O'Reilly Media, Inc., 2015. ISBN:
+1491910593, 9781491910597.
 
-[2] Y. Xie. _xaringan: Presentation Ninja_. R package version
-0.12. 2019. URL:
+[2] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 ---
@@ -378,7 +376,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

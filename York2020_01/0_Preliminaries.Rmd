@@ -56,8 +56,7 @@ class: inverse
 Updated: `r Sys.Date()`
 
 .footnote[
-[1]   
-[2] Made with xaringan `r Cite(myBib, "xaringan")`
+Made with xaringan `r Cite(myBib, "xaringan")`
 
 ]
 ---

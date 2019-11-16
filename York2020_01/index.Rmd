@@ -41,12 +41,12 @@ class: inverse
 
 Updated: `r Sys.Date()`
 
-[Preliminaries](York2020_01/0_Preliminaries.html)
+[Preliminaries](0_Preliminaries.html)
 
-[Package creation ](York2020_01/1_Package_creation.html)
+[Package creation ](1_Package_creation.html)
 
-[Git and GitHub](York2020_01/2_Git_and_GitHub.html)
+[Git and GitHub](2_Git_and_GitHub.html)
 
-[Package documentation](York2020_01/3_Package_documentation.html)
+[Package documentation](3_Package_documentation.html)
 
-[Package testing](York2020_01/4_Package_testing.html)
+[Package testing](4_Package_testing.html)

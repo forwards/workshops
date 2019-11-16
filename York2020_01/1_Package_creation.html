@@ -32,11 +32,10 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-15
+Updated: 2019-11-16
 
 .footnote[
-[1]   
-[2] Made with xaringan (Xie, 2019)
+Made with xaringan (Xie, 2019)
 
 ]
 ---
@@ -85,7 +84,7 @@ This will:
 ### Files and directories.
 
 
-* `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
+* `.Rbuildignore` lists files that we need but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
 * `.Rproj.user`, if you have it, is a directory used internally by RStudio.
 * `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
 * `DESCRIPTION` provides metadata about your package. We will need to edit this.
@@ -183,7 +182,7 @@ sum((height - mean(height))^2)
 ```
 
 ```
-## [1] 58.01001
+## [1] 68.11682
 ```
 
 ---
@@ -214,7 +213,7 @@ sums_squares(height)
 ```
 
 ```
-## [1] 58.01001
+## [1] 68.11682
 ```
 
 
@@ -350,13 +349,13 @@ Before adding a license and documentation to our package we will take a short di
 ---
 # References
 
-[1] H. Wickham and G. Grolemund. _R for Data Science: Import,
-Tidy, Transform, Visualize, and Model Data_. 1st. O'Reilly Media,
-Inc., 2017. ISBN: 1491910399, 9781491910399. URL:
+[1] H. Wickham and G. Grolemund. _R for Data Science: Import, Tidy,
+Transform, Visualize, and Model Data_. 1st. O'Reilly Media, Inc., 2017.
+ISBN: 1491910399, 9781491910399. URL:
 [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/).
 
-[2] Y. Xie. _xaringan: Presentation Ninja_. R package version
-0.12. 2019. URL:
+[2] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 
@@ -410,7 +409,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

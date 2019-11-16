@@ -58,8 +58,7 @@ class: inverse
 Updated: `r Sys.Date()`
 
 .footnote[
-[1]   
-[2] Made with xaringan `r Cite(myBib, "xaringan")`
+Made with xaringan `r Cite(myBib, "xaringan")`
 
 ]
 ---
@@ -109,7 +108,7 @@ knitr::include_graphics("pics/createpkg1.png")
 ### Files and directories.
 
 
-* `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
+* `.Rbuildignore` lists files that we need but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
 * `.Rproj.user`, if you have it, is a directory used internally by RStudio.
 * `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
 * `DESCRIPTION` provides metadata about your package. We will need to edit this.
