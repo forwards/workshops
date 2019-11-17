@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-15
+Updated: 2019-11-17
 
 .footnote[
 [1]   
@@ -81,21 +81,98 @@ GitHub is a website that hosts Git projects.
 Git and GitHub are generally useful for all software development and data analysis
 
 ---
-
 # Git and GitHub.
+
+`use_github()` takes a local project, creates an associated repo on GitHub, adds it to your local repo as the origin remote, and makes an initial push to synchronize. 
+
+`use_github()` requires that your project already be a Git repository, which you can accomplish with `use_git()`, 
+
+Authentication is also required.
+
+---
+# Git and GitHub.
+
+## Authentication
+
+A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. 
+
+https://github.com/settings/tokens
+
+You can either provide this directly via the auth_token argument or store it for retrieval with github_token().
+
+browse_github_token() to generate a new PAT
+
+github_token()
+
+Example
+
+
+---
+# Git and GitHub.
+
+https://usethis.r-lib.org/reference/use_github.html
+
+```
+&gt; use_github()
+✔ Checking that current branch is 'master'
+Error: This repo already has an 'origin' remote, with value 'git@github.com:3mmaRand/mypackage.git'.
+How to remove this setting in the shell:
+`git remote rm origin`
+&gt; use_github()
+✔ Checking that current branch is 'master'
+Which git protocol to use? (enter 0 to exit) 
+
+1: ssh   &lt;-- presumes that you have set up ssh keys
+2: https &lt;-- choose this if you don't have ssh keys (or don't know if you do)
+
+```
+
+
 
 ---
 
 # Git and GitHub.
 
- 
+ ```
+ Selection: 2
+● Tip: To suppress this menu in future, put
+  `options(usethis.protocol = "https")`
+  in your script or in a user- or project-level startup file, '.Rprofile'.
+  Call `usethis::edit_r_profile()` to open it for editing.
+● Check title and description
+  Name:        mypackage
+  Description: What the Package Does (One Line, Title Case)
+Are title and description ok?
 
+1: Not now
+2: Absolutely not
+3: Yup
+ 
+ 
+ ```
+
+---
+
+# Git and GitHub.
+
+ ```
+Selection: 3
+✔ Creating GitHub repository
+✔ Setting remote 'origin' to 'https://github.com/3mmaRand/mypackage.git'
+✔ Adding GitHub links to DESCRIPTION
+✔ Setting URL field in DESCRIPTION to 'https://github.com/3mmaRand/mypackage'
+✔ Setting BugReports field in DESCRIPTION to 'https://github.com/3mmaRand/mypackage/issues'
+✔ Pushing 'master' branch to GitHub and setting remote tracking branch
+✔ Opening URL 'https://github.com/3mmaRand/mypackage'
+ 
+ 
+ ```
 
 ---
 # References
 
-[1] Y. Xie. _xaringan: Presentation Ninja_. R package version
-0.12. 2019. URL:
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 
@@ -149,7 +226,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
