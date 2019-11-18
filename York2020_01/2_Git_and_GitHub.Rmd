@@ -106,11 +106,27 @@ Git and GitHub are generally useful for all software development and data analys
 ---
 # Git and GitHub.
 
+## `use_github()`
+
 `use_github()` takes a local project, creates an associated repo on GitHub, adds it to your local repo as the origin remote, and makes an initial push to synchronize. 
 
-`use_github()` requires that your project already be a Git repository, which you can accomplish with `use_git()`, 
+`use_github()` requires that your project already be a Git repository, which you can accomplish with `use_git()`<sup>1</sup>.
 
-Authentication is also required.
+
+.footnote[
+[1] We used `use_git()` in [Package creation ](1_Package_creation.html).
+]
+
+--
+
+You'll get an error:
+
+```
+Error: No GitHub `auth_token` is available.
+See `browse_github_token()` for help storing a token as an environment variable.
+```
+
+because authentication is also required.
 
 ---
 # Git and GitHub.
@@ -119,15 +135,33 @@ Authentication is also required.
 
 A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. 
 
-https://github.com/settings/tokens
 
-You can either provide this directly via the auth_token argument or store it for retrieval with github_token().
+browse_github_token() to generate a new PAT:
 
-browse_github_token() to generate a new PAT
+✔ Opening URL 'https://github.com/settings/tokens/new?scopes=repo,gist&description=R:GITHUB_PAT'
+● Call `usethis::edit_r_environ()` to open '.Renviron'.
+● Store your PAT with a line like:
+  GITHUB_PAT=xxxyyyzzz
+  [Copied to clipboard]
+● Make sure '.Renviron' ends with a newline!
 
-github_token()
 
-Example
+Generate new token:
+GITHUB_PAT
+Generate token
+copy as instructed
+
+ea7bb1945caa9922aacabee66b0fa2609f848677
+
+then do as instructed
+> usethis::edit_r_environ()
+
+GITHUB_PAT=ea7bb1945caa9922aacabee66b0fa2609f848677
+
+● Modify '//userfs/er13/w2k/.Renviron'
+● Restart R for changes to take effect
+
+Make sure you restart R, then do use_github() again
 
 
 ---
@@ -149,7 +183,7 @@ Which git protocol to use? (enter 0 to exit)
 2: https <-- choose this if you don't have ssh keys (or don't know if you do)
 
 ```
-
+Choose 2 at the moment.
 
 
 ---
@@ -173,6 +207,8 @@ Are title and description ok?
  
  
  ```
+
+Say yes for the time being.
 
 ---
 

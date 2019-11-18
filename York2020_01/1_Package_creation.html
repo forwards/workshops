@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-16
+Updated: 2019-11-18
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -150,9 +150,9 @@ Choose the option which indicates yes.
 
 ### The RStudio Git pane.
 
-&lt;img src="pics/git_pane.png" width="400px" /&gt;
+&lt;img src="pics/git_pane.png" width="350px" /&gt;
 .footnote[
-[1] You *may* need to close the project and open by navigating to it without using the windows shortcuts.
+[1] If the Git pane does not open, try closing the project and reopening by navigating to it without using the windows shortcuts.
 ]
 ---
 # Create your first package.
@@ -182,7 +182,7 @@ sum((height - mean(height))^2)
 ```
 
 ```
-## [1] 68.11682
+## [1] 59.2649
 ```
 
 ---
@@ -213,7 +213,7 @@ sums_squares(height)
 ```
 
 ```
-## [1] 68.11682
+## [1] 59.2649
 ```
 
 
@@ -264,6 +264,11 @@ In a normal script, you might use `source("R/sums_squares.R")` but when building
 ```r
 load_all()
 ```
+```
+Loading mypackage
+```
+
+
 
 `load_all()` will make `sums_squares()` (and any other functions) available for use.
 
@@ -275,6 +280,22 @@ load_all()
 Note, you will not see it in your environment! 
 
 `load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+
+---
+# Create your first package.
+
+## Test your function after `load_all()`.
+
+Now you should be able to use your function just like any other function:
+
+
+```r
+sums_squares(rnorm(20))
+```
+```
+[1] 16.1641
+```
+
 
 ---
 # Create your first package.
@@ -299,11 +320,10 @@ Which tells you that your package is unlicensed and undocumented. We will fix th
 
 ## Commit your changes with Git.
 
-Go to the Git pane and check the box to "Stage" the changes you want to commit.
+Go to the Git pane and check the box to "Stage" the changes you want to commit. All of them in this case.
 
 &lt;img src="pics/git_stage.png" width="500px" /&gt;
 
-Then click Commit
 ---
 # Create your first package.
 
@@ -349,13 +369,13 @@ Before adding a license and documentation to our package we will take a short di
 ---
 # References
 
-[1] H. Wickham and G. Grolemund. _R for Data Science: Import, Tidy,
-Transform, Visualize, and Model Data_. 1st. O'Reilly Media, Inc., 2017.
-ISBN: 1491910399, 9781491910399. URL:
+[1] H. Wickham and G. Grolemund. _R for Data Science: Import,
+Tidy, Transform, Visualize, and Model Data_. 1st. O'Reilly Media,
+Inc., 2017. ISBN: 1491910399, 9781491910399. URL:
 [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/).
 
-[2] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
-2019. URL:
+[2] Y. Xie. _xaringan: Presentation Ninja_. R package version
+0.12. 2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 
@@ -409,24 +429,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {

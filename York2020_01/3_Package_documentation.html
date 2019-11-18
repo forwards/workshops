@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-16
+Updated: 2019-11-18
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -143,6 +143,31 @@ Using `use_mit_license()`&lt;sup&gt;1&lt;/sup&gt;:
 
 * adds these files to `.Rbuildignore`
 
+---
+# Package Documentation.
+
+## Do another commit .....
+
+Check the boxes in the Git pane to stage all changes. Click commit.
+
+Add a commit message like "add license". Click commit. 
+
+Notice how you now have a message saying "Your branch is ahead of the origin/master by 1 commit." This means your local version of `mypackage` has one update that isn't on GitHub:
+
+&lt;img src="pics/before_push.png" width="500px" /&gt;
+
+---
+# Package Documentation.
+
+## .... and push to GitHub!
+
+Update the version on GitHub using the Push button:
+
+&lt;img src="pics/before_push.png" width="500px" /&gt;
+
+Go to your GitHub page and marvel at your work. 
+
+### 🥳
 
 ---
 # Package Documentation.
@@ -323,15 +348,15 @@ Duration: 25.9s
 
 We have fixed the issues: our package is licensed and documented.
 
-### 🎉
+### 🎈
 
 
 
 ---
 # References
 
-[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
-2019. URL:
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version
+0.12. 2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 &lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="60px" /&gt;
@@ -388,24 +413,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {
