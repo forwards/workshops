@@ -75,10 +75,60 @@ class: inverse center
 ---
 # Adding Functions.
 
-## .....
+## A reminder of the goal package.
 
+We are going to write a package called `mypackage` has some simple utilities for a single large sample. It will calculate the sums of squares and standard error, carry out a one-sample z-test and create a couple of figures.
 
+The package itself is not very useful or wholy original. But what the package does is not the point!
 
+--
+
+`r emo::ji("play_button")` sums of squares
+
+`r emo::ji("stop_button")` standard error
+
+`r emo::ji("stop_button")` one sample z test
+
+`r emo::ji("stop_button")` figures
+
+---
+
+# Adding Functions.
+
+## Standard error.
+
+The standard error is given by:
+
+$$s.e. = \frac {s}{\sqrt{n}}$$
+
+--
+Can you add and document this function?
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### You need to:
+* write code for the $s.e.$  
+* put that logic into a function.  
+* check it works.  
+* save your fuction as a `.R` file in the `R` directory. `use_r()` will help with that.
+* test drive with `load_all`
+* Document your function by Inserting and editing roxygen comments and using `document()`
+* Do a `R CMD check` using `check()`.   
+* fix any issues.  
+* Commit with Git.  
+* Push to GitHub.
+* Marvel at your package making ability!
+
+---
+
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### My efforts.
 
 ---
 # References
