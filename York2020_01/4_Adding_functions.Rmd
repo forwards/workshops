@@ -68,8 +68,7 @@ background-size: 250px
 
 class: inverse center
 
-# Package Documentation.
-
+# Adding Functions.
 
 
 ---
@@ -129,6 +128,69 @@ Can you add and document this function?
 ## Add and document a Standard error function.
 
 ### My efforts.
+
+.........
+
+
+On running `check_all()` you may get an error if you are using a networked drive.
+
+```
+Updating mypackage documentation  
+Error: The specified file is not readable: Y:\My  
+Documents\scholarship\rforwards_package\mypackage\NAMESPACE  
+
+```
+--
+
+This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+
+---
+
+# Adding Functions.
+
+## An aside: a fix for networked drives.
+
+Save a copy of this fileSave it somewhere other than the `mypackage` directory.
+
+[fix_for_networked_drives.R](fix_for_networked_drives.R)
+
+--
+
+Open the file from the `mypackage` project session.
+
+--
+
+Run the whole file.
+
+You should now find that `check_all()` proceeds normally.
+
+---
+
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Results of `check_all()`
+
+There should be no errors or warnings but there is a note.
+
+```
+> checking R code for possible problems ... NOTE
+  std_err: no visible global function definition for 'sd'
+  Undefined global functions or variables:
+    sd
+  Consider adding
+    importFrom("stats", "sd")
+  to your NAMESPACE file.
+
+0 errors √ | 0 warnings √ | 1 note x
+
+```
+
+--
+
+We will address this later. 
+
 
 ---
 # References

@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-19
+Updated: 2019-11-20
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -45,8 +45,7 @@ background-size: 250px
 
 class: inverse center
 
-# Package Documentation.
-
+# Adding Functions.
 
 
 ---
@@ -107,11 +106,74 @@ Can you add and document this function?
 
 ### My efforts.
 
+.........
+
+
+On running `check_all()` you may get an error if you are using a networked drive.
+
+```
+Updating mypackage documentation  
+Error: The specified file is not readable: Y:\My  
+Documents\scholarship\rforwards_package\mypackage\NAMESPACE  
+
+```
+--
+
+This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+
+---
+
+# Adding Functions.
+
+## An aside: a fix for networked drives.
+
+Save a copy of this fileSave it somewhere other than the `mypackage` directory.
+
+[fix_for_networked_drives.R](fix_for_networked_drives.R)
+
+--
+
+Open the file from the `mypackage` project session.
+
+--
+
+Run the whole file.
+
+You should now find that `check_all()` proceeds normally.
+
+---
+
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Results of `check_all()`
+
+There should be no errors or warnings but there is a note.
+
+```
+&gt; checking R code for possible problems ... NOTE
+  std_err: no visible global function definition for 'sd'
+  Undefined global functions or variables:
+    sd
+  Consider adding
+    importFrom("stats", "sd")
+  to your NAMESPACE file.
+
+0 errors √ | 0 warnings √ | 1 note x
+
+```
+
+--
+
+We will address this later. 
+
+
 ---
 # References
 
-[1] Y. Xie. _xaringan: Presentation Ninja_. R package version
-0.12. 2019. URL:
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 &lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="60px" /&gt;
@@ -168,7 +230,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
