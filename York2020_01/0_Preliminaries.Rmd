@@ -95,9 +95,11 @@ knitr::include_graphics("pics/emma.png")
 ```
 
 ### Susannah Cowtan
-Postgraduate Student, Department of xx University of Sheffield, UK
+Postgraduate Student, School of Mathematics and Statistics, University of Sheffield, UK
 
-biography.
+I'm a statistician with a strong interest in eco- and biostatistics.
+
+I've also been using R for a long time, mainly tidyverse.
 
 ]
 ---
