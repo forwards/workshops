@@ -2,7 +2,7 @@
 
 ## Computing requirements
 
-Participants can bring their own lap yops or use those at the venue. 
+Participants can bring their own laptops or use those at the venue. 
 
 Laptops should have the following installed **prior** to attending the workshop:
 
