@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-11-18
+Updated: 2019-11-22
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -60,6 +60,8 @@ Do not nest inside another RStudio project, R package or git repo
 ```r
 usethis::create_package("path/to/mypackage")
 ```
+
+--
 
 This will:
 
@@ -100,13 +102,43 @@ This will:
 
 &lt;img src="pics/createpkg2.png" width="500px" /&gt;
 
+---
+# Create your first package.
+
+## Use version control: Git.
+
+This is optional but strongly recommended.
+
+First, make sure Git is configured&lt;sup&gt;1&lt;/sup&gt;:
+
+Tools | Shell...
+
+
+```r
+git config --global user.name 'Emma Rand'
+git config --global user.email 'emma.rand@york.ac.uk'
+git config --global --list
+```
+
+.footnote[
+[1] [Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference (Bryan, the STAT 545 TAs, and Hester, ).
+]
+
+--
+
+Close your project, reopen it and reload `devtools`:
+
+
+```r
+library(devtools)
+```
 
 ---
 # Create your first package.
 
-## Use version control with `use_git()`.
+## Use version control: Git.
 
-This is optional but strongly recommended.
+Now Git is configured, instruct R to use Git with this Package and project:
 
 
 ```r
@@ -182,7 +214,7 @@ sum((height - mean(height))^2)
 ```
 
 ```
-## [1] 59.2649
+## [1] 64.46306
 ```
 
 ---
@@ -194,7 +226,7 @@ We can put that logic into a function:
 
 
 ```r
-sums_squares &lt;- function(v) {
+sum_squares &lt;- function(v) {
   sum((v - mean(v))^2)
   }
 ```
@@ -209,18 +241,18 @@ and check it works:
 
 
 ```r
-sums_squares(height)
+sum_squares(height)
 ```
 
 ```
-## [1] 59.2649
+## [1] 64.46306
 ```
 
 
 ---
 # Create your first package.
 
-## Where to put that function using `use_r()`.
+## Where to put that function: `use_r()`.
 
 We save our function as a `.R` script file in the `R/` directory.
 
@@ -233,14 +265,14 @@ The `use_r()` function makes this a little easier by creating/opening a script b
 
 
 ```r
-use_r("sums_squares")
+use_r("sum_squares")
 ```
 
 --
 
 Paste in your function definition.
 
-Do not add any other code.
+Do not add any other code. Save the file.
 
 --
 
@@ -248,7 +280,7 @@ Before we continue, delete the function you put in the Global Environment:
 
 
 ```r
-rm(sums_squares)
+rm(sum_squares)
 ```
 
 
@@ -256,9 +288,9 @@ rm(sums_squares)
 ---
 # Create your first package.
 
-## How to test drive your function with `load_all()`.
+## Test drive your function: `load_all()`.
 
-In a normal script, you might use `source("R/sums_squares.R")` but when building packages, we use a devtools approach:
+In a normal script, you might use `source("R/sum_squares.R")` but when building packages, we use a `devtools` approach:
 
 
 ```r
@@ -269,8 +301,7 @@ Loading mypackage
 ```
 
 
-
-`load_all()` will make `sums_squares()` (and any other functions) available for use.
+`load_all()` will make `sum_squares()` (and any other functions) available for use.
 
 .footnote[
 [1] The Build pane includes a menu item to run `load_all()` under More.
@@ -279,18 +310,20 @@ Loading mypackage
 
 Note, you will not see it in your environment! 
 
-`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
-
 ---
 # Create your first package.
 
 ## Test your function after `load_all()`.
 
+`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+
+--
+
 Now you should be able to use your function just like any other function:
 
 
 ```r
-sums_squares(rnorm(20))
+sum_squares(rnorm(20))
 ```
 ```
 [1] 16.1641
@@ -304,10 +337,14 @@ sums_squares(rnorm(20))
 
 `R CMD check` executed in the shell, is the gold standard for checking that an R package is in full working order. `check()` is a convenient way to run this without leaving your R session.
 
+--
+
 
 ```r
 check()
 ```
+
+--
 
 You will get lots of output. It will end with:
 
@@ -369,12 +406,16 @@ Before adding a license and documentation to our package we will take a short di
 ---
 # References
 
-[1] H. Wickham and G. Grolemund. _R for Data Science: Import,
+[1] J. Bryan, the STAT 545 TAs, and J. Hester. _Happy Git and
+GitHub for the useR_. &lt;URL: https://happygitwithr.com/&gt;. Accessed:
+2019-11-22.
+
+[2] H. Wickham and G. Grolemund. _R for Data Science: Import,
 Tidy, Transform, Visualize, and Model Data_. 1st. O'Reilly Media,
 Inc., 2017. ISBN: 1491910399, 9781491910399. URL:
 [https://r4ds.had.co.nz/](https://r4ds.had.co.nz/).
 
-[2] Y. Xie. _xaringan: Presentation Ninja_. R package version
+[3] Y. Xie. _xaringan: Presentation Ninja_. R package version
 0.12. 2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 

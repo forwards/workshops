@@ -58,8 +58,7 @@ class: inverse
 Updated: `r Sys.Date()`
 
 .footnote[
-[1]   
-[2] Made with xaringan `r Cite(myBib, "xaringan")`
+[1] Made with xaringan `r Cite(myBib, "xaringan")`
 
 ]
 ---
@@ -81,10 +80,11 @@ class: inverse center
 ## What is Git?
 Git is a version control system:
 
+* monitors the changes made to files.
 * changes to your code are tracked and can be shared.
 * to commit means to save a version.
 
-## what is GitHub??
+## What is GitHub??
 
 GitHub is a website that hosts Git projects. 
 
@@ -103,21 +103,54 @@ GitHub is a website that hosts Git projects.
 
 Git and GitHub are generally useful for all software development and data analysis
 
+
+---
+
+# Git and GitHub.
+
+## This workshop....
+
+Is a very "bare bones" introduction that will give you a workflow for using Git and GitHub through RStudio.
+
+--
+
+A more thorough coverage of Git and GitHub through RStudio is [Happy Git and GitHub for the useR](https://happygitwithr.com/) `r Cite(myBib, "Bryan_Happy_Git")`.
+
+--
+
+You don't have to use RStudio to use Git. A more general guide is here https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6
+
 ---
 # Git and GitHub.
 
 ## `use_github()`
 
-`use_github()` takes a local project, creates an associated repo on GitHub, adds it to your local repo as the origin remote, and makes an initial push to synchronize. 
+We used `use_git()`<sup>1</sup> to make our project a Git repository, or 'repo'.
 
-`use_github()` requires that your project already be a Git repository, which you can accomplish with `use_git()`<sup>1</sup>.
+This is on our local machine. 
+
+--
+
+To create a copy on GitHub we use:
+
+```{r eval=FALSE}
+use_github()
+```
+
+
+This takes a local project, creates an associated repo on GitHub, adds it to your local repo as the "origin remote", and makes an initial "push" to synchronize. 
+
+To use `use_github()` your project must already be a Git repository. 
 
 
 .footnote[
-[1] We used `use_git()` in [Package creation ](1_Package_creation.html).
+[1] Used in [Package creation ](1_Package_creation.html).
 ]
 
---
+---
+# Git and GitHub.
+
+## `use_github()`
 
 You'll get an error:
 
@@ -133,49 +166,81 @@ because authentication is also required.
 
 ## Authentication
 
-A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. 
+A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. You can do this with:
 
+```{r eval=FALSE}
+browse_github_token()
+```
 
-browse_github_token() to generate a new PAT:
+This opens a broswer window for you to log in to GitHub. 
 
+--
+
+A page will open on GitHub.
+
+Click generate token.
+
+Copy it.
+
+Leave this page open for the time being.
+
+---
+# Git and GitHub.
+
+## Authentication
+
+Go back to RStudio where you should see:
+
+```
 ✔ Opening URL 'https://github.com/settings/tokens/new?scopes=repo,gist&description=R:GITHUB_PAT'
 ● Call `usethis::edit_r_environ()` to open '.Renviron'.
 ● Store your PAT with a line like:
   GITHUB_PAT=xxxyyyzzz
   [Copied to clipboard]
 ● Make sure '.Renviron' ends with a newline!
-
-
-Generate new token:
-GITHUB_PAT
-Generate token
-copy as instructed
-
-ea7bb1945caa9922aacabee66b0fa2609f848677
-
-then do as instructed
-> usethis::edit_r_environ()
-
-GITHUB_PAT=ea7bb1945caa9922aacabee66b0fa2609f848677
-
-● Modify '//userfs/er13/w2k/.Renviron'
-● Restart R for changes to take effect
-
-Make sure you restart R, then do use_github() again
-
+```
 
 ---
 # Git and GitHub.
 
-https://usethis.r-lib.org/reference/use_github.html
+## Authentication
+
+As instructed, do:
+
+```{r eval=FALSE}
+usethis::edit_r_environ()
+```
+```
+● Modify '//userfs/er13/w2k/.Renviron'
+● Restart R for changes to take effect
 
 ```
-> use_github()
-✔ Checking that current branch is 'master'
-Error: This repo already has an 'origin' remote, with value 'git@github.com:3mmaRand/mypackage.git'.
-How to remove this setting in the shell:
-`git remote rm origin`
-> use_github()
+
+`.Renviron` will open. Add a line like:
+
+```
+GITHUB_PAT=xxxyyyzzz
+```
+
+Where xxxyyyzzz is pasted from the clipboard.
+
+Make sure `.Renviron` ends with a newline!
+
+Save and close `.Renviron`
+
+---
+# Git and GitHub.
+
+## And we are ready!
+
+Make sure you restart R as instructed. Then do:
+
+```{r eval=FALSE}
+library(devtools)
+use_github() 
+```
+
+```
 ✔ Checking that current branch is 'master'
 Which git protocol to use? (enter 0 to exit) 
 
@@ -189,6 +254,8 @@ Choose 2 at the moment.
 ---
 
 # Git and GitHub.
+
+## On using `use_github()`
 
  ```
  Selection: 2
@@ -210,11 +277,15 @@ Are title and description ok?
 
 Say yes for the time being.
 
+In future, you might want amend documentation before your first commit to GitHub.
+
 ---
 
 # Git and GitHub.
 
- ```
+## On using `use_github()`
+
+```
 Selection: 3
 ✔ Creating GitHub repository
 ✔ Setting remote 'origin' to 'https://github.com/3mmaRand/mypackage.git'
@@ -225,7 +296,10 @@ Selection: 3
 ✔ Opening URL 'https://github.com/3mmaRand/mypackage'
  
  
- ```
+```
+--
+
+## Now look at your GitHub page! `r emo::ji("party")` 
 
 ---
 # References

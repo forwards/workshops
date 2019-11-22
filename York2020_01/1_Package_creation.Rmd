@@ -83,6 +83,8 @@ Do not nest inside another RStudio project, R package or git repo
 usethis::create_package("path/to/mypackage")
 ```
 
+--
+
 This will:
 
 * create a new R project called mypackage which is a package and an RStudio project.
@@ -126,13 +128,41 @@ knitr::include_graphics("pics/createpkg1.png")
 knitr::include_graphics("pics/createpkg2.png")
 ```
 
+---
+# Create your first package.
+
+## Use version control: Git.
+
+This is optional but strongly recommended.
+
+First, make sure Git is configured<sup>1</sup>:
+
+Tools | Shell...
+
+```{r eval=FALSE}
+git config --global user.name 'Emma Rand'
+git config --global user.email 'emma.rand@york.ac.uk'
+git config --global --list
+```
+
+.footnote[
+[1] [Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference `r Cite(myBib, "Bryan_Happy_Git")`.
+]
+
+--
+
+Close your project, reopen it and reload `devtools`:
+
+```{r eval=FALSE}
+library(devtools)
+```
 
 ---
 # Create your first package.
 
-## Use version control with `use_git()`.
+## Use version control: Git.
 
-This is optional but strongly recommended.
+Now Git is configured, instruct R to use Git with this Package and project:
 
 ```{r eval=FALSE}
 use_git()
@@ -218,7 +248,7 @@ sum((height - mean(height))^2)
 We can put that logic into a function:
 
 ```{r}
-sums_squares <- function(v) {
+sum_squares <- function(v) {
   sum((v - mean(v))^2)
   }
 ```
@@ -232,14 +262,14 @@ sums_squares <- function(v) {
 and check it works:
 
 ```{r}
-sums_squares(height)
+sum_squares(height)
 ```
 
 
 ---
 # Create your first package.
 
-## Where to put that function using `use_r()`.
+## Where to put that function: `use_r()`.
 
 We save our function as a `.R` script file in the `R/` directory.
 
@@ -251,21 +281,21 @@ Putting each of the functions in a package in their own `.R` is a good place to 
 The `use_r()` function makes this a little easier by creating/opening a script below `R/`:
 
 ```{r eval=FALSE}
-use_r("sums_squares")
+use_r("sum_squares")
 ```
 
 --
 
 Paste in your function definition.
 
-Do not add any other code.
+Do not add any other code. Save the file.
 
 --
 
 Before we continue, delete the function you put in the Global Environment:
 
 ```{r}
-rm(sums_squares)
+rm(sum_squares)
 ```
 
 
@@ -273,9 +303,9 @@ rm(sums_squares)
 ---
 # Create your first package.
 
-## How to test drive your function with `load_all()`.
+## Test drive your function: `load_all()`.
 
-In a normal script, you might use `source("R/sums_squares.R")` but when building packages, we use a devtools approach:
+In a normal script, you might use `source("R/sum_squares.R")` but when building packages, we use a `devtools` approach:
 
 ```{r eval=FALSE}
 load_all()
@@ -285,8 +315,7 @@ Loading mypackage
 ```
 
 
-
-`load_all()` will make `sums_squares()` (and any other functions) available for use.
+`load_all()` will make `sum_squares()` (and any other functions) available for use.
 
 .footnote[
 [1] The Build pane includes a menu item to run `load_all()` under More.
@@ -295,17 +324,19 @@ Loading mypackage
 
 Note, you will not see it in your environment! 
 
-`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
-
 ---
 # Create your first package.
 
 ## Test your function after `load_all()`.
 
+`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+
+--
+
 Now you should be able to use your function just like any other function:
 
 ```{r eval=FALSE}
-sums_squares(rnorm(20))
+sum_squares(rnorm(20))
 ```
 ```
 [1] 16.1641
@@ -319,9 +350,13 @@ sums_squares(rnorm(20))
 
 `R CMD check` executed in the shell, is the gold standard for checking that an R package is in full working order. `check()` is a convenient way to run this without leaving your R session.
 
+--
+
 ```{r eval=FALSE}
 check()
 ```
+
+--
 
 You will get lots of output. It will end with:
 

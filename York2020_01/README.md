@@ -2,7 +2,7 @@
 
 ## Computing requirements
 
-Participants can bring their own lap yops or use those at the venue. 
+Participants can bring their own lap top or use those at the venue. 
 
 Laptops should have the following installed **prior** to attending the workshop:
 
@@ -23,6 +23,8 @@ In addition, please install/update the following R packages:
  - testthat
  - tidyverse
  - usethis
+
+Partipcants should also have a GitHub account: https://github.com/
 
 ## Installing R
 
@@ -59,7 +61,7 @@ Some additional tools may be required to compile R packages from source.
 
 **For Windows with no admin rights**
 
-Download the latest Rtools installer, `Rtools.exe`, from 
+Download the latest (recommended) Rtools installer, `Rtools.exe`, from 
 https://cran.r-project.org/bin/windows/Rtools/. Run the installer keeping the 
 default settings.
 
