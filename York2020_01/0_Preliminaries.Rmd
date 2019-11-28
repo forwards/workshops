@@ -91,13 +91,17 @@ Long time R user, relatively new to Python.
 .pull-right[
 
 ```{r, out.width = "200px", echo=FALSE}
-knitr::include_graphics("pics/emma.png")
+knitr::include_graphics("pics/susannah.png")
 ```
 
 ### Susannah Cowtan
-Postgraduate Student, Department of xx University of Sheffield, UK
+Postgraduate Student, School of Mathematics and Statistics, University of Sheffield, UK
 
-biography.
+I'm a statistician, currently working in ecological statistics.
+
+I've also been using R a long time, but don't ask me about Python!
+
+@SuusJC on Twitter
 
 ]
 ---
