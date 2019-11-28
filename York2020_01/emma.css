@@ -1,6 +1,6 @@
 .remark-slide-content {
   background-color: #FAFAFA;
-  border-top: 80px solid #23373B;
+  border-top: 80px solid #4c4c93;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.5;
@@ -12,8 +12,9 @@
 }
 
 .inverse {
-  background-color: #23373B;
+  background-color: #4c4c93;
   text-shadow: none;
+  color: #FAFAFA;
 }
 
 .remark-slide-content > h1 {

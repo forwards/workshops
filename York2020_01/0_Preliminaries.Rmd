@@ -9,7 +9,7 @@ about:
 output:
   xaringan::moon_reader:
     seal: false
-    css: [metropolis, default, metropolis-fonts]
+    css: [default, emma.css, emma-fonts.css]
     lib_dir: libs
     nature:
       highlightStyle: github

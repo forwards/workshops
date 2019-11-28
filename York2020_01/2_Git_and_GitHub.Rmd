@@ -9,7 +9,7 @@ about:
 output:
   xaringan::moon_reader:
     seal: false
-    css: [metropolis, default, metropolis-fonts]
+    css: [default, emma.css, emma-fonts.css]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -172,7 +172,7 @@ A new GitHub repo will be created via the GitHub API, therefore you must make a 
 browse_github_token()
 ```
 
-This opens a broswer window for you to log in to GitHub. 
+This opens a browser window for you to log in to GitHub. 
 
 --
 
