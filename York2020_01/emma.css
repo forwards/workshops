@@ -41,12 +41,16 @@ position: absolute;
 .remark-slide-content > h2, h3, h4 {
   padding-top: -15px;
   padding-bottom: 00px;
-  color: #1A292C;
+  color: #4C4C93;
   text-shadow: none;
   font-weight: 400;
   text-align: left;
   margin-left: 00px;
   margin-bottom: -10px;
+}
+
+.inverse h2 {
+    color: #FAFAFA;
 }
 
 .remark-slide-content > h2, .pull-left > h2, .pull-right > h2 {
@@ -57,6 +61,8 @@ position: absolute;
 .pull-left > h3, .pull-left > h4, .pull-right > h3, .pull-right > h4 {
   font-size: 30px;
 }
+
+
 
 .title-slide {
   background-color: #FAFAFA;
@@ -110,11 +116,27 @@ position: absolute;
   display: none;
 }
 
+.remark-code {
+  border-radius: 3px;
+  padding: 4px;
+  color: rgb(249, 38, 114);
+  font-size: 90%;
+  line-height: 140%;
+}
+
+.hljs-github .hljs {
+    /* Because setting a background colour in .remark-code doesn't work */
+    background: #e7e8e2;
+}
+
 .remark-inline-code {
   /* background: #F5F5F5; /* lighter */
   background: #e7e8e2; /* darker */
   border-radius: 3px;
   padding: 4px;
+  color: rgb(249, 38, 114);
+  font-size: 90%;
+  line-height: 110%;
 }
 
 .code10 .remark-code {
