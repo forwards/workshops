@@ -18,7 +18,7 @@
 }
 
 .remark-slide-content > h1 {
-  font-family: 'Fira Sans';
+  font-family: 'Open Sans';
   font-weight: normal;
   font-size: 45px;
   margin-top: -95px;
@@ -100,13 +100,13 @@ position: absolute;
 
 .remark-slide-number {
   font-size: 13pt;
-  font-family: 'Fira Sans';
+  font-family: 'Open Sans';
   color: #272822;
   opacity: 1;
 }
 .inverse .remark-slide-number {
   font-size: 13pt;
-  font-family: 'Fira Sans';
+  font-family: 'Open Sans';
   color: #FAFAFA;
   opacity: 1;
 }

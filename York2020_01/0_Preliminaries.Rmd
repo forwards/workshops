@@ -79,7 +79,7 @@ class: inverse center
 knitr::include_graphics("pics/emma.png")
 ```
 
-### Emma Rand
+### Emma Rand @er13_r
 Lecturer (Assistant Professor), Department of Biology University of York, UK
 
 I'm a biologist by training. 
@@ -91,17 +91,16 @@ Long time R user, relatively new to Python.
 .pull-right[
 
 ```{r, out.width = "200px", echo=FALSE}
-knitr::include_graphics("pics/susannah.png")
+knitr::include_graphics("pics/susannah.jpg")
 ```
 
-### Susannah Cowtan
-Postgraduate Student, School of Mathematics and Statistics, University of Sheffield, UK
+### Susannah Cowtan @SuusJC
+Postgrad, School of Mathematics and Statistics, University of Sheffield, UK
 
-I'm a statistician, currently working in ecological statistics.
+I'm a statistician, currently ecological.
 
 I've also been using R a long time, but don't ask me about Python!
 
-@SuusJC on Twitter
 
 ]
 ---
