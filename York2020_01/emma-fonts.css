@@ -5,7 +5,7 @@ body {
   font-family: 'Fira Sans','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
 }
 
-.remark-code, .remark-inline-code {
+.remark-code .remark-inline-code {
   font-family: 'Lucida Console', Monaco, monospace;
   font-size: 80%;
 }
