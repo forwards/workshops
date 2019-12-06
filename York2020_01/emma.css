@@ -1,7 +1,7 @@
 .remark-slide-content {
   background-color: #FAFAFA;
   border-top: 80px solid #4c4c93;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 300;
   line-height: 1.5;
   padding: 1em 2em 1em 2em
@@ -138,7 +138,12 @@ position: absolute;
   font-size: 90%;
   line-height: 110%;
 }
-
+.footnote {
+  position: absolute;
+  bottom: 2em;
+  padding-right: 2em;
+  font-size: 75%;
+}
 .code10 .remark-code {
   font-size: 10%;
 }

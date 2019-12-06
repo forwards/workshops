@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-12-03
+Updated: 2019-12-06
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -50,20 +50,28 @@ class: inverse center
 
 # Create your first package.
 
-## To create a package.
+## Creating a package.
 
 Be deliberate about where you create your package.
 
-Do not nest inside another RStudio project, R package or git repo
+Do not nest inside another RStudio project, R package or git repo.
+
+--
+
+Then use:
 
 
 ```r
 usethis::create_package("path/to/mypackage")
 ```
 
---
+---
 
-This will:
+# Create your first package.
+
+## `usethis::create_package()`
+
+Using `usethis::create_package()` will:
 
 * create a new R project called mypackage which is a package and an RStudio project.
 * restart R in the new project.
@@ -85,15 +93,37 @@ This will:
 
 ### Files and directories.
 
-
 * `.Rbuildignore` lists files that we need but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
-* `.Rproj.user`, if you have it, is a directory used internally by RStudio.
-* `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
-* `DESCRIPTION` provides metadata about your package. We will need to edit this.
-* `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
-* The `R/` directory is the “business end” of your package. It will contain .R files with function definitions.
-* `mypackage.Rproj` is the file that makes this directory an RStudio Project.
 
+--
+
+* `.Rproj.user`, if you have it, is a directory used internally by RStudio.
+
+--
+
+* `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
+
+
+---
+# Create your first package.
+
+## What is in this skeleton?
+
+### Files and directories - cont.
+
+* `DESCRIPTION` provides metadata about your package. We will need to edit this.
+
+--
+
+* `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
+
+--
+
+* The `R/` directory is the “business end” of your package. It will contain .R files with function definitions.
+
+--
+
+* `mypackage.Rproj` is the file that makes this directory an RStudio Project.
 
 ---
 # Create your first package.
@@ -108,6 +138,8 @@ This will:
 ## Use version control: Git.
 
 This is optional but strongly recommended.
+
+--
 
 First, make sure Git is configured&lt;sup&gt;1&lt;/sup&gt;:
 
@@ -124,7 +156,10 @@ git config --global --list
 [1] [Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference (Bryan and Hester, ).
 ]
 
---
+---
+# Create your first package.
+
+## Use version control: Git.
 
 Close your project, reopen it and reload `devtools`:
 
@@ -181,10 +216,11 @@ Choose the option which indicates yes.
 ## Use version control with `use_git()`.
 
 ### The RStudio Git pane.
-
+.pull-left[
 &lt;img src="pics/git_pane.png" width="350px" /&gt;
-.footnote[
-[1] If the Git pane does not open, try closing the project and reopening by navigating to it without using the windows shortcuts.
+]
+.pull-right[
+If the Git pane does not open, try closing the project and reopening by navigating to it without using the windows shortcuts.
 ]
 ---
 # Create your first package.
@@ -192,7 +228,12 @@ Choose the option which indicates yes.
 ## Write your first function.
 
 First, let's create a vector of 100 numbers we can develop our function on.
+
+--
+
 I am going to imagine it is the heights (metres) of 100 trees.
+
+--
 
 
 ```r
@@ -200,12 +241,17 @@ height &lt;- rnorm(100, mean = 10, sd = 0.8) %&gt;%
   round(4)
 ```
 
---
+---
+# Create your first package.
+
+## Write your first function.
 
 The sums of squares, SS(x), is the sum of the squared deviations from the mean, i.e.,  
 
 `$$\sum (x_i- \bar{x})^2$$`
-    
+
+--
+
 which is:
 
 
@@ -214,7 +260,7 @@ sum((height - mean(height))^2)
 ```
 
 ```
-## [1] 55.06857
+## [1] 68.14296
 ```
 
 ---
@@ -235,7 +281,10 @@ sum_squares &lt;- function(v) {
 [1] We do not cover writing functions here but you can learn more in the Functions chapter of R for Data Science (Wickham and Grolemund, 2017)
 ]
 
---
+---
+# Create your first package.
+
+## Write your first function.
 
 and check it works:
 
@@ -245,7 +294,7 @@ sum_squares(height)
 ```
 
 ```
-## [1] 55.06857
+## [1] 68.14296
 ```
 
 
@@ -261,6 +310,8 @@ Putting each of the functions in a package in their own `.R` is a good place to 
 ]
 --
 
+But.....
+
 The `use_r()` function makes this a little easier by creating/opening a script below `R/`:
 
 
@@ -268,7 +319,10 @@ The `use_r()` function makes this a little easier by creating/opening a script b
 use_r("sum_squares")
 ```
 
---
+---
+# Create your first package.
+
+## Where to put that function: `use_r()`.
 
 Paste in your function definition.
 
@@ -292,6 +346,8 @@ rm(sum_squares)
 
 In a normal script, you might use `source("R/sum_squares.R")` but when building packages, we use a `devtools` approach:
 
+--
+
 
 ```r
 load_all()
@@ -299,13 +355,17 @@ load_all()
 ```
 Loading mypackage
 ```
-
-
-`load_all()` will make `sum_squares()` (and any other functions) available for use.
-
 .footnote[
 [1] The Build pane includes a menu item to run `load_all()` under More.
 ]
+---
+# Create your first package.
+
+## Test drive your function: `load_all()`.
+
+`load_all()` will make `sum_squares()` (and any other functions) available for use.
+
+
 --
 
 Note, you will not see it in your environment! 
@@ -315,9 +375,16 @@ Note, you will not see it in your environment!
 
 ## Test your function after `load_all()`.
 
-`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. 
 
 --
+
+This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+
+---
+# Create your first package.
+
+## Test your function after `load_all()`.
 
 Now you should be able to use your function just like any other function:
 
@@ -335,7 +402,11 @@ sum_squares(rnorm(20))
 
 ## Checking the package with `check()`.
 
-`R CMD check` executed in the shell, is the gold standard for checking that an R package is in full working order. `check()` is a convenient way to run this without leaving your R session.
+`R CMD check` is the gold standard for checking that an R package is in full working order.
+
+--
+
+It is a programme that is executed in the shell. However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
 
 --
 
@@ -344,7 +415,10 @@ sum_squares(rnorm(20))
 check()
 ```
 
---
+---
+# Create your first package.
+
+## Checking the package with `check()`.
 
 You will get lots of output. It will end with:
 
@@ -392,8 +466,6 @@ A window will appear showing the process occuring.
 &lt;img src="pics/git_commit_window.png" width="500px" /&gt;
 
 Choose close when it is finished.
-
-You will find "Review Changes" window is now empty because everything is up-to-date.
 
 ---
 # Please tell me more about Git!

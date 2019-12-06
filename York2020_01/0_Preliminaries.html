@@ -32,7 +32,7 @@ class: inverse
 
 ### York January 2020.
 
-Updated: 2019-12-03
+Updated: 2019-12-06
 
 .footnote[
 Made with xaringan (Xie, 2019)
@@ -54,27 +54,25 @@ class: inverse center
 
 .pull-left[
 
-&lt;img src="pics/emma.png" width="200px" /&gt;
+&lt;img src="pics/emma.png" width="180px" /&gt;
 
-### Emma Rand @er13_r
-Lecturer (Assistant Professor), Department of Biology University of York, UK
+Emma Rand @er13_r
 
-I'm a biologist by training. 
+Lecturer, Department of Biology, University of York, UK
 
-Long time R user, relatively new to Python.
+Biologist, long time R user, relatively new to Python.
 
 ]
 
 .pull-right[
 
-&lt;img src="pics/susannah.jpg" width="200px" /&gt;
+&lt;img src="pics/susannah.jpg" width="180px" /&gt;
 
-### Susannah Cowtan @SuusJC
-Postgrad, School of Mathematics and Statistics, University of Sheffield, UK
+Susannah Cowtan @SuusJC
 
-I'm a statistician, currently ecological.
+Postgrad, School of Mathematics &amp; Statistics, University of Sheffield, UK
 
-I've also been using R a long time, but don't ask me about Python!
+Ecological statistician, long time R user, don't ask me about Python!
 
 
 ]
@@ -94,7 +92,9 @@ http://r-pkgs.had.co.nz/ (Wickham, 2015)
 
 ## The bad news
 
-### .... it may be frustrating
+.... it may be frustrating
+
+
 &lt;img src="pics/allie_brosh_argh.png" width="400px" /&gt;
 
 .footnote[
@@ -107,7 +107,9 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-level
 
 ## The good news!
 
-### .... frustration is normal and temporary.
+.... frustration is normal and temporary.
+
+
 &lt;img src="pics/allie_brosh_happy.png" width="400px" /&gt;
 
 .footnote[
@@ -130,7 +132,20 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-wh
 
 ## Schedule
 
-needs an edit
+10:00  --  Coffee and Welcome  
+10:30  --  [1. Preliminaries](0_Preliminaries.html)  
+10:45  --  [2. Package creation](1_Package_creation.html)  
+11:30  --  [3. Git and GitHub](2_Git_and_GitHub.html)  
+12:15  --  Lunch  
+13:00  --  [4. Package documentation](3_Package_documentation.html)  
+13:30  --  [5. Adding functions](4_Adding_functions.html)   
+14:00  --  Coffee  
+14:15  --  [6. Package Dependencies](6_Package_Dependencies.html)   
+14:45  --  [7. Unit testing](7_Unit_testing.html)  
+15:30  --  Close! 
+
+
+
 
 ---
 # Preliminaries.
@@ -195,33 +210,30 @@ R.version
 ```
 
 ---
+background-image: url(pics/stork.png)
+background-position: 95% 25%
+background-size: 300px
 # Preliminaries.
 
-.pull-left[
 ## Where do R packages come from?
-]
-.pull-right[
-&lt;img src="pics/stork.png" width="200px" /&gt;
-]
 
 --
 
-### CRAN and GitHub, mostly
-
-
+CRAN and GitHub, mostly
+.pull-left[
 CRAN:
 
 ```r
 install.packages("foo")
 ```
 
-GitHub
+GitHub:
 
 ```r
 library(devtools)
 install_github("jane/foo")
 ```
-
+]
 ---
 # Preliminaries.
 
@@ -230,7 +242,8 @@ install_github("jane/foo")
 &lt;img src="pics/library.png" width="300px" /&gt;
 
 --
-### R packages live in a library.
+
+R packages live in a library.
 
 ---
 # Preliminaries.
@@ -239,7 +252,6 @@ install_github("jane/foo")
 
 The default library:
 
-
 ```r
 .Library
 ```
@@ -247,10 +259,12 @@ The default library:
 ```
 ## [1] "C:/PROGRA~1/R/R-36~1.0/library"
 ```
+---
+# Preliminaries.
 
---
+## Get to know your R library.
+
 All the libraries R knows about:
-
 
 ```r
 .libPaths()
@@ -269,8 +283,17 @@ All the libraries R knows about:
 ## Get to know your R library.
 
 * For many R users `.Library` and `.libPaths()` are the same.  
+
+--
+
 * Other R users maintain, or have access to, multiple libraries.
+
+--
+
 * You may not have write access to the default library.
+
+--
+
 * For example, you can put add-on packages in a user-level library:
 H:/rlibs/3.6.0
 
@@ -279,16 +302,20 @@ H:/rlibs/3.6.0
 
 ## Before we start:
 
-### Make sure you have recent versions of:
-
+Make sure you have recent versions of:
+.pull-left[
 `devtools`  
 `pkgdown`  
 `roxygen2`  
+]
+.pull-right[
 `testthat`   
 `tidyverse`  
 `usethis`  
+]
+--
 
-### Load `devtools`
+Load `devtools`
 
 
 ```r
@@ -300,7 +327,20 @@ library(devtools)
 
 ## The goal.
 
-We are going to write a package called `mypackage` has some simple utilities for a single large sample. It will calculate the sums of squares and standard error, carry out a one-sample z-test and create a couple of figures.
+We are going to write a package called `mypackage`&lt;sup&gt;1&lt;/sup&gt; has some simple utilities for a single large sample. 
+
+.footnote[
+[1] Or be more creative, silly oe serious!
+]
+--
+
+It will:   
+* calculate the sums of squares  
+* calculate the standard error  
+* carry out a one-sample z-test  
+* create a couple of figures.  
+
+--
 
 The package itself is not very useful or wholy original. But what the package does is not the point!
 
