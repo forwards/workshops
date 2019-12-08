@@ -434,7 +434,24 @@ We have fixed the issues: our package is licensed and documented.
 
 ### `r emo::ji("party")`
 
+---
+# Package Documentation.
 
+## Commit and Push
+
+Go to the Git pane and check the box to "Stage" the changes you want to commit. All of them in this case.
+
+--
+
+add a Commit message. Something like "Added std_err() function."
+
+--
+
+Hit commit!
+
+--
+
+Update the version on GitHub using the Push button.
 
 ---
 # References

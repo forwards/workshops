@@ -432,7 +432,46 @@ check()
 
 ## Checking the package with `check()`.
 
-You will get lots of output. It will end with:
+On running `check_all()` you may get an error if you are using a networked drive.
+
+```
+Updating mypackage documentation  
+Error: The specified file is not readable: Y:\My  
+Documents\scholarship\rforwards_package\mypackage\NAMESPACE  
+
+```
+--
+
+This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+
+---
+
+# Create your first package.
+
+## Checking the package with `check()`.
+
+### An aside: a fix for networked drives.
+
+Save a copy of this fileSave it somewhere other than the `mypackage` directory.
+
+[fix_for_networked_drives.R](fix_for_networked_drives.R)
+
+--
+
+Open the file from the `mypackage` project session.
+
+--
+
+Run the whole file.
+
+You should now find that `check_all()` proceeds normally.
+
+---
+# Create your first package.
+
+## Checking the package with `check()`.
+
+On running `check_all()` you will get lots of output. It will end with:
 
 ```{r, out.width = "500px", echo=FALSE}
 knitr::include_graphics("pics/check.png")

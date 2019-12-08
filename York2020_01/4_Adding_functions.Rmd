@@ -76,19 +76,27 @@ class: inverse center
 
 ## A reminder of the goal package.
 
-We are going to write a package called `mypackage` has some simple utilities for a single large sample. It will calculate the sums of squares and standard error, carry out a one-sample z-test and create a couple of figures.
+Our package will:   
+* calculate the sums of squares ✔   
+* calculate the standard error  
+* carry out a one-sample z-test  
+* create a couple of figures.  
 
-The package itself is not very useful or wholy original. But what the package does is not the point!
+---
+# Adding Functions.
 
---
+## Add and document a function.
 
-`r emo::ji("play_button")` sums of squares
-
-`r emo::ji("stop_button")` standard error
-
-`r emo::ji("stop_button")` one sample z test
-
-`r emo::ji("stop_button")` figures
+* Write code to perform the calculation.  
+* Put that logic into a function.  
+* Check it works.  
+* Save your fuction as a `.R` file in the `R` directory. `use_r()` will help with that.
+* Test drive with `load_all()`
+* Document your function by inserting roxygen comments and using `document()`
+* Do a `R CMD check` using `check()`.   
+* Commit with Git.  
+* Push to GitHub.
+* Marvel at your package making ability!
 
 ---
 
@@ -104,22 +112,38 @@ $$s.e. = \frac {s}{\sqrt{n}}$$
 Can you add and document this function?
 
 ---
+
 # Adding Functions.
 
-## Add and document a Standard error function.
+## One-sample z-test.
 
-### You need to:
-* write code for the $s.e.$  
-* put that logic into a function.  
-* check it works.  
-* save your fuction as a `.R` file in the `R` directory. `use_r()` will help with that.
-* test drive with `load_all`
-* Document your function by Inserting and editing roxygen comments and using `document()`
-* Do a `R CMD check` using `check()`.   
-* fix any issues.  
-* Commit with Git.  
-* Push to GitHub.
-* Marvel at your package making ability!
+A one-sample z-test is carried out by calculating a test statistic *z*:
+
+$$\pm z = \frac {\bar{x}- \mu}{s.e._\bar{x}}$$
+
+Where:  
+* $\bar{x}$ is the sample mean.  
+* $\mu$ is the hypothesised value for the sample mean against which it is tested.  
+* $s.e._\bar{x}$ is the standard error of the sample mean.
+
+---
+
+# Adding Functions.
+
+## One-sample z-test.
+
+Then finding the probability of getting a value of *z* of that magnitude or greater.
+
+--
+
+Can you add and document this function?
+
+The output of my version is:
+```
+z = ####; p = ####
+The sample mean of #### is significantly/not significantly
+different from ####
+```
 
 ---
 
@@ -127,54 +151,175 @@ Can you add and document this function?
 
 ## Add and document a Standard error function.
 
-### My efforts.
+### Write code for the $s.e.$  
 
-.........
+First, let's create a vector of numbers we can develop our function on.
 
-
-On running `check_all()` you may get an error if you are using a networked drive.
-
-```
-Updating mypackage documentation  
-Error: The specified file is not readable: Y:\My  
-Documents\scholarship\rforwards_package\mypackage\NAMESPACE  
-
-```
 --
 
-This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+```{r}
+height <- rnorm(50, mean = 10, sd = 2) %>% round(4)
+```
+
+--
+
+Calculate the $s.e.$:
+
+--
+
+```{r}
+sd(height)/sqrt(length(height))
+```
 
 ---
-
-# Adding Functions.
-
-## An aside: a fix for networked drives.
-
-Save a copy of this fileSave it somewhere other than the `mypackage` directory.
-
-[fix_for_networked_drives.R](fix_for_networked_drives.R)
-
---
-
-Open the file from the `mypackage` project session.
-
---
-
-Run the whole file.
-
-You should now find that `check_all()` proceeds normally.
-
----
-
 # Adding Functions.
 
 ## Add and document a Standard error function.
 
-### Results of `check_all()`
+### Put that logic into a function.  
 
-There should be no errors or warnings but there is a note.
+```{r}
+std_err <- function(v) {
+  sd(v)/sqrt(length(v))
+}
+```
+
+--
+
+### Check it works.  
+
+```{r}
+std_err(height)
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Save your fuction as a `.R` file 
+
+```{r eval=FALSE}
+use_r("std_err")
+```
+
+--
+Paste in your function definition.
+
+Do not add any other code. Save the file.
+
+--
+
+Before we continue, delete the function you put in the Global Environment:
+
+```{r}
+rm(std_err)
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Test drive with `load_all()`
+
+```{r eval=FALSE}
+load_all()
+```
+```
+Loading mypackage
+```
+--
+
+Now call it:
+
+```{r eval=FALSE}
+std_err(rnorm(20))
+```
+```
+[1] 16.1641
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Open `std_err.R` and put your cursor anywhere in the function.
+
+Do Code | Insert Roxygen Skeleton
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Edit the comment with something like:
+```
+#' Calculate the standard error for a sample
+#'
+#' returns the standard error of
+#' a numeric vector
+#'
+#' @param v numeric vector
+#'
+#' @return number
+#' @export
+#'
+#' @examples
+#' std_err(rnorm(50))
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Now do:
+```{r eval=FALSE}
+document()
+```
+
 
 ```
+Updating mypackage documentation
+Writing NAMESPACE
+Loading mypackage
+Writing NAMESPACE
+Writing std_err.Rd
+```
+--
+
+`man/std_err.Rd` has been created. 
+
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Do a `R CMD check` using `check()`.   
+
+
+```{r eval=FALSE}
+check()
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+```
+-- R CMD check results ----- mypackage 0.0.0.9000 ----
+Duration: 41.5s
+
 > checking R code for possible problems ... NOTE
   std_err: no visible global function definition for 'sd'
   Undefined global functions or variables:
@@ -187,11 +332,30 @@ There should be no errors or warnings but there is a note.
 
 ```
 
+Susannah will show you how to fix!
+
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+## Commit and Push
+
+Go to the Git pane and check the box to "Stage" the changes you want to commit. All of them in this case.
+
 --
 
-We will address this later. 
+add a Commit message. Something like "Added std_err() function."
 
+--
 
+Hit commit!
+
+--
+
+Update the version on GitHub using the Push button.
+  
 ---
 # References
 
