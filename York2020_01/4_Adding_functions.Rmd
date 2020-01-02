@@ -346,7 +346,7 @@ Go to the Git pane and check the box to "Stage" the changes you want to commit. 
 
 --
 
-add a Commit message. Something like "Added std_err() function."
+Add a commit message. Something like "Added std_err() function."
 
 --
 
