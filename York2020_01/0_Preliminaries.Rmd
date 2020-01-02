@@ -313,7 +313,7 @@ library(devtools)
 
 ## The goal.
 
-We are going to write a package called `mypackage`<sup>1</sup> has some simple utilities for a single large sample. 
+We are going to write a package called `mypackage`<sup>1</sup>. `mypackage` has some simple utilities for a single large sample. 
 
 .footnote[
 [1] Or be more creative, silly or serious!
