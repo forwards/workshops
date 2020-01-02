@@ -86,69 +86,225 @@ Unit Testing to the rescue!
 class: inverse center middle
 
 # Testing workflow
+
 ---
 
-# A frivolous function
+background-image: url(pics/usethis_hexie.png)
+background-position: 90% 20%
+background-size: 150px
 
-Create a new package with this very silly function.
+# Set up your testing infrastructure
 
-```{r go_to_zoo, eval = FALSE}
-zoo_sound <- function(animal, sound){
-  assertthat::assert_that(
-    assertthat::is.string(animal),
-    assertthat::is.string(sound))
-  paste0("The ", animal, " goes ", sound, "!")
-}
+We will be using the `testthat` package to test our package.
+This requires:
+* A directory structure
+* Test files for each `function.R` file
+* A `testthat.R` file to run all the tests
+* Adding `testthat` to the package requirements
+
+This is a pain to set up! So...
+
+Let's use the `usethis` package again.
+
+```{r use_testthat, fig.align = "center", echo=FALSE}
+knitr::include_graphics("pics/use_testthat.png")
 ```
 
-You will need to add an `Imports:` section to your `DESCRIPTION` file which 
-imports `assertthat`.
-
-`assertthat::assert_that()` is a replacement for `stopifnot` which gives more 
-informative error messages.
-
-`assertthat::is.string()` returns either `TRUE` or `FALSE`.
 ---
-
-# Set up a testing infrastructure
-
-```{r use_test, eval = FALSE}
-usethis::use_test("zoosounds")
-```
-
-
-✔ Setting active project to [your project location]
-
-✔ Adding `testthat` to `Suggests` field in `DESCRIPTION`
-
-✔ Creating `tests/testthat/`
-
-✔ Writing `tests/testthat.R`
-
-● Call `use_test()` to initialize a basic test file and open it for editing.
-
-✔ Increasing `testthat` version to `>= 2.1.0` in `DESCRIPTION`
-
-✔ Writing `tests/testthat/test-zoosounds.R`
-
-● Modify `tests/testthat/test-zoosounds.R`
-
----
-# Workflow before testing
+# Existing workflow
 
 ```{r work_no_test, out.width = "85%", fig.align = "center", echo=FALSE}
 knitr::include_graphics("pics/workflow_pre_testing.png")
 ```
 
 ---
-# Now add testing!
+# Now add unit testing
 
 ```{r work_test, out.width = "85%", fig.align = "center", echo=FALSE}
 knitr::include_graphics("pics/workflow_testing.png")
 ```
 ---
+# Testing a function
+
+Test by comparing **expectations** with **results**.
+
+What expectations do we have of the `sum_squares()` function?
+
+**Standard case:** if we give it numeric input we expect:
+--
+
+* Decimal output (type `double`)
+* Not negative
+
+--
+
+**Special case:** what happens if we give it a vector of identical numbers?
+
+--
+* Output is zero
+
+--
+
+**Expected failures:**
+
+What if there are missing values?
+
+--
+* Output is `NA`
+
+--
+
+What if the input was non-numeric?
+
+--
+* Should throw an error, or at least a warning
+---
+
+background-image: url(pics/testthat_hexie.png)
+background-position: 90% 9%
+background-size: 150px
+
+# Building tests with testthat
+
+Let's build tests for `sum_squares()` for the standard cases. 
+
+We want to check that, with numeric input, we get
+* Output of type `double`
+* Non-negative output
+
+Change your `tests/testthat/test-sum_squares.R` file to read:
+
+```{r test_sumsq1, eval = FALSE}
+test_vec <- rnorm(20, mean = 5, sd = 1.2)
+
+### Standard case
+# Expect a floating point result from a numeric input
+test_that("Output is type \"double\" when input is numeric", {
+  expect_type(sum_squares(test_vec), "double")
+})
+# Expect that the result is not negative
+test_that("Output is non-negative", {
+  expect_gte(sum_squares(test_vec), 0)
+})
+```
 
 ---
+
+# Four expectations cover 90% of cases
+
+```{r expectations, eval = FALSE}
+expect_equal(object, expression)
+
+expect_error(code, regexp)
+
+expect_warning(code, regexp)
+expect_warning(code, NA)
+
+expect_known_output(code)
+```
+
+--
+
+Try using `expect_equal` to build tests for
+* The special case of a vector of identical numbers
+* The case when the input includes missing values
+
+Remember to specify `NA_real_` not `NA` - the type of missing data is important!
+---
+
+# Testing for special cases and bad input
+
+```{r test_sumsq2, eval = FALSE}
+### Special cases
+# Identical values should result in zero
+test_that("Identical values give a sum of squares of zero", {
+  expect_equal(sum_squares(rep(1, 10)), 0)
+})
+
+### Expected failures
+# Missing values should result in a missing value
+test_that("Missing values give a result of NA", {
+  expect_equal(sum_squares(c(test_vec, NA)), NA_real_)
+})
+# Character input throws both an error(from sd) and a warning(from mean)
+# so use expect_condition() not expect_error() or expect_warning()
+test_that("Non-numeric input gives errors and/or warnings", {
+  expect_condition(sum_squares(c("cat", "dog")))
+})
+
+```
+
+I've also added a test to see what happens when a character vector is supplied.
+
+Think about what we could do to our function so that `expect_error` could be used.
+---
+
+# Running the tests
+
+`devtools::test()` will run all the tests associated with a package.
+
+--
+
+```{r run_test, out.width = "85%", fig.align = "center", echo=FALSE}
+knitr::include_graphics("pics/devtools_test.png")
+```
+
+--
+
+Ideally, if an empty vector `c()` is supplied to the function, it would return
+`NA`.  Try adding a test for this and run `devtools::test()` again to see what
+happens when a test fails.
+---
+# When a test fails
+
+```{r fail_test, out.width = "85%", fig.align = "center", echo=FALSE}
+knitr::include_graphics("pics/fail_test.png")
+```
+
+---
+# Organising tests
+
+* Think about the overall functionality, or “end to end” tests
+
+* Test every individual task the function completes, separately
+
+* Check both for successful situations and for expected failure situations
+
+* If appropriate, check for special cases
+
+---
+class:clear
+
+```{r bored_tests, fig.align = "center", echo=FALSE}
+knitr::include_graphics("pics/bored_tests.png")
+```
+
+---
+
+class: inverse center middle
+
+# Test coverage
+
+---
+
+# Which lines of code have been tested?
+
+When all your tests are passing, check test coverage with `devtools::test_coverage()`
+
+We have a failing test, so for now, comment it out.
+
+--
+
+```{r test_coverage, fig.align = "center", echo=FALSE}
+knitr::include_graphics("pics/coverage.png")
+```
+
+--
+
+Remember! It only tells you whether a line has been tested at all, 
+not whether it's been tested thoroughly enough. That's up to you!
+---
+
 # References
 
 ```{r refs, echo=FALSE, results="asis"}
