@@ -83,7 +83,7 @@ The `roxygen2` package helps you document each function.
 
 ### Package-level.
 
-The package needs documenting
+The package needs documenting.
 
 ---
 # Package Documentation.
@@ -108,7 +108,7 @@ It is in this file that you record what packages are needed for your package to 
 We need to edit the `DESCRIPTION` file<sup>1</sup>:
 
 * add your details as the author.
-  * role: "aut means author, "cre" means creator, "ctb" means contributor.
+  * role: "aut" means author, "cre" means creator, "ctb" means contributor.
 * Add a Title and Description.
 
 .footnote[
@@ -443,7 +443,7 @@ Go to the Git pane and check the box to "Stage" the changes you want to commit. 
 
 --
 
-add a Commit message. Something like "Added std_err() function."
+Add a commit message. Something like "Added documentation."
 
 --
 
