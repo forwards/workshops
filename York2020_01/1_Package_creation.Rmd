@@ -143,7 +143,7 @@ knitr::include_graphics("pics/createpkg1.png")
 
 --
 
-* The `R/` directory is the “business end” of your package. It will contain .R files with function definitions.
+* The `R/` directory is the “business end” of your package. It will contain `.R` files with function definitions.
 
 --
 
@@ -452,10 +452,11 @@ This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-
 
 ### An aside: a fix for networked drives.
 
-Save a copy of this fileSave it somewhere other than the `mypackage` directory.
+Save a copy of this file:
 
 [fix_for_networked_drives.R](fix_for_networked_drives.R)
 
+Save it somewhere other than the `mypackage` directory.
 --
 
 Open the file from the `mypackage` project session.
