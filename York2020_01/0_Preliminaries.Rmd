@@ -164,15 +164,15 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-wh
 ## Schedule
 
 10:00  --  Coffee and Welcome  
-10:30  --  [1. Preliminaries](0_Preliminaries.html)  
-10:45  --  [2. Package creation](1_Package_creation.html)  
-11:30  --  [3. Git and GitHub](2_Git_and_GitHub.html)  
+10:30  --  [Preliminaries](0_Preliminaries.html)  
+10:45  --  [Package creation](1_Package_creation.html)  
+11:30  --  [Git and GitHub](2_Git_and_GitHub.html)  
 12:15  --  Lunch  
-13:00  --  [4. Package documentation](3_Package_documentation.html)  
-13:30  --  [5. Adding functions](4_Adding_functions.html)   
+13:00  --  [Package documentation](3_Package_documentation.html)  
+13:30  --  [Adding functions](4_Adding_functions.html)   
 14:00  --  Coffee  
-14:15  --  [6. Package Dependencies](6_Package_Dependencies.html)   
-14:45  --  [7. Unit testing](7_Unit_testing.html)  
+14:15  --  [Package Dependencies](6_Package_Dependencies.html)   
+14:45  --  [Unit testing](7_Unit_testing.html)  
 15:30  --  Close! 
 
 
