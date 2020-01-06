@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package development</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emma Rand and Susannah Cowtan" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link rel="stylesheet" href="emma.css" type="text/css" />
+    <link rel="stylesheet" href="emma-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+
+# Package development
+
+## Creating impact from code
+
+### Emma Rand &amp; Susannah Cowtan 
+
+### York, January 2020
+
+Updated: 2020-01-06
+
+
+.footnote[
+Made with xaringan (Xie, 2019)
+]
+---
+class: inverse center middle
+
+# Package dependencies
+
+---
+
+class: clear
+
+&lt;img src="pics/no_library_require.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Specifying dependencies
+
+.font130[
+Required packages should be specified in the DESCRIPTION file
+]
+
+&lt;img src="pics/imports.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 3 Kinds of dependency
+
+.font140[
+**Imports:** required.  Installed automatically
+
+**Suggests:** optional.  Used in development only, in a vignette or example, or for testing. Not installed automatically
+
+**Depends:** rare and outside the scope of this class
+]
+---
+
+# Use :: to access imported functions
+.font130[
+Import the function in DESCRIPTION:
+
+
+```r
+Imports:
+    ggplot2
+```
+
+Access in `density_plot.R`
+
+
+```r
+density_plot &lt;- function(v) {
+  ggplot2::ggplot(data.frame(values = v), 
+                  ggplot2::aes(x = values)) +
+    ggplot2::geom_density()
+}
+```
+]
+---
+
+# Using suggested functions
+.font110[
+Suppose instead:
+* `ggplot2` was only used in `density_plot()`, and
+* we expect `density_plot()` to be very rarely used
+
+We might put `ggplot2` in `Suggests:` instead of `Imports:`
+
+Then we'd need to check it was installed before we could use the function:
+]
+.code110[
+
+```r
+density_plot &lt;- function(v) {
+  # This won't work without ggplot2
+  if(!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("Need ggplot2!  Use install.packages(\"ggplot2\")")
+  }
+  ggplot2::ggplot(data.frame(values = v), 
+                  ggplot2::aes(x = values)) +
+    ggplot2::geom_density()
+}
+```
+]
+---
+background-image: url(pics/usethis_hexie.png)
+background-position: 90% 10%
+background-size: 150px
+
+# Adding imports to the DESCRIPTION file
+
+.font120[
+* You can do this by hand, or
+
+* You can use `usethis::use_package()`
+
+Think about whether you need a recent version of the package!
+
+Specifying a **minimum version** is better than specifying an exact version.
+
+]
+.code110[
+
+
+```r
+# To add a package to Imports:
+use_package("ggplot2")
+
+# To add a package to Suggests:
+use_package("ggplot2", type = "Suggests")
+
+# Need version at least as new as you used:
+use_package("ggplot2", min_version = "3.2.1")
+```
+]
+
+---
+
+class: inverse center middle
+
+# Namespace: imports
+
+---
+
+# Tired of using :: all the time?
+
+.font130[
+
+Or maybe you want to use an infix function like `%&gt;%`?
+
+]
+
+.code110[
+
+
+```r
+`%&gt;%` &lt;- magrittr::`%&gt;%`
+
+density_plot &lt;- function(v) {
+  stopifnot(is.numeric(v))
+    
+  data.frame(values = v) %&gt;%  
+    ggplot2::ggplot(ggplot2::aes(x = values)) +
+    ggplot2::geom_density()
+}
+```
+
+]
+
+---
+
+# Importing individual functions
+
+.code110[
+
+
+```r
+#' @importFrom ggplot2 ggplot aes geom_density
+#' @importFrom magrittr %&gt;%
+#' 
+density_plot &lt;- function(v) {
+  stopifnot(is.numeric(v))
+  
+  data.frame(values = v) %&gt;%
+    ggplot(aes(x = values)) +
+    geom_density()
+}
+```
+
+]
+
+---
+
+# Or, create R/imports.R
+
+.font130[
+
+Imports belong to the **package**, not individual functions.
+
+You may prefer to store them centrally.
+
+]
+
+.code110[
+
+
+```r
+# Imports for the package mypackage
+
+#' @importFrom ggplot2 ggplot aes geom_density
+#' @importFrom magrittr %&gt;%
+#'
+NULL
+```
+
+]
+---
+
+# Why not import a whole package?
+
+.font130[
+
+Seems like it would be easier, right?
+
+]
+
+.code110[
+
+
+```r
+#' @import ggplot2 
+#' @import magrittr
+#' 
+density_plot &lt;- function(v) {
+  stopifnot(is.numeric(v))
+  
+  data.frame(values = v) %&gt;%
+    ggplot(aes(x = values)) +
+    geom_density()
+}
+```
+
+]
+
+---
+
+# It's dangerous!
+
+.font130[
+
+Let's say we define a function like this, using `foo::fun1` and `bar::fun2`
+
+]
+
+.code110[
+
+
+```r
+#' @import foo
+#' @import bar
+
+fun &lt;- function(x) {
+    fun1(x) + fun2(x)
+}
+```
+
+]
+
+.font130[
+
+What happens next year, when a new function `fun1` is added to `bar`?
+
+]
+
+---
+
+# Summary of importing
+
+.font160[
+
+DESCRIPTION | Namespace
+------------|-----------
+Makes **package** available | Makes **function** available
+Mandatory | Optional &lt;br&gt;(can use `::` instead)
+`use_package()` | `#' @importFrom`
+
+]
+
+---
+
+class: inverse center middle
+
+# Namespace: exports
+
+---
+
+# Two classes of functions
+
+.font160[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Internal &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; External &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 50%; "&gt; Only for use within &lt;br&gt;package &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; For use by others &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 50%; "&gt; Documentation &lt;br&gt;optional &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Must be documented &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 50%; "&gt; Easily changed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Changing will break &lt;br&gt;other people's code &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+---
+
+# Default: exports everything!
+
+.font130[
+
+`roxygen2` creates a default NAMESPACE file which
+exports everything:
+
+]
+.code110[
+
+
+```r
+# Generated by roxygen2: fake comment so
+# roxygen2 overwrites silently
+exportPattern("^[^\\.]")
+```
+
+]
+---
+
+# Better: export explicitly
+
+.code110[ 
+
+
+```r
+#' @export
+
+fun1 &lt;- function() {}
+```
+
+
+```r
+#' @export
+
+fun2 &lt;- function() {}
+```
+
+]
+
+&lt;img src="pics/most_important.png" width="80%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
+---
+
+# Export functions people should use!
+
+.font130[
+
+Don't export internal helpers.
+
+]
+.code110[
+
+
+```r
+# Defaults for NULL values
+`%||%` &lt;- function(a, b) {if(is.null(a)) b else a}
+
+# Remove NULLs from a list
+compact &lt;- function(x) {
+  x[!vapply(x, is.null, logical(1))]
+}
+```
+
+]
+
+---
+
+# References
+
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
