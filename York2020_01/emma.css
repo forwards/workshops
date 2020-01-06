@@ -124,6 +124,11 @@ position: absolute;
   line-height: 140%;
 }
 
+.remark-mono {
+  font-size: 90%;
+  line-height: 140%;
+}
+
 .hljs-github .hljs {
     /* Because setting a background colour in .remark-code doesn't work */
     background: #e7e8e2;
@@ -138,6 +143,17 @@ position: absolute;
   font-size: 90%;
   line-height: 110%;
 }
+
+.remark-inline-mono {
+  padding: 4px;
+  font-size: 90%;
+  line-height: 110%;
+}
+
+.remark-inline-red {
+  color: rgb(249, 38, 114);
+}
+
 .footnote {
   position: absolute;
   bottom: 2em;
@@ -182,6 +198,18 @@ position: absolute;
 
 .code100 .remark-code {
   font-size: 100%;
+}
+
+.code110 .remark-code {
+  font-size: 110%;
+}
+
+.code120 .remark-code {
+  font-size: 120%
+}
+
+.code130 .remark-code {
+  font-size: 130%;
 }
 
 .font10 {
