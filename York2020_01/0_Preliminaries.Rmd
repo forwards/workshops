@@ -331,16 +331,19 @@ All the libraries R knows about:
 ## Before we start:
 
 Make sure you have recent versions of:
+
 .pull-left[
 `devtools`  
 `pkgdown`  
 `roxygen2`  
 ]
+
 .pull-right[
 `testthat`   
 `tidyverse`  
 `usethis`  
 ]
+
 --
 
 Load `devtools`

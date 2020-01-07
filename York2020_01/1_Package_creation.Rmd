@@ -79,6 +79,8 @@ Be deliberate about where you create your package.
 
 Do not nest inside another RStudio project, R package or git repo.
 
+Set your working directory to somewhere you want to work (for networked pcs avoid using shortcuts).
+
 --
 
 Then use:
@@ -95,7 +97,7 @@ usethis::create_package("path/to/mypackage")
 
 Using `usethis::create_package()` will:
 
-* create a new R project called mypackage which is a package and an RStudio project.
+* create a new R project called `mypackage` which is a package and an RStudio project.
 * restart R in the new project.
 * create a skeleton structure for your package.
 * start an RStudio helper menu.
@@ -177,9 +179,15 @@ git config --global user.email 'emma.rand@york.ac.uk'
 git config --global --list
 ```
 
+
+
 .footnote[
 [1] [Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference `r Cite(myBib, "Bryan_Happy_Git")`.
 ]
+
+--
+
+Close the shell.
 
 ---
 # Create your first package.
@@ -236,6 +244,9 @@ Choose the option which indicates yes.
 knitr::include_graphics("pics/git_yup.png")
 ```
 
+--
+
+reload `devtools`
 
 ---
 # Create your first package.
@@ -432,7 +443,7 @@ check()
 
 ## Checking the package with `check()`.
 
-On running `check_all()` you may get an error if you are using a networked drive.
+On running `check()` you may get an error if you are using a networked drive.
 
 ```
 Updating mypackage documentation  
