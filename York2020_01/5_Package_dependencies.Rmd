@@ -190,6 +190,8 @@ class: inverse center middle
 
 Or maybe you want to use an infix function like `%>%`?
 
+This is quite hard to read:
+
 ]
 
 .code110[

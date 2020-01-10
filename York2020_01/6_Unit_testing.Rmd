@@ -104,7 +104,7 @@ This requires:
 * A `testthat.R` file to run all the tests
 * Adding `testthat` to the package requirements
 
-This is a pain to set up! So use `usethis:test_that()`:
+This is a pain to set up! So use `usethis::use_test()`:
 
 ```{r use_testthat, out.width = "100%", fig.align = "center", echo=FALSE}
 knitr::include_graphics("pics/use_testthat.png")
