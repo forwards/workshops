@@ -34,7 +34,7 @@ class: inverse
 
 ### York, January 2020
 
-Updated: 2020-01-06
+Updated: 2020-01-10
 
 
 .footnote[
@@ -81,7 +81,7 @@ This requires:
 * A `testthat.R` file to run all the tests
 * Adding `testthat` to the package requirements
 
-This is a pain to set up! So use `usethis:test_that()`:
+This is a pain to set up! So use `usethis::use_test()`:
 
 &lt;img src="pics/use_testthat.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
@@ -461,8 +461,8 @@ class: clear, split-three
 
 # References
 
-[1] Y. Xie. _xaringan: Presentation Ninja_. R package version
-0.12. 2019. URL:
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
 [https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 
@@ -516,7 +516,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
