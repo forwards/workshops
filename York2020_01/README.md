@@ -1,6 +1,25 @@
 # Package development: Creating impact from code.
 
-## Computing requirements
+## Curriculum
+
+### Schedule
+10:00 -- Coffee and Welcome   
+10:30 -- Preliminaries  
+10:45 -- Package creation  
+11:30 -- Git and GitHub   
+12:15 -- Lunch  
+13:00 -- Package documentation  
+13:30 -- Adding functions  
+14:00 -- Coffee  
+14:15 -- Package Dependencies  
+14:45 -- Unit testing  
+14:15 -- Package Dependencies  
+14:45 -- Unit testing  
+15:30 -- Close!  
+
+## Pre-course instructions
+
+### Computing requirements
 
 Participants can bring their own lap top or use those at the venue. 
 
@@ -26,7 +45,7 @@ In addition, please install/update the following R packages:
 
 Partipcants should also have a GitHub account: https://github.com/
 
-## Installing R
+### Installing R
 
 Download the pre-compiled binary for your OS from https://cloud.r-project.org/ and install. More specifically:
 
@@ -43,7 +62,7 @@ Run the installer to complete installation.
 
 Click "Download R for Linux". Instructions on installing are given for Debian, Redhat, Suse and Ubuntu distributions. Where there is a choice, install both `r-base` and `r-base-dev`.
 
-## Installing R Studio
+### Installing R Studio
 
 Downloads are available from https://www.rstudio.com/products/rstudio/download3/ (scroll to the end of the page to see the downloads).
 
@@ -55,7 +74,7 @@ Download the `.zip` source archive under "Zip/Tarballs". Extract the files to a 
 
 Download the relevant installer for your OS listed under "Installers for Supported Platforms". Run the installer to complete installation.
  
-## Development Tools
+### Development Tools
 
 Some additional tools may be required to compile R packages from source.
 
@@ -93,7 +112,7 @@ to build packages from source. Otherwise return to the instructions for
 installing R for your distribution and follow the instructions there to install 
 the additional tools.
 
-## Git
+### Git
 
 We highly recommend using git for version control. We will provide a basic 
 introduction to git using GitHub, but ultimately you will want git installed on 
@@ -119,7 +138,7 @@ trying to use git.
 
 Install as advised on https://git-scm.com/downloads.
 
-## Issues 
+### Issues 
 
 If you have problems setting up your laptop we will try to help in the first 
 hour or so of the workshop - arrive early if you can! If we cannot get you set 

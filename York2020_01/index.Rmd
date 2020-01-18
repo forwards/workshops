@@ -57,7 +57,7 @@ York January 2020. Updated: `r Sys.Date()`
 
 [4. Adding functions](4_Adding_functions.html) 
 
-[5. Package Dependencies](5_Package_Dependencies.html) 
+[5. Package Dependencies](5_Package_dependencies.html) 
 
 [6. Unit testing](6_Unit_testing.html)
 
