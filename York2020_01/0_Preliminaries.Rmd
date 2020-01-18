@@ -1,0 +1,403 @@
+---
+title: "Package development."
+subtitle: "Creating impact from code."
+author: "Emma Rand and Susannah Cowtan."
+institute: "Forwards"
+date: "updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: [default, emma.css, emma-fonts.css]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+```{r pkgs, include=FALSE}
+library(RefManageR)
+```
+
+```{r, load-refs, include=FALSE, cache=FALSE}
+BibOptions(check.entries = FALSE,
+           bib.style = "numeric",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("bibliography.bib", check = FALSE)
+```
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+# Package development.
+
+## Creating impact from code.
+
+### Emma Rand and Susannah Cowtan. 
+
+### York January 2020.
+
+Updated: `r Sys.Date()`
+
+.footnote[
+Made with xaringan `r Cite(myBib, "xaringan")`
+
+]
+---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Preliminaries.
+---
+
+# Preliminaries. 
+
+## Welcome! Who are we?
+
+.pull-left[
+
+```{r, out.width = "180px", echo=FALSE}
+knitr::include_graphics("pics/emma.png")
+```
+
+Emma Rand @er13_r
+
+Lecturer, Department of Biology, University of York, UK
+
+Biologist, long time R user, relatively new to Python.
+
+]
+
+.pull-right[
+
+```{r, out.width = "180px", echo=FALSE}
+knitr::include_graphics("pics/susannah.jpg")
+```
+
+Susannah Cowtan @SuusJC
+
+Postgrad, School of Mathematics & Statistics, University of Sheffield, UK
+
+Ecological statistician, long time R user, don't ask me about Python!
+
+
+]
+---
+# Preliminaries. 
+
+## Welcome! Who are we?
+
+.pull-left[
+
+```{r, out.width = "180px", echo=FALSE}
+knitr::include_graphics("pics/tamora.jpg")
+```
+
+Tamora James @tamorajames
+
+Postgrad, Department of Biology, University of Sheffield, UK
+
+Ecological modeller, former web and software developer, Sheffield R group co-organiser.
+
+]
+
+.pull-right[
+
+```{r, out.width = "180px", echo=FALSE}
+knitr::include_graphics("pics/sarah.jpeg")
+```
+
+Sarah Lock 
+
+Postgrad, Dept, Department of Biology, University of York, UK
+
+
+
+
+]
+---
+# Preliminaries. 
+
+## The material is mostly drawn from:
+
+http://r-pkgs.had.co.nz/ `r Cite(myBib, "Wickham:2015:RP:2904414")`
+
+```{r, out.width = "200px", echo=FALSE}
+knitr::include_graphics("pics/r-pkgs-cover.png")
+```
+
+
+---
+# Preliminaries. 
+
+## The bad news
+
+.... it may be frustrating
+
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("pics/allie_brosh_argh.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
+]
+
+
+---
+# Preliminaries. 
+
+## The good news!
+
+.... frustration is normal and temporary.
+
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("pics/allie_brosh_happy.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
+]
+
+---
+# Preliminaries. 
+
+## Why make a package
+
+* You want to work reproducibly.
+* You want to document.
+* You want to disseminate.
+* You want to collaborate.
+* You want to create impact from your work.
+
+---
+# Preliminaries.
+
+## Schedule
+
+10:00  --  Coffee and Welcome  
+10:30  --  [Preliminaries](0_Preliminaries.html)  
+10:45  --  [Package creation](1_Package_creation.html)  
+11:30  --  [Git and GitHub](2_Git_and_GitHub.html)  
+12:15  --  Lunch  
+13:00  --  [Package documentation](3_Package_documentation.html)  
+13:30  --  [Adding functions](4_Adding_functions.html)   
+14:00  --  Coffee  
+14:15  --  [Package Dependencies](5_Package_Dependencies.html)   
+14:45  --  [Unit testing](6_Unit_testing.html)  
+14:15  --  [Package Dependencies](6_Package_Dependencies.html)   
+14:45  --  [Unit testing](7_Unit_testing.html)  
+15:30  --  Close! 
+
+
+---
+# Preliminaries.
+
+## Pre-workshop survey
+
+Very short! Please complete
+
+https://rfoundation.limequery.com/162373?lang=en
+
+---
+# Preliminaries.
+
+## Get to know your R installation.
+
+```{r}
+R.home()
+
+```
+
+The R home directory is the top-level directory of the R installation being run.
+
+---
+# Preliminaries.
+
+## Get to know your R installation.
+
+```{r}
+list.files(R.home())
+```
+
+---
+# Preliminaries.
+
+## Get to know your R installation.
+
+```{r}
+R.version
+```
+
+---
+background-image: url(pics/stork.png)
+background-position: 95% 25%
+background-size: 300px
+# Preliminaries.
+
+## Where do R packages come from?
+
+--
+
+CRAN and GitHub, mostly
+.pull-left[
+CRAN:
+```{r, eval=FALSE}
+install.packages("foo")
+```
+
+GitHub:
+```{r, eval=FALSE}
+library(devtools)
+install_github("jane/foo")
+```
+]
+---
+# Preliminaries.
+
+## Where do R packages live on your computer?
+
+```{r, out.width = "300px", echo=FALSE}
+knitr::include_graphics("pics/library.png")
+```
+
+--
+
+R packages live in a library.
+
+---
+# Preliminaries.
+
+## Get to know your R library.
+
+The default library:
+```{r}
+.Library
+```
+---
+# Preliminaries.
+
+## Get to know your R library.
+
+All the libraries R knows about:
+```{r}
+.libPaths()
+```
+
+
+---
+# Preliminaries.
+
+## Get to know your R library.
+
+* For many R users `.Library` and `.libPaths()` are the same.  
+
+--
+
+* Other R users maintain, or have access to, multiple libraries.
+
+--
+
+* You may not have write access to the default library.
+
+--
+
+* For example, you can put add-on packages in a user-level library:
+`r .libPaths()[1]`
+
+---
+# Preliminaries.
+
+## Before we start:
+
+Make sure you have recent versions of:
+
+.pull-left[
+`devtools`  
+`pkgdown`  
+`roxygen2`  
+]
+
+.pull-right[
+`testthat`   
+`tidyverse`  
+`usethis`  
+]
+
+--
+
+Load `devtools`
+
+```{r}
+library(devtools)
+```
+
+---
+# Preliminaries.
+
+## The goal.
+
+We are going to write a package called `mypackage`<sup>1</sup>. `mypackage` has some simple utilities for a single large sample. 
+
+.footnote[
+[1] Or be more creative, silly or serious!
+]
+--
+
+It will:   
+* calculate the sums of squares  
+* calculate the standard error  
+* carry out a one-sample z-test  
+
+--
+
+The package itself is not very useful or wholy original. But what the package does is not the point!
+
+---
+# Preliminaries.
+
+## Learning Objectives.
+
+A successful particpant will be able to:
+
+* create a basic package and explain each of files created.  
+* populate the NAMESPACE, LICENSE and DESCRIPTION files.  
+* make simple use of git and github to version control a package.  
+* add functions to a package.  
+* use Roxygen to document functions.  
+* check a package is in working order.  
+* create a testing infrastructure for a package.  
+* document the dependencies of a package.  
+
+
+---
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+---
+# License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

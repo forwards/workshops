@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package development.</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emma Rand and Susannah Cowtan." />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="emma.css" type="text/css" />
+    <link rel="stylesheet" href="emma-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+# Package development.
+
+## Creating impact from code.
+
+### Emma Rand and Susannah Cowtan. 
+
+### York January 2020.
+
+Updated: 2019-12-08
+
+.footnote[
+Made with xaringan (Xie, 2019)
+
+]
+---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Adding Functions.
+
+
+---
+# Adding Functions.
+
+## A reminder of the goal package.
+
+Our package will:   
+* calculate the sums of squares ✔   
+* calculate the standard error  
+* carry out a one-sample z-test  
+* create a couple of figures.  
+
+---
+# Adding Functions.
+
+## Add and document a function.
+
+* Write code to perform the calculation.  
+* Put that logic into a function.  
+* Check it works.  
+* Save your fuction as a `.R` file in the `R` directory. `use_r()` will help with that.
+* Test drive with `load_all()`
+* Document your function by inserting roxygen comments and using `document()`
+* Do a `R CMD check` using `check()`.   
+* Commit with Git.  
+* Push to GitHub.
+* Marvel at your package making ability!
+
+---
+
+# Adding Functions.
+
+## Standard error.
+
+The standard error is given by:
+
+`$$s.e. = \frac {s}{\sqrt{n}}$$`
+
+--
+Can you add and document this function?
+
+---
+
+# Adding Functions.
+
+## One-sample z-test.
+
+A one-sample z-test is carried out by calculating a test statistic *z*:
+
+`$$\pm z = \frac {\bar{x}- \mu}{s.e._\bar{x}}$$`
+
+Where:  
+* `\(\bar{x}\)` is the sample mean.  
+* `\(\mu\)` is the hypothesised value for the sample mean against which it is tested.  
+* `\(s.e._\bar{x}\)` is the standard error of the sample mean.
+
+---
+
+# Adding Functions.
+
+## One-sample z-test.
+
+Then finding the probability of getting a value of *z* of that magnitude or greater.
+
+--
+
+Can you add and document this function?
+
+The output of my version is:
+```
+z = ####; p = ####
+The sample mean of #### is significantly/not significantly
+different from ####
+```
+
+---
+
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Write code for the `\(s.e.\)`  
+
+First, let's create a vector of numbers we can develop our function on.
+
+--
+
+
+```r
+height &lt;- rnorm(50, mean = 10, sd = 2) %&gt;% round(4)
+```
+
+--
+
+Calculate the `\(s.e.\)`:
+
+--
+
+
+```r
+sd(height)/sqrt(length(height))
+```
+
+```
+## [1] 0.2586256
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Put that logic into a function.  
+
+
+```r
+std_err &lt;- function(v) {
+  sd(v)/sqrt(length(v))
+}
+```
+
+--
+
+### Check it works.  
+
+
+```r
+std_err(height)
+```
+
+```
+## [1] 0.2586256
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Save your fuction as a `.R` file 
+
+
+```r
+use_r("std_err")
+```
+
+--
+Paste in your function definition.
+
+Do not add any other code. Save the file.
+
+--
+
+Before we continue, delete the function you put in the Global Environment:
+
+
+```r
+rm(std_err)
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Test drive with `load_all()`
+
+
+```r
+load_all()
+```
+```
+Loading mypackage
+```
+--
+
+Now call it:
+
+
+```r
+std_err(rnorm(20))
+```
+```
+[1] 16.1641
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Open `std_err.R` and put your cursor anywhere in the function.
+
+Do Code | Insert Roxygen Skeleton
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Edit the comment with something like:
+```
+#' Calculate the standard error for a sample
+#'
+#' returns the standard error of
+#' a numeric vector
+#'
+#' @param v numeric vector
+#'
+#' @return number
+#' @export
+#'
+#' @examples
+#' std_err(rnorm(50))
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Document your function 
+
+Now do:
+
+```r
+document()
+```
+
+
+```
+Updating mypackage documentation
+Writing NAMESPACE
+Loading mypackage
+Writing NAMESPACE
+Writing std_err.Rd
+```
+--
+
+`man/std_err.Rd` has been created. 
+
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+### Do a `R CMD check` using `check()`.   
+
+
+
+```r
+check()
+```
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+```
+-- R CMD check results ----- mypackage 0.0.0.9000 ----
+Duration: 41.5s
+
+&gt; checking R code for possible problems ... NOTE
+  std_err: no visible global function definition for 'sd'
+  Undefined global functions or variables:
+    sd
+  Consider adding
+    importFrom("stats", "sd")
+  to your NAMESPACE file.
+
+0 errors √ | 0 warnings √ | 1 note x
+
+```
+
+Susannah will show you how to fix!
+
+
+---
+# Adding Functions.
+
+## Add and document a Standard error function.
+
+## Commit and Push
+
+Go to the Git pane and check the box to "Stage" the changes you want to commit. All of them in this case.
+
+--
+
+add a Commit message. Something like "Added std_err() function."
+
+--
+
+Hit commit!
+
+--
+
+Update the version on GitHub using the Push button.
+  
+---
+# References
+
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+&lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="60px" /&gt;
+
+
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

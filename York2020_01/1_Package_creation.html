@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package development.</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emma Rand and Susannah Cowtan." />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="emma.css" type="text/css" />
+    <link rel="stylesheet" href="emma-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+# Package development.
+
+## Creating impact from code.
+
+### Emma Rand and Susannah Cowtan. 
+
+### York January 2020.
+
+Updated: 2020-01-07
+
+.footnote[
+Made with xaringan (Xie, 2019)
+
+]
+---
+background-image: url(pics/forwards.svg)
+background-position: 50% 55%
+background-size: 250px
+
+class: inverse center
+
+# Create your first package.
+---
+
+# Create your first package.
+
+## Creating a package.
+
+Be deliberate about where you create your package.
+
+Do not nest inside another RStudio project, R package or git repo.
+
+Set your working directory to somewhere you want to work (for networked pcs avoid using shortcuts).
+
+--
+
+Then use:
+
+
+```r
+usethis::create_package("path/to/mypackage")
+```
+
+---
+
+# Create your first package.
+
+## `usethis::create_package()`
+
+Using `usethis::create_package()` will:
+
+* create a new R project called `mypackage` which is a package and an RStudio project.
+* restart R in the new project.
+* create a skeleton structure for your package.
+* start an RStudio helper menu.
+
+---
+# Create your first package.
+
+## What is in this skeleton?
+
+&lt;img src="pics/createpkg1.png" width="500px" /&gt;
+
+
+---
+# Create your first package.
+
+## What is in this skeleton?
+
+### Files and directories.
+
+* `.Rbuildignore` lists files that we need but that should not be included when building the R package from source. e.g., the `.Rproj` file and the LICENSE
+
+--
+
+* `.Rproj.user`, if you have it, is a directory used internally by RStudio.
+
+--
+
+* `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
+
+
+---
+# Create your first package.
+
+## What is in this skeleton?
+
+### Files and directories - cont.
+
+* `DESCRIPTION` provides metadata about your package. We will need to edit this.
+
+--
+
+* `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
+
+--
+
+* The `R/` directory is the “business end” of your package. It will contain `.R` files with function definitions.
+
+--
+
+* `mypackage.Rproj` is the file that makes this directory an RStudio Project.
+
+---
+# Create your first package.
+
+## Build pane appears.
+
+&lt;img src="pics/createpkg2.png" width="500px" /&gt;
+
+---
+# Create your first package.
+
+## Use version control: Git.
+
+This is optional but strongly recommended.
+
+--
+
+First, make sure Git is configured&lt;sup&gt;1&lt;/sup&gt;:
+
+Tools | Shell...
+
+
+```r
+git config --global user.name 'Emma Rand'
+git config --global user.email 'emma.rand@york.ac.uk'
+git config --global --list
+```
+
+
+
+.footnote[
+[1] [Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference (Bryan and Hester, ).
+]
+
+--
+
+Close the shell.
+
+---
+# Create your first package.
+
+## Use version control: Git.
+
+Close your project, reopen it and reload `devtools`:
+
+
+```r
+library(devtools)
+```
+
+---
+# Create your first package.
+
+## Use version control: Git.
+
+Now Git is configured, instruct R to use Git with this Package and project:
+
+
+```r
+use_git()
+```
+
+---
+# Create your first package.
+
+## Use version control with `use_git()`.
+
+### Commit files.
+
+There are 5 uncommitted files:
+
+Is it OK to commit them?
+
+Choose the option which indicates your agreement.
+
+&lt;img src="pics/git_agree.png" width="600px" /&gt;
+
+
+---
+# Create your first package.
+
+## Use version control with `use_git()`.
+
+### Restart R.
+
+A restart of R is required to activate the Git pane. Restart now?
+
+Choose the option which indicates yes. 
+
+&lt;img src="pics/git_yup.png" width="600px" /&gt;
+
+--
+
+reload `devtools`
+
+---
+# Create your first package.
+
+## Use version control with `use_git()`.
+
+### The RStudio Git pane.
+.pull-left[
+&lt;img src="pics/git_pane.png" width="350px" /&gt;
+]
+.pull-right[
+If the Git pane does not open, try closing the project and reopening by navigating to it without using the windows shortcuts.
+]
+---
+# Create your first package.
+
+## Write your first function.
+
+First, let's create a vector of 100 numbers we can develop our function on.
+
+--
+
+I am going to imagine it is the heights (metres) of 100 trees.
+
+--
+
+
+```r
+height &lt;- rnorm(100, mean = 10, sd = 0.8) %&gt;% 
+  round(4)
+```
+
+---
+# Create your first package.
+
+## Write your first function.
+
+The sums of squares, SS(x), is the sum of the squared deviations from the mean, i.e.,  
+
+`$$\sum (x_i- \bar{x})^2$$`
+
+--
+
+which is:
+
+
+```r
+sum((height - mean(height))^2)
+```
+
+```
+## [1] 62.66159
+```
+
+---
+# Create your first package.
+
+## Write your first function.
+
+We can put that logic into a function:
+
+
+```r
+sum_squares &lt;- function(v) {
+  sum((v - mean(v))^2)
+  }
+```
+
+.footnote[
+[1] We do not cover writing functions here but you can learn more in the Functions chapter of R for Data Science (Wickham and Grolemund, 2017)
+]
+
+---
+# Create your first package.
+
+## Write your first function.
+
+and check it works:
+
+
+```r
+sum_squares(height)
+```
+
+```
+## [1] 62.66159
+```
+
+
+---
+# Create your first package.
+
+## Where to put that function: `use_r()`.
+
+We save our function as a `.R` script file in the `R/` directory.
+
+.footnote[
+Putting each of the functions in a package in their own `.R` is a good place to start. As your package complexity increases,  you might group related functions.
+]
+--
+
+But.....
+
+The `use_r()` function makes this a little easier by creating/opening a script below `R/`:
+
+
+```r
+use_r("sum_squares")
+```
+
+---
+# Create your first package.
+
+## Where to put that function: `use_r()`.
+
+Paste in your function definition.
+
+Do not add any other code. Save the file.
+
+--
+
+Before we continue, delete the function you put in the Global Environment:
+
+
+```r
+rm(sum_squares)
+```
+
+
+
+---
+# Create your first package.
+
+## Test drive your function: `load_all()`.
+
+In a normal script, you might use `source("R/sum_squares.R")` but when building packages, we use a `devtools` approach:
+
+--
+
+
+```r
+load_all()
+```
+```
+Loading mypackage
+```
+.footnote[
+[1] The Build pane includes a menu item to run `load_all()` under More.
+]
+---
+# Create your first package.
+
+## Test drive your function: `load_all()`.
+
+`load_all()` will make `sum_squares()` (and any other functions) available for use.
+
+
+--
+
+Note, you will not see it in your environment! 
+
+---
+# Create your first package.
+
+## Test your function after `load_all()`.
+
+`load_all()` simulates the process of building, installing, and attaching the `mypackage` package. 
+
+--
+
+This is more likely to give you an accurate view during package development than testing with functions in the Global Environment.
+
+---
+# Create your first package.
+
+## Test your function after `load_all()`.
+
+Now you should be able to use your function just like any other function:
+
+
+```r
+sum_squares(rnorm(20))
+```
+```
+[1] 16.1641
+```
+
+
+---
+# Create your first package.
+
+## Checking the package with `check()`.
+
+`R CMD check` is the gold standard for checking that an R package is in full working order.
+
+--
+
+It is a programme that is executed in the shell. However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
+
+--
+
+
+```r
+check()
+```
+
+---
+# Create your first package.
+
+## Checking the package with `check()`.
+
+On running `check()` you may get an error if you are using a networked drive.
+
+```
+Updating mypackage documentation  
+Error: The specified file is not readable: Y:\My  
+Documents\scholarship\rforwards_package\mypackage\NAMESPACE  
+
+```
+--
+
+This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+
+---
+
+# Create your first package.
+
+## Checking the package with `check()`.
+
+### An aside: a fix for networked drives.
+
+Save a copy of this file:
+
+[fix_for_networked_drives.R](fix_for_networked_drives.R)
+
+Save it somewhere other than the `mypackage` directory.
+--
+
+Open the file from the `mypackage` project session.
+
+--
+
+Run the whole file.
+
+You should now find that `check_all()` proceeds normally.
+
+---
+# Create your first package.
+
+## Checking the package with `check()`.
+
+On running `check_all()` you will get lots of output. It will end with:
+
+&lt;img src="pics/check.png" width="500px" /&gt;
+
+Which tells you that your package is unlicensed and undocumented. We will fix these issues later.
+
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+Go to the Git pane and check the box to "Stage" the changes you want to commit. All of them in this case.
+
+&lt;img src="pics/git_stage.png" width="500px" /&gt;
+
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+This will open a "Review Changes" window:
+
+&lt;img src="pics/git_commit_review.png" width="500px" /&gt;
+
+This allows you to see what has changed since your last commit. Green means added; pink means deleted.
+
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+You need to add a Commit message. Something like "Added sum_squares function."
+
+&lt;img src="pics/git_commit_message.png" width="500px" /&gt;
+
+Now hit Commit!
+---
+# Create your first package.
+
+## Commit your changes with Git.
+
+A window will appear showing the process occuring.
+
+&lt;img src="pics/git_commit_window.png" width="500px" /&gt;
+
+Choose close when it is finished.
+
+---
+# Please tell me more about Git!
+
+Oh, okay then 😃
+
+Before adding a license and documentation to our package we will take a short diversion to cover Git and GitHub.
+
+
+---
+# References
+
+[1] J. Bryan and J. Hester. _Happy Git and GitHub for the useR_.
+&lt;URL: https://happygitwithr.com/&gt;. Accessed: 2019-11-22.
+
+[2] H. Wickham and G. Grolemund. _R for Data Science: Import,
+Tidy, Transform, Visualize, and Model Data_. 1st. O'Reilly Media,
+Inc., 2017. ISBN: 1491910399, 9781491910399. URL:
+[https://r4ds.had.co.nz/](https://r4ds.had.co.nz/).
+
+[3] Y. Xie. _xaringan: Presentation Ninja_. R package version
+0.12. 2019. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
