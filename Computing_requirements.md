@@ -1,16 +1,18 @@
 # Preparation for Forwards Workshop
 
+Last updated: 25th February 2020
+
 ## Computing requirements
 
 Participants are required to bring their own laptops. Laptops should have the following installed **prior** to attending the workshop:
 
-- R (3.5.0)
-- RStudio (1.1.447)
+- R (4.0, release expected 29th February 2020)
+- RStudio (1.2)
 - Git
 - OS-specific development tools as detailed below
 
 If you have older versions of R/RStudio installed, it is recommended that you 
-install the latest versions if possible. Instructions for installing all these 
+install the latest versions if possible<sup>[[1]](#versions)</sup>. Instructions for installing all these 
 software is given below.
 
 In addition, please install/update the following R packages:
@@ -21,15 +23,26 @@ In addition, please install/update the following R packages:
  - testthat
  - tidyverse
  - usethis
+ 
+Participants should also have a GitHub account, sign up here: https://github.com/.
+
+Allow *~1 hour* to install everything from scratch.
+
+<a name="versions">[1]</a>: You can check how old your R version is by looking at the 
+release date in the opening message in the R console, or by running 
+`R.Version()$version.string` in R. You can find your RStudio version via 
+Help > About RStudio and find the corresponding release date here: 
+https://www.rstudio.com/products/rstudio/release-notes. 
+
 
 ## Installing R
 
 Download the pre-compiled binary for your OS from https://cloud.r-project.org/ 
-and install. More specifically:
+and install. More specifically, for version number #.#.# (e.g. 4.0.0):
 
 **For Windows**
 
-Click "Download R for Windows", then "base", then "Download R 3.5.0 for 
+Click "Download R for Windows", then "base", then "Download R #.#.# for 
 Windows". This will download an `.exe` file; once downloaded, open to start the 
 installation. If you do not have administrator rights, the installer will 
 default to install in your Documents folder - if you prefer, you can change the 
@@ -37,7 +50,7 @@ location to another folder that you have write access to.
 
 **For Mac**
 
-Click "Download R for (Mac) OS X", then "R-3.5.0.pkg" to download the installer.
+Click "Download R for (Mac) OS X", then "R-#.#.#.pkg" to download the installer.
 Run the installer to complete installation.
 
 **For Linux**
@@ -48,7 +61,7 @@ Redhat, Suse and Ubuntu distributions. Where there is a choice, install both
 
 ## Installing R Studio
 
-Downloads are available from https://www.rstudio.com/products/rstudio/download3/ (scroll to the end of the page to see the downloads).
+Downloads are available from https://www.rstudio.com/products/rstudio/download/ (scroll to the end of the page to see the downloads).
 
 **For Windows with no admin rights**
 
@@ -70,13 +83,13 @@ Some additional tools may be required to compile R packages from source.
 
 **For Windows with no admin rights**
 
-Download the latest Rtools installer, `Rtools.exe`, from 
+Download the latest (recommended) Rtools installer, `Rtools.exe`, from 
 https://cran.r-project.org/bin/windows/Rtools/. Run the installer keeping the 
 default settings.
 
 **For Windows with admin rights**
 
-Download the latest Rtools installer, `Rtools.exe`, from 
+Download the latest (recommended) Rtools installer, `Rtools.exe`, from 
 https://cran.r-project.org/bin/windows/Rtools/. Run the installer making the 
 following selections: keep the default settings for the installation location 
 and components to install; check the box to add rtools to the system PATH.
