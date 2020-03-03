@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package development</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emma Rand and Susannah Cowtan" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="emma.css" type="text/css" />
+    <link rel="stylesheet" href="emma-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-image: url(pics/forwards.svg)
+background-position: 50% 65%
+background-size: 250px
+
+class: inverse
+
+
+# Package development
+
+## Creating impact from code
+
+### Emma Rand &amp; Susannah Cowtan 
+
+### York, January 2020
+
+Updated: 2020-02-27
+
+
+.footnote[
+Made with xaringan (Xie, 2019)
+]
+---
+class: inverse center middle
+
+# Unit testing
+---
+
+# Unit testing
+
+## Why? Coding is iterative
+
+.font120[
+We build new functions a bit at a time.
+
+What if a new thing we add changes the existing functionality?
+
+How can we check and be sure all the old functionality still works with the new fancy feature?
+
+Unit Testing to the rescue!
+]
+
+---
+class: inverse center middle
+
+# Testing workflow
+
+---
+
+background-image: url(pics/usethis_hexie.png)
+background-position: 90% 20%
+background-size: 150px
+
+# Set up your testing infrastructure
+
+.font120[
+We will be using the `testthat` package to test our package.
+This requires:
+* A directory structure
+* Test files for each `function.R` file
+* A `testthat.R` file to run all the tests
+* Adding `testthat` to the package requirements
+
+This is a pain to set up! So use `usethis::use_test()`:
+
+&lt;img src="../../pics/use_testthat.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+# Existing workflow
+
+&lt;img src="../../pics/workflow_pre_testing.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Now add unit testing
+
+&lt;img src="../../pics/workflow_testing.png" width="95%" style="display: block; margin: auto;" /&gt;
+---
+# Testing a function
+
+Test by comparing **expectations** with **results**.
+
+What expectations do we have of the `sum_squares()` function?
+
+**Standard case:** if we give it numeric input we expect:
+--
+
+* Decimal output (type `double`)
+* Not negative
+
+--
+
+**Special case:** what happens if we give it a vector of identical numbers?
+
+--
+* Output is zero
+
+--
+
+**Expected failures:**
+
+What if there are missing values?
+
+--
+* Output is `NA`
+
+--
+
+What if the input was non-numeric?
+
+--
+* Should throw an error, or at least a warning
+
+---
+
+background-image: url(pics/testthat_hexie.png)
+background-position: 90% 3.5%
+background-size: 150px
+
+# Building tests with testthat
+
+.font110[
+Let's build tests for `sum_squares()` for the standard cases: 
+* numeric output
+* non-negative output
+
+Edit your `tests/testthat/test-sum_squares.R` file to read:
+]
+
+.code110[
+
+```r
+test_vec &lt;- rnorm(20, mean = 5, sd = 1.2)
+
+### Standard case
+# Expect a floating point result from a numeric input
+test_that("Output is type \"double\" for numeric input", {
+  expect_type(sum_squares(test_vec), "double")
+})
+# Expect that the result is not negative
+test_that("Output is non-negative", {
+  expect_gte(sum_squares(test_vec), 0)
+})
+```
+]
+
+---
+
+# Four expectations cover 90% of cases
+
+.code110[
+
+```r
+expect_equal(object, expression)
+
+expect_error(code, regexp)
+
+expect_warning(code, regexp)
+expect_warning(code, NA)
+
+expect_known_output(code)
+```
+]
+--
+.font120[
+Try using `expect_equal` to build tests for
+* The special case of a vector of identical numbers
+* The case when the input includes missing values
+
+Remember to specify `NA_real_` not `NA` - the type of missing data is important!
+]
+---
+
+# Testing for special cases and bad input
+
+
+```r
+### Special cases
+# Identical values should result in zero
+test_that("Identical values give a sum of squares of zero", {
+  expect_equal(sum_squares(rep(1, 10)), 0)
+})
+
+### Expected failures
+# Missing values should result in a missing value
+test_that("Missing values give a result of NA", {
+  expect_equal(sum_squares(c(test_vec, NA)), NA_real_)
+})
+# Character input throws both an error(from sd) and a warning(from mean)
+# so use expect_condition() not expect_error() or expect_warning()
+test_that("Non-numeric input gives errors and/or warnings", {
+  expect_condition(sum_squares(c("cat", "dog")))
+})
+```
+
+.font110[
+I've also added a test to see what happens when a character vector is supplied.
+
+Think about what we could do to our function so that `expect_error` could be used.
+]
+---
+
+# Running the tests
+
+.font120[
+`devtools::test()` will run all the tests associated with a package.
+]
+--
+
+&lt;img src="../../pics/devtools_test.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.font120[
+Ideally, if an empty vector `c()` is supplied to the function, it would return
+`NA`.  Try adding a test for this and run `devtools::test()` again to see what
+happens when a test fails.
+]
+---
+# When a test fails
+
+&lt;img src="../../pics/fail_test.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Organising tests
+
+.font130[
+
+* Think about the overall functionality, or “end to end” tests
+
+* Test every individual task the function completes, separately
+
+* Check both for successful situations and for expected failure situations
+
+* If appropriate, check for special cases
+]
+---
+class:clear
+
+&lt;img src="../../pics/bored_tests.png" width="1820" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse center middle
+
+# Test coverage
+
+---
+
+# Which lines of code have been tested?
+
+.font110[
+When all your tests are passing, check test coverage with `devtools::test_coverage()`.
+We have a failing test, so comment it out for now.
+]
+--
+
+&lt;img src="../../pics/coverage.png" width="857" style="display: block; margin: auto;" /&gt;
+
+--
+.font110[
+Remember! It only tells you whether a line has been tested at all, 
+not whether it's been tested thoroughly enough. That's up to you!
+]
+---
+
+
+
+class: inverse center middle
+
+# R CMD check
+
+---
+
+# Automatic checking
+
+.font160[
+
+* Runs automated checks for common problems in R packages
+
+* Useful for local packages, even with some false positives
+
+* If you want to submit to CRAN you **must** pass &lt;br&gt;.remark-inline-mono[R CMD check] cleanly
+
+&lt;http://r-pkgs.had.co.nz/check.html&gt;
+
+]
+
+---
+
+class: clear
+
+&lt;img src="../../pics/frustration.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+# Types of problem
+
+.font160[
+
+.pull-left[
+
+.remark-inline-red[**ERROR**]&lt;br&gt;
+Must fix!
+
+**WARNING**&lt;br&gt;
+Fix if submitting to CRAN
+
+**NOTE**&lt;br&gt;
+Fix if submitting to CRAN&lt;br&gt;
+.font80[It's possible to submit with a NOTE, but it's best avoided]
+
+]
+
+.pull-right[
+
+ | Local | CRAN
+-|-------|------
+.remark-inline-red[**ERROR**] | &amp;#10004; | &amp;#10004;
+**WARNING** | | &amp;#10004;
+**NOTE** | | &amp;#10004;
+
+]]
+
+---
+
+background-image: url(pics/devtools_hexie.jpeg)
+background-position: 90% 12.5%
+background-size: 150px
+
+# Running R CMD check
+
+.font160[
+
+.remark-inline-mono[Cmd/Ctrl + shift + E] or
+
+`devtools::check()`
+
+Or look in the **Build** menu
+
+]
+
+.font140[
+If you don't understand an error, google it!
+]
+
+---
+
+class: inverse center middle
+
+# Share it!
+
+---
+
+# Building and installing
+
+.font140[
+
+Build the source package to share it!
+
+`devtools::build()`
+
+Now it can be installed using:
+
+
+```r
+install.packages("mypackage_0.0.0.10.tar.gz", 
+                 repos = NULL, type = "source")
+library(mypackage)
+```
+
+Notice that .remark-inline-mono[0.0.0.10] is the version number 
+you put in the DESCRIPTION file
+
+]
+
+---
+
+class: inverse center middle
+
+# Learning more
+
+---
+
+# Further topics
+
+.font160[
+
+* Including data
+* Licenses
+* CRAN submission
+* Good practice
+    * Collaborating with git and GitHub
+    * Continuous integration (code checking)
+* Advanced programming
+    * Interfacing with C++ / Python / ...
+    * Object-oriented programming
+* ...
+
+]
+
+---
+
+# Further resources
+
+.font140[
+.pull-left[
+
+&lt;img src="../../pics/RStudio-community.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+&lt;a href = "https://community.rstudio.com/"&gt;https://community.rstudio.com&lt;/a&gt;
+]
+
+.pull-right[
+
+R-package-devel mailing list
+
+&lt;img src="../../pics/R-devel.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]]
+
+---
+class: clear, split-three
+
+.column[
+&lt;img src="../../pics/wickham_adv_R.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+.font130[&lt;a href="https://adv-r.hadley.nz/"&gt;https://adv-r.hadley.nz/&lt;/a&gt;
+]]
+.column[
+&lt;img src="../../pics/wickham_R_pkgs.png" width="100%" style="display: block; margin: auto;" /&gt;
+.font130[&lt;a href="http://r-pkgs.had.co.nz/"&gt;http://r-pkgs.had.co.nz/&lt;/a&gt;
+]]
+.column[
+&lt;img src="../../pics/wickham_grolemund_r4ds.png" width="100%" style="display: block; margin: auto;" /&gt;
+.font130[&lt;a href="https://r4ds.had.co.nz/"&gt;https://r4ds.had.co.nz/&lt;/a&gt;
+]]]
+
+---
+
+&lt;img src="../../pics/web_resources.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+# References
+
+[1] Y. Xie. _xaringan: Presentation Ninja_. R package version 0.12.
+2019. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Version Control</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Forwards Teaching Team" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../libs/remark-css/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Version Control
+### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a>
+### <br> updated: 2020-02-27
+
+---
+
+
+
+
+
+
+
+
+class: inverse center middle
+
+# Git &amp; GitHub
+
+---
+
+class: clear center middle font200
+
+&lt;!-- --&gt;
+
+Use both!
+
+The 😡 💩 😱 will pay off
+
+---
+
+class: clear middle center font200
+
+&lt;img src="../../pics/diff_rebase.png" width="800px" /&gt;
+
+[happygitwithr.com](happygitwithr.com)
+
+---
+
+class: clear middle center font200
+
+Excuse me, do you have a moment to talk about
+version control?
+https://doi.org/10.7287/peerj.preprints.3159v2
+
+&lt;img src="../../pics/how_github_works.png" width="500px" /&gt;
+
+---
+
+# Your turn
+
+For this exercise use the command line interface provided in the Terminal tab 
+in RStudio
+
+1. Do I already have Git?
+
+    ```
+    which git
+    ```
+
+2. What version of Git do I have?
+
+    ```
+    git --version
+    ```
+
+Eek! I don’t have Git!  
+Fear not- time to install!  
+https://git-scm.com/downloads
+
+---
+
+class: inverse center middle
+
+# Use git on a project/package
+
+---
+
+---
+
+# Basic Git Workflow
+
+1. Modify Code
+2. Stage changes
+3. Commit changes
+
+---
+
+class: clear font150
+
+
+```r
+usethis::use_git()
+```
+```
+✔ Initialising Git repo
+✔ Adding '.Rhistory', '.RData' to '.gitignore'
+There are 6 uncommitted files:
+* '.gitignore'
+* '.Rbuildignore'
+* 'animals.Rproj'
+* 'DESCRIPTION'
+* 'NAMESPACE'
+* 'R/'
+Is it ok to commit them?
+
+1: Not now
+2: Absolutely not
+3: For sure
+```
+
+Choose not to commit the files, then choose to restart when asked.
+
+???
+
+● A restart of RStudio is required to activate the Git pane
+Restart now?
+
+1: Yes
+2: Not now
+3: Nope
+
+Selection: 
+
+---
+
+class: center
+
+The project now has a git tab
+
+&lt;img src="../../pics/git_tab.png" width="800px" /&gt;
+
+The uncommitted files have icons with `?` next to them: git isn't tracking 
+changes in these files.
+
+---
+
+class: clear font200
+
+# Identifying yourself
+
+name: config
+
+Before you can make a commit, git must know who you are
+
+
+```r
+usethis::use_git_config(
+    scope = "project",
+    user.name = "Your Name",
+    user.email = "you@domain.com"
+)
+```
+
+You can use `scope = "user"` to use the same identity for all projects.
+
+---
+
+class: clear font200
+
+Now click the commit button
+
+&lt;img src="../../pics/commit_button.png" width="800px" /&gt;
+
+which will bring up the review changes window
+
+---
+
+class: clear font200
+
+Added/changed code lines are highlighted in green 
+
+&lt;img src="../../pics/review_changes.png" width="800px" /&gt;
+
+If we had deleted code lines, they would be highlighted in red.
+
+---
+
+class: clear font200
+
+.pull-left[
+We can stage all the files at once: 
+ - Click on the first file
+ - Shift+Click on the last file
+ - Click `Stage` button
+]
+
+.pull-right[
+&lt;img src="../../pics/stage_multiple_files.png" width="800px" /&gt;
+]
+
+---
+
+class: clear font200
+
+All the staged files now have an `A` icon next to them: `A` for *added*
+
+&lt;img src="../../pics/commit.png" width="800px" /&gt;
+
+We can write a meaningful commit message and click commit.
+
+---
+
+class: font150
+
+# Your Turn
+
+Set up git on your package:
+
+1. In your package project run `usethis::use_git()`
+ - Choose not to commit the files, then choose to restart when asked.
+2. When the project has restarted, define your identity with 
+`usethis::use_git_config()`
+ - see [Identifying Yourself](#config)
+3. Use the commit button to open the review changes window.
+ - stage and commit the changes.
+4. Back in the git tab, click the history button to view your first commit!
+5. Make a change to your `animalSounds()` function and save it. What happens in 
+the git tab? Open the review changes window again and take a look there.
+6. Right-click the changed file and choose `Revert` to revert the change.
+
+---
+
+class: inverse center middle
+
+# Use GitHub on a git project/package
+
+---
+
+We can set up a remote GitHub repo to synchronize with our local git repo with
+`usethis::use_github()`.
+
+This function uses the GitHub API to set up the repo on GitHub, which requires 
+a personal access token (PAT).
+
+---
+
+Create a PAT via
+
+
+```r
+browse_github_token()
+```
+
+This opens a browser window for you to log in to GitHub. 
+ - click generate token
+ - copy it
+
+---
+
+Back in RStudio run
+
+
+```r
+usethis::edit_r_environ()
+```
+
+`.Renviron` will open. Add a line like:
+
+```
+GITHUB_PAT=xxxyyyzzz
+
+```
+
+Where xxxyyyzzz is pasted from the clipboard.
+
+--
+
+Make sure `.Renviron` ends with a newline!
+
+Save and close `.Renviron`, then restart R.
+
+
+---
+
+Now we can run
+
+
+```r
+usethis::use_github() 
+```
+
+First question: how to authenticate your *pushes* and *pulls* to/from the 
+remote?
+
+```
+Which git protocol to use? (enter 0 to exit) 
+
+1: ssh   &lt;-- presumes that you have set up ssh keys
+2: https &lt;-- choose this if you don't have ssh keys (or don't know if you do)
+
+```
+
+Choose 2 for now, unless you already use ssh keys.
+
+???
+
+add ref here
+
+---
+
+Next question:
+
+ ```
+● Check title and description
+  Name:        animals
+  Description: Demo package about animals
+Are title and description ok?
+
+1: Not now
+2: Absolutely not
+3: Yup
+```
+
+Say yes if they are okay (you can still change them later!).
+
+OR say no, then modify, stage and commit changes to the DESCRIPTION
+file before running `usethis::use_github()` again.
+
+---
+
+Once the title and description are okay:
+
+```
+✔ Creating GitHub repository
+✔ Setting remote 'origin' to 'https://github.com/username/animals.git'
+✔ Adding GitHub links to DESCRIPTION
+✔ Setting URL field in DESCRIPTION to 'https://github.com/username/animals'
+✔ Setting BugReports field in DESCRIPTION to 'https://github.com/username/animals/issues'
+✔ Pushing 'master' branch to GitHub and setting remote tracking branch
+✔ Opening URL 'https://github.com/username/animals'
+```
+
+Now you can look at your GitHub page! 🎈 
+
+---
+
+# Basic Git and GitHub Workflow
+
+1. Modify Code
+2. Stage changes
+3. Commit changes
+4. Repeat 1-3 several times a day, with each commit representing an incremental 
+change
+5. Push changes to GitHub once a day/at bigger milestones
+
+---
+
+# Your Turn
+
+1. Create a GitHub PAT using `browse_github_token()`.
+2. Add it to your `.Renviron` using `usethis::edit_r_environ()`.
+3. Run `usethis::use_github()` to setup GitHub on your package project.
+4. Make a small change to `animalSounds()`, stage and commit.
+5. Click on the push button in the Git tab to push your changes - you will be 
+prompted for your GitHub password.
+6. Look at your repo on GitHub and view the commit history.
+
+---
+# References
+
+NULL
+
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": true,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package development</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Forwards Teaching Team" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../libs/remark-css/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Package development
+### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a><br><br>Pre-workshop survey: <a href="https://rfoundation.limequery.com/333563" class="uri">https://rfoundation.limequery.com/333563</a>
+### <br> updated: 2020-02-26
+
+---
+
+
+
+
+---
+# Get to know your R installation
+
+
+```r
+R.home()
+```
+
+```
+## [1] "/usr/lib/R"
+```
+
+The R home directory is the top-level directory of the R installation being run.
+
+---
+# Get to know your R installation
+
+
+```r
+list.files(R.home())
+```
+
+```
+## [1] "bin"          "COPYING"      "etc"          "lib"          "library"     
+## [6] "modules"      "site-library" "SVN-REVISION"
+```
+
+---
+# Get to know your R installation
+
+
+```r
+R.version
+```
+
+```
+##                _                           
+## platform       x86_64-pc-linux-gnu         
+## arch           x86_64                      
+## os             linux-gnu                   
+## system         x86_64, linux-gnu           
+## status                                     
+## major          3                           
+## minor          6.2                         
+## year           2019                        
+## month          12                          
+## day            12                          
+## svn rev        77560                       
+## language       R                           
+## version.string R version 3.6.2 (2019-12-12)
+## nickname       Dark and Stormy Night
+```
+
+---
+background-image: url(../../pics/stork.png)
+background-position: 95% 25%
+background-size: 300px
+# Get to know your R installation
+
+## Where do R packages come from?
+
+--
+
+CRAN and GitHub, mostly
+.pull-left[
+CRAN:
+
+```r
+install.packages("foo")
+```
+
+GitHub:
+
+```r
+library(devtools)
+install_github("jane/foo")
+```
+]
+---
+# Get to know your R installation
+
+## Where do R packages live on your computer?
+
+&lt;img src="../../pics/library.png" width="300px" /&gt;
+
+--
+
+R packages live in a library.
+
+---
+# Get to know your R installation
+
+## Get to know your R library
+
+The default library:
+
+```r
+.Library
+```
+
+```
+## [1] "/usr/lib/R/library"
+```
+---
+# Get to know your R installation
+
+## Get to know your R library
+
+All the libraries R knows about:
+
+```r
+.libPaths()
+```
+
+```
+## [1] "/home/hturner/R/x86_64-pc-linux-gnu-library/3.6"
+## [2] "/usr/local/lib/R/site-library"                  
+## [3] "/usr/lib/R/site-library"                        
+## [4] "/usr/lib/R/library"
+```
+
+
+---
+# Get to know your R installation
+
+## Get to know your R library
+
+* For many R users `.Library` and `.libPaths()` are the same.  
+
+--
+
+* Other R users maintain, or have access to, multiple libraries.
+
+--
+
+* You may not have write access to the default library.
+
+--
+
+* For example, you can put add-on packages in a user-level library:
+/home/hturner/R/x86_64-pc-linux-gnu-library/3.6
+
+---
+# Get to know your R installation
+
+## Before we start:
+
+Make sure you have recent versions of:
+
+.pull-left[
+`devtools`  
+`pkgdown`  
+`roxygen2`  
+]
+
+.pull-right[
+`testthat`   
+`tidyverse`  
+`usethis`  
+]
+
+Tip: use `old.packages()`
+
+--
+
+Load `devtools`
+
+
+```r
+library(devtools)
+```
+
+---
+# Development workflow
+
+.center[
+How is developing a  
+**package**
+same/different  
+from developing a **script**?
+]
+
+---
+# Development workflow
+
+**How same?**  
+
+Iterate early and often!  
+
+Change it, try it, change it, try it, **ad nauseum**
+
+---
+# Development workflow
+
+**How different?**
+
+Write functions not "top-level" code.  
+
+Dependendencies are different: no `library()` calls
+
+Install &amp; restart (or simulate that): don't `source()`
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

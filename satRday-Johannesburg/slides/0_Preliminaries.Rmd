@@ -1,0 +1,178 @@
+---
+title: "Package Development Workshop"
+subtitle: "Johannesburg satRday 2020"
+author: "Heather Turner<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
+institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/<br><br>Pre-workshop survey: https://rfoundation.limequery.com/333563'
+date: "<br> updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/remark-css/default.css", "../../libs/forwards.css", "../../libs/forwards-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+
+
+
+---
+
+
+Very short! Please complete
+
+https://rfoundation.limequery.com/162373?lang=en
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+```{r pkgs, include=FALSE}
+library(RefManageR)
+```
+
+```{r, load-refs, include=FALSE, cache=FALSE}
+BibOptions(check.entries = FALSE,
+           bib.style = "numeric",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("../../bibliography.bib", check = FALSE)
+```
+---
+
+# Outline
+
+09:00  -- 10:30 [Package orientation](../1_Package_orientation.html) and [Package creation](../2_Package_creation.html)
+   
+10:30  -- 11:00 Coffee
+
+11:00 -- 12:30 [Git and GitHub](../3_Git_and_GitHub.html) and [Unit testing](../4_Unit_testing.html)
+
+12:30  -- 13:30 Lunch
+
+13:30  -- 15:00 [Package documentation](../5_Package_documentation.html)
+
+15:00  -- 15:30 Coffee   
+
+15:30  -- 17:00 [Sharing](../6_Sharing.html)
+
+---
+# Preliminaries 
+
+## Welcome! Who am I?
+
+```{r, out.width = "180px", echo=FALSE}
+knitr::include_graphics("../../pics/heather.png")
+```
+
+Heather Turner [@HeathrTurnr](https://twitter.com/HeathrTurnr)
+
+Freelance Statistical Programmer, Cardiff, UK
+
+Chair of [Forwards](https://forwards.github.io/) taskforce for underrepresented groups in the R community.
+
+---
+# Preliminaries 
+
+## Your turn
+
+This course is very hands on, and while we’re here to help you, the **best** 
+resource is often the person sitting next to you.
+
+- Introduce yourself to your neighbours. Who are you and what are you using R 
+for?
+
+---
+# Preliminaries 
+
+.pull-left[
+.center[
+**Script**  
+One off data analysis  
+Primarily side-effects
+]
+]
+
+.pull-right[
+.center[
+**Package**  
+Defines reusable components  
+No side-effects
+]
+]
+
+---
+# Preliminaries 
+
+## Why make a reusable component?
+
+ - You want to **test** it
+ - You want to **generalise** it
+ - You want to **document** it
+ - You want to **share** it
+
+---
+# Preliminaries 
+
+## The material is mostly drawn from:
+
+http://r-pkgs.had.co.nz/ `r Cite(myBib, "Wickham:2015:RP:2904414")`
+
+```{r, out.width = "200px", echo=FALSE}
+knitr::include_graphics("../../pics/r-pkgs-cover.png")
+```
+
+---
+# Preliminaries 
+
+## The bad news
+
+.... it may be frustrating
+
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("../../pics/allie_brosh_argh.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
+]
+
+
+---
+# Preliminaries 
+
+## The good news!
+
+.... frustration is normal and temporary.
+
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("../../pics/allie_brosh_happy.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
+]
+
+---
+
+# References
+
+```{r refs, echo=FALSE, results="asis"}
+PrintBibliography(myBib)
+```
+
+---
+# License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

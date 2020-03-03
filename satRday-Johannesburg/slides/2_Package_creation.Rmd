@@ -1,0 +1,285 @@
+---
+title: "Package & R Code"
+author: "Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
+institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/'
+date: "<br> updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/remark-css/default.css", "../../libs/forwards.css", "../../libs/forwards-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+```{r pkgs, include=FALSE}
+library(RefManageR)
+library(tidyverse)
+
+```
+
+```{r, load-refs, include=FALSE, cache=FALSE}
+BibOptions(check.entries = FALSE,
+           bib.style = "numeric",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("../../bibliography.bib", check = FALSE)
+```
+
+class: inverse center middle
+
+# Motivation
+
+---
+
+class: clear center middle font200
+
+<!-- -->
+
+Workflow: you should have one
+
+&mdash; <cite>Jenny Bryan</cite>
+
+---
+
+class: clear center middle font200
+
+<!-- -->
+
+A package is a set of  
+conventions that  
+*(with the right tools)*  
+makes your life easier
+
+---
+
+class: clear center middle font200
+
+<!-- -->
+
+Seriously, it doesn’t have to be  
+about sharing your code  
+(although that is an added  
+benefit!). It is about saving  
+yourself time.
+
+&mdash; <cite>Hilary Parker</cite>
+
+---
+
+class: clear
+
+<!-- -->
+
+.pull-left[
+.center[
+**Script**  
+One off data analysis  
+Primarily side-effects
+]
+]
+
+.pull-right[
+.center[
+**Package**  
+Defines reusable components  
+No side-effects
+]
+]
+
+---
+
+class: inverse center middle
+
+# RStudio Projects
+
+---
+
+class: clear center middle font200
+
+# Why use RStudio projects?
+
+**3** reasons
+
+---
+
+class: clear
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/navigation_bar.png")
+```
+
+Work on multiple projects  
+simultaneously and independently
+
+---
+
+# Manage working directories
+
+Workflow: you should have oneIf the first line of your #rstats script is  
+`setwd("C:\Users\jenny\path\that\only\I\have")`  
+I will come into your lab and SET YOUR COMPUTER ON FIRE `r emo::ji("fire")`.
+
+&mdash; <cite>Mash-up of rage tweets by @jennybc and @tpoi</cite>
+
+---
+
+# Enhanced Navigation
+
+.pull-left[
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/find_functions_files.png")
+```
+Ctrl + . = find functions/files
+]
+
+.pull-right[
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/F2_jump.png")
+```
+F2 = jump to definition
+]
+
+---
+
+class: clear center
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/annotated_never_save_RData.png")
+```
+
+---
+
+class: inverse center middle
+
+# My first package
+
+---
+
+# Your turn
+
+Verify that you can create a package with:
+```r
+usethis::create_package("~/Desktop/mypackage")
+```
+
+What other files and directories are created?
+
+You can also create new project using RStudio  
+but it has some slight differences that will  
+cause hassles today (but not in general)
+
+---
+
+# What happens when we run `create_package()`?
+
+
+```r
+create_package("mypackage")
+```
+
+---
+
+* `mypackage.Rproj` is the file that makes this directory an RStudio Project.
+
+--
+
+* The `R/` directory contains `.R` files with function definitions.
+
+--
+
+* `DESCRIPTION` provides metadata about your package. We will need to edit this.
+
+--
+
+* `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
+
+---
+
+class: clear
+
+# Why bother?
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/dev_cycle_before_testing.png")
+```
+
+--
+
+You don't even need to save your code!
+
+---
+
+class: clear
+
+# Now that you have your package, what do you put in it?
+
+There's a usethis helper for adding `.R` files!
+
+```r
+usethis::use_r("file-name")
+```
+
+Organize files so that related code
+lives together. If you can give a file
+a concise and informative name, it's
+probably about right
+
+---
+
+# Your turn
+
+- Create a new R file in your package called `animalSounds.R`
+
+- Paste the following code into your script:
+
+```{r}
+goToTheZoo <- function(animal, sound){
+  assertthat::assert_that(
+    assertthat::is.string(animal),
+    assertthat::is.string(sound))
+  
+  paste0("The ", animal, " goes ", sound, "!")
+}
+```
+
+*Hint:* a completed version is on GitHub 
+
+---
+
+# Your turn
+
+- Change some tiny thing about your function - maybe the animal “says” instead 
+of “goes”?
+
+- Load all with devtools::load_all() and test the function
+
+- Try adding yourself as an author to the package in DESCRIPTION, add a fun 
+title and description
+
+---
+
+class: inverse center middle font200
+
+Woohoo, you did it!
+
+`r emo::ji("package")`
+
+---
+# License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

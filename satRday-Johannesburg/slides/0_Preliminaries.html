@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Package Development Workshop</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Heather Turner" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../libs/remark-css/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards.css" type="text/css" />
+    <link rel="stylesheet" href="../../libs/forwards-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Package Development Workshop
+## Johannesburg satRday 2020
+### Heather Turner<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a><br><br>Pre-workshop survey: <a href="https://rfoundation.limequery.com/333563" class="uri">https://rfoundation.limequery.com/333563</a>
+### <br> updated: 2020-02-27
+
+---
+
+
+
+Very short! Please complete
+
+https://rfoundation.limequery.com/162373?lang=en
+
+---
+
+
+
+
+
+
+---
+
+# Outline
+
+09:00  -- 10:30 [Package orientation](../1_Package_orientation.html) and [Package creation](../2_Package_creation.html)
+   
+10:30  -- 11:00 Coffee
+
+11:00 -- 12:30 [Git and GitHub](../3_Git_and_GitHub.html) and [Unit testing](../4_Unit_testing.html)
+
+12:30  -- 13:30 Lunch
+
+13:30  -- 15:00 [Package documentation](../5_Package_documentation.html)
+
+15:00  -- 15:30 Coffee   
+
+15:30  -- 17:00 [Sharing](../6_Sharing.html)
+
+---
+# Preliminaries 
+
+## Welcome! Who am I?
+
+&lt;img src="../../pics/heather.png" width="180px" /&gt;
+
+Heather Turner [@HeathrTurnr](https://twitter.com/HeathrTurnr)
+
+Freelance Statistical Programmer, Cardiff, UK
+
+Chair of [Forwards](https://forwards.github.io/) taskforce for underrepresented groups in the R community.
+
+---
+# Preliminaries 
+
+## Your turn
+
+This course is very hands on, and while we’re here to help you, the **best** 
+resource is often the person sitting next to you.
+
+- Introduce yourself to your neighbours. Who are you and what are you using R 
+for?
+
+---
+# Preliminaries 
+
+.pull-left[
+.center[
+**Script**  
+One off data analysis  
+Primarily side-effects
+]
+]
+
+.pull-right[
+.center[
+**Package**  
+Defines reusable components  
+No side-effects
+]
+]
+
+---
+# Preliminaries 
+
+## Why make a reusable component?
+
+ - You want to **test** it
+ - You want to **generalise** it
+ - You want to **document** it
+ - You want to **share** it
+
+---
+# Preliminaries 
+
+## The material is mostly drawn from:
+
+http://r-pkgs.had.co.nz/ (Wickham, 2015)
+
+&lt;img src="../../pics/r-pkgs-cover.png" width="200px" /&gt;
+
+---
+# Preliminaries 
+
+## The bad news
+
+.... it may be frustrating
+
+
+&lt;img src="../../pics/allie_brosh_argh.png" width="400px" /&gt;
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
+]
+
+
+---
+# Preliminaries 
+
+## The good news!
+
+.... frustration is normal and temporary.
+
+
+&lt;img src="../../pics/allie_brosh_happy.png" width="400px" /&gt;
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
+]
+
+---
+
+# References
+
+[1] H. Wickham. _R Packages_. 1st. O'Reilly Media, Inc., 2015. ISBN: 1491910593, 9781491910597.
+
+---
+# License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

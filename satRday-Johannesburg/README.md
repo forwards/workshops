@@ -1,19 +1,38 @@
-# Preparation for Forwards Workshop
+# Package development: Creating impact from code.
 
-Last updated: 3rd March 2020
+## Curriculum
 
-## Computing requirements
+### Schedule
+10:00 -- Coffee and Welcome   
+10:30 -- Preliminaries  
+10:45 -- Package creation  
+11:30 -- Git and GitHub   
+12:15 -- Lunch  
+13:00 -- Package documentation  
+13:30 -- Adding functions  
+14:00 -- Coffee  
+14:15 -- Package Dependencies  
+14:45 -- Unit testing  
+14:15 -- Package Dependencies  
+14:45 -- Unit testing  
+15:30 -- Close!  
 
-Participants are required to bring their own laptops. Laptops should have the following installed **prior** to attending the workshop:
+## Pre-course instructions
 
-- R (3.6.3)
+### Computing requirements
+
+Participants can bring their own lap top or use those at the venue. 
+
+Laptops should have the following installed **prior** to attending the workshop:
+
+- R version 3.6
 - RStudio (1.2)
 - Git
 - OS-specific development tools as detailed below
 
-If you have older versions of R/RStudio installed, it is recommended that you 
-install the latest versions if possible<sup>[[1]](#versions)</sup>. Instructions for installing all these 
-software is given below.
+If you have older versions of R/RStudio installed, it is recommended that you install the latest versions.
+
+Instructions for installing all these software are given below.
 
 In addition, please install/update the following R packages:
 
@@ -23,61 +42,39 @@ In addition, please install/update the following R packages:
  - testthat
  - tidyverse
  - usethis
- 
-Participants should also have a GitHub account, sign up here: https://github.com/.
 
-Allow *~1 hour* to install everything from scratch.
+Partipcants should also have a GitHub account: https://github.com/
 
-<a name="versions">[1]</a>: You can check how old your R version is by looking at the 
-release date in the opening message in the R console, or by running 
-`R.Version()$version.string` in R. You can find your RStudio version via 
-Help > About RStudio and find the corresponding release date here: 
-https://www.rstudio.com/products/rstudio/release-notes. 
+### Installing R
 
-
-## Installing R
-
-Download the pre-compiled binary for your OS from https://cloud.r-project.org/ 
-and install. More specifically, for version number #.#.# (e.g. 4.0.0):
+Download the pre-compiled binary for your OS from https://cloud.r-project.org/ and install. More specifically:
 
 **For Windows**
 
-Click "Download R for Windows", then "base", then "Download R #.#.# for 
-Windows". This will download an `.exe` file; once downloaded, open to start the 
-installation. If you do not have administrator rights, the installer will 
-default to install in your Documents folder - if you prefer, you can change the 
-location to another folder that you have write access to.
+Click "Download R for Windows", then "base", then "Download R 3.6.1 for Windows". This will download an `.exe` file; once downloaded, open to start the installation. 
 
 **For Mac**
 
-Click "Download R for (Mac) OS X", then "R-#.#.#.pkg" to download the installer.
+Click "Download R for (Mac) OS X", then "R-3.6.1.pkg" to download the installer.
 Run the installer to complete installation.
 
 **For Linux**
 
-Click "Download R for Linux". Instructions on installing are given for Debian,
-Redhat, Suse and Ubuntu distributions. Where there is a choice, install both 
-`r-base` and `r-base-dev`.
+Click "Download R for Linux". Instructions on installing are given for Debian, Redhat, Suse and Ubuntu distributions. Where there is a choice, install both `r-base` and `r-base-dev`.
 
-## Installing R Studio
+### Installing R Studio
 
-Downloads are available from https://www.rstudio.com/products/rstudio/download/ (scroll to the end of the page to see the downloads).
+Downloads are available from https://www.rstudio.com/products/rstudio/download3/ (scroll to the end of the page to see the downloads).
 
 **For Windows with no admin rights**
 
-Download the `.zip` source archive under "Zip/Tarballs". Extract the files to a 
-folder where you have write access, e.g. `C:\Users\username\RStudio`. In this 
-folder, open the `bin` directory and find the RStudio program: it is named 
-`rstudio.exe`, but the file extension will typically be hidden, so look for 
-`rstudio`. Right-click this executable to create a desktop shortcut. 
-Double-click the executable or use the shortcut to open.
+Download the `.zip` source archive under "Zip/Tarballs". Extract the files to a folder where you have write access, e.g. `C:\Users\username\RStudio`. In this folder, open the `bin` directory and find the RStudio program: it is named `rstudio.exe`, but the file extension will typically be hidden, so look for `rstudio`. Right-click this executable to create a desktop shortcut. Double-click the executable or use the shortcut to open.
 
 **For all other operating systems**
 
-Download the relevant installer for your OS listed under "Installers for 
-Supported Platforms". Run the installer to complete installation.
+Download the relevant installer for your OS listed under "Installers for Supported Platforms". Run the installer to complete installation.
  
-## Development Tools
+### Development Tools
 
 Some additional tools may be required to compile R packages from source.
 
@@ -89,7 +86,7 @@ default settings.
 
 **For Windows with admin rights**
 
-Download the latest (recommended) Rtools installer, `Rtools.exe`, from 
+Download the latest Rtools installer, `Rtools.exe`, from 
 https://cran.r-project.org/bin/windows/Rtools/. Run the installer making the 
 following selections: keep the default settings for the installation location 
 and components to install; check the box to add rtools to the system PATH.
@@ -115,7 +112,7 @@ to build packages from source. Otherwise return to the instructions for
 installing R for your distribution and follow the instructions there to install 
 the additional tools.
 
-## Git
+### Git
 
 We highly recommend using git for version control. We will provide a basic 
 introduction to git using GitHub, but ultimately you will want git installed on 
@@ -141,9 +138,8 @@ trying to use git.
 
 Install as advised on https://git-scm.com/downloads.
 
-## Issues 
+### Issues 
 
 If you have problems setting up your laptop we will try to help in the first 
 hour or so of the workshop - arrive early if you can! If we cannot get you set 
-up, you will be able to do most of the exercises on an RStudio.cloud instance 
-and fix the setup issues after the workshop.
+up, you will be able to use a laptop at the venue.
