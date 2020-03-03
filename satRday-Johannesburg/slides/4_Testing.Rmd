@@ -1,0 +1,209 @@
+---
+title: "Unit Testing"
+author: "Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
+institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/'
+date: "<br> updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/remark-css/default.css", "../../libs/forwards.css", "../../libs/forwards-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: true
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+---
+
+class: inverse center middle
+
+# Why test?
+
+---
+
+class: center middle inverse
+background-image: url("pics/scaffolding.jpg")
+
+Improve readability or performance without changing behavior.
+
+https://unsplash.com/photos/gYBMinOlAUE
+
+
+---
+
+class: clear
+
+# Coding is Iterative
+
+
+We build new functions one bit at a time.
+
+What if a new thing we add changes the existing functionality?
+
+How can we check and be sure all the old functionality still works with New Fancy Feature?
+
+Unit Tests!
+
+---
+
+class: inverse center middle
+
+# Test Driven Development
+
+---
+
+class: clear
+
+# Set up test infrastructure
+
+
+```r
+usethis::use_testthat()
+```
+```
+✔ Adding 'testthat' to Suggests field
+✔ Creating 'tests/testthat/'
+✔ Writing 'tests/testthat.R'
+✔ Writing 'tests/testthat/test-zooSounds.R'
+● Modify 'tests/testthat/test-zooSounds.R'
+```
+
+```r
+devtools::test()
+```
+Or Command + Shift + T 
+
+---
+
+class: clear
+
+# So far we've done this:
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/dev_cycle_before_testing.png")
+```
+
+---
+
+class: clear
+
+# Test driven development is a new workflow
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/dev_cycle_with_testing.png")
+```
+
+---
+
+class: clear
+
+# Four expectations cover 90% of cases
+
+```r
+expect_equal(object, expected)
+
+expect_error(object, regex)
+
+expect_warning(object, regex)
+
+expect_known_output(code)
+```
+
+---
+
+class: clear
+
+# Our Example Function
+
+```r
+animalSounds <- function(animal, sound){
+  assertthat::assert_that(
+    assertthat::is.string(animal),
+    assertthat::is.string(sound))
+  
+  paste0("The ", animal, " goes ", sound, "!")
+}
+```
+
+---
+
+class: clear
+
+# A sample test
+
+In `tests/testthat/test-animalSounds.R`
+
+```
+library(testthat)
+
+
+test_that("animalSounds produces expected strings", {
+  giraffe_moo <- animalSounds("giraffe", "moo")
+  expect_equal(giraffe_moo, 
+               "The giraffe goes moo!")
+})
+```
+
+---
+
+# Your turn
+
+Write a new unit test for `animalSounds()` using `expect_error()`. 
+
+Run the tests with `Cmd + Shift + T`
+
+---
+
+class: clear
+
+# Tests are organized in three layers
+
+```{r, out.width = "500px", echo=FALSE}
+knitr::include_graphics("../../pics/test_organization.png")
+```
+
+
+---
+
+class: clear
+
+# Organizing Tests
+
+Test every individual task the function completes separately.
+
+Check both for successful situations and for expected failure situations
+
+---
+
+class: center middle inverse
+background-image: url("pics/writing_pen.jpg")
+
+When you stop work, leave a test failing.
+
+
+https://unsplash.com/photos/y02jEX_B0O0
+
+---
+
+class: center middle inverse
+background-image: url("pics/lemur.jpg")
+
+If you’re bored in this class, write tests!
+
+https://unsplash.com/photos/AVRxWIsK9Jk
+
+---
+# License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -248,7 +248,7 @@ probably about right
 - Paste the following code into your script:
 
 ```{r}
-goToTheZoo <- function(animal, sound){
+animalSounds <- function(animal, sound){
   assertthat::assert_that(
     assertthat::is.string(animal),
     assertthat::is.string(sound))
