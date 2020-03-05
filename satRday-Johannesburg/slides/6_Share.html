@@ -1,28 +1,27 @@
----
-title: "Share"
-author: "Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
-institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/'
-date: "<br> updated: `r Sys.Date()`"
-about:
-  license_file: LICENSE
-output:
-  xaringan::moon_reader:
-    chakra: "../../libs/remark-latest.min.js"
-    css: ["../../libs/remark-css/default.css", "../../libs/forwards.css", "../../libs/forwards-fonts.css"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: false
-      countIncrementalSlides: true
-      ratio: "16:9"
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Share</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Forwards Teaching Team" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\..\libs\remark-css\default.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Share
+### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a>
+### <br> updated: 2020-03-05
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      message = FALSE,	
-                      warning = FALSE)
-options(htmltools.dir.version = FALSE)
-```
+
+
 
 class: clear font200
 
@@ -86,9 +85,7 @@ class: inverse center middle
 
 class: clear center
 
-```{r, out.width = "800px", echo=FALSE}
-knitr::include_graphics("../../pics/no_library_or_require.png")
-```
+&lt;img src="../../pics/no_library_or_require.png" width="800px" /&gt;
 
 ---
 
@@ -96,9 +93,9 @@ class: clear font200
 
 ```
 Depends: 
-  R (>= 3.0.2) # optional version spec
+  R (&gt;= 3.0.2) # optional version spec
 Imports:
-  stringr (>= 1.0.0),
+  stringr (&gt;= 1.0.0),
   lubridate
 Suggests:
 ```
@@ -127,13 +124,13 @@ class: clear font200
 ## Imported packages
 
 In DESCRIPTION
-<pre>
+&lt;pre&gt;
 Imports: pkgname
-</pre>
+&lt;/pre&gt;
 
 Use `::` to access functions
 ```r
-new_function <- function(x, y, z) {
+new_function &lt;- function(x, y, z) {
   pkgname::imported_function(x, y) + z
 }
 ```
@@ -145,9 +142,9 @@ class: clear font200
 ## Suggested packages
 
 In DESCRIPTION
-<pre>
+&lt;pre&gt;
 Suggests: pkgname
-</pre>
+&lt;/pre&gt;
 
 In package functions, handle the case where **pkgname** is not available
 ```r
@@ -164,7 +161,7 @@ class: clear font200
 
 ## Reasons to use depends instead of imports
 
-.center[<br><br><br>This page has been intentionally left blank]
+.center[&lt;br&gt;&lt;br&gt;&lt;br&gt;This page has been intentionally left blank]
 
 ---
 
@@ -194,13 +191,13 @@ class: clear font200
 
 Or you might want to use an infix function
 ```r
-`%>%` <- magittr::`%>%`
+`%&gt;%` &lt;- magittr::`%&gt;%`
 
-col_summary <- function(df, fun) {
+col_summary &lt;- function(df, fun) {
   stopifnot(is.data.frame(df))
   
-  df %>% 
-    purrr::keep(is.numeric) %>% 
+  df %&gt;% 
+    purrr::keep(is.numeric) %&gt;% 
     purrr::modify(fun)
 }
 
@@ -214,12 +211,12 @@ class: clear font200
 
 ```r
 #' @importFrom purrr keep modify
-#' @importFrom magrittr %>%
-col_summary <- function(df, fun) {
+#' @importFrom magrittr %&gt;%
+col_summary &lt;- function(df, fun) {
   stopifnot(is.data.frame(df))
   
-  df %>% 
-    keep(is.numeric) %>% 
+  df %&gt;% 
+    keep(is.numeric) %&gt;% 
     modify(fun)
 }
 ```
@@ -235,7 +232,7 @@ to recognise this by storing in a central location
 
 ```r
 #' @importFrom purrr keep map
-#' @importFrom magrittr %>%
+#' @importFrom magrittr %&gt;%
 NULL
 ```
 
@@ -247,11 +244,11 @@ class: clear font200
 
 ```r
 #' @import purrr
-col_summary <- function(df, fun) {
+col_summary &lt;- function(df, fun) {
   stopifnot(is.data.frame(df))
   
-  df %>% 
-    keep(is.numeric) %>% 
+  df %&gt;% 
+    keep(is.numeric) %&gt;% 
     map_dfc(fun)
 }
 
@@ -266,7 +263,7 @@ class: clear font200
 ```r
 #' @import pkg1
 #' @import pkg2
-fun <- function(x) {
+fun &lt;- function(x) {
   fun1(x) + fun2(x)
 }
 
@@ -281,7 +278,7 @@ Works today...
 
 class: clear font200
 
-<br>
+&lt;br&gt;
 
 Description                 | NAMESPACE
 --------------------------- | -------------
@@ -301,7 +298,7 @@ class: clear font200
 
 ## A namespace splits functions into two classes
 
-<br>
+&lt;br&gt;
 
 Internal                    | External
 --------------------------- | -------------
@@ -329,10 +326,10 @@ class: clear font200
 
 ```r
 #' @export
-fun1 <- function(...) {}
+fun1 &lt;- function(...) {}
 
 #' @export
-fun2 <- function(...) {}
+fun2 &lt;- function(...) {}
 ```
 
 Most important if you’re planning on sharing with others
@@ -347,10 +344,10 @@ Don't export internal helpers
 
 ```r
 # Defaults for NULL values
-`%||%` <- function(a, b) if (is.null(a)) b else a
+`%||%` &lt;- function(a, b) if (is.null(a)) b else a
 
 # Remove NULLs from a list
-compact <- function(x) {
+compact &lt;- function(x) {
   x[!vapply(x, is.null, logical(1))]
 }
 ```
@@ -380,9 +377,7 @@ http://r-pkgs.had.co.nz/check.html
 
 class: clear center
 
-```{r, out.width = "900px", echo=FALSE}
-knitr::include_graphics("../../pics/frustration.png")
-```
+&lt;img src="../../pics/frustration.png" width="900px" /&gt;
 
 ---
 
@@ -478,7 +473,7 @@ class: clear font200
 
 ## cran-comments.md
 
-<pre>
+&lt;pre&gt;
 ## Test environments
 * local OS X install (R-release)
 * win-builder (R-release, R-devel)
@@ -488,7 +483,7 @@ class: clear font200
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
-</pre>
+&lt;/pre&gt;
 
 There’s always one note for a new submission
 
@@ -500,10 +495,10 @@ class: clear font200
 
 Do not despair! It happens to everyone, even R-core members.
 
-If it’s from the CRAN robot, just fix the problem & resubmit.
+If it’s from the CRAN robot, just fix the problem &amp; resubmit.
 
 If it’s from a human, do not respond to the email and do not
-argue. Instead update cran-comments.md & resubmit.
+argue. Instead update cran-comments.md &amp; resubmit.
 
 ---
 
@@ -511,7 +506,7 @@ class: clear font200
 
 ## For resubmission
 
-<pre>
+&lt;pre&gt;
 This is a resubmission. Compared to the last submission, I
 have:
 
@@ -527,7 +522,7 @@ have:
 
 ## R CMD check results
 ...
-</pre>
+&lt;/pre&gt;
 
 ---
 
@@ -556,20 +551,16 @@ class: center middle font200
 
 .pull-left[
 
-```{r rstudio_community, out.width = "100%", fig.align = "center", echo=FALSE}
-knitr::include_graphics("../../pics/RStudio-community.png")
-```
+&lt;img src="../../pics/RStudio-community.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-<a href = "https://community.rstudio.com/">https://community.rstudio.com</a>
+&lt;a href = "https://community.rstudio.com/"&gt;https://community.rstudio.com&lt;/a&gt;
 ]
 
 .pull-right[
 
 R-package-devel mailing list
 
-```{r r_dev, out.width = "100%", fig.align = "center", echo=FALSE}
-knitr::include_graphics("../../pics/R-package-devel.png")
-```
+&lt;img src="../../pics/R-package-devel.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -579,11 +570,7 @@ class: clear split-three font130
 
 # More details on many topics in books
 
-```{r r_adv_r, out.width = "30%", echo=FALSE, fig.show = "hold"}
-knitr::include_graphics("../../pics/wickham_adv_R.jpg")
-knitr::include_graphics("../../pics/wickham_R_pkgs.png")
-knitr::include_graphics("../../pics/wickham_grolemund_r4ds.png")
-```
+&lt;img src="../../pics/wickham_adv_R.jpg" width="30%" /&gt;&lt;img src="../../pics/wickham_R_pkgs.png" width="30%" /&gt;&lt;img src="../../pics/wickham_grolemund_r4ds.png" width="30%" /&gt;
 
 ---
 
@@ -591,4 +578,96 @@ class: clear font200
 
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Workshop&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": true,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

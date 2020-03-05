@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Package Development Workshop</title>
+    <title>Unit Testing</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Heather Turner" />
+    <meta name="author" content="Forwards Teaching Team" />
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="..\..\libs\remark-css\default.css" type="text/css" />
     <link rel="stylesheet" href="..\..\libs\forwards.css" type="text/css" />
@@ -13,161 +13,199 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Package Development Workshop
-## Johannesburg satRday 2020
-### Heather Turner<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
-### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a><br><br>Pre-workshop survey: <a href="https://rfoundation.limequery.com/333563" class="uri">https://rfoundation.limequery.com/333563</a>
-### <br> updated: 2020-03-04
+# Unit Testing
+### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a>
+### <br> updated: 2020-03-05
 
 ---
 
 
 
 
+class: inverse center middle
+
+# Why test?
+
+---
+
+class: clear center middle font200
+
+Improve readability or performance without changing behaviour.
 
 
+---
+
+class: clear font200
+
+## Coding is Iterative
 
 
-class: font180
+We build new functions one bit at a time.
 
-# Outline
+What if a new thing we add changes the existing functionality?
 
-09:00  -- 10:30 [Package orientation](../1_Package_orientation.html) and [Package creation](../2_Package_creation.html)
-   
-10:30  -- 11:00 Coffee
+How can we check and be sure all the old functionality still works with New Fancy Feature?
 
-11:00 -- 12:30 [Git and GitHub](../3_Git_and_GitHub.html) and [Unit testing](../4_Unit_testing.html)
-
-12:30  -- 13:30 Lunch
-
-13:30  -- 15:00 [Package documentation](../5_Package_documentation.html)
-
-15:00  -- 15:30 Coffee   
-
-15:30  -- 17:00 [Sharing](../6_Sharing.html)
+Unit Tests!
 
 ---
 
 class: inverse center middle
 
-# Preliminaries
+# Unit Testing
 
 ---
 
-class: clear font180
+class: clear font200
 
-## Welcome! Who am I?
+# Set up test infrastructure
 
-&lt;img src="../../pics/heather.png" width="180px" /&gt;
 
-Heather Turner [@HeathrTurnr](https://twitter.com/HeathrTurnr)
+```r
+usethis::use_testthat()
+```
+```
+✔ Adding 'testthat' to Suggests field
+✔ Creating 'tests/testthat/'
+✔ Writing 'tests/testthat.R'
+✔ Writing 'tests/testthat/test-zooSounds.R'
+● Modify 'tests/testthat/test-zooSounds.R'
+```
 
-Freelance Statistical Programmer, Cardiff, UK
-
-Chair of [Forwards](https://forwards.github.io/) taskforce for underrepresented groups in the R community.
+```r
+devtools::test()
+```
+Or Command + Shift + T 
 
 ---
 
-class: inverse center middle
+class: clear
 
-# Preliminaries
+## Tests are organized in three layers
+
+&lt;img src="../../pics/test_organization.png" width="800px" /&gt;
+
 
 ---
 
-class: font180
+class: clear font200
+
+## Organizing Tests
+
+Test every individual task the function completes separately.
+
+Check both for successful situations and for expected failure situations
+
+---
+
+class: clear font200
+
+Four expectations cover 90% of cases
+
+```r
+expect_equal(object, expected)
+
+expect_error(object, regex)
+
+expect_warning(object, regex)
+
+expect_known_output(code)
+```
+
+---
+
+class: clear font200
+
+Our Example Function
+
+```r
+animalSounds &lt;- function(animal, sound){
+  assertthat::assert_that(
+    assertthat::is.string(animal),
+    assertthat::is.string(sound))
+  
+  paste0("The ", animal, " goes ", sound, "!")
+}
+```
+
+---
+
+class: clear font200
+
+## A sample test
+
+In `tests/testthat/test-animalSounds.R`
+
+```r
+library(testthat)
+
+
+test_that("animalSounds produces expected strings", {
+  giraffe_moo &lt;- animalSounds("giraffe", "moo")
+  expect_equal(giraffe_moo, 
+               "The giraffe goes moo!")
+})
+```
+
+---
+
+class: font200
 
 # Your turn
 
-This course is very hands on, and while we’re here to help you, the **best** 
-resource is often the person sitting next to you.
+Write a new unit test for `animalSounds()` using `expect_error()`. 
 
-- Introduce yourself to your neighbours. Who are you and what are you using R 
-for?
-
----
-
-class: clear middle font180
-
-.pull-left[
-.center[
-**Script**  
-One off data analysis  
-Primarily side-effects
-]
-]
-
-.pull-right[
-.center[
-**Package**  
-Defines reusable components  
-No side-effects
-]
-]
-
----
-
-class: clear font180
-
-## Why make a reusable component?
-
- - You want to **test** it
- - You want to **generalise** it
- - You want to **document** it
- - You want to **share** it
-
----
-
-class: clear font180
-
-## The material is mostly drawn from:
-
-http://r-pkgs.had.co.nz/ (Wickham, 2015)
-
-&lt;img src="../../pics/r-pkgs-cover.png" width="200px" /&gt;
-
----
-
-class: clear font180
-
-## The bad news
-
-.... it may be frustrating
-
-
-&lt;img src="../../pics/allie_brosh_argh.png" width="400px" /&gt;
-
-.footnote[
-COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
-]
+Run the tests with `Cmd + Shift + T`
 
 
 ---
 
-class: clear font180
+class: inverse center middle
 
-## The good news!
-
-.... frustration is normal and temporary.
-
-
-&lt;img src="../../pics/allie_brosh_happy.png" width="400px" /&gt;
-
-.footnote[
-COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
-]
+# Test Driven Development
 
 ---
 
-class: clear font150
+class: clear
 
-## References
+## So far we've done this:
 
-[1] H. Wickham. _R Packages_. 1st. O'Reilly Media, Inc., 2015. ISBN:
-1491910593, 9781491910597.
+&lt;img src="../../pics/dev_cycle_before_testing.png" width="800px" /&gt;
 
 ---
 
-class: clear font180
+class: clear
+
+## Test driven development is a new workflow
+
+&lt;img src="../../pics/dev_cycle_with_testing.png" width="800px" /&gt;
+
+---
+
+class: font200
+
+# Your Turn
+
+Make this test pass
+
+```r
+giraffe &lt;- animalSounds("giraffe")
+expect_equal(giraffe, 
+             "The giraffe makes no sound.")
+```
+
+Hint: set the default value for the sound argument to `NULL`.
+
+---
+
+class: center middle font200
+
+When you stop work, leave a test failing.
+
+---
+
+class: clear font200
 
 ## License
 
@@ -177,8 +215,9 @@ class: clear font180
 <script src="../../libs/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": true
+"highlightLines": false,
+"countIncrementalSlides": true,
+"ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -218,24 +257,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {

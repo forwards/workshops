@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Package &amp; R Code</title>
     <meta charset="utf-8" />
     <meta name="author" content="Forwards Teaching Team" />
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../libs/remark-css/default.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/forwards.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/forwards-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\remark-css\default.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards-fonts.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Package &amp; R Code
 ### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
 ### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a>
-### <br> updated: 2020-03-01
+### <br> updated: 2020-03-04
 
 ---
 
@@ -68,7 +68,7 @@ yourself time.
 
 ---
 
-class: clear
+class: clear middle font200
 
 &lt;!-- --&gt;
 
@@ -98,48 +98,49 @@ class: inverse center middle
 
 class: clear center middle font200
 
-# Why use RStudio projects?
+Why use RStudio projects?
 
 **3** reasons
 
 ---
 
-class: clear
+class: clear font200
 
-&lt;img src="../../pics/navigation_bar.png" width="500px" /&gt;
+&lt;img src="../../pics/navigation_bar.png" width="900px" /&gt;
 
-Work on multiple projects  
-simultaneously and independently
+Work on multiple projects simultaneously and independently
 
 ---
 
+class: clear center middle font200
+
 # Manage working directories
 
-Workflow: you should have oneIf the first line of your #rstats script is  
+If the first line of your #rstats script is 
+
 `setwd("C:\Users\jenny\path\that\only\I\have")`  
-I will come into your lab and SET YOUR COMPUTER ON FIRE 🔥.
+
+I will come into your lab and SET YOUR COMPUTER ON FIRE 🔥 .
 
 &amp;mdash; &lt;cite&gt;Mash-up of rage tweets by @jennybc and @tpoi&lt;/cite&gt;
 
 ---
 
+class: clear center font200
+
 # Enhanced Navigation
 
 .pull-left[
 &lt;img src="../../pics/find_functions_files.png" width="500px" /&gt;
+
 Ctrl + . = find functions/files
 ]
 
 .pull-right[
 &lt;img src="../../pics/F2_jump.png" width="500px" /&gt;
+
 F2 = jump to definition
 ]
-
----
-
-class: clear center
-
-&lt;img src="../../pics/annotated_never_save_RData.png" width="500px" /&gt;
 
 ---
 
@@ -148,6 +149,8 @@ class: inverse center middle
 # My first package
 
 ---
+
+class: font180
 
 # Your turn
 
@@ -158,52 +161,26 @@ usethis::create_package("~/Desktop/mypackage")
 
 What other files and directories are created?
 
-You can also create new project using RStudio  
-but it has some slight differences that will  
-cause hassles today (but not in general)
-
 ---
 
-# What happens when we run `create_package()`?
+class: clear font180
 
+## What happens when we run `create_package()`?
 
-```r
-create_package("mypackage")
-```
-
----
 
 * `mypackage.Rproj` is the file that makes this directory an RStudio Project.
 
---
-
-* The `R/` directory contains `.R` files with function definitions.
-
---
+* The `R/` directory is where we will put `.R` files with function definitions.
 
 * `DESCRIPTION` provides metadata about your package. We will need to edit this.
-
---
 
 * `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
 
 ---
 
-class: clear
+class: clear font180
 
-# Why bother?
-
-&lt;img src="../../pics/dev_cycle_before_testing.png" width="500px" /&gt;
-
---
-
-You don't even need to save your code!
-
----
-
-class: clear
-
-# Now that you have your package, what do you put in it?
+## Now that you have your package, what do you put in it?
 
 There's a usethis helper for adding `.R` files!
 
@@ -211,12 +188,12 @@ There's a usethis helper for adding `.R` files!
 usethis::use_r("file-name")
 ```
 
-Organize files so that related code
-lives together. If you can give a file
-a concise and informative name, it's
-probably about right
+Organize files so that related code lives together. If you can give a file
+a concise and informative name, it's probably about right.
 
 ---
+
+class: font180
 
 # Your turn
 
@@ -226,7 +203,7 @@ probably about right
 
 
 ```r
-goToTheZoo &lt;- function(animal, sound){
+animalSounds &lt;- function(animal, sound){
   assertthat::assert_that(
     assertthat::is.string(animal),
     assertthat::is.string(sound))
@@ -235,19 +212,73 @@ goToTheZoo &lt;- function(animal, sound){
 }
 ```
 
-*Hint:* a completed version is on GitHub 
+---
+
+class: clear center font180
+
+# Development workflow?
+
+&lt;img src="../../pics/dev_cycle_before_testing.png" width="800px" /&gt;
+
+--
+
+You don't even need to save your code!
 
 ---
 
+class: font180
+
 # Your turn
 
-- Change some tiny thing about your function - maybe the animal “says” instead 
+1. Load all with devtools::load_all() and test the `animalSounds()` function.
+
+2. Change some tiny thing about your function - maybe the animal “says” instead 
 of “goes”?
 
-- Load all with devtools::load_all() and test the function
+3. Load all with devtools::load_all() and test the update function.
 
-- Try adding yourself as an author to the package in DESCRIPTION, add a fun 
-title and description
+---
+
+class: clear font180
+
+## Naming a Package
+
+Can only contain the characters [A-Z, a-z, 0-9, .]
+
+Tips:
+- Unique name you can easily Google
+- Avoid mixing upper and lower case
+- Use abbreviations
+- Add an r to make unique, e.g stringr
+- Use wordplay, e.g. lubridate
+- Avoid tradmarked names
+- Use the **available** package to check name not taken
+
+---
+
+class: clear font180
+
+## Other metadata in DESCRIPTION
+
+- *Title*: One line, title case, with no period. Less than 65 characters.
+- *Version*
+    - for release: x.y.z where x= major version, y = minor version, z = patch version.
+    - for development version building on version x.y.z, use: x.y.z.9000
+- *Authors@R*: author(s) defined using `person()`
+- *Description*: One paragraph describing what the package does. Keep the width 
+of the paragraph to 80 characters; indent subsequent lines with 4 spaces.
+- *License*: Will discuss later
+- *Encoding*: How to encode text, use UTF-8 encoding.
+- *LazyData*: Use `true` to lazy-load data sets in the package.
+
+---
+
+class: font180
+
+# Your turn
+
+1. Update the package name, title and description.
+2. Add yourself as an author and maintainer.
 
 ---
 
@@ -258,9 +289,12 @@ Woohoo, you did it!
 📦
 
 ---
-# License
 
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+class: clear font200
+
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Workshop&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../libs/remark-latest.min.js"></script>
@@ -308,7 +342,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

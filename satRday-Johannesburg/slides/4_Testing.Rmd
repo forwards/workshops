@@ -24,27 +24,22 @@ knitr::opts_chunk$set(echo = TRUE,
 options(htmltools.dir.version = FALSE)
 ```
 
----
-
 class: inverse center middle
 
 # Why test?
 
 ---
 
-class: center middle inverse
-background-image: url("pics/scaffolding.jpg")
+class: clear center middle font200
 
-Improve readability or performance without changing behavior.
-
-https://unsplash.com/photos/gYBMinOlAUE
+Improve readability or performance without changing behaviour.
 
 
 ---
 
-class: clear
+class: clear font200
 
-# Coding is Iterative
+## Coding is Iterative
 
 
 We build new functions one bit at a time.
@@ -59,11 +54,11 @@ Unit Tests!
 
 class: inverse center middle
 
-# Test Driven Development
+# Unit Testing
 
 ---
 
-class: clear
+class: clear font200
 
 # Set up test infrastructure
 
@@ -88,27 +83,28 @@ Or Command + Shift + T
 
 class: clear
 
-# So far we've done this:
+## Tests are organized in three layers
 
-```{r, out.width = "500px", echo=FALSE}
-knitr::include_graphics("../../pics/dev_cycle_before_testing.png")
+```{r, out.width = "800px", echo=FALSE}
+knitr::include_graphics("../../pics/test_organization.png")
 ```
+
 
 ---
 
-class: clear
+class: clear font200
 
-# Test driven development is a new workflow
+## Organizing Tests
 
-```{r, out.width = "500px", echo=FALSE}
-knitr::include_graphics("../../pics/dev_cycle_with_testing.png")
-```
+Test every individual task the function completes separately.
+
+Check both for successful situations and for expected failure situations
 
 ---
 
-class: clear
+class: clear font200
 
-# Four expectations cover 90% of cases
+Four expectations cover 90% of cases
 
 ```r
 expect_equal(object, expected)
@@ -122,9 +118,9 @@ expect_known_output(code)
 
 ---
 
-class: clear
+class: clear font200
 
-# Our Example Function
+Our Example Function
 
 ```r
 animalSounds <- function(animal, sound){
@@ -138,13 +134,13 @@ animalSounds <- function(animal, sound){
 
 ---
 
-class: clear
+class: clear font200
 
-# A sample test
+## A sample test
 
 In `tests/testthat/test-animalSounds.R`
 
-```
+```r
 library(testthat)
 
 
@@ -157,53 +153,67 @@ test_that("animalSounds produces expected strings", {
 
 ---
 
+class: font200
+
 # Your turn
 
 Write a new unit test for `animalSounds()` using `expect_error()`. 
 
 Run the tests with `Cmd + Shift + T`
 
+
+---
+
+class: inverse center middle
+
+# Test Driven Development
+
 ---
 
 class: clear
 
-# Tests are organized in three layers
+## So far we've done this:
 
-```{r, out.width = "500px", echo=FALSE}
-knitr::include_graphics("../../pics/test_organization.png")
+```{r, out.width = "800px", echo=FALSE}
+knitr::include_graphics("../../pics/dev_cycle_before_testing.png")
 ```
 
-
 ---
 
 class: clear
 
-# Organizing Tests
+## Test driven development is a new workflow
 
-Test every individual task the function completes separately.
-
-Check both for successful situations and for expected failure situations
+```{r, out.width = "800px", echo=FALSE}
+knitr::include_graphics("../../pics/dev_cycle_with_testing.png")
+```
 
 ---
 
-class: center middle inverse
-background-image: url("pics/writing_pen.jpg")
+class: font200
+
+# Your Turn
+
+Make this test pass
+
+```r
+giraffe <- animalSounds("giraffe")
+expect_equal(giraffe, 
+             "The giraffe makes no sound.")
+```
+
+Hint: set the default value for the sound argument to `NULL`.
+
+---
+
+class: center middle font200
 
 When you stop work, leave a test failing.
 
-
-https://unsplash.com/photos/y02jEX_B0O0
-
 ---
 
-class: center middle inverse
-background-image: url("pics/lemur.jpg")
+class: clear font200
 
-If you’re bored in this class, write tests!
+## License
 
-https://unsplash.com/photos/AVRxWIsK9Jk
-
----
-# License
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -16,15 +16,6 @@ output:
       highlightLines: true
       countIncrementalSlides: true
 
-
-
----
-
-
-Very short! Please complete
-
-https://rfoundation.limequery.com/162373?lang=en
-
 ---
 
 ```{r setup, include=FALSE}
@@ -47,7 +38,8 @@ BibOptions(check.entries = FALSE,
            dashed = FALSE)
 myBib <- ReadBib("../../bibliography.bib", check = FALSE)
 ```
----
+
+class: font180
 
 # Outline
 
@@ -66,7 +58,14 @@ myBib <- ReadBib("../../bibliography.bib", check = FALSE)
 15:30  -- 17:00 [Sharing](../6_Sharing.html)
 
 ---
-# Preliminaries 
+
+class: inverse center middle
+
+# Preliminaries
+
+---
+
+class: clear font180
 
 ## Welcome! Who am I?
 
@@ -81,9 +80,16 @@ Freelance Statistical Programmer, Cardiff, UK
 Chair of [Forwards](https://forwards.github.io/) taskforce for underrepresented groups in the R community.
 
 ---
-# Preliminaries 
 
-## Your turn
+class: inverse center middle
+
+# Preliminaries
+
+---
+
+class: font180
+
+# Your turn
 
 This course is very hands on, and while we’re here to help you, the **best** 
 resource is often the person sitting next to you.
@@ -92,7 +98,8 @@ resource is often the person sitting next to you.
 for?
 
 ---
-# Preliminaries 
+
+class: clear middle font180
 
 .pull-left[
 .center[
@@ -111,7 +118,8 @@ No side-effects
 ]
 
 ---
-# Preliminaries 
+
+class: clear font180
 
 ## Why make a reusable component?
 
@@ -121,7 +129,8 @@ No side-effects
  - You want to **share** it
 
 ---
-# Preliminaries 
+
+class: clear font180
 
 ## The material is mostly drawn from:
 
@@ -132,7 +141,8 @@ knitr::include_graphics("../../pics/r-pkgs-cover.png")
 ```
 
 ---
-# Preliminaries 
+
+class: clear font180
 
 ## The bad news
 
@@ -149,7 +159,8 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-level
 
 
 ---
-# Preliminaries 
+
+class: clear font180
 
 ## The good news!
 
@@ -166,13 +177,18 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-wh
 
 ---
 
-# References
+class: clear font150
+
+## References
 
 ```{r refs, echo=FALSE, results="asis"}
 PrintBibliography(myBib)
 ```
 
 ---
-# License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+class: clear font180
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

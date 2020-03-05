@@ -58,3 +58,5 @@ ex 2: contribute to first contributions repo (or do in sharing part)
 
 
 use this releas4e github issue?
+
+missed out continuous integration/test coverage - should go at end?

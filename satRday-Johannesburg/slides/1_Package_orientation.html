@@ -1,90 +1,75 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>Package development</title>
+    <title>Package orientation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Forwards Teaching Team" />
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../libs/remark-css/default.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/forwards.css" type="text/css" />
-    <link rel="stylesheet" href="../../libs/forwards-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\remark-css\default.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards.css" type="text/css" />
+    <link rel="stylesheet" href="..\..\libs\forwards-fonts.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Package development
+# Package orientation
 ### Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>
-### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a><br><br>Pre-workshop survey: <a href="https://rfoundation.limequery.com/333563" class="uri">https://rfoundation.limequery.com/333563</a>
-### <br> updated: 2020-02-26
+### <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/R_Forwards">@R_Forwards</a><br><a href="https://forwards.github.io/" class="uri">https://forwards.github.io/</a>
+### <br> updated: 2020-03-04
 
 ---
 
 
 
 
----
+class: inverse center middle
+
 # Get to know your R installation
 
+---
+
+class: clear font180
+
+Where is R installed on your computer?
 
 ```r
 R.home()
 ```
 
-```
-## [1] "/usr/lib/R"
-```
-
-The R home directory is the top-level directory of the R installation being run.
-
 ---
-# Get to know your R installation
 
+class: clear font180
+
+What files are in your R installation?
 
 ```r
 list.files(R.home())
 ```
 
-```
-## [1] "bin"          "COPYING"      "etc"          "lib"          "library"     
-## [6] "modules"      "site-library" "SVN-REVISION"
-```
-
 ---
-# Get to know your R installation
 
+class: clear font180
+
+Which version of R are you using?
 
 ```r
 R.version
 ```
 
-```
-##                _                           
-## platform       x86_64-pc-linux-gnu         
-## arch           x86_64                      
-## os             linux-gnu                   
-## system         x86_64, linux-gnu           
-## status                                     
-## major          3                           
-## minor          6.2                         
-## year           2019                        
-## month          12                          
-## day            12                          
-## svn rev        77560                       
-## language       R                           
-## version.string R version 3.6.2 (2019-12-12)
-## nickname       Dark and Stormy Night
-```
-
 ---
+
+class: clear middle
+
 background-image: url(../../pics/stork.png)
 background-position: 95% 25%
 background-size: 300px
-# Get to know your R installation
 
 ## Where do R packages come from?
 
---
+---
+
+class: clear font180
 
 CRAN and GitHub, mostly
 .pull-left[
@@ -101,52 +86,49 @@ library(devtools)
 install_github("jane/foo")
 ```
 ]
+
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Where do R packages live on your computer?
 
-&lt;img src="../../pics/library.png" width="300px" /&gt;
+.center[
+&lt;img src="../../pics/library.png" width="500px" /&gt;
+]
 
 --
 
 R packages live in a library.
 
 ---
-# Get to know your R installation
+
+class: clear font180
+
 
 ## Get to know your R library
 
 The default library:
-
 ```r
 .Library
 ```
 
-```
-## [1] "/usr/lib/R/library"
-```
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Get to know your R library
 
 All the libraries R knows about:
-
 ```r
 .libPaths()
 ```
 
-```
-## [1] "/home/hturner/R/x86_64-pc-linux-gnu-library/3.6"
-## [2] "/usr/local/lib/R/site-library"                  
-## [3] "/usr/lib/R/site-library"                        
-## [4] "/usr/lib/R/library"
-```
-
 
 ---
-# Get to know your R installation
+
+class: clear font180
+
 
 ## Get to know your R library
 
@@ -163,10 +145,46 @@ All the libraries R knows about:
 --
 
 * For example, you can put add-on packages in a user-level library:
-/home/hturner/R/x86_64-pc-linux-gnu-library/3.6
+`/Users/jenny/resources/R/library`
 
 ---
-# Get to know your R installation
+
+class: clear font180
+
+How many packages do you have installed?
+
+```r
+View(installed.packages())
+```
+How do the packages break down by Priority (and what does that mean, anyway)?
+
+---
+
+class: clear font180
+
+## Startup files
+
+.pull-left[
+
+`.Rprofile`
+
+Code that runs at startup
+ - Load workflow packages
+ - Set options
+ - Use in moderation!
+ ]
+ 
+.pull-right[
+`.Renviron`
+
+Settings for R
+ - Set library paths
+ - Set environment variables
+]
+
+---
+
+class: clear font180
 
 ## Before we start:
 
@@ -184,19 +202,17 @@ Make sure you have recent versions of:
 `usethis`  
 ]
 
-Tip: use `old.packages()`
-
---
-
-Load `devtools`
-
-
-```r
-library(devtools)
-```
+Tip: use `View(old.packages())`
 
 ---
-# Development workflow
+
+class: inverse center middle
+
+# Packages vs scripts
+
+---
+
+class: clear middle font200
 
 .center[
 How is developing a  
@@ -206,7 +222,8 @@ from developing a **script**?
 ]
 
 ---
-# Development workflow
+
+class: clear font180
 
 **How same?**  
 
@@ -215,7 +232,8 @@ Iterate early and often!
 Change it, try it, change it, try it, **ad nauseum**
 
 ---
-# Development workflow
+
+class: clear font180
 
 **How different?**
 
@@ -226,9 +244,85 @@ Dependendencies are different: no `library()` calls
 Install &amp; restart (or simulate that): don't `source()`
 
 ---
-# License
 
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development: Creating impact from code.&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;R Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+class: font180
+
+# Your turn
+
+Look at 
+1. Where’s the R code? What is it mostly comprised of?
+2. What do you think is in the DESCRIPTION file? How
+about the NAMESPACE file?
+3. MAN-what?
+
+---
+
+class: clear
+
+&lt;img src="../../pics/annotated_installation.png" width="900px" /&gt;
+
+&lt;small&gt;Figure from Hadley Wickham’s book, R packages
+http://r-pkgs.had.co.nz
+https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png&lt;/small&gt;
+
+---
+
+class: clear
+
+&lt;img src="../../pics/annotated_loading.png" width="900px" /&gt;
+
+&lt;small&gt;Figure from Hadley Wickham’s book, R packages
+http://r-pkgs.had.co.nz
+https://github.com/hadley/r-pkgs/blob/master/diagrams/loading.png&lt;/small&gt;
+
+---
+
+class: clear font180
+
+&lt;img src="../../pics/annotated_load_all.png" width="900px" /&gt;
+
+.center[
+`devtools::load_all()` is to package development  
+as  
+interactive “stepping through” code is to script development
+]
+
+---
+
+class: clear font180
+
+&lt;img src="../../pics/annotated_install_and_restart.png" width="900px" /&gt;
+
+.center[
+RStudio’s Install &amp; Restart is to package development  
+as  
+`source()` or
+RStudio’s “Source” or `Rscript foo.R` is to script development
+]
+
+---
+
+class: clear font180
+
+.center[
+Use `devtools::load_all( )` a lot!  
+
+(And “Install and Restart” sparingly)
+]
+
+---
+
+class: inverse center middle
+
+# Let's do this!
+
+---
+
+class: clear font180
+
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Workshop&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../libs/remark-latest.min.js"></script>
@@ -276,7 +370,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

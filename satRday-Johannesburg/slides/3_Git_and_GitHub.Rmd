@@ -66,8 +66,7 @@ knitr::include_graphics("../../pics/diff_rebase.png")
 
 class: clear middle center font200
 
-Excuse me, do you have a moment to talk about
-version control?
+Excuse me, do you have a moment to talk about version control?
 https://doi.org/10.7287/peerj.preprints.3159v2
 
 ```{r, out.width = "500px", echo=FALSE}
@@ -76,26 +75,23 @@ knitr::include_graphics("../../pics/how_github_works.png")
 
 ---
 
+class: font200
+
 # Your turn
 
 For this exercise use the command line interface provided in the Terminal tab 
-in RStudio
+in RStudio.
 
 1. Do I already have Git?
-
-    ```
+    <pre>
     which git
-    ```
-
+    </pre>
 2. What version of Git do I have?
-
-    ```
+    <pre>
     git --version
-    ```
+    </pre>
 
-Eek! I don’t have Git!  
-Fear not- time to install!  
-https://git-scm.com/downloads
+Don't have Git?  Fear not - time to install! https://git-scm.com/downloads
 
 ---
 
@@ -105,9 +101,9 @@ class: inverse center middle
 
 ---
 
----
+class: clear font200
 
-# Basic Git Workflow
+## Basic Git Workflow
 
 1. Modify Code
 2. Stage changes
@@ -152,7 +148,7 @@ Selection:
 
 ---
 
-class: center
+class: center font200
 
 The project now has a git tab
 
@@ -166,10 +162,9 @@ changes in these files.
 ---
 
 class: clear font200
-
-# Identifying yourself
-
 name: config
+
+## Identifying yourself
 
 Before you can make a commit, git must know who you are
 
@@ -185,31 +180,44 @@ You can use `scope = "user"` to use the same identity for all projects.
 
 ---
 
+class: font200
+
+# Your Turn
+
+Set up git on your package:
+
+1. In your package project run `usethis::use_git()`
+ - Choose not to commit the files, then choose to restart when asked.
+2. When the project has restarted, define your identity with 
+`usethis::use_git_config()`
+
+---
+
 class: clear font200
 
-Now click the commit button
+We can stage files to commit by clicking the commit button.
 
 ```{r, out.width = "800px", echo=FALSE}
 knitr::include_graphics("../../pics/commit_button.png")
 ```
 
-which will bring up the review changes window
+This will bring up the review changes window.
 
 ---
 
 class: clear font200
 
-Added/changed code lines are highlighted in green 
+Added/changed code lines are highlighted in green: 
 
 ```{r, out.width = "800px", echo=FALSE}
 knitr::include_graphics("../../pics/review_changes.png")
 ```
 
-If we had deleted code lines, they would be highlighted in red.
+Since we have not committed anything yet, all the code in the package is green.
 
 ---
 
-class: clear font200
+class: clear middle font200
 
 .pull-left[
 We can stage all the files at once: 
@@ -238,23 +246,16 @@ We can write a meaningful commit message and click commit.
 
 ---
 
-class: font150
+class: font200
 
 # Your Turn
 
-Set up git on your package:
-
-1. In your package project run `usethis::use_git()`
- - Choose not to commit the files, then choose to restart when asked.
-2. When the project has restarted, define your identity with 
-`usethis::use_git_config()`
- - see [Identifying Yourself](#config)
-3. Use the commit button to open the review changes window.
+1. Use the commit button to open the review changes window.
  - stage and commit the changes.
-4. Back in the git tab, click the history button to view your first commit!
-5. Make a change to your `animalSounds()` function and save it. What happens in 
+2. Back in the git tab, click the history button to view your first commit!
+3. Make a change to your `animalSounds()` function and save it. What happens in 
 the git tab? Open the review changes window again and take a look there.
-6. Right-click the changed file and choose `Revert` to revert the change.
+4. Right-click the changed file and choose `Revert` to revert the change.
 
 ---
 
@@ -264,6 +265,8 @@ class: inverse center middle
 
 ---
 
+class: clear font200
+
 We can set up a remote GitHub repo to synchronize with our local git repo with
 `usethis::use_github()`.
 
@@ -271,6 +274,8 @@ This function uses the GitHub API to set up the repo on GitHub, which requires
 a personal access token (PAT).
 
 ---
+
+class: clear font200
 
 Create a PAT via
 
@@ -284,6 +289,8 @@ This opens a browser window for you to log in to GitHub.
 
 ---
 
+class: clear font200
+
 Back in RStudio run
 
 ```{r eval=FALSE}
@@ -292,21 +299,19 @@ usethis::edit_r_environ()
 
 `.Renviron` will open. Add a line like:
 
-```
+<pre>
 GITHUB_PAT=xxxyyyzzz
+</pre>
+where xxxyyyzzz is pasted from the clipboard.
 
-```
-
-Where xxxyyyzzz is pasted from the clipboard.
-
---
 
 Make sure `.Renviron` ends with a newline!
 
 Save and close `.Renviron`, then restart R.
 
-
 ---
+
+class: clear font200
 
 Now we can run
 
@@ -317,13 +322,14 @@ usethis::use_github()
 First question: how to authenticate your *pushes* and *pulls* to/from the 
 remote?
 
+.font80[
 ```
 Which git protocol to use? (enter 0 to exit) 
 
 1: ssh   <-- presumes that you have set up ssh keys
 2: https <-- choose this if you don't have ssh keys (or don't know if you do)
-
 ```
+]
 
 Choose 2 for now, unless you already use ssh keys.
 
@@ -333,9 +339,11 @@ add ref here
 
 ---
 
-Next question:
+class: clear font180
 
- ```
+Next question:
+.font80[
+```
 ● Check title and description
   Name:        animals
   Description: Demo package about animals
@@ -345,7 +353,7 @@ Are title and description ok?
 2: Absolutely not
 3: Yup
 ```
-
+]
 Say yes if they are okay (you can still change them later!).
 
 OR say no, then modify, stage and commit changes to the DESCRIPTION
@@ -353,7 +361,10 @@ file before running `usethis::use_github()` again.
 
 ---
 
+class: clear font180
+
 Once the title and description are okay:
+.font80[
 
 ```
 ✔ Creating GitHub repository
@@ -364,12 +375,24 @@ Once the title and description are okay:
 ✔ Pushing 'master' branch to GitHub and setting remote tracking branch
 ✔ Opening URL 'https://github.com/username/animals'
 ```
-
+]
 Now you can look at your GitHub page! `r emo::ji("party")` 
 
 ---
 
-# Basic Git and GitHub Workflow
+class: font200
+
+# Your Turn
+
+1. Create a GitHub PAT using `browse_github_token()`.
+2. Add it to your `.Renviron` using `usethis::edit_r_environ()`.
+3. Run `usethis::use_github()` to setup GitHub on your package project.
+
+---
+
+class: clear font200
+
+## Basic Git and GitHub Workflow
 
 1. Modify Code
 2. Stage changes
@@ -378,27 +401,22 @@ Now you can look at your GitHub page! `r emo::ji("party")`
 change
 5. Push changes to GitHub once a day/at bigger milestones
 
+
 ---
+
+class: font200
 
 # Your Turn
 
-1. Create a GitHub PAT using `browse_github_token()`.
-2. Add it to your `.Renviron` using `usethis::edit_r_environ()`.
-3. Run `usethis::use_github()` to setup GitHub on your package project.
-4. Make a small change to `animalSounds()`, stage and commit.
-5. Click on the push button in the Git tab to push your changes - you will be 
+1. Make a small change to `animalSounds()`, stage and commit.
+2. Click on the push button in the Git tab to push your changes - you will be 
 prompted for your GitHub password.
-6. Look at your repo on GitHub and view the commit history.
+3. Look at your repo on GitHub and view the commit history.
 
 ---
-# References
 
-```{r refs, echo=FALSE, results="asis"}
-PrintBibliography(myBib)
-```
+class: clear font200
 
-
----
 # License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

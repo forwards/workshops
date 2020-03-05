@@ -1,5 +1,5 @@
 ---
-title: "Package development"
+title: "Package orientation"
 author: "Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
 institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/'
 date: "<br> updated: `r Sys.Date()`"
@@ -24,41 +24,53 @@ knitr::opts_chunk$set(echo = TRUE,
 options(htmltools.dir.version = FALSE)
 ```
 
+class: inverse center middle
+
 # Get to know your R installation
+
+---
+
+class: clear font180
 
 Where is R installed on your computer?
 
-```{r}
+```r
 R.home()
 ```
 
 ---
-# Get to know your R installation
+
+class: clear font180
 
 What files are in your R installation?
 
-```{r}
+```r
 list.files(R.home())
 ```
 
 ---
-# Get to know your R installation
+
+class: clear font180
 
 Which version of R are you using?
 
-```{r}
+```r
 R.version
 ```
 
 ---
+
+class: clear middle
+
 background-image: url(../../pics/stork.png)
 background-position: 95% 25%
 background-size: 300px
-# Get to know your R installation
 
 ## Where do R packages come from?
 
---
+---
+
+class: clear font180
 
 CRAN and GitHub, mostly
 .pull-left[
@@ -73,41 +85,51 @@ library(devtools)
 install_github("jane/foo")
 ```
 ]
+
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Where do R packages live on your computer?
 
-```{r, out.width = "300px", echo=FALSE}
+.center[
+```{r, out.width = "500px", echo=FALSE}
 knitr::include_graphics("../../pics/library.png")
 ```
+]
 
 --
 
 R packages live in a library.
 
 ---
-# Get to know your R installation
+
+class: clear font180
+
 
 ## Get to know your R library
 
 The default library:
-```{r}
+```r
 .Library
 ```
+
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Get to know your R library
 
 All the libraries R knows about:
-```{r}
+```r
 .libPaths()
 ```
 
 
 ---
-# Get to know your R installation
+
+class: clear font180
+
 
 ## Get to know your R library
 
@@ -127,39 +149,43 @@ All the libraries R knows about:
 `/Users/jenny/resources/R/library`
 
 ---
-# Get to know your R installation
 
-
-```{r}
-View(installed.packages())
-```
+class: clear font180
 
 How many packages do you have installed?
 
+```r
+View(installed.packages())
+```
 How do the packages break down by Priority (and what does that mean, anyway)?
 
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Startup files
 
-```
-.Rprofile
-```
+.pull-left[
+
+`.Rprofile`
+
 Code that runs at startup
  - Load workflow packages
  - Set options
  - Use in moderation!
+ ]
  
-```
-.Renviron
-```
+.pull-right[
+`.Renviron`
+
 Settings for R
  - Set library paths
  - Set environment variables
+]
 
 ---
-# Get to know your R installation
+
+class: clear font180
 
 ## Before we start:
 
@@ -180,7 +206,14 @@ Make sure you have recent versions of:
 Tip: use `View(old.packages())`
 
 ---
+
+class: inverse center middle
+
 # Packages vs scripts
+
+---
+
+class: clear middle font200
 
 .center[
 How is developing a  
@@ -190,7 +223,8 @@ from developing a **script**?
 ]
 
 ---
-# Packages vs scripts
+
+class: clear font180
 
 **How same?**  
 
@@ -199,7 +233,8 @@ Iterate early and often!
 Change it, try it, change it, try it, **ad nauseum**
 
 ---
-# Packages vs scripts
+
+class: clear font180
 
 **How different?**
 
@@ -210,39 +245,46 @@ Dependendencies are different: no `library()` calls
 Install & restart (or simulate that): don't `source()`
 
 ---
-# Packages vs scripts: Your turn
 
-Look at our demo package on github here:
+class: font180
+
+# Your turn
+
+Look at 
 1. Where’s the R code? What is it mostly comprised of?
 2. What do you think is in the DESCRIPTION file? How
 about the NAMESPACE file?
 3. MAN-what?
 
-```{r, out.width = "500px", echo=FALSE}
-knitr::include_graphics("../../pics/demo_package.png")
-```
-
 ---
 
-```{r, out.width = "500px", echo=FALSE}
+class: clear
+
+```{r, out.width = "900px", echo=FALSE}
 knitr::include_graphics("../../pics/annotated_installation.png")
 ```
+
 <small>Figure from Hadley Wickham’s book, R packages
 http://r-pkgs.had.co.nz
 https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png</small>
 
 ---
 
-```{r, out.width = "500px", echo=FALSE}
+class: clear
+
+```{r, out.width = "900px", echo=FALSE}
 knitr::include_graphics("../../pics/annotated_loading.png")
 ```
+
 <small>Figure from Hadley Wickham’s book, R packages
 http://r-pkgs.had.co.nz
 https://github.com/hadley/r-pkgs/blob/master/diagrams/loading.png</small>
 
 ---
 
-```{r, out.width = "500px", echo=FALSE}
+class: clear font180
+
+```{r, out.width = "900px", echo=FALSE}
 knitr::include_graphics("../../pics/annotated_load_all.png")
 ```
 
@@ -254,7 +296,9 @@ interactive “stepping through” code is to script development
 
 ---
 
-```{r, out.width = "500px", echo=FALSE}
+class: clear font180
+
+```{r, out.width = "900px", echo=FALSE}
 knitr::include_graphics("../../pics/annotated_install_and_restart.png")
 ```
 
@@ -267,6 +311,8 @@ RStudio’s “Source” or `Rscript foo.R` is to script development
 
 ---
 
+class: clear font180
+
 .center[
 Use `devtools::load_all( )` a lot!  
 
@@ -275,10 +321,15 @@ Use `devtools::load_all( )` a lot!
 
 ---
 
-.center[
-Let's do this!
-]
+class: inverse center middle
 
-# License
+# Let's do this!
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development: Creating impact from code.</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">R Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+---
+
+class: clear font180
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
