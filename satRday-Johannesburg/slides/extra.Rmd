@@ -1,0 +1,19 @@
+---
+
+class: clear center middle inverse font200
+background-image: url("../../pics/scaffolding.jpg")
+
+Improve readability or performance without changing behavior.
+
+https://unsplash.com/photos/gYBMinOlAUE
+
+
+---
+
+class: center middle inverse
+background-image: url("pics/writing_pen.jpg")
+
+When you stop work, leave a test failing.
+
+
+https://unsplash.com/photos/y02jEX_B0O0
