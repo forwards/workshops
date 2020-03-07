@@ -240,7 +240,7 @@ class: clear font180
 
 Write functions not "top-level" code.  
 
-Dependendencies are different: no `library()` calls
+Dependencies are different: no `library()` calls
 
 Install & restart (or simulate that): don't `source()`
 
