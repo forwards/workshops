@@ -1,0 +1,39 @@
+---
+title: "sortnum"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sortnum}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The **sortnum** package makes it easy to sort numbers. To get started, 
+load the **sortnum** package.
+
+```{r setup}
+library(sortnum)
+```
+
+## Sorting in Decreasing order
+
+To sort numbers in decreasing order we can use the `high_to_low()` function.
+
+```{r}
+x <- c(3, 6, 1)
+high_to_low(x)
+```
+
+## Sorting in Increasing order
+
+To sort numbers in decreasing order we can use the `low_to_high()` function.
+
+```{r}
+low_to_high(x)
+```
