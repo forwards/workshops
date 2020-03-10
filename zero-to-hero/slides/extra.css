@@ -1,0 +1,131 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+.remark-slide {
+    font-family: 'Lato'
+}
+
+.title-slide h3 {
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.remark-slide-content {
+  font-size: 28px;
+  padding: 15px 55px 5px 55px;
+}
+
+
+.remark-slide h1 {
+    font-size: 48px;
+}
+.remark-slide-number {
+    font-size: 18px;
+}
+
+/* darker border under table header */
+.remark-slide table thead th {
+  border-bottom: 1px solid #666;
+}
+
+.pull-left-66 {
+  padding: 0;
+  float: left;
+  width: 63%;
+  clear: left;
+}
+.pull-right-33 {
+  float: right;
+  width: 30%;
+  clear: right;
+}
+
+.pull-left-33 {
+  padding: 0;
+  float: left;
+  width: 30%;
+  clear: left;
+}
+.pull-right-66 {
+  float: right;
+  width: 63%;
+  clear: right;
+}
+
+/* more padding in table cells and bulleted lists */
+.remark-slide th, td {
+    padding: 5px 15px;
+}
+
+.remark-slide ul, ol {
+    margin-bottom: 0;
+}
+
+.remark-slide ul li, ol li {
+    padding: 5px 5px;
+}
+
+.remark-inline-code {
+  font-family: 'Ubuntu Mono';
+  font-size: 32px;
+}
+
+/* r output */
+.remark-code {
+  font-family: 'Ubuntu Mono';
+  font-size: 24px;
+  color: rgb(136, 0, 0);
+}
+
+/* r input */
+.r.hljs {
+  background: #F5F5F5; /* lighter */
+  /* background: #e7e8e2;  darker */
+  border-radius: 3px;
+  padding: 4px;
+}
+
+/* squash captions (when use out.width or fig.align in knitr chunk, image gets
+put in img div. Since need to use fig.cap to specify alt text, a caption is
+then created, so use css to hide) */
+.caption {
+  display: none;
+}
+
+/* https://codepen.io/paincoats/pen/MKgpyQ */
+kbd {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 5px 9px;
+  background: linear-gradient(178deg, #fff, #fff, #fff, #ddd);
+}
+
+/* manual code colouring */
+
+.blue {
+  color: #5450FF;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.column-left {
+  flex: 0 0 33%;
+  padding-bottom: 14px;
+}
+.column-left>p {
+  margin: 0;
+}
+.column-right {
+  flex: 0 0 66%;
+  padding-bottom: 14px;
+}
+.column-right>p {
+  margin: 0;
+}
+
+pre {
+  margin:0;
+}

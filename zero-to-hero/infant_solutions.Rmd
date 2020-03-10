@@ -1,0 +1,148 @@
+---
+title: "Child Health and Development Study"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# set chunk options so that code is not shown in report
+library(knitr)
+opts_chunk$set(echo = FALSE)
+# load packages here to make dependencies clear
+library(dplyr)
+library(ggplot2)
+library(rio)
+```
+
+## Introduction
+
+This report analyses data from a Child Health and Development Study 
+conducted in the US 1960-1967.
+
+```{r import-data}
+# add code here to import infant.xlsx
+infant <- import("infant.xlsx", setclass = "tibble")
+```
+
+The data are a subset of the full study corresponding to live births of a 
+single male foetus. Here we will focus on characteristics of the mother 
+and child.
+
+```{r select-variables}
+# remove redundant variables and variables related to father
+infant <- select(infant, -pluralty, -outcome, -sex, -(drace:dwt))
+```
+
+We exclude extremely premature babies (gestation less than 28 
+weeks) and extremely late babies (gestation more than 52 weeks) from the 
+analysis to focus on the typical gestation range.
+
+```{r filter-variables}
+# filter to exclude extremely premature babies
+infant <- filter(infant, gestation > 28 *7 & gestation < 52 * 7)
+```
+
+```{r mutate-variables}
+# if `ht` is 999, replace it with NA
+infant <- mutate(infant, 
+                 ht = ifelse(ht == 99, NA, ht))
+```
+
+```{r additional-processing}
+# processing of other variables ready for later analysis
+infant <- infant %>%
+    # exclude observations where smoking status or race unknown
+    filter(smoke != 9 & !race %in% c(10, 99)) %>% 
+    # replace missing codes with NA; create factor from smoking variable
+    mutate(gestation = ifelse(gestation == 999, NA, gestation),
+           age = ifelse(age == 99, NA, age),
+           wt = ifelse(wt == 999, NA, wt),
+           race = recode_factor(race, `6` = "Latino", `7` = "Black", 
+                                `8` = "Asian", `9` = "Mixed", 
+                                .default = "White"),
+           smoke = recode_factor(smoke, 
+                                 `1` = "currently", `2`= "until pregnancy", 
+                                 `3` = "used to", `0` = "never"),
+           time = recode_factor(time, `0` = "never smoked",
+                                `1` = "still smokes",
+                                `2` = "during current preg",
+                                `3` = "within 1 yr",
+                                `4` = "1 to 2 yrs ago",
+                                `5` = "2 to 3 yrs ago",
+                                `6` = "3 to 4 yrs ago",
+                                `7` = "5 to 9 yrs ago",
+                                `8` = "10+ yrs ago",
+                                `9` = "quit and don't know"),
+           number = recode_factor(number, `0` = "never",
+                                  `1` = "1-4",
+                                  `2` = "5-9",
+                                  `3` = "10-14",
+                                  `4` = "15-19",
+                                  `5` = "20-29",
+                                  `6` = "30-39",
+                                  `7` = "40-60",
+                                  `8` = "60+",
+                                  `9` = "smoke but don't know"))
+
+```
+
+## Low Birth Weight 
+
+An infant is categorised as low weight if its birth weight is ≤ 2500 
+grams, regardless of gestation. The following table shows the distribution 
+of birth weight in the sample
+
+```{r table-bwt}
+# write an analysis pipe to summarise the number of infants in 
+# different weight categories
+tab <- infant %>%
+    mutate(bwt = bwt * 28.35,
+           `Birth weight (g)` = cut(bwt, c(1500, 2000, 2500, 3000, 3500, 5000),
+                                dig.lab = 4)) %>%
+    group_by(`Birth weight (g)`) %>%
+    summarise(N = n())
+kable(tab)
+```
+
+### ggplot2 
+
+The following plot shows the association between mother's age and birth weight depending on smoking status. 
+
+```{r ggplot-bwt-v-age}
+# use ggplot to inspect the association between mother's age and birth
+ggplot(infant, aes(x = parity, y = bwt, shape = smoke, color = smoke)) +
+    geom_point() + # Adds points (scatterplot)
+    geom_smooth(method = "lm") + 
+    ylab("Birth Weight") + 
+    xlab("Mother's Age") +
+    ggtitle("Birth Weight by Mother's Age")
+```
+
+### linear model
+
+Based on exploratory analysis, we fit a baseline model for birth weight 
+that includes gestation and key maternal characteristics, excluding age
+
+```{r}
+# use lm to  model birth weight against both gestation and the key
+# maternal characteristics weight (`wt`), height (`ht`), parity and race
+fit1 <- lm(bwt ~ gestation + wt + ht + parity + race, data = infant)
+anova(fit1)
+```
+
+We then add the smoking variables to determine if they have a 
+significant effect on age over and above the baseline variables
+
+```{r}
+# use lm to  model birth weight against both gestation and the key
+# maternal characteristics weight (`wt`), height (`ht`), parity and race
+fit2 <- update(fit1, . ~ . + smoke + time + number, data = infant)
+anova(fit2)
+```
+
+The following ANOVA table compares the two models
+
+```{r}
+# use anove to compare models
+anova(fit1, fit2)
+```
+

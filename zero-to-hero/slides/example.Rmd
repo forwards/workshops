@@ -1,0 +1,12 @@
+---
+title: "Report"
+output: html_document
+---
+
+## First section
+
+This report summarises the `cars` dataset.
+
+```{r cars-summary}
+summary(cars)
+```
