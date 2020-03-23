@@ -1,0 +1,97 @@
+---
+title: "Introduction to R"
+author: <br>Dr Heather Turner<br>Freelance/Department of Statistics, University of Warwick, UK<br><br>
+date: '11 March 2020 <br><br> <img src="forwards_296x296.png" alt="Forwards logo" width="100" style="padding-right:50px"> <img src="africar.png" alt="AfricaR logo" width="100" style="padding-right:50px"> <img src="whyr.png" alt="WhyR? logo" width="100"> <br><br> `r icon::fa("twitter")` [HeathrTurnr](https://twitter.com/heathrturnr)'
+output:
+  xaringan::moon_reader:
+    chakra: "../../libs/remark-latest.min.js"    
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    css: ["../../libs/remark-css/default.css", "../../libs/extra.css"]
+    lib_dir: xaringan
+    keep_md: true
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+always_allow_html: yes      
+---
+
+
+```{r setup, include=FALSE}
+options(digits = 4)
+options(width = 67)
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE, dev = "png", dpi = 300,
+               warning = FALSE,
+               comment = "#", eval = FALSE, 
+               fig.width = 5, fig.height = 5, 
+               knitr.table.format = "markdown")
+# trim white space top and right of plot
+knit_hooks$set(small.mar = function(before, options, envir) {
+    if (before) par(mar = c(4, 5, 2, 1))
+})
+# trim white space when par won't work
+library(magick)
+knit_hooks$set(crop = function(before, options, envir) {
+    if (before || isTRUE((fig.num <- options$fig.num) == 0L))
+        return()
+    paths = fig_path(options$fig.ext, options, fig.num)
+    for (f in paths) image_write(image_trim(image_read(f)), f)
+})
+set.seed(1)
+```
+
+# Outline
+ 
+We will be following the Forwards "Zero to Hero" workshop.
+
+10:00 - 11:00 Session 1: Getting started with R (using R/RStudio, importing data)
+
+11:00 - 11:30 Coffee
+
+11:30 - 13:00 Session 2: Workflow and Data Wrangling
+
+13:00 - 14:00 Lunch
+
+14:00 - 15:00 Session 3: Plots and Linear modelling
+
+15:00 - 15:30 Coffee
+
+15:30 - 17:00 Finish/Open Session
+
+---
+
+class: inverse center middle
+
+# Preliminaries
+
+---
+
+class: clear font180
+
+## Welcome! Who am I?
+
+```{r, out.width = "180px", eval = TRUE, echo=FALSE}
+knitr::include_graphics("../../pics/heather.png")
+```
+
+Heather Turner [@HeathrTurnr](https://twitter.com/HeathrTurnr)
+
+Freelance Statistical Programmer, Cardiff, UK
+
+Chair of [Forwards](https://forwards.github.io/) taskforce for underrepresented groups in the R community.
+
+---
+
+class: font180
+
+# Your turn
+
+This course is very hands on, and while I'm here to help you, the **best** 
+resource is often the person sitting next to you.
+
+- Introduce yourself to your neighbours. Who are you and why do you want to 
+learn R?
