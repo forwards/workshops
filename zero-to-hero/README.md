@@ -1,6 +1,14 @@
 # Introduction to R
 
-Materials for Introduction to R workshop
+Materials for 2 day Introduction to R workshop
 
-http://www.igs2018.mu.edu.tr/en/introduction-to-r-3706
+Day 1: 
+ - Install R/RStudio, basic use with R scripts
+ - Installing packages, data import
+ - Introduction to R projects and R markdown
+ 
+Day 2:
+ - Data wrangling with dplyr, 
+ - Plotting in R: base graphics and ggplot2
+ - Introduction to linear modelling
 
