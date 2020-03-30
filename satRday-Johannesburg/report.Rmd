@@ -1,0 +1,278 @@
+--
+title: "Report on Package Development Workshop, Johannesburg, South Africa"
+author: "Heather Turner"
+date: `r format(Sys.Date(), "%Y-%m-%d")`
+output:
+  github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r pkg}
+library(tidyverse)
+library(readr)
+library(likert)
+library(psych)
+library(patchwork)
+library(kableExtra)
+```
+
+
+```{r}
+# import
+pre <- read_csv("pre-survey.csv") 
+post <- read_csv("post-survey.csv") 
+```
+
+
+# Practical detials 
+
+* Date: 07.03.2020
+* Time: 09:00 - 1700
+* Location: PwC, Midrand, South Africa
+* People: Heather Turner and Bianca Peterson
+
+# Description
+
+Curious about package development but not sure where to start? This workshop is for you! The goal is to empower you to contribute back to the R ecosystem through writing your own packages or contributing to others. We’ll be using materials developed by Hadley Wickham, Jenny Bryan, and others on the [Forwards teaching team](https://forwards.github.io/about/).
+
+By the end of this workshop, you should know how to:
+
+- turn your code into an R package,
+- use GitHub as an effective collaboration tool,
+- add a vignette or an article,
+- build a web page for your package, and
+- submit a package to CRAN.
+
+Prerequisites: Participants should know how to write functions in R. Knowledge of [R markdown](https://rmarkdown.rstudio.com/index.html) will be beneficial.
+
+Computing requirements: Attendees are encouraged to set up the required tools on their laptops as described [here](https://github.com/forwards/workshops/blob/master/Computing_requirements.md). Alternatively, an RStudio cloud with the required tools will be accessible for the duration of the workshop.
+
+Participants may bring their own code that they want to make into a package, or work with the example provided.
+
+# Advertising
+
+* Forwards website and Twitter 
+* satRday Johannesburg website and Twitter
+
+# Participants
+
+There were 15 participants. Participation in the workshop was unrestricted.
+
+# Scholarships
+
+Scholarships were open to women from countries with visa-free access to South Africa. The visa-free condition was added due to the short time-frame (application deadline 5 weeks before the conference, notification 1 week later). There were 30 full applications and another 21 partial applications. It is not clear if the partial applications were a mistake or if the applicants chose not to complete the rest of form (most completed the first page with basic personal information). Reminders were sent out to allow people a chance to complete the form before the deadline, so only complete applications were considered.
+
+Scholarships were awarded to one woman from South Africa, two women from Namibia and one woman from Kenya. Kenya does not have visa-free access to South Africa, however the candidate was stronger than others that applied and in her application she explained that she had funding for the visa and from experience expected to be able to obtain the required visa in a matter of days.
+
+The scholarships were intended to cover travel to Johannesburg, the workshop fee and two nights' accommodation, with a free ticket to the satRday the next day. However due to the availability of flights it was clear that three nights' accommodation would be necessary to attend the satRday, so the awarded amounts were set to allow for this, with a small amount towards daily expenses. The amounts were based on the candidates' estimates and our own evaluation, with a fixed amount per country:
+
+| Country      | Travel | Accommodation (2 nights) | Allowance | Total Grant (USD) |
+|--------------|--------|--------------------------|-----------|-------------------|
+| Kenya        | 600    | 150                      | 100       | 850               |    
+| Namibia      | 300    | 150                      | 100       | 550               |
+| South Africa | 150    | 150                      | 100       | 400               |
+
+The workshop fee was 1000 ZAR per person.
+
+# Surveys
+
+Number of people completing pre-workshop survey: `r nrow(pre) `
+
+
+```{r}
+student <- pre %>% group_by(`Which of these best describes you? [Student]`) %>% 
+  filter(`Which of these best describes you? [Student]` == "Yes") %>% 
+  count()
+ecr <- pre %>% group_by(`Which of these best describes you? [Early career professional]`) %>% 
+  filter(`Which of these best describes you? [Early career professional]` == "Yes") %>% 
+  count()
+estab <- pre %>% group_by(`Which of these best describes you? [Established career professional]`) %>% 
+  filter(`Which of these best describes you? [Established career professional]` == "Yes") %>% 
+  count()
+```
+
+* Number of students: `r student$n`
+* Number of Early career professional: `r ecr$n`
+* Number of Established career professional: `r estab$n`
+
+Number of people completing post-workshop survey: `r nrow(post)`
+
+## Experience: pre and post
+
+Note: Participants were asked to download Git and create a GitHub account before attending.
+
+```{r prev-exp-prep}
+####################################
+# columns about previous experience
+###################################
+pre_exp <- pre %>% 
+  select(starts_with("Please indicate your previous" )) %>%
+  drop_na() %>% 
+  data.frame(check.names = FALSE)
+exp_q <- "Please indicate your previous experience of the following: "
+names(pre_exp) <- names(pre_exp) %>% 
+  sub(pattern = paste0(exp_q, "\\["), 
+      replacement = "") %>% 
+  sub(pattern = "\\]", replacement = "")         
+levels <- c("No", "Uncertain", "Yes")
+pre_exp <- pre_exp %>% 
+  mutate(`I know where to find R packages on my computer` =
+          factor(`I know where to find R packages on my computer`, 
+                 levels = levels) ,
+         `I've made R Projects before` =
+          factor(`I've made R Projects before`, 
+                 levels = levels) ,
+         `I have a GitHub account` =
+           factor(`I have a GitHub account`, 
+                  levels = levels) ,
+         `I've written a unit test before (in any language)` =
+           factor(`I've written a unit test before (in any language)`, 
+                  levels = levels) ,
+         `I regularly work with R in the academic or professional setting` =
+           factor(`I regularly work with R in the academic or professional setting`, 
+                  levels = levels) )
+post_exp <- post %>% 
+  select(starts_with("Please indicate your current" )) %>% 
+  drop_na() %>% 
+  data.frame(check.names = FALSE)
+exp_q <- "Please indicate your current experience of the following: "
+names(post_exp) <- names(post_exp) %>% 
+  sub(pattern = paste0(exp_q, "\\["), 
+      replacement = "") %>% 
+  sub(pattern = "\\]", replacement = "")         
+post_exp <- post_exp %>% 
+  mutate(`I know where to find R packages on my computer` =
+           factor(`I know where to find R packages on my computer`, 
+                  levels = levels) ,
+         `I've made R Projects before` =
+           factor(`I've made R Projects before`, 
+                  levels = levels) ,
+         `I have a GitHub account` =
+           factor(`I have a GitHub account`, 
+                  levels = levels) ,
+         `I've written a unit test before (in any language)` =
+           factor(`I've written a unit test before (in any language)`, 
+                  levels = levels) ,
+         `I regularly work with R in the academic or professional setting` =
+           factor(`I regularly work with R in the academic or professional setting`, 
+                  levels = levels) )
+presum <- likert(pre_exp)
+postsum <- likert(post_exp)
+order <- names(pre_exp)
+```
+
+```{r pre-exp-fig, fig.width = 10}
+a <- plot(presum,
+          group.order = order,
+          legend.position = "top",
+          legend = "",
+          text.size = 4,
+          low.color = "lightblue",
+          high.col = "lightgreen") +
+  theme(axis.title.x = element_blank(),
+        axis.line.x = element_blank())
+b <- plot(postsum,
+          group.order = order,
+          legend.position = "top",
+          legend = "",
+          text.size = 4,
+          low.color = "lightblue",
+          high.col = "lightgreen") +
+  theme(legend.position = "none")
+a / b
+```
+
+## Perceived difficulty: pre and post
+
+Note: due to constraints on the network at the workshop venue, it was not 
+possible for participants to work through the GitHub exercises.
+
+```{r diff-prep}
+####################################
+# columns about difficulty
+###################################
+pre_diff <- pre %>% 
+  select(starts_with("How comfortable are you" )) %>%
+  drop_na() %>% 
+  data.frame(check.names = FALSE)
+diff_q <- "How comfortable are you with the following tasks"
+names(pre_diff) <- names(pre_diff) %>% 
+  sub(pattern = paste0(diff_q, "\\?\\s+\\["), 
+      replacement = "") %>% 
+  sub(pattern = "\\]", replacement = "")         
+levels <- c("Totally uncomfortable",
+            "Not very comfortable",
+            "Somewhat comfortable",
+            "Very comfortable",
+            "No experience yet")
+pre_diff <- pre_diff %>% 
+  mutate(`Building R Functions` =
+           factor(`Building R Functions`, 
+                  levels = levels) ,
+         `Constructing R Packages` =
+           factor(`Constructing R Packages`, 
+                  levels = levels) ,
+         `Creating Unit Tests` =
+           factor(`Creating Unit Tests`, 
+                  levels = levels) ,
+         `Using Git and GitHub` =
+           factor(`Using Git and GitHub`, 
+                  levels = levels) ,
+         `Using R Projects` =
+           factor(`Using R Projects`, 
+                  levels = levels) )
+post_diff <- post %>% 
+  select(starts_with("How comfortable are you" )) %>% 
+  drop_na() %>% 
+  data.frame(check.names = FALSE)
+names(post_diff) <- names(post_diff) %>% 
+  sub(pattern = paste0(diff_q, "\\?\\s+\\["), 
+      replacement = "") %>% 
+  sub(pattern = "\\]", replacement = "")         
+post_diff <- post_diff %>% 
+  mutate(`Building R Functions` =
+           factor(`Building R Functions`, 
+                  levels = levels) ,
+         `Constructing R Packages` =
+           factor(`Constructing R Packages`, 
+                  levels = levels) ,
+         `Creating Unit Tests` =
+           factor(`Creating Unit Tests`, 
+                  levels = levels) ,
+         `Using Git` =
+           factor(`Using Git`, 
+                  levels = levels) ,
+         `Using R Projects` =
+           factor(`Using R Projects`, 
+                  levels = levels) )
+presum <- likert(pre_diff)
+postsum <- likert(post_diff)
+order <- names(pre_diff)
+```
+
+
+```{r diff-fig, fig.width=10}
+a <- plot(presum,
+          group.order = order,
+          legend.position = "top",
+          legend = "",
+          text.size = 4,
+          low.color = "lightblue",
+          high.col = "lightgreen") +
+  theme(axis.title.x = element_blank(),
+        axis.line.x = element_blank())
+b <- plot(postsum,
+          group.order = names(post_diff),
+          legend.position = "top",
+          legend = "",
+          text.size = 4,
+          low.color = "lightblue",
+          high.col = "lightgreen") +
+  theme(legend.position = "none")
+a / b 
+```

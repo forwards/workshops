@@ -60,3 +60,11 @@ ex 2: contribute to first contributions repo (or do in sharing part)
 use this releas4e github issue?
 
 missed out continuous integration/test coverage - should go at end?
+
+To start with git repo:
+ - create repo on github/gitea etc
+ - create project from repo
+ - usethis::create_package from that directory, chose to over-write .Rproj
+ 
+Using markdown with roxygen - if not using any old-style documentation yet, 
+no need for roxygen2md(), just confusing for new users.
