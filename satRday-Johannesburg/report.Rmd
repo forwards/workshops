@@ -1,9 +1,8 @@
---
+---
 title: "Report on Package Development Workshop, Johannesburg, South Africa"
 author: "Heather Turner"
-date: `r format(Sys.Date(), "%Y-%m-%d")`
-output:
-  github_document
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
