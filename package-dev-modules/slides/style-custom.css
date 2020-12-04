@@ -1,0 +1,237 @@
+/* colors */
+:root {
+  --green: #44AD7C;
+  --blue: #4474AD;
+  --light-green: #75AD44;
+  --gray: #808080;
+  --beige: #fdf6e3;
+  --primary-faint: #AD447550;
+  --green-faint: #44AD7C50;
+  --blue-faint: #4474AD50;
+  --light-green-faint: #75AD4450;
+  --gray-faint: #80808050;
+}
+
+/* Font colors */
+.pink {
+  color: var(--primary);
+}
+.purple {
+  color: var(--secondary);
+}
+.green {
+  color: var(--green);
+}
+.blue {
+  color: var(--blue);
+}
+.light-green {
+  color: var(--light-green);
+}
+.gray {
+  color: var(--gray);
+}
+
+
+/* Title slide customization */
+.title-slide h1, h2, h3 {
+  text-align: left;
+  font-weight: bold;
+}
+
+.title-slide h2 {
+  color: var(--gray);
+}
+
+.title-slide h3 {
+  font-size: 130%;
+  text-align: right;
+}
+
+.title-slide a {
+  color: var(--beige);
+}
+
+/* Alignment */
+.right{
+  text-align: right;
+}
+.center{
+  text-align: center;
+}
+
+/* Margins around headers */
+/* To make the most of the slide real estate */
+
+h1, h2, h3 {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/* Font sizes */
+.huge {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 400%;
+   font-weight: bold;
+}
+.larger { font-size: 250% }
+.large { font-size: 150% }
+.midi { font-size: 85% }
+.small { font-size: 70% }
+.xsmall { font-size: 65% }
+.tiny { font-size: 50% }
+
+.midi .remark-code { font-size: 85%; }
+.small .remark-code { font-size: 70%; }
+.xsmall .remark-code { font-size: 65%; }
+.tiny .remark-code { font-size: 50%; }
+
+/* Huge numbers */
+
+.huge-number {
+ font-family: 'Montserrat', sans-serif;
+ font-size: 1700%;
+ font-weight: bold;
+}
+
+/* Handwriting */
+.hand{
+  font-family: 'Gochi Hand', cursive;
+  font-size: 125%;
+}
+
+/*Alternative two-column layouts*/
+
+  /*Left 70% - Right 30% */
+.pull-left-wide {
+  width: 70%;
+  float: left;
+}
+.pull-right-narrow {
+  width: 27%;
+  float: right;
+}
+.pull-right-narrow ~ * {
+  clear: both;
+}
+
+  /*Left 30% - Right 70% */
+.pull-left-narrow {
+  width: 30%;
+  float: left;
+}
+.pull-right-wide {
+  width: 67%;
+  float: right;
+}
+.pull-right-wide ~ * {
+  clear: both;
+}
+
+/* Footnote */
+.footnote {
+  padding-left: 36px;
+}
+
+
+/* Square bullets for lists */
+
+ul{
+  list-style-type: square;
+}
+
+/* Footer */
+div.my-footer {
+    border-top: 1px solid var(--gray);
+    position: absolute;
+    bottom: 0px;
+    height: 48px;
+    width: 90%;
+}
+div.my-footer span {
+    font-size: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    color: #8A8A8A;
+}
+div.my-footer a {
+    font-size: 25px;
+    color: #8A8A8A;
+}
+
+
+/* Custom boxes */
+
+.question, .your-turn, .tip {
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.question{
+  border-left: solid 5px var(--blue);
+  background-color: var(--blue-faint);
+}
+
+.tip {
+  border-left: solid 5px var(--primary);
+  background-color: var(--primary-faint);
+}
+
+.your-turn {
+  border-left: solid 5px var(--light-green);
+  background-color: var(--light-green-faint);
+}
+
+
+/* Quotes */
+blockquote {
+  border-left: solid 5px lightgray;
+  padding-left: 1em;
+}
+
+/* Embedded images */
+img, video, iframe {
+  max-width: 100%;
+}
+
+/* Image overlay */
+.imageoverlay {
+  position: absolute;
+  top: 10%;
+  left: 65%;
+  border: 1px solid #ddd;
+}
+
+/* Logo */
+.remark-slide-content:after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    right: 1100px;
+    height: 60px;
+    width: 81px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("logo.png");
+}
+
+/* Media */
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+/* Datatable headers */
+div.datatables {
+    color: #fff;
+}

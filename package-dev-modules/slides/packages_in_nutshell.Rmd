@@ -1,0 +1,100 @@
+---
+title: "Packages in a nutshell"
+author: "Forwards Teaching Team<br><br><img src='../../pics/forwards_296x296.png' alt='Forwards logo' width='100'>"
+institute: '<br>`r icon::fa("twitter")` [\@R_Forwards](https://twitter.com/R_Forwards)<br>https://forwards.github.io/'
+date: "<br> updated: `r Sys.Date()`"
+about:
+  license_file: LICENSE
+output:
+  xaringan::moon_reader:
+    chakra: "../../libs/remark-latest.min.js"
+    css: ["../../libs/remark-css/default.css", "../../libs/forwards.css", "../../libs/forwards-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE)
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse center middle
+
+# Module Prerequisites
+
+---
+# Module Prerequisites
+
+Before starting this module you should:
+
+* 
+* 
+* 
+* 
+
+???
+
+Here you list the prerequisites for instructors and learners. Prerequisites may be skills or be pre-session setup and will often refer to other modules.
+
+Minimise the number of prerequisites
+
+
+---
+class: inverse center middle
+
+# Learning Objective
+
+---
+# Learning Objective
+
+At the end of this module the successful learner will be able to:
+
+* 
+* 
+* 
+* 
+
+???
+
+Each module should have specified prerequisites.
+These may be skills or be pre-session setup
+
+class: inverse center middle
+
+# Module Prerequisites
+
+---
+# Module Prerequisites
+
+At the end of this module the successful learner will be able to:
+
+* 
+* 
+* 
+* 
+
+???
+
+Each module should have specified prerequisites.
+These may be skills or be pre-session setup
+
+---
+
+class: inverse center middle
+
+# Let's do this!
+
+---
+
+class: clear font180
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Workshop</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
