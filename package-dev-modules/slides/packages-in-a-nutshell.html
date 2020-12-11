@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Module name</title>
+    <title>Packages in a nutshell</title>
     <meta charset="utf-8" />
-    <meta name="author" content=" Author" />
+    <meta name="author" content=" Emma Rand" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
@@ -14,9 +14,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Module name
+# Packages in a nutshell
 ## A Forwards Package Development module
-### <br>Author
+### <br>Emma Rand
 ### <br>🔗 <a href="https://forwards.github.io/">link to slides</a>
 
 ---
@@ -33,279 +33,6 @@ layout: true
 &lt;/div&gt; 
 
 
-
-&lt;!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added --&gt;
-
-&lt;!-- Instructions creating a new module--&gt;
-&lt;!-- Guiding principles for module design are here: 
-../README.md --&gt;
-&lt;!-- Edit Title, subtitle, Author and link --&gt;
-&lt;!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed --&gt;
-
-
----
-
-class: middle
-
-# Format Templates
-
-
----
-
-class: middle
-
-# Section title
-
----
-
-class: inverse
-
-## Inverse `class: inverse`
-
-Use for full page figures
-
----
-
-## Sample slide
-
-- with
-- tight
-- bullet
-- points
-
----
-
-## Sample slide
-
-- with
-
-- spaced out
-
-- bullet
-
-- points
-
----
-
-# Colored text
-
-- .pink[pink]
-- .purple[purple]
-- .green[green]
-- .blue[blue]
-- .light-green[light-green]
-- .gray[gray]
-
----
-
-## Text alignment
-
-left
-
-.right[right]
-
-.center[center]
-
----
-
-## Font sizes
-
-- .huge[huge = 400%]
-- .larger[larger = 250%]
-- .large[large = 125%]
-- .midi[midi = 85%] 
-- .small[small = 70%]
-- .xsmall[xsmall = 60%]
-- .tiny[tiny = 50%]
-
----
-
-## Huge numbers
-
-.pull-left[
-  huge-number  
-  .huge-number[.green[1]]
-]
-.pull-right[
-  huge-pink-number    
-  .huge-number[.pink[1]]
-]
-
----
-
-## Handwriting
-
-- text
-- .hand[hand]
-- .hand[.pink[hand with]]
-- .hand[.green[other colors]]
-
----
-
-## Two columns, equal width
-
-.pull-left[
-- text 
-- on
-- left
-]
-.pull-right[
-
-```r
-2 + 1
-```
-
-```
-## [1] 3
-```
-
-```r
-plot(cars) # &lt;&lt;
-```
-
-&lt;img src="module-template_files/figure-html/unnamed-chunk-1-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Two columns, wider left
-
-.pull-left-wide[
-- text 
-- on
-- left
-]
-.pull-right-narrow[
-
-```r
-2 + 1
-```
-
-```
-## [1] 3
-```
-
-```r
-plot(cars) # &lt;&lt;
-```
-
-&lt;img src="module-template_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Two columns, wider right
-
-.pull-left-narrow[
-- text 
-- on
-- left
-]
-.pull-right-wide[
-
-```r
-2 + 1
-```
-
-```
-## [1] 3
-```
-
-```r
-plot(cars) # &lt;&lt;
-```
-
-&lt;img src="module-template_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Footnote
-
-Some text&lt;sup&gt;+&lt;/sup&gt;
-
-.footnote[&lt;sup&gt;+&lt;/sup&gt;Footnote]
-
----
-
-## Custom boxes
-
-.question[
-A question: What is data science?
-]
-
-.your-turn[
-Some instructions: Figure out what data science is...
-]
-
-.tip[
-A tip: Nobody knows what data science is!
-]
-
----
-
-## ggplot
-
-
-```r
-library(ggplot2)
-ggplot(mpg, aes(x = hwy, y = cty, color = drv)) +
-  geom_point(size = 2) +
-  scale_color_viridis_d() # &lt;&lt;
-```
-
-&lt;img src="module-template_files/figure-html/unnamed-chunk-4-1.png" width="55%" style="display: block; margin: auto;" /&gt;
-
----
-
-## tibble
-
-
-```r
-mpg
-```
-
-```
-## # A tibble: 234 x 11
-##   manufacturer model displ  year   cyl trans drv     cty   hwy
-##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1 audi         a4      1.8  1999     4 auto~ f        18    29
-## 2 audi         a4      1.8  1999     4 manu~ f        21    29
-## 3 audi         a4      2    2008     4 manu~ f        20    31
-## 4 audi         a4      2    2008     4 auto~ f        21    30
-## 5 audi         a4      2.8  1999     6 auto~ f        16    26
-## 6 audi         a4      2.8  1999     6 manu~ f        18    26
-## # ... with 228 more rows, and 2 more variables: fl &lt;chr&gt;,
-## #   class &lt;chr&gt;
-```
-
----
-
-## kable
-
-
-```r
-library(knitr)
-kable(head(mpg))
-```
-
-
-
-|manufacturer |model | displ| year| cyl|trans      |drv | cty| hwy|fl |class   |
-|:------------|:-----|-----:|----:|---:|:----------|:---|---:|---:|:--|:-------|
-|audi         |a4    |   1.8| 1999|   4|auto(l5)   |f   |  18|  29|p  |compact |
-|audi         |a4    |   1.8| 1999|   4|manual(m5) |f   |  21|  29|p  |compact |
-|audi         |a4    |   2.0| 2008|   4|manual(m6) |f   |  20|  31|p  |compact |
-|audi         |a4    |   2.0| 2008|   4|auto(av)   |f   |  21|  30|p  |compact |
-|audi         |a4    |   2.8| 1999|   6|auto(l5)   |f   |  16|  26|p  |compact |
-|audi         |a4    |   2.8| 1999|   6|manual(m5) |f   |  18|  26|p  |compact |
-
----
-
-class: middle
-
-# Module Template
-
 ---
 
 class: middle
@@ -314,26 +41,39 @@ class: middle
 
 ---
 
-## Summary
+## Welcome!
 
 .pull-left[
 
-A short summary of the module content
+Emma Rand
+
+-  Senior lecturer (Prof) University of York, UK in the Department of Biology 
+
+-  [Forwards](https://forwards.github.io/) Teaching Team Lead
 
 ]
 .pull-right[
 &lt;img src="../images/emma-rand.png" width="300px" style="display: block; margin: auto;" /&gt;
 
-My name is Emma. I am a lecturer in the Biology Department at the University of York
-
 
 ]
 
-&lt;!-- Edit with your own name and biography --&gt;
+
+---
+
+## Summary
+
+This workshop explains what a package is and why you might want to write one. 
+
+-  where packages come from
+-  where they live on your computer
+-  package states
+-  package components
+
 
 ???
 
-Add speaker notes
+This workshop explains what a package is and why you might want to write one. It covers where packages come from, where they live on your computer and the different states a package can be in. We will explore the key components of a package using an example and outline the Forwards approach to package development process.
 
 ---
 
@@ -360,15 +100,11 @@ Add speaker notes
 
 Before starting this module you should:
 
-- a
+-  [install R and RStudio](../prerequisite-guides/install-r-rstudio.md)
 
-- ab
+-  have some experience of coding in R and it will help to have previously installed and loaded packages
 
-- abc
 
-- abcd
-
-&lt;!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. --&gt;
 
 ???
 
@@ -380,15 +116,16 @@ Add speaker notes
 
 At the end of this module the successful learner will be able to:
 
-- a
+- explain the rationale for writing packages
 
-- ab
+- find and explore their own package library/libraries
 
-- abc
+- describe the different states a package can be in
 
-- abcd
+- describe the key components of a package
 
-&lt;!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives--&gt;
+- outline the development of a package using devtools
+
 
 ???
 
@@ -398,17 +135,28 @@ Add speaker notes
 
 class: middle
 
-# Section 1
+# Why write a package?
 
-
-&lt;!-- edit with the title of the first section in the module --&gt;
 
 ---
 
-## some text
+## The difference between a script and a package
+
+.pull-left[
+.hand[.blue[Script]]
+
+-  one-of data analysis
+-  
+]
+
+.pull-right[
+.hand[.blue[Package]]
+-  defines reusable components
+-  
+
+]
 
 
-&lt;!-- add your teaching material using the Format templates as a guide where needed --&gt;
 
 ???
 
@@ -525,7 +273,21 @@ and Hall/CRC. URL:
 [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
 ]
 
+---
+## References
 
+.small[
+
+```
+## Warning in `[[.BibEntry`(x, ind): subscript out of bounds
+```
+
+&lt;a name=bib-markdown2&gt;&lt;/a&gt;[Xie, Y., J. Allaire, et
+al.](#cite-markdown2) (2018). _R Markdown: The Definitive
+Guide_. ISBN 9781138359338. Boca Raton, Florida: Chapman
+and Hall/CRC. URL:
+[https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
+]
 
 ---
 ## License

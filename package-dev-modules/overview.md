@@ -10,6 +10,8 @@
 ### Packages in a nutshell
 
 #### Outline
+This workshop explains what a package is and why you might want to write one. It covers where packages come from, where they live on your computer and the different states a package can be in. We will explore the key components of a package using an example and outline the Forwards approach to package development process.
+
 
 What is a package - unit of shareable code    
 Why write a package? impact, recognition, documentation   
@@ -34,8 +36,10 @@ At the end of this module the successful learner will be able to:
 
 #### Prerequisites
 
-* r user, otherwise very few
-* r and rstudio installed
+Before starting this module you should:
+
+* install R and RStudio   
+* have some experience of coding in R and it will help to have previously installed and loaded packages  
 
 
 
@@ -96,7 +100,7 @@ At the end of this module the successful learner will be able to:
 
 ---
 
-### A simple package
+### Your first package
 
 #### Outline
 
@@ -111,7 +115,7 @@ Ref: Packages Chapter 2 The whole game; Happy Git and GitHub for the useR Chapte
 
 At the end of this module the successful learner will be able to:  
 * create a simple version controlled package  
-* link the package to github  
+* link a local version controlled package to a remote repository on GitHub  
 * explain the key components of a minimal package  
 * create and document a function with roxygen2 and document()
 * use the package interactively with load_all()  

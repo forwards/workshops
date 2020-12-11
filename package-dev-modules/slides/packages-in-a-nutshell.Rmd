@@ -1,7 +1,7 @@
 ---
-title: "Module name"
+title: "Packages in a nutshell"
 subtitle: "A Forwards Package Development module"
-author: "<br>Author"
+author: "<br>Emma Rand"
 date: "<br>🔗 [link to slides](https://forwards.github.io/)"
 output:
   xaringan::moon_reader:
@@ -117,219 +117,6 @@ layout: true
 </div> 
 
 
-
-<!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added -->
-
-<!-- Instructions creating a new module-->
-<!-- Guiding principles for module design are here: 
-../README.md -->
-<!-- Edit Title, subtitle, Author and link -->
-<!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed -->
-
-
----
-
-class: middle
-
-# Format Templates
-
-
----
-
-class: middle
-
-# Section title
-
----
-
-class: inverse
-
-## Inverse `class: inverse`
-
-Use for full page figures
-
----
-
-## Sample slide
-
-- with
-- tight
-- bullet
-- points
-
----
-
-## Sample slide
-
-- with
-
-- spaced out
-
-- bullet
-
-- points
-
----
-
-# Colored text
-
-- .pink[pink]
-- .purple[purple]
-- .green[green]
-- .blue[blue]
-- .light-green[light-green]
-- .gray[gray]
-
----
-
-## Text alignment
-
-left
-
-.right[right]
-
-.center[center]
-
----
-
-## Font sizes
-
-- .huge[huge = 400%]
-- .larger[larger = 250%]
-- .large[large = 125%]
-- .midi[midi = 85%] 
-- .small[small = 70%]
-- .xsmall[xsmall = 60%]
-- .tiny[tiny = 50%]
-
----
-
-## Huge numbers
-
-.pull-left[
-  huge-number  
-  .huge-number[.green[1]]
-]
-.pull-right[
-  huge-pink-number    
-  .huge-number[.pink[1]]
-]
-
----
-
-## Handwriting
-
-- text
-- .hand[hand]
-- .hand[.pink[hand with]]
-- .hand[.green[other colors]]
-
----
-
-## Two columns, equal width
-
-.pull-left[
-- text 
-- on
-- left
-]
-.pull-right[
-```{r}
-2 + 1
-plot(cars) # <<
-```
-]
-
----
-
-## Two columns, wider left
-
-.pull-left-wide[
-- text 
-- on
-- left
-]
-.pull-right-narrow[
-```{r}
-2 + 1
-plot(cars) # <<
-```
-]
-
----
-
-## Two columns, wider right
-
-.pull-left-narrow[
-- text 
-- on
-- left
-]
-.pull-right-wide[
-```{r}
-2 + 1
-plot(cars) # <<
-```
-]
-
----
-
-## Footnote
-
-Some text<sup>+</sup>
-
-.footnote[<sup>+</sup>Footnote]
-
----
-
-## Custom boxes
-
-.question[
-A question: What is data science?
-]
-
-.your-turn[
-Some instructions: Figure out what data science is...
-]
-
-.tip[
-A tip: Nobody knows what data science is!
-]
-
----
-
-## ggplot
-
-```{r out.width="55%"}
-library(ggplot2)
-ggplot(mpg, aes(x = hwy, y = cty, color = drv)) +
-  geom_point(size = 2) +
-  scale_color_viridis_d() # <<
-```
-
----
-
-## tibble
-
-```{r}
-mpg
-```
-
----
-
-## kable
-
-```{r}
-library(knitr)
-kable(head(mpg))
-```
-
----
-
-class: middle
-
-# Module Template
-
 ---
 
 class: middle
@@ -338,11 +125,15 @@ class: middle
 
 ---
 
-## Summary
+## Welcome!
 
 .pull-left[
 
-A short summary of the module content
+Emma Rand
+
+-  Senior lecturer (Prof) University of York, UK in the Department of Biology 
+
+-  [Forwards](https://forwards.github.io/) Teaching Team Lead
 
 ]
 .pull-right[
@@ -351,16 +142,25 @@ A short summary of the module content
 knitr::include_graphics("../images/emma-rand.png")
 ```
 
-My name is Emma. I am a lecturer in the Biology Department at the University of York
-
 
 ]
 
-<!-- Edit with your own name and biography -->
+
+---
+
+## Summary
+
+This workshop explains what a package is and why you might want to write one. 
+
+-  where packages come from
+-  where they live on your computer
+-  package states
+-  package components
+
 
 ???
 
-Add speaker notes
+This workshop explains what a package is and why you might want to write one. It covers where packages come from, where they live on your computer and the different states a package can be in. We will explore the key components of a package using an example and outline the Forwards approach to package development process.
 
 ---
 
@@ -387,15 +187,11 @@ Add speaker notes
 
 Before starting this module you should:
 
-- a
+-  [install R and RStudio](../prerequisite-guides/install-r-rstudio.md)
 
-- ab
+-  have some experience of coding in R and it will help to have previously installed and loaded packages
 
-- abc
 
-- abcd
-
-<!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. -->
 
 ???
 
@@ -407,15 +203,16 @@ Add speaker notes
 
 At the end of this module the successful learner will be able to:
 
-- a
+- explain the rationale for writing packages
 
-- ab
+- find and explore their own package library/libraries
 
-- abc
+- describe the different states a package can be in
 
-- abcd
+- describe the key components of a package
 
-<!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives-->
+- outline the development of a package using devtools
+
 
 ???
 
@@ -425,22 +222,89 @@ Add speaker notes
 
 class: middle
 
-# Section 1
+# Why write a package?
 
-
-<!-- edit with the title of the first section in the module -->
 
 ---
 
-## some text
+## Script or Package
 
+.pull-left[
+.hand[.blue[Script]]
 
-<!-- add your teaching material using the Format templates as a guide where needed -->
+-  one-of data analysis
+-  
+]
+
+.pull-right[
+.hand[.blue[Package]]
+-  defines reusable components
+-  
+]
+
 
 ???
 
 Add speaker notes
 
+---
+
+## Why resuable components
+
+-  You want to **test** it
+
+-  You want to **generalise** it
+
+-  You want to **document** it
+
+-  You want to **share** it
+
+
+???
+
+These aspects allow you to work reproducibly, collaborate with others and disseminate your work more easily.
+
+This helps you gain recognition and create impact from your work.
+
+---
+
+## The bad news
+
+.... it may be frustrating
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("../../pics/allie_brosh_argh.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
+]
+
+
+???
+
+Add speaker notes
+
+---
+
+## The good news!
+
+.... frustration is normal and temporary.
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("../../pics/allie_brosh_happy.png")
+```
+
+.footnote[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
+]
+
+
+???
+
+Add speaker notes
 ---
 
 class: middle
@@ -475,6 +339,20 @@ class: middle
 
 Add speaker notes
 
+
+---
+
+class: middle
+
+# Approach
+
+
+---
+
+## Approach
+
+
+
 ---
 
 Slides made with:  **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
@@ -502,7 +380,14 @@ PrintBibliography(myBib, start = 6, end = 10)
 ```
 ]
 
+---
+## References
 
+.small[
+```{r refs3, echo=FALSE, results="asis"}
+PrintBibliography(myBib, start = 11)
+```
+]
 
 ---
 ## License
