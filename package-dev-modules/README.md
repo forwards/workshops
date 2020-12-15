@@ -2,7 +2,7 @@
 Forwards Package Development organised into modules to increase our ability to deliver face-to-face and online workshops of different lengths, and with different emphases, whilst retaining consistency.
 
 ## Context
-The Forwards task force works to increase the representation of groups currently underrepresented in the R Community. The Teaching Team subgroup develops teaching methodology and materials and provides workshops in support of this work. Until now, workshops have been face-to-face, usually approximately one day long. This limits our reach because only those with access to teaching facilities can deliver teaching and only those able to attned face to face workshops can benefit from it. In addition, the need to adapt materials to workshops of varying lengths means we have several copies of material and inconsistencies can arise. 
+The Forwards task force works to increase the representation of groups currently underrepresented in the R Community. The Teaching Team subgroup develops teaching methodology and materials and provides workshops in support of this work. Until now, workshops have been face-to-face, usually approximately one day long. This limits our reach because only those with access to teaching facilities can deliver teaching and only those able to attend face to face workshops can benefit from it. In addition, the need to adapt materials to workshops of varying lengths means we have several copies of material and inconsistencies can arise. 
 
 ## Aims
 To modularise Forwards Package Development materials to increase our ability to deliver face-to-face and online workshops of different lengths, and with different emphases, whilst retaining consistency.
@@ -47,3 +47,5 @@ A module should:
 -  use one example package, (that we make) all the way through rather than switching  between creating mypackage, mylittlepony, add_cols. Cf “the whole game”  
 
 [Overview](overview.md)
+
+
