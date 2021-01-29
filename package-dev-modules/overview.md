@@ -93,10 +93,10 @@ At the end of this module the successful learner will be able to:
 
 #### Prerequisites
 
-* r and rstudio installed
+* Packages in a nutshell or equivalent - desirable but not essential
 * git installed
 * github account
-* Packages in a nutshell or equivalent - desirable but not essential
+
 
 ---
 
