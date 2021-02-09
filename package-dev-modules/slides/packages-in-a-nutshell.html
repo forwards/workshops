@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Packages in a nutshell</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Emma Rand" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="style-xaringanthemer.css" type="text/css" />
+    <link rel="stylesheet" href="style-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Packages in a nutshell
+## A Forwards Package Development module
+### <br>Emma Rand
+### <br>🔗 <a href="https://forwards.github.io/">link to slides</a>
+
+---
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://forwards.github.io/" target="_blank"&gt;🔗 Link to slides&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+
+---
+
+class: middle
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+&lt;img src="../images/emma-rand.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+School of Maths, University of Edinburgh, UK  
+]
+
+&lt;img src="../images/mine.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+]
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+
+---
+
+## Summary
+
+This workshop explains what a package is and why you might want to write one. 
+
+-  where packages come from
+-  where they live on your computer
+-  package states
+-  package components
+
+
+???
+
+This workshop explains what a package is and why you might want to write one. It covers where packages come from, where they live on your computer and the different states a package can be in. We will explore the key components of a package using an example and outline the Forwards approach to package development process.
+
+
+---
+
+## Module Prerequisites
+
+Before starting this module you should have:
+
+-  [installed R and RStudio](../prerequisite-guides/install-r-rstudio.md)
+
+-  had some experience of coding in R and it will help to have previously installed and loaded packages
+
+
+
+???
+
+Add speaker notes
+
+---
+
+## Learning Objectives
+
+At the end of this module the successful learner will be able to:
+
+- explain the rationale for writing packages
+
+- find and explore their own package library/libraries
+
+- describe the key components of a package
+
+- describe the different states a package can be in
+
+- outline the development of a package using devtools
+
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Why write a package?
+
+---
+
+## Why resuable components
+
+-  You want to **test** it
+
+-  You want to **generalise** it
+
+-  You want to **document** it
+
+-  You want to **share** it
+
+-  You want to create **impact** from your work
+
+
+???
+
+These aspects allow you to work reproducibly, collaborate with others and disseminate your work more easily.
+
+This helps you gain recognition and create impact from your work.
+
+---
+
+## The bad news
+
+.... it may be frustrating
+&lt;img src="../../pics/allie_brosh_argh.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+.tiny[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
+]
+
+
+???
+
+Add speaker notes
+
+---
+
+## The good news!
+
+.... frustration is normal and temporary.
+&lt;img src="../../pics/allie_brosh_happy.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+.tiny[
+COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
+]
+
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Where do packages live?
+
+---
+## R packages live in a library
+
+&lt;img src="../../pics/library.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+--
+
+Where's the library?
+
+---
+## Get to know your R installation.
+
+.your-turn[
+What version of R are you using?
+]
+
+.scroll-output-height[
+
+```r
+R.version
+```
+
+```
+##                _                           
+## platform       x86_64-w64-mingw32          
+## arch           x86_64                      
+## os             mingw32                     
+## system         x86_64, mingw32             
+## status                                     
+## major          4                           
+## minor          0.2                         
+## year           2020                        
+## month          06                          
+## day            22                          
+## svn rev        78730                       
+## language       R                           
+## version.string R version 4.0.2 (2020-06-22)
+## nickname       Taking Off Again
+```
+]
+
+???
+
+Add speaker notes
+
+---
+## Get to know your R installation.
+
+.your-turn[
+Where is R's home directory?
+]
+
+
+```r
+R.home()
+```
+
+```
+## [1] "C:/PROGRA~1/R/R-40~1.2"
+```
+
+The R home directory is the top-level directory of the R installation being run.
+
+Note: this is **not** the same as your working directory.
+
+???
+
+The name of the home directory will be the version you are using.
+
+The home directory is where R will look for the programs and functions it needs.
+
+You working directory is where R will look for your files.
+
+
+---
+
+## Get to know your R installation.
+
+.your-turn[
+What is in R's home directory?
+]
+The home directory contains these files and folders:
+
+
+```r
+list.files(R.home())
+```
+
+```
+##  [1] "bin"            "CHANGES"        "COPYING"       
+##  [4] "doc"            "etc"            "include"       
+##  [7] "library"        "MD5"            "modules"       
+## [10] "README"         "README.R-4.0.2" "share"         
+## [13] "src"            "Tcl"            "tests"         
+## [16] "unins000.dat"   "unins000.exe"
+```
+
+
+???
+
+Add speaker notes
+
+---
+
+## Get to know your R library
+
+
+.your-turn[
+What is the default R library?
+]
+
+
+
+```r
+.Library
+```
+
+```
+## [1] "C:/PROGRA~1/R/R-40~1.2/library"
+```
+
+The default library is in the home directory
+
+???
+
+Add speaker notes
+---
+
+## Get to know your R library
+
+.your-turn[
+What libraries does R know about?
+]
+
+
+```r
+.libPaths()
+```
+
+```
+## [1] "C:/Users/er13/R/win-library/4.0"   
+## [2] "C:/Program Files/R/R-4.0.2/library"
+```
+
+
+???
+
+Add speaker notes
+
+---
+
+## Get to know your R library.
+
+For many R users `.Library` and `.libPaths()` are the same.  
+
+--
+
+Other R users maintain, or have access to, multiple libraries.
+
+--
+.tip[
+You may not have write access to the default library.
+]
+---
+
+## Where do R packages come from?
+
+&lt;img src="../../pics/stork.png" width="400px" style="display: block; margin: auto;" /&gt;
+
+???
+
+Add speaker notes
+
+---
+
+## Where do R packages come from?
+
+CRAN and GitHub, mostly
+
+CRAN:
+
+```r
+install.packages("praise")
+```
+
+GitHub:
+
+```r
+remotes::install_github("gaborcsardi/praise")
+```
+
+
+
+???
+
+You can often find the latest features for a package in development on GitHub. Some packages never make it to CRAN. Not necessarily 'bad' packages, the author just hasn't done the paperwork required.
+
+To install to a particular library:
+
+install.packages("praise", lib = library)
+
+withr::with_libpaths(library, install_github("gaborcsardi/praise"))
+
+---
+
+## Your installed packages
+
+.your-turn[
+How many packages do you have installed?
+]
+
+```r
+dim(installed.packages())
+```
+
+```
+## [1] 468  16
+```
+--
+The output of `installed.packages()` is a matrix; each row is a package
+
+--
+
+I have 468 packages installed
+
+???
+
+Add speaker notes
+
+---
+
+## Your installed packages
+
+.your-turn[
+View the matrix of installed packages
+]
+
+```r
+View(installed.packages())
+```
+???
+
+Add speaker notes
+
+---
+
+
+## Your installed packages
+
+The columns give some information about each package:
+
+
+```r
+colnames(installed.packages())
+```
+
+```
+##  [1] "Package"               "LibPath"              
+##  [3] "Version"               "Priority"             
+##  [5] "Depends"               "Imports"              
+##  [7] "LinkingTo"             "Suggests"             
+##  [9] "Enhances"              "License"              
+## [11] "License_is_FOSS"       "License_restricts_use"
+## [13] "OS_type"               "MD5sum"               
+## [15] "NeedsCompilation"      "Built"
+```
+
+???
+
+Add speaker notes
+
+---
+## Startup files
+
+.pull-left[
+
+`.Rprofile`
+
+Code that runs at startup
+ - Load workflow packages
+ - Set options
+ - Use in moderation!
+ ]
+ 
+.pull-right[
+`.Renviron`
+
+Settings for R
+ - Set library paths
+ - Set environment variables
+]
+
+???
+
+Help you manage your library paths (amongst other things).
+You will edit these in set up
+
+---
+
+class: middle
+
+# Developing a script vs developing a package
+
+---
+## Different
+
+.pull-left-narrow[
+.hand[.blue[Script]]
+
+-  one-off data analysis
+-  defined by `.R` extension
+-  `library()` calls
+-  documentation in `#` comments
+-  `source()`
+]
+
+.pull-right-wide[
+.hand[.blue[Package]]
+-  defines reusable components
+-  defined by presence of `DESCRIPTION` file
+-  Required packages specified in `DESCRIPTION`, made available in `NAMESPACE` file
+-  documentation in files and `Roxygen` comments
+-  Install and restart
+]
+
+
+???
+
+Add speaker notes
+
+---
+## Same
+
+Iterate early and often!  
+
+Change it, try it, change it, try it, 
+
+
+---
+
+class: middle
+
+# Explore!
+
+---
+
+## Explore
+
+.your-turn[
+Look at [Stephanie Kirmer's](https://github.com/skirmer) demo package [here](https://github.com/forwards/workshops/tree/master/Chicago2019/demoPackage)
+
+-  Where’s the R code? What is it mostly comprised of?
+-  What do you think is in the DESCRIPTION file? 
+-  How about the NAMESPACE file?
+
+]
+???
+Mainly comments in the form:
+#' goToTheZoo
+
+DESCRIPTION has package metadata. The presence of this file is what makes and RStudio Project a package. 
+NAMESPACE gives the functions imported and exported
+
+This looks like a lot of files to get right! Fortunately the devtools approach will make most of this automatically!
+
+---
+
+class: middle
+
+# Package states
+---
+## Package states
+
+There are five states a package can be in:
+-  source
+
+-  bundled
+
+-  binary
+
+-  installed
+
+-  in-memory
+---
+
+&lt;img src="../../pics/annotated_installation.png" width="870px" style="display: block; margin: auto;" /&gt;
+
+.tiny[
+Figure from [R Packages](https://r-pkgs.org/) &lt;a name=cite-Wickham_Bryan&gt;&lt;/a&gt;([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
+https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
+]
+
+???
+You already know some of the functions that put packages into these states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
+The `library()` function loads an installed package into memory, making it available for immediate and direct use.
+
+---
+
+## Package states
+
+.pull-left-narrow[
+-  .tip[source]
+
+-  bundled
+
+-  binary
+
+-  installed
+
+-  in-memory
+]
+
+.pull-right-wide[
+.tip[
+What you create and work on.
+
+Specific directory structure with some particular components e.g., `DESCRIPTION`, an `R/` directory.
+
+We examined the source of the demoPackage
+
+]
+]
+
+???
+
+Add speaker notes
+---
+
+## Package states
+
+.your-turn[
+Visit the CRAN landing page for `readxl`:  https://cran.r-project.org/package=readxl 
+
+And the GitHub repository where `readxl` is developed in the open: 
+https://github.com/tidyverse/readxl
+]
+---
+
+## Package states
+
+.pull-left-narrow[
+-  source
+
+-  .tip[bundled]
+
+-  binary
+
+-  installed
+
+-  in-memory
+]
+
+.pull-right-wide[
+.tip[
+
+Also known as "source tarballs".
+
+Package files compressed to single file.
+
+Conventionally `.tar.gz`
+
+You don't normally need to make one.
+
+Unpacked it looks very like the source package
+]
+]
+
+???
+
+In the rare case that you need to make a bundle from a package you’re developing locally, use devtools::build(). Under the hood, this calls pkgbuild::build() and, ultimately, R CMD build, which is described further in the Building package tarballs section of Writing R Extensions.
+
+---
+
+## Package states
+
+.pull-left-narrow[
+-  source
+
+-  bundled
+
+-  .tip[binary]
+
+-  installed
+
+-  in-memory
+]
+
+.pull-right-wide[
+.tip[
+
+Package distribution for users w/o dev tools
+
+Also a single file
+
+Platform specific: `.tgz` (Mac) `.zip` (Windows)
+
+Package developers submit a bundle to CRAN; CRAN makes and distributes binaries
+
+`install.packages()` 
+]
+]
+
+???
+
+`install.packages()` is usually downloading the binary
+
+To understand the difference between package bundle and a package binary see https://r-pkgs.org/package-structure-state.html
+
+---
+
+## Package states
+
+.pull-left-narrow[
+-  source
+
+-  bundled
+
+-  binary
+
+-  .tip[installed]
+
+-  in-memory
+]
+
+.pull-right-wide[
+.tip[
+A binary package that’s been decompressed into a package library
+
+Command line tool `R CMD INSTALL` powers all package installation
+]
+]
+
+???
+
+Add speaker notes
+---
+
+&lt;img src="../../pics/installation.png" width="900px" style="display: block; margin: auto;" /&gt;
+
+There's more than one route (tool) for installation.
+
+.tiny[
+Figure from [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
+https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
+]
+
+???
+---
+
+## Package states
+
+.pull-left-narrow[
+-  source
+
+-  bundled
+
+-  binary
+
+-  installed
+
+-  .tip[in-memory]
+]
+
+.pull-right-wide[
+.tip[
+
+If a package is installed `library()` makes its function available by loading the package into memory and attaching it to the search path.
+
+We do not use `library()` for packages we are working on
+
+`devtools::load_all()` loads a source package directly into memory.
+]
+]
+
+???
+
+Add speaker notes
+
+---
+class: middle
+
+# Workflow
+
+---
+# Workflow
+
+&lt;img src="../../pics/annotated_load_all.png" width="800px" style="display: block; margin: auto;" /&gt;
+
+
+`devtools::load_all()` is to package development  
+
+as  
+
+interactive “stepping through” code is to script development
+
+???
+
+devtools::load_all() simulates package installation, i.e., it puts the package in to memory.
+---
+# Workflow
+
+&lt;img src="../../pics/annotated_install_and_restart.png" width="800px" style="display: block; margin: auto;" /&gt;
+
+
+RStudio’s Install &amp; Restart is to package development  
+as  
+`source()` or
+
+RStudio’s "Source" or `Rscript foo.R` is to script development
+
+???
+
+Add speaker notes
+
+---
+# Workflow
+
+Use `devtools::load_all( )` a lot!  
+
+(And “Install and Restart” sparingly)
+
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Approach
+
+
+---
+
+## Approach
+
+We follow the approach used in [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan)):
+
+-  uses `devtools` 
+-  in RStudio
+-  version controlled using git
+-  hosted on GitHub
+
+---
+class: middle
+
+# Summary
+
+---
+
+## Summary
+
+-  packages allow you to generalise, test, document and share your code
+-  packages come from CRAN and GitHub (mainly)
+-  they live in libraries on your pc
+-  you write source, submit bundles, install binaries (mainly), and use in-memory
+-  we use `devtools::load_all()` during development a lot
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Where next?
+
+---
+
+## Where next?
+
+&lt;!-- list some follow-up resources --&gt;
+
+R Forwards modules
+
+-  [Setting up your system](https://www.eventbrite.co.uk/e/r-forwards-package-development-module-setting-up-your-system-tickets-132115790887)
+-  [Your first package!](https://www.eventbrite.co.uk/e/r-forwards-package-development-module-your-first-package-tickets-132115738731)
+
+Other sources
+-  [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
+-  Hillary Parker's [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
+-  Karl Broman's [R package primer a minimal tutorial](https://kbroman.org/pkg_primer/)
+
+???
+Setting up your system sign up close 1800 GMT Monday
+Your first package! sign up close 1800 GMT Tuesday
+
+---
+
+class: middle
+
+# What questions do you have?
+
+
+
+---
+
+Slides made with:  **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
+
+Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+## References
+
+.small[
+&lt;a name=bib-countdown&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-countdown) (2020b). _countdown: A Countdown
+Timer for R Markdown HTML Presentations and Documents_. R
+package version 0.3.5. URL:
+[https://github.com/gadenbuie/countdown](https://github.com/gadenbuie/countdown).
+
+&lt;a name=bib-xaringanExtra&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanExtra) (2020c). _xaringanExtra: Extras
+And Extensions for Xaringan Slides_. R package version
+0.2.3.9000. URL:
+[https://github.com/gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra).
+
+&lt;a name=bib-xaringanthemer&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanthemer) (2020a). _xaringanthemer:
+Custom 'xaringan' CSS Themes_. R package version 0.3.0.
+URL:
+[https://CRAN.R-project.org/package=xaringanthemer](https://CRAN.R-project.org/package=xaringanthemer).
+
+&lt;a name=bib-markdown1&gt;&lt;/a&gt;[Allaire, J., Y. Xie, et
+al.](#cite-markdown1) (2019). _rmarkdown: Dynamic
+Documents for R_. R package version 1.16. URL:
+[https://github.com/rstudio/rmarkdown](https://github.com/rstudio/rmarkdown).
+
+&lt;a name=bib-McLean-2017&gt;&lt;/a&gt;[McLean, M.
+W.](#cite-McLean-2017) (2017). "RefManageR: Import and
+Manage BibTeX and BibLaTeX References in R". In: _The
+Journal of Open Source Software_. DOI:
+[10.21105/joss.00338](https://doi.org/10.21105%2Fjoss.00338).
+]
+
+---
+
+## References
+
+.small[
+&lt;a name=bib-Wickham_Bryan&gt;&lt;/a&gt;[Wickham, H. and J.
+Bryan](#cite-Wickham_Bryan) (2020). _R Packages_. the
+work-in-progress 2nd edition. Online. URL:
+[https://r-pkgs.org/index.html](https://r-pkgs.org/index.html).
+
+&lt;a name=bib-knitr3&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr3) (2014).
+"knitr: A Comprehensive Tool for Reproducible Research in
+R". In: _Implementing Reproducible Computational
+Research_. Ed. by V. Stodden, F. Leisch and R. D. Peng.
+ISBN 978-1466561595. Chapman and Hall/CRC. URL:
+[http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595).
+
+&lt;a name=bib-knitr2&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr2) (2015).
+_Dynamic Documents with R and knitr_. 2nd. ISBN
+978-1498716963. Boca Raton, Florida: Chapman and
+Hall/CRC. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-xaringan&gt;&lt;/a&gt;[Xie, Y.](#cite-xaringan)
+(2019). _xaringan: Presentation Ninja_. R package version
+0.12. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+&lt;a name=bib-knitr1&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr1) (2020).
+_knitr: A General-Purpose Package for Dynamic Report
+Generation in R_. R package version 1.30. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+]
+
+---
+## References
+
+.small[
+&lt;a name=bib-markdown2&gt;&lt;/a&gt;[Xie, Y., J. Allaire, et
+al.](#cite-markdown2) (2018). _R Markdown: The Definitive
+Guide_. ISBN 9781138359338. Boca Raton, Florida: Chapman
+and Hall/CRC. URL:
+[https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
+]
+
+---
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Module: fill in the module name&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Module name</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Author" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="style-xaringanthemer.css" type="text/css" />
+    <link rel="stylesheet" href="style-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Module name
+## A Forwards Package Development module
+### <br>Author
+### <br>🔗 <a href="https://forwards.github.io/">link to slides</a>
+
+---
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://forwards.github.io/" target="_blank"&gt;🔗 Link to slides&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+
+
+&lt;!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added --&gt;
+
+&lt;!-- Instructions creating a new module--&gt;
+&lt;!-- Guiding principles for module design are here: 
+../README.md --&gt;
+&lt;!-- Edit Title, subtitle, Author and link --&gt;
+&lt;!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed --&gt;
+
+
+---
+
+class: middle
+
+# Format Templates
+
+
+---
+
+class: middle
+
+# Section title
+
+---
+
+class: inverse
+
+## Inverse `class: inverse`
+
+Use for full page figures
+
+---
+
+## Sample slide
+
+- with
+- tight
+- bullet
+- points
+
+---
+
+## Sample slide
+
+- with
+
+- spaced out
+
+- bullet
+
+- points
+
+---
+
+# Colored text
+
+- .pink[pink]
+- .purple[purple]
+- .green[green]
+- .blue[blue]
+- .light-green[light-green]
+- .gray[gray]
+
+---
+
+## Text alignment
+
+left
+
+.right[right]
+
+.center[center]
+
+---
+
+## Font sizes
+
+- .huge[huge = 400%]
+- .larger[larger = 250%]
+- .large[large = 125%]
+- .midi[midi = 85%] 
+- .small[small = 70%]
+- .xsmall[xsmall = 60%]
+- .tiny[tiny = 50%]
+
+---
+
+## Huge numbers
+
+.pull-left[
+  huge-number  
+  .huge-number[.green[1]]
+]
+.pull-right[
+  huge-pink-number    
+  .huge-number[.pink[1]]
+]
+
+---
+
+## Handwriting
+
+- text
+- .hand[hand]
+- .hand[.pink[hand with]]
+- .hand[.green[other colors]]
+
+---
+
+## Two columns, equal width
+
+.pull-left[
+- text 
+- on
+- left
+]
+.pull-right[
+
+```r
+2 + 1
+```
+
+```
+## [1] 3
+```
+
+```r
+plot(cars) # &lt;&lt;
+```
+
+&lt;img src="module-template_files/figure-html/unnamed-chunk-1-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Two columns, wider left
+
+.pull-left-wide[
+- text 
+- on
+- left
+]
+.pull-right-narrow[
+
+```r
+2 + 1
+```
+
+```
+## [1] 3
+```
+
+```r
+plot(cars) # &lt;&lt;
+```
+
+&lt;img src="module-template_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Two columns, wider right
+
+.pull-left-narrow[
+- text 
+- on
+- left
+]
+.pull-right-wide[
+
+```r
+2 + 1
+```
+
+```
+## [1] 3
+```
+
+```r
+plot(cars) # &lt;&lt;
+```
+
+&lt;img src="module-template_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Footnote
+
+Some text&lt;sup&gt;+&lt;/sup&gt;
+
+.footnote[&lt;sup&gt;+&lt;/sup&gt;Footnote]
+
+---
+
+## Custom boxes
+
+.question[
+A question: What is data science?
+]
+
+.your-turn[
+Some instructions: Figure out what data science is...
+]
+
+.tip[
+A tip: Nobody knows what data science is!
+]
+
+---
+
+## ggplot
+
+
+```r
+library(ggplot2)
+ggplot(mpg, aes(x = hwy, y = cty, color = drv)) +
+  geom_point(size = 2) +
+  scale_color_viridis_d() # &lt;&lt;
+```
+
+&lt;img src="module-template_files/figure-html/unnamed-chunk-4-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## tibble
+
+
+```r
+mpg
+```
+
+```
+## # A tibble: 234 x 11
+##   manufacturer model displ  year   cyl trans drv     cty   hwy
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+## 1 audi         a4      1.8  1999     4 auto~ f        18    29
+## 2 audi         a4      1.8  1999     4 manu~ f        21    29
+## 3 audi         a4      2    2008     4 manu~ f        20    31
+## 4 audi         a4      2    2008     4 auto~ f        21    30
+## 5 audi         a4      2.8  1999     6 auto~ f        16    26
+## 6 audi         a4      2.8  1999     6 manu~ f        18    26
+## # ... with 228 more rows, and 2 more variables: fl &lt;chr&gt;,
+## #   class &lt;chr&gt;
+```
+
+---
+
+## kable
+
+
+```r
+library(knitr)
+kable(head(mpg))
+```
+
+
+
+|manufacturer |model | displ| year| cyl|trans      |drv | cty| hwy|fl |class   |
+|:------------|:-----|-----:|----:|---:|:----------|:---|---:|---:|:--|:-------|
+|audi         |a4    |   1.8| 1999|   4|auto(l5)   |f   |  18|  29|p  |compact |
+|audi         |a4    |   1.8| 1999|   4|manual(m5) |f   |  21|  29|p  |compact |
+|audi         |a4    |   2.0| 2008|   4|manual(m6) |f   |  20|  31|p  |compact |
+|audi         |a4    |   2.0| 2008|   4|auto(av)   |f   |  21|  30|p  |compact |
+|audi         |a4    |   2.8| 1999|   6|auto(l5)   |f   |  16|  26|p  |compact |
+|audi         |a4    |   2.8| 1999|   6|manual(m5) |f   |  18|  26|p  |compact |
+
+---
+
+class: middle
+
+# Module Template
+
+---
+
+class: middle
+
+# Overview
+
+---
+
+## Summary
+
+.pull-left[
+
+A short summary of the module content
+
+]
+.pull-right[
+&lt;img src="../images/emma-rand.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+My name is Emma. I am a lecturer in the Biology Department at the University of York
+
+
+]
+
+&lt;!-- Edit with your own name and biography --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+## Lesson plan
+
+-  0 - 10: Introduction  
+    -  Prerequisites  
+    -  Learning Objectives  
+-  10 - 25: Section 1: Live code-along-coding  
+-  25 - 30: Additional exercises based on Section 1  
+-  30 - 45: Section 2: Live code-along-coding  
+-  45 - 50: Additional exercises based on Section 2  
+-  50 - 55: Wrap-up, where next, additional exercises  
+
+&lt;!-- Edit appropriately --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+## Module Prerequisites
+
+Before starting this module you should:
+
+- a
+
+- ab
+
+- abc
+
+- abcd
+
+&lt;!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+## Learning Objectives
+
+At the end of this module the successful learner will be able to:
+
+- a
+
+- ab
+
+- abc
+
+- abcd
+
+&lt;!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives--&gt;
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Section 1
+
+
+&lt;!-- edit with the title of the first section in the module --&gt;
+
+---
+
+## some text
+
+
+&lt;!-- add your teaching material using the Format templates as a guide where needed --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Summary
+
+---
+
+## Summary
+
+&lt;!-- summarise module --&gt;
+
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Where next?
+
+---
+
+## Where next?
+
+&lt;!-- which module in the curriculum could follow --&gt;
+&lt;!-- list some follow-up resources --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+Slides made with:  **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
+
+Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+## References
+
+.small[
+&lt;a name=bib-countdown&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-countdown) (2020b). _countdown: A Countdown
+Timer for R Markdown HTML Presentations and Documents_. R
+package version 0.3.5. URL:
+[https://github.com/gadenbuie/countdown](https://github.com/gadenbuie/countdown).
+
+&lt;a name=bib-xaringanExtra&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanExtra) (2020c). _xaringanExtra: Extras
+And Extensions for Xaringan Slides_. R package version
+0.2.3.9000. URL:
+[https://github.com/gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra).
+
+&lt;a name=bib-xaringanthemer&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanthemer) (2020a). _xaringanthemer:
+Custom 'xaringan' CSS Themes_. R package version 0.3.0.
+URL:
+[https://CRAN.R-project.org/package=xaringanthemer](https://CRAN.R-project.org/package=xaringanthemer).
+
+&lt;a name=bib-markdown1&gt;&lt;/a&gt;[Allaire, J., Y. Xie, et
+al.](#cite-markdown1) (2019). _rmarkdown: Dynamic
+Documents for R_. R package version 1.16. URL:
+[https://github.com/rstudio/rmarkdown](https://github.com/rstudio/rmarkdown).
+
+&lt;a name=bib-McLean-2017&gt;&lt;/a&gt;[McLean, M.
+W.](#cite-McLean-2017) (2017). "RefManageR: Import and
+Manage BibTeX and BibLaTeX References in R". In: _The
+Journal of Open Source Software_. DOI:
+[10.21105/joss.00338](https://doi.org/10.21105%2Fjoss.00338).
+]
+
+---
+
+## References
+
+.small[
+&lt;a name=bib-knitr3&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr3) (2014).
+"knitr: A Comprehensive Tool for Reproducible Research in
+R". In: _Implementing Reproducible Computational
+Research_. Ed. by V. Stodden, F. Leisch and R. D. Peng.
+ISBN 978-1466561595. Chapman and Hall/CRC. URL:
+[http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595).
+
+&lt;a name=bib-knitr2&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr2) (2015).
+_Dynamic Documents with R and knitr_. 2nd. ISBN
+978-1498716963. Boca Raton, Florida: Chapman and
+Hall/CRC. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-xaringan&gt;&lt;/a&gt;[Xie, Y.](#cite-xaringan)
+(2019). _xaringan: Presentation Ninja_. R package version
+0.12. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+&lt;a name=bib-knitr1&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr1) (2020).
+_knitr: A General-Purpose Package for Dynamic Report
+Generation in R_. R package version 1.30. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-markdown2&gt;&lt;/a&gt;[Xie, Y., J. Allaire, et
+al.](#cite-markdown2) (2018). _R Markdown: The Definitive
+Guide_. ISBN 9781138359338. Boca Raton, Florida: Chapman
+and Hall/CRC. URL:
+[https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
+]
+
+
+
+---
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Module: fill in the module name&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
