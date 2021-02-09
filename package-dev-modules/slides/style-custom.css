@@ -235,3 +235,14 @@ img, video, iframe {
 div.datatables {
     color: #fff;
 }
+
+/* Scroll for wide or long outputs */
+.scroll-output-height {
+  height: 60%;
+  overflow-y: scroll;
+}
+
+.scroll-output-width {
+  width: 100%;
+  overflow-y: scroll;
+}
