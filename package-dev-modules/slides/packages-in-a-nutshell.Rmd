@@ -135,9 +135,7 @@ Senior Lecturer (Prof)
 Department of Biology, University of York, UK 
 ]
 ```{r echo=FALSE, out.width="50%"}
-
 knitr::include_graphics("../images/emma-rand.png")
-
 ```
 ]
 .pull-right[
@@ -149,9 +147,7 @@ School of Maths, University of Edinburgh, UK
 ]
 
 ```{r echo=FALSE, out.width="50%"}
-
 knitr::include_graphics("../images/mine.jpg")
-
 ```
 ]
 [Forwards](https://forwards.github.io/) Teaching Team Leads
@@ -424,7 +420,7 @@ install.packages("praise")
 
 GitHub:
 ```{r, eval=FALSE}
-remotes::install_github("gaborcsardi/praise")
+remotes::install_github("rladies/praise")
 ```
 
 
