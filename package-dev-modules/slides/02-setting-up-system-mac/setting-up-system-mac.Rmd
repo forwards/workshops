@@ -1,0 +1,603 @@
+---
+title: "Setting up your system <br>for Mac users"
+subtitle: "Forwards Package Development module"
+author: "<br>Mine Çetinkaya-Rundel"
+date: "<br>🔗 [link to slides](https://forwards.github.io/)"
+output:
+  xaringan::moon_reader:
+    css: ["style-xaringanthemer.css", "style-custom.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r define-style, include = FALSE}
+# xaringanthemer ---------------------------------------------------------------
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#AD4475", # soft pink
+  secondary_color = "#8D377C", # purple
+  link_color = "#4485ad", # blue
+  code_highlight_color = "#F9E5AF", # light-yellow
+  code_inline_color = "#A7A7A7", # gray
+  base_font_size = "35px",
+  header_h1_font_size = "2.5rem",
+  header_h2_font_size = "2rem",
+  header_h3_font_size = "1.75rem",
+  text_font_google = google_font("Source Sans Pro"),
+  text_font_family = xaringanthemer_font_default("text_font_family"),
+  text_font_weight = xaringanthemer_font_default("text_font_weight"),
+  text_font_url = xaringanthemer_font_default("text_font_url"),
+  text_font_family_fallback = xaringanthemer_font_default("text_font_family_fallback"),
+  text_font_base = "sans-serif",
+  code_font_google = google_font("Source Sans Code"),
+  code_font_family = xaringanthemer_font_default("code_font_family"),
+  code_font_size = "25px",
+  code_font_url = xaringanthemer_font_default("code_font_url"),
+  code_font_family_fallback = xaringanthemer_font_default("code_font_family_fallback"),
+  outfile = "style-xaringanthemer.css"
+)
+
+# R options --------------------------------------------------------------------
+options(
+  htmltools.dir.version = FALSE,
+  dplyr.print_min = 6,
+  dplyr.print_max = 6,
+  tibble.width = 65,
+  width = 65
+)
+
+# figure height, width, dpi ----------------------------------------------------
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE
+)
+
+# ggplot2 ----------------------------------------------------------------------
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 18))
+
+# countdown --------------------------------------------------------------------
+library(countdown)
+
+# xaringanExtra ----------------------------------------------------------------
+library(xaringanExtra)
+xaringanExtra::use_panelset()
+
+# hook for setting output number of lines --------------------------------------
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options)) # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines) == 1) { # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+
+
+# Referencing ------------------------------------------------------------------
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = TRUE,
+           dashed = FALSE,
+           longnamesfirst = FALSE,
+           max.names = 2)
+myBib <- ReadBib("../bibliography.bib", check = FALSE)
+```
+
+layout: true
+  
+<div class="my-footer">
+<span>
+<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
+</span>
+</div> 
+
+
+
+<!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added -->
+
+<!-- Instructions creating a new module-->
+<!-- Guiding principles for module design are here: 
+../README.md -->
+<!-- Edit Title, subtitle, Author and link -->
+<!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed -->
+
+
+---
+
+## What's on the agenda?
+
+- Setting up your system for developing an R package
+
+--
+- Setting up your system for version control with Git with repositories hosted on GitHub
+
+--
+- In this workshop we assume `your system = Mac` -- if you're on a Windows machine, take the parallel workshop *Setting up your system for Windows users*
+
+---
+
+class: middle, inverse
+
+# Review
+
+---
+
+# Types of R packages
+
+.pull-left-wide[
+- Installing released packages from CRAN using `install.packages()` -- **binary**
+- Installing development packages using `devtools::install_github()` -- **source**
+- Once installed, binary and source packages are identical
+]
+.pull-right-narrow[
+```{r, out.width = "100%", echo = FALSE, fig.alt = "Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)."}
+knitr::include_graphics("../../pics/annotated_installation.png")
+```
+]
+
+
+.tiny[
+Figure from [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
+https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
+]
+
+???
+You already know some of the functions that put packages into these states. For example, `install.packages()` and `devtools::install_github()` move a package from source, bundled, or binary states into the installed state. 
+The `library()` function loads an installed package into memory, making it available for immediate and direct use.
+
+---
+
+## devtools
+
+> "The aim of devtools is to make package development easier by providing R functions that simplify and expedite common tasks."
+> [devtools.r-lib.org](https://devtools.r-lib.org/)
+
+```{r eval = FALSE}
+install.packages("devtools")
+library(devtools)
+```
+
+Use devtools to
+
+- install source packages from GitHub and elsewhere
+- install and develop packages you write
+
+???
+
+Using the devtools package is not a requirement for developing or installing from source R packages, but it's a convenient, user-friendly, and well-documented approach.
+
+---
+
+class: middle, inverse
+
+# Setting up your system for development
+
+---
+
+## 
+
+
+
+
+class: middle
+
+# Section title
+
+---
+
+class: inverse
+
+## Inverse `class: inverse`
+
+Use for full page figures
+
+---
+
+## Sample slide
+
+- with
+- tight
+- bullet
+- points
+
+---
+
+## Sample slide
+
+- with
+
+- spaced out
+
+- bullet
+
+- points
+
+---
+
+# Colored text
+
+- .pink[pink]
+- .purple[purple]
+- .green[green]
+- .blue[blue]
+- .light-green[light-green]
+- .gray[gray]
+
+---
+
+## Text alignment
+
+left
+
+.right[right]
+
+.center[center]
+
+---
+
+## Font sizes
+
+- .huge[huge = 400%]
+- .larger[larger = 250%]
+- .large[large = 125%]
+- .midi[midi = 85%] 
+- .small[small = 70%]
+- .xsmall[xsmall = 60%]
+- .tiny[tiny = 50%]
+
+---
+
+## Huge numbers
+
+.pull-left[
+  huge-number  
+  .huge-number[.green[1]]
+]
+.pull-right[
+  huge-pink-number    
+  .huge-number[.pink[1]]
+]
+
+---
+
+## Handwriting
+
+- text
+- .hand[hand]
+- .hand[.pink[hand with]]
+- .hand[.green[other colors]]
+
+---
+
+## Two columns, equal width
+
+.pull-left[
+- text 
+- on
+- left
+]
+.pull-right[
+```{r}
+2 + 1
+plot(cars) # <<
+```
+]
+
+---
+
+## Two columns, wider left
+
+.pull-left-wide[
+- text 
+- on
+- left
+]
+.pull-right-narrow[
+```{r}
+2 + 1
+plot(cars) # <<
+```
+]
+
+---
+
+## Two columns, wider right
+
+.pull-left-narrow[
+- text 
+- on
+- left
+]
+.pull-right-wide[
+```{r}
+2 + 1
+plot(cars) # <<
+```
+]
+
+---
+
+## Footnote
+
+Some text<sup>+</sup>
+
+.footnote[<sup>+</sup>Footnote]
+
+---
+
+## Custom boxes
+
+.question[
+A question: What is data science?
+]
+
+.your-turn[
+Some instructions: Figure out what data science is...
+]
+
+.tip[
+A tip: Nobody knows what data science is!
+]
+
+---
+
+## ggplot
+
+```{r out.width="55%"}
+library(ggplot2)
+ggplot(mpg, aes(x = hwy, y = cty, color = drv)) +
+  geom_point(size = 2) +
+  scale_color_viridis_d() # <<
+```
+
+---
+
+## tibble
+
+```{r}
+mpg
+```
+
+---
+
+## kable
+
+```{r}
+library(knitr)
+kable(head(mpg))
+```
+
+---
+
+class: middle
+
+# Module Template
+
+---
+
+class: middle
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+```{r echo=FALSE, out.width="50%"}
+knitr::include_graphics("../images/emma-rand.png")
+```
+]
+.pull-right[
+
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+School of Maths, University of Edinburgh, UK  
+]
+
+```{r echo=FALSE, out.width="50%"}
+knitr::include_graphics("../images/mine.jpg")
+```
+]
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+
+---
+
+## Summary
+
+This workshop walks you through setting up your system
+
+- for developing an R package and
+- for version control with Git with repositories hosted on GitHub
+
+In this workshop we assume `your system = Mac` -- if you're on a Windows machine, take the parallel workshop *Setting up your system for Windows users*
+
+
+???
+
+This workshop walks you through setting up your system for developing an R package and for version control with Git with repositories hosted on GitHub. Our goal is to get your system ready for actual package development in the next module.
+
+---
+
+## Lesson plan
+
+-  0 - 5: Introduction  
+    -  Prerequisites  
+    -  Learning Objectives  
+-  5 - 25: Section 1: Live code-along-coding  
+-  25 - 30: Additional exercises based on Section 1  
+-  30 - 45: Section 2: Live code-along-coding  
+-  45 - 50: Additional exercises based on Section 2  
+-  50 - 55: Wrap-up, where next, additional exercises  
+
+<!-- Edit appropriately -->
+
+???
+
+Add speaker notes
+
+---
+
+## Module Prerequisites
+
+Before starting this module you should complete the first module in the Forwards package development series: Packages in a nutshell.
+
+We will assume that you have
+
+-  [installed R and RStudio](../prerequisite-guides/install-r-rstudio.md)
+
+-  some experience of coding in R
+
+-  installed and loaded a package
+
+<!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. -->
+
+???
+
+Add speaker notes
+
+---
+
+## Learning Objectives
+
+At the end of this module the successful learner will be able to:
+
+- explain the rationale for writing packages
+
+- find and explore their own package library/libraries
+
+- describe the key components of a package
+
+- describe the different states a package can be in
+
+- outline the development of a package using devtools
+
+<!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives-->
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Section 1
+
+
+<!-- edit with the title of the first section in the module -->
+
+---
+
+## some text
+
+
+<!-- add your teaching material using the Format templates as a guide where needed -->
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Summary
+
+---
+
+## Summary
+
+<!-- summarise module -->
+
+
+???
+
+Add speaker notes
+
+---
+
+class: middle
+
+# Where next?
+
+---
+
+## Where next?
+
+<!-- which module in the curriculum could follow -->
+<!-- list some follow-up resources -->
+
+???
+
+Add speaker notes
+
+---
+
+Slides made with:  **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
+
+Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+## References
+
+.small[
+```{r refs1, echo=FALSE, results="asis"}
+PrintBibliography(myBib, start = 1, end = 5)
+```
+]
+
+---
+
+## References
+
+.small[
+```{r refs2, echo=FALSE, results="asis"}
+PrintBibliography(myBib, start = 6, end = 10)
+```
+]
+
+
+
+---
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+
+
+

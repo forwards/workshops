@@ -1,125 +1,41 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Packages in a nutshell</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Emma Rand" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="style-xaringanthemer.css" type="text/css" />
+    <link rel="stylesheet" href="style-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Packages in a nutshell
+## A Forwards Package Development module
+### <br>Emma Rand
+### <br>🔗 <a href="https://forwards.github.io/">link to slides</a>
+
 ---
-title: "Packages in a nutshell"
-subtitle: "A Forwards Package Development module"
-author: "<br>Emma Rand"
-date: "<br>🔗 [link to slides](https://forwards.github.io/)"
-output:
-  xaringan::moon_reader:
-    css: ["style-xaringanthemer.css", "style-custom.css"]
-    lib_dir: libs
-    nature:
-      ratio: "16:9"
-      highlightLines: true
-      highlightStyle: github
-      countIncrementalSlides: false
----
-
-```{r define-style, include = FALSE}
-# xaringanthemer ---------------------------------------------------------------
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#AD4475", # soft pink
-  secondary_color = "#8D377C", # purple
-  link_color = "#4485ad", # blue
-  code_highlight_color = "#F9E5AF", # light-yellow
-  code_inline_color = "#A7A7A7", # gray
-  base_font_size = "35px",
-  header_h1_font_size = "2.5rem",
-  header_h2_font_size = "2rem",
-  header_h3_font_size = "1.75rem",
-  text_font_google = google_font("Source Sans Pro"),
-  text_font_family = xaringanthemer_font_default("text_font_family"),
-  text_font_weight = xaringanthemer_font_default("text_font_weight"),
-  text_font_url = xaringanthemer_font_default("text_font_url"),
-  text_font_family_fallback = xaringanthemer_font_default("text_font_family_fallback"),
-  text_font_base = "sans-serif",
-  code_font_google = google_font("Source Sans Code"),
-  code_font_family = xaringanthemer_font_default("code_font_family"),
-  code_font_size = "25px",
-  code_font_url = xaringanthemer_font_default("code_font_url"),
-  code_font_family_fallback = xaringanthemer_font_default("code_font_family_fallback"),
-  outfile = "style-xaringanthemer.css"
-)
-
-# R options --------------------------------------------------------------------
-options(
-  htmltools.dir.version = FALSE,
-  dplyr.print_min = 6,
-  dplyr.print_max = 6,
-  tibble.width = 65,
-  width = 65
-)
-
-# figure height, width, dpi ----------------------------------------------------
-
-knitr::opts_chunk$set(
-  echo = TRUE,
-  fig.width = 8,
-  fig.asp = 0.618,
-  out.width = "60%",
-  fig.align = "center",
-  dpi = 300,
-  message = FALSE
-)
-
-# ggplot2 ----------------------------------------------------------------------
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 18))
-
-# countdown --------------------------------------------------------------------
-library(countdown)
-
-# xaringanExtra ----------------------------------------------------------------
-library(xaringanExtra)
-xaringanExtra::use_panelset()
-
-# hook for setting output number of lines --------------------------------------
-hook_output <- knitr::knit_hooks$get("output")
-knitr::knit_hooks$set(output = function(x, options) {
-  lines <- options$output.lines
-  if (is.null(lines)) {
-    return(hook_output(x, options)) # pass to default hook
-  }
-  x <- unlist(strsplit(x, "\n"))
-  more <- "..."
-  if (length(lines) == 1) { # first n lines
-    if (length(x) > lines) {
-      # truncate the output, but add ....
-      x <- c(head(x, lines), more)
-    }
-  } else {
-    x <- c(more, x[lines], more)
-  }
-  # paste these lines together
-  x <- paste(c(x, ""), collapse = "\n")
-  hook_output(x, options)
-})
 
 
-# Referencing ------------------------------------------------------------------
-library(RefManageR)
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "authoryear",
-           style = "markdown",
-           hyperlink = TRUE,
-           dashed = FALSE,
-           longnamesfirst = FALSE,
-           max.names = 2)
-myBib <- ReadBib("../bibliography.bib", check = FALSE)
-```
+
 
 layout: true
   
-<div class="my-footer">
-<span>
-<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
-</span>
-</div> 
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://forwards.github.io/" target="_blank"&gt;🔗 Link to slides&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
 
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Overview
 
@@ -128,29 +44,30 @@ class: middle
 ## Welcome!
 
 .pull-left[
-
+.center[
+&lt;img src="images/emma-rand.png" width="45%" style="display: block; margin: auto;" /&gt;
 Emma Rand  
 .small[
 Senior Lecturer (Prof)  
 Department of Biology, University of York, UK 
 ]
-```{r echo=FALSE, out.width="50%"}
-knitr::include_graphics("../images/emma-rand.png")
-```
+]
 ]
 .pull-right[
-
+.center[
+&lt;img src="images/mine.jpg" width="45%" style="display: block; margin: auto;" /&gt;
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK  
+School of Maths, University of Edinburgh, UK   
+RStudio
+]
+]
 ]
 
-```{r echo=FALSE, out.width="50%"}
-knitr::include_graphics("../images/mine.jpg")
-```
-]
+.center[
 [Forwards](https://forwards.github.io/) Teaching Team Leads
+]
 
 ---
 
@@ -208,7 +125,7 @@ Add speaker notes
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Why write a package?
 
@@ -238,9 +155,7 @@ This helps you gain recognition and create impact from your work.
 ## The bad news
 
 .... it may be frustrating
-```{r, echo=FALSE, out.width="500px"}
-knitr::include_graphics("../../pics/allie_brosh_argh.png")
-```
+&lt;img src="images/allie_brosh_argh.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 .tiny[
 COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-levels-of-social-entrapment.html
@@ -256,9 +171,7 @@ Add speaker notes
 ## The good news!
 
 .... frustration is normal and temporary.
-```{r, echo=FALSE, out.width="500px"}
-knitr::include_graphics("../../pics/allie_brosh_happy.png")
-```
+&lt;img src="images/allie_brosh_happy.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 .tiny[
 COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/06/this-is-why-ill-never-be-adult.html
@@ -271,16 +184,14 @@ Add speaker notes
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Where do packages live?
 
 ---
 ## R packages live in a library
 
-```{r, out.width = "500px", echo=FALSE}
-knitr::include_graphics("../../pics/library.png")
-```
+&lt;img src="images/library.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -294,8 +205,27 @@ What version of R are you using?
 ]
 
 .scroll-output-height[
-```{r}
+
+```r
 R.version
+```
+
+```
+##                _                           
+## platform       x86_64-apple-darwin17.0     
+## arch           x86_64                      
+## os             darwin17.0                  
+## system         x86_64, darwin17.0          
+## status                                     
+## major          4                           
+## minor          0.3                         
+## year           2020                        
+## month          10                          
+## day            10                          
+## svn rev        79318                       
+## language       R                           
+## version.string R version 4.0.3 (2020-10-10)
+## nickname       Bunny-Wunnies Freak Out
 ```
 ]
 
@@ -310,8 +240,13 @@ Add speaker notes
 Where is R's home directory?
 ]
 
-```{r}
+
+```r
 R.home()
+```
+
+```
+## [1] "/Library/Frameworks/R.framework/Resources"
 ```
 
 The R home directory is the top-level directory of the R installation being run.
@@ -336,8 +271,16 @@ What is in R's home directory?
 ]
 The home directory contains these files and folders:
 
-```{r}
+
+```r
 list.files(R.home())
+```
+
+```
+##  [1] "bin"          "COPYING"      "doc"          "etc"         
+##  [5] "fontconfig"   "include"      "Info.plist"   "lib"         
+##  [9] "library"      "man1"         "modules"      "R"           
+## [13] "Rscript"      "share"        "SVN-REVISION" "tests"
 ```
 
 
@@ -355,8 +298,13 @@ What is the default R library?
 ]
 
 
-```{r}
+
+```r
 .Library
+```
+
+```
+## [1] "/Library/Frameworks/R.framework/Resources/library"
 ```
 
 The default library is in the home directory
@@ -372,8 +320,13 @@ Add speaker notes
 What libraries does R know about?
 ]
 
-```{r}
+
+```r
 .libPaths()
+```
+
+```
+## [1] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"
 ```
 
 
@@ -399,9 +352,7 @@ You may not have write access to the default library.
 
 ## Where do R packages come from?
 
-```{r, echo=FALSE, out.width="400px"}
-knitr::include_graphics("../../pics/stork.png")
-```
+&lt;img src="images/stork.png" width="400px" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -414,12 +365,14 @@ Add speaker notes
 CRAN and GitHub, mostly
 
 CRAN:
-```{r, eval=FALSE}
+
+```r
 install.packages("praise")
 ```
 
 GitHub:
-```{r, eval=FALSE}
+
+```r
 remotes::install_github("rladies/praise")
 ```
 
@@ -442,15 +395,20 @@ withr::with_libpaths(library, install_github("gaborcsardi/praise"))
 .your-turn[
 How many packages do you have installed?
 ]
-```{r}
+
+```r
 dim(installed.packages())
+```
+
+```
+## [1] 599  16
 ```
 --
 The output of `installed.packages()` is a matrix; each row is a package
 
 --
 
-I have `r dim(installed.packages())[1]` packages installed
+I have 599 packages installed
 
 ???
 
@@ -478,8 +436,20 @@ Add speaker notes
 
 The columns give some information about each package:
 
-```{r}
+
+```r
 colnames(installed.packages())
+```
+
+```
+##  [1] "Package"               "LibPath"              
+##  [3] "Version"               "Priority"             
+##  [5] "Depends"               "Imports"              
+##  [7] "LinkingTo"             "Suggests"             
+##  [9] "Enhances"              "License"              
+## [11] "License_is_FOSS"       "License_restricts_use"
+## [13] "OS_type"               "MD5sum"               
+## [15] "NeedsCompilation"      "Built"
 ```
 
 ???
@@ -514,7 +484,7 @@ You will edit these in set up
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Developing a script vs developing a package
 
@@ -555,7 +525,7 @@ Change it, try it, change it, try it,
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Explore!
 
@@ -582,7 +552,7 @@ This looks like a lot of files to get right! Fortunately the devtools approach w
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Package states
 ---
@@ -600,12 +570,10 @@ There are five states a package can be in:
 -  in-memory
 ---
 
-```{r, out.width = "870px", echo=FALSE}
-knitr::include_graphics("../../pics/annotated_installation.png")
-```
+&lt;img src="images/annotated_installation.png" width="870px" style="display: block; margin: auto;" /&gt;
 
 .tiny[
-Figure from [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
+Figure from [R Packages](https://r-pkgs.org/) 
 https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
@@ -754,14 +722,12 @@ Command line tool `R CMD INSTALL` powers all package installation
 Add speaker notes
 ---
 
-```{r, out.width = "900px", echo=FALSE}
-knitr::include_graphics("../../pics/installation.png")
-```
+&lt;img src="images/installation.png" width="900px" style="display: block; margin: auto;" /&gt;
 
 There's more than one route (tool) for installation.
 
 .tiny[
-Figure from [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
+Figure from [R Packages](https://r-pkgs.org/) 
 https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
@@ -798,16 +764,14 @@ We do not use `library()` for packages we are working on
 Add speaker notes
 
 ---
-class: middle
+class: middle, inverse
 
 # Workflow
 
 ---
 # Workflow
 
-```{r, out.width = "800px", echo=FALSE}
-knitr::include_graphics("../../pics/annotated_load_all.png")
-```
+&lt;img src="images/annotated_load_all.png" width="800px" style="display: block; margin: auto;" /&gt;
 
 
 `devtools::load_all()` is to package development  
@@ -822,12 +786,10 @@ devtools::load_all() simulates package installation, i.e., it puts the package i
 ---
 # Workflow
 
-```{r, out.width = "800px", echo=FALSE}
-knitr::include_graphics("../../pics/annotated_install_and_restart.png")
-```
+&lt;img src="images/annotated_install_and_restart.png" width="800px" style="display: block; margin: auto;" /&gt;
 
 
-RStudio’s Install & Restart is to package development  
+RStudio’s Install &amp; Restart is to package development  
 as  
 `source()` or
 
@@ -851,7 +813,7 @@ Add speaker notes
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Approach
 
@@ -860,7 +822,7 @@ class: middle
 
 ## Approach
 
-We follow the approach used in [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`:
+We follow the approach used in [R Packages](https://r-pkgs.org/) :
 
 -  uses `devtools` 
 -  in RStudio
@@ -868,7 +830,7 @@ We follow the approach used in [R Packages](https://r-pkgs.org/) `r Cite(myBib, 
 -  hosted on GitHub
 
 ---
-class: middle
+class: middle, inverse
 
 # Summary
 
@@ -888,7 +850,7 @@ Add speaker notes
 
 ---
 
-class: middle
+class: middle, inverse
 
 # Where next?
 
@@ -896,7 +858,7 @@ class: middle
 
 ## Where next?
 
-<!-- list some follow-up resources -->
+&lt;!-- list some follow-up resources --&gt;
 
 R Forwards modules
 
@@ -904,7 +866,7 @@ R Forwards modules
 -  [Your first package!](https://www.eventbrite.co.uk/e/r-forwards-package-development-module-your-first-package-tickets-132115738731)
 
 Other sources
--  [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
+-  [R Packages](https://r-pkgs.org/) 
 -  Hillary Parker's [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
 -  Karl Broman's [R package primer a minimal tutorial](https://kbroman.org/pkg_primer/)
 
@@ -914,27 +876,30 @@ Your first package! sign up close 1800 GMT Tuesday
 
 ---
 
-class: middle
+class: middle, inverse
 
 # What questions do you have?
 
+---
 
+class: middle, inverse
+
+# Acknowledgements
 
 ---
 
-Slides made with:  **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
+Slides made with: **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
 
-Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
+Referencing with **`RefManageR`** .
 
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
 ---
+
 ## References
 
 .small[
-```{r refs1, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 1, end = 5)
-```
+NULL
 ]
 
 ---
@@ -942,25 +907,143 @@ PrintBibliography(myBib, start = 1, end = 5)
 ## References
 
 .small[
-```{r refs2, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 6, end = 10)
-```
+NULL
 ]
 
 ---
+
 ## References
 
 .small[
-```{r refs3, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 11)
-```
+NULL
 ]
 
 ---
+
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Module: Packages in a nutshell&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
 
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
 
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
-
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
