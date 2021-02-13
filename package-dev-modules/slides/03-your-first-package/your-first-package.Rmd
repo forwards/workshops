@@ -1,0 +1,1188 @@
+---
+title: "Your first package"
+subtitle: "Forwards Package Development module"
+author: "<br>Emma Rand"
+date: "<br>🔗 [link to slides](https://forwards.github.io/)"
+output:
+  xaringan::moon_reader:
+    css: ["style-xaringanthemer.css", "style-custom.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r define-style, include = FALSE}
+# xaringanthemer ---------------------------------------------------------------
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#AD4475", # soft pink
+  secondary_color = "#8D377C", # purple
+  link_color = "#4485ad", # blue
+  code_highlight_color = "#F9E5AF", # light-yellow
+  code_inline_color = "#A7A7A7", # gray
+  base_font_size = "35px",
+  header_h1_font_size = "2.5rem",
+  header_h2_font_size = "2rem",
+  header_h3_font_size = "1.75rem",
+  text_font_google = google_font("Source Sans Pro"),
+  text_font_family = xaringanthemer_font_default("text_font_family"),
+  text_font_weight = xaringanthemer_font_default("text_font_weight"),
+  text_font_url = xaringanthemer_font_default("text_font_url"),
+  text_font_family_fallback = xaringanthemer_font_default("text_font_family_fallback"),
+  text_font_base = "sans-serif",
+  code_font_google = google_font("Source Sans Code"),
+  code_font_family = xaringanthemer_font_default("code_font_family"),
+  code_font_size = "25px",
+  code_font_url = xaringanthemer_font_default("code_font_url"),
+  code_font_family_fallback = xaringanthemer_font_default("code_font_family_fallback"),
+  outfile = "style-xaringanthemer.css"
+)
+
+# R options --------------------------------------------------------------------
+options(
+  htmltools.dir.version = FALSE,
+  dplyr.print_min = 6,
+  dplyr.print_max = 6,
+  tibble.width = 65,
+  width = 65
+)
+
+# figure height, width, dpi ----------------------------------------------------
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE
+)
+
+# ggplot2 ----------------------------------------------------------------------
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 18))
+
+# countdown --------------------------------------------------------------------
+library(countdown)
+
+# xaringanExtra ----------------------------------------------------------------
+library(xaringanExtra)
+xaringanExtra::use_panelset()
+
+# hook for setting output number of lines --------------------------------------
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options)) # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines) == 1) { # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+
+
+# Referencing ------------------------------------------------------------------
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = TRUE,
+           dashed = FALSE,
+           longnamesfirst = FALSE,
+           max.names = 2)
+myBib <- ReadBib("bibliography.bib", check = FALSE)
+```
+
+layout: true
+  
+<div class="my-footer">
+<span>
+<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
+</span>
+</div> 
+
+
+
+<!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added -->
+
+<!-- Instructions creating a new module-->
+<!-- Guiding principles for module design are here: 
+../README.md -->
+<!-- Edit Title, subtitle, Author and link -->
+<!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed -->
+
+
+---
+
+class: middle, inverse
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+.center[
+```{r echo = FALSE, out.width = "45%"}
+knitr::include_graphics("images/emma-rand.png")
+```
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+]
+]
+.pull-right[
+.center[
+```{r echo = FALSE, out.width = "45%"}
+knitr::include_graphics("images/mine.jpg")
+```
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+School of Maths, University of Edinburgh, UK   
+RStudio
+]
+]
+]
+
+.center[
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+]
+
+---
+
+## Summary
+
+This workshop walks you through 
+
+- 
+- 
+
+
+
+
+???
+
+add speaker notes
+
+---
+
+## Lesson plan
+
+-  00 - 05: Introduction  
+    -  Prerequisites  
+    -  Learning Objectives  
+-  05 - 25:   
+-  25 - 30:   
+-  30 - 45:   
+-  45 - 50:   
+-  50 - 55: Wrap-up, where next  
+
+<!-- Edit appropriately -->
+
+???
+
+Add speaker notes
+
+---
+
+## Module Prerequisites
+
+Before starting this module we will assume that you have
+
+-   "Packages in a nutshell" or equivalent experience
+
+-   "Setting up your system" or equivalent experience
+   -   the packages `devtools`, `roxygen2`, `testthat` and `assertthat` installed
+   -   R build toolchain: Rtools(windows) or XCode (mac) or r-base-dev
+   -   git installed, a GitHub account and verified they can talk to RStudio
+
+<!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. -->
+
+???
+
+Add speaker notes
+
+---
+
+## Learning Objectives
+
+At the end of this module the successful learner will be able to:
+
+-   create a simple version-controlled package
+-   explain the key components of a minimal package  
+-   use the package interactively with `load_all()`
+-   link a local version controlled package to a remote repository on GitHub 
+-   create and document a function with `roxygen2` and `document()`  
+-   use `check()` to execute R CMD check
+-   create `DESCRIPTION` and `LICENSE` files 
+
+<!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives-->
+
+???
+
+Add speaker notes
+---
+
+class: middle
+
+## Create a package!
+
+---
+## Create a package!
+
+.tip[
+Be deliberate about where you create your package.
+
+Do not nest inside another RStudio project, R package or git repo.
+]
+
+???
+Add speaker notes
+
+
+---
+## Create a package!
+
+.your-turn[
+
+Verify that you can create a package with:
+
+]
+
+
+```r
+usethis::create_package("~/Desktop/mypackage")
+```
+---
+.small[
+
+```
+√ Creating 'C:/Users/er13/Desktop/mypackage/'
+√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
+√ Creating 'R/'
+√ Writing 'DESCRIPTION'
+Package: mypackage
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R (parsed):
+    * First Last <first.last@example.com> [aut, cre] (YOUR-ORCID-ID)
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+√ Writing 'NAMESPACE'
+√ Writing 'mypackage.Rproj'
+√ Adding '.Rproj.user' to '.gitignore'
+√ Adding '^mypackage\\.Rproj$', '^\\.Rproj\\.user$' to '.Rbuildignore'
+√ Opening 'C:/Users/er13/Desktop/mypackage/' in new RStudio session
+√ Setting active project to '<no active project>'
+```
+]
+
+
+---
+What other files and directories are created?
+
+???
+Add speaker notes
+
+---
+## `create_package()`
+
+What happens when we run `create_package()`?
+
+-   R will create a folder called `mypackage` which is a package and an RStudio project.
+
+-   restart R in the new project
+
+-   create some infrastructure for your package
+
+-   start the RStudio Build pane
+
+???
+Add speaker notes
+
+---
+## `create_package()`
+
+What happens when we run `create_package()`?
+
+-   `mypackage.Rproj` is the file that makes this directory an RStudio Project.
+-   The `R/` directory is where we will put `.R` files with function definitions.
+-   `DESCRIPTION` provides metadata about your package. 
+-   `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
+
+continued
+
+???
+DESCRIPTION We will need to edit this.
+
+---
+## `create_package()`
+
+What happens when we run `create_package()`?
+
+-   `.Rbuildignore` lists files that we need but that should not be included when building the R package from source.
+-   `.gitignore` anticipates Git usage and ignores some standard, behind-the-scenes files created by R and RStudio.
+
+???
+
+.Rbuildignore e.g., the `.Rproj` file and the LICENSE
+
+
+---
+## What to put in it?
+
+Functions will go in an `.R` file.
+
+There's a `usethis` helper for adding `.R` files!
+
+```r
+usethis::use_r("file-name")
+```
+
+--
+
+`usethis::use_r()` adds the file extension.
+
+
+???
+Organize files so that related code lives together. If you can give a file
+a concise and informative name, it's probably about right.
+
+Putting each of the functions in a package in their own `.R` is a good place to start. As your package complexity increases,  you might group related functions.
+
+---
+## `usethis::use_r()`
+
+.your-turn[
+
+Create a new R file in your package called `animalSounds.R`
+
+]
+
+--
+
+```r
+usethis::use_r("animalSounds")
+```
+
+```r
+√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
+• Modify 'R/animalSounds.R'
+• Call `use_test()` to create a matching test file
+```
+
+???
+Add speaker notes
+
+
+---
+## `usethis::use_r()`
+
+.your-turn[
+
+Create a new R file in your package called `animalSounds.R`
+
+]
+
+
+
+```r
+usethis::use_r("animalSounds")
+```
+
+```r
+√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
+• Modify 'R/animalSounds.R'  
+*• Call `use_test()` to create a matching test file 
+```
+
+???
+writing tests will be the subject of another module
+
+
+---
+## Add a function
+
+.your-turn[
+
+Put the following code into your script:
+
+]
+
+```r
+animalSounds <- function(animal, sound){
+  assertthat::assert_that(
+    assertthat::is.string(animal),
+    assertthat::is.string(sound))
+  paste0("The ", animal, " goes ", sound, "!")
+}
+```
+
+.footnote[.small[
+We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) `r Cite(myBib, "Wickham:2017:RDS:3086927")`
+]]
+
+
+???
+
+This function takes two strings. using the `assertthat` package, it checks both inputs are strings and then prints a statement.
+
+
+---
+
+class: middle
+
+## Test your function
+
+---
+## Development workflow
+
+In a normal script, you might use:
+
+```r
+source("R/animalSounds.R")
+``` 
+
+but when building packages, we use a `devtools` approach.
+
+
+
+---
+## Development workflow
+
+```{r, out.width = "600px", echo=FALSE}
+knitr::include_graphics("images/dev_cycle_before_testing.png")
+```
+
+--
+.center[
+You don't even need to save your code!
+]
+
+???
+
+devtools::load_all() simulates package installation so that you can test your function.
+
+A shortcut is Cmd/Ctrl + Shift + L
+
+---
+## `devtools::load_all()`
+
+.your-turn[
+
+Load with `devtools::load_all()`. Test the `animalSounds()` function.
+]
+
+--
+
+```r
+devtools::load_all()
+``` 
+```r
+Loading mypackage
+``` 
+
+---
+## test
+
+```r
+animalSounds("dog", "woof")
+```
+
+```r
+[1] "The dog goes woof!"
+``` 
+
+---
+## `devtools::load_all()`
+
+.your-turn[
+Change some tiny thing about your function - maybe the animal “says” instead 
+of “goes”?
+]
+
+---
+## `devtools::load_all()`
+
+.your-turn[ 
+Load with `devtools::load_all()` and test the updated function.
+]
+
+???
+Add speaker notes
+
+
+
+---
+class: middle
+
+## Check your package!
+
+---
+## `devtools::check()`
+
+`R CMD check` is the gold standard for checking that an R package is in full working order.
+
+--
+
+It is a programme that is executed in the shell. However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
+
+---
+## `devtools::check()`
+
+.your-turn[
+Check your package
+]
+
+```r
+devtools::check()
+```
+
+
+???
+
+On running `check()` you may get an error if you are using a networked drive.
+
+
+---
+## `devtools::check()`
+
+You will get lots of output. It will end with:
+
+```r
+-- R CMD check results -------------------- mypackage 0.0.0.9000 ----
+Duration: 12.5s
+
+> checking DESCRIPTION meta-information ... WARNING
+  Non-standard license specification:
+    `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+  Standardizable: FALSE
+
+> checking dependencies in R code ... WARNING
+  '::' or ':::' import not declared from: 'assertthat'
+
+0 errors √ | 2 warnings x | 0 notes √
+```
+
+???
+
+Errors mean the package won't work until fixed
+Warnings mean the package will work but is not minimally documented
+
+---
+## `devtools::check()`
+
+You will get lots of output. It will end with:
+
+```r
+-- R CMD check results -------------------- mypackage 0.0.0.9000 ----
+Duration: 12.5s
+
+*> checking DESCRIPTION meta-information ... WARNING
+*  Non-standard license specification:
+*    `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+*    license
+*  Standardizable: FALSE
+
+> checking dependencies in R code ... WARNING
+  '::' or ':::' import not declared from: 'assertthat'
+
+0 errors √ | 2 warnings x | 0 notes √
+```
+???
+
+Warns us 
+
+---
+## `devtools::check()`
+
+You will get lots of output. It will end with:
+
+```r
+-- R CMD check results -------------------- mypackage 0.0.0.9000 ----
+Duration: 12.5s
+
+> checking DESCRIPTION meta-information ... WARNING
+  Non-standard license specification:
+    `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+  Standardizable: FALSE
+
+*> checking dependencies in R code ... WARNING
+*  '::' or ':::' import not declared from: 'assertthat'
+
+0 errors √ | 2 warnings x | 0 notes √
+```
+
+???
+
+Warns us 
+
+---
+## An aside in case of error
+
+On running `devtools::check()` you may get an error if you are using a networked drive.
+
+```
+Updating mypackage documentation  
+Error: The specified file is not readable: path-to\mypackage\NAMESPACE  
+
+```
+--
+
+This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
+
+---
+## An aside: a fix for networked drives.
+
+Save a copy of this file:
+
+[fix_for_networked_drives.R](fix_for_networked_drives.R)
+
+Save it somewhere other than the `mypackage` directory.
+
+--
+
+Open the file from the `mypackage` project session.
+
+--
+
+Run the whole file.
+
+You should now find that `devtools::check()` proceeds normally.
+
+
+---
+class: middle
+
+# Document your package!
+
+---
+## Naming a Package
+
+Can only contain the characters [A-Z, a-z, 0-9, .]
+
+Tips:
+-   Unique name you can easily Google
+-   Avoid mixing upper and lower case
+-   Use abbreviations
+-   Add an r to make unique, e.g `stringr`
+-   Use wordplay, e.g. `lubridate`
+-   Avoid trademarked names
+-   Use the `available` package to check name not taken
+
+
+???
+Let's go back to the start. Before creating our package we need a name.
+
+---
+## Metadata in `DESCRIPTION`
+
+-  *Title*: One line, title case, with no period. Fewer than 65 characters.
+-  *Version*
+    - for release: x.y.z where x= major version, y = minor version, z = patch version.
+    - for development version building on version x.y.z, use: x.y.z.9000
+- *Authors@R*: "aut" means author, "cre" means creator, "ctb" means contributor.
+
+
+???
+Add speaker notes
+
+---
+## Metadata in `DESCRIPTION`
+
+-  *Description*: One paragraph describing what the package does. Keep the width 
+of the paragraph to 80 characters; indent subsequent lines with 4 spaces.
+-  *License*: Will discuss later
+-  *Encoding*: How to encode text, use UTF-8 encoding.
+-  *LazyData*: Use `true` to lazy-load data sets in the package.
+
+???
+Add speaker notes
+
+
+
+---
+## Update `DESCRIPTION`
+
+.tip[
+
+You can use Ctrl/Command + . and start typing a file name to open a file for editing
+
+]
+
+
+.your-turn[
+
+1. Add a title and description.
+
+2. Add yourself as an author and maintainer.
+
+]
+
+???
+Add speaker notes
+
+---
+## Document your package
+
+.tip[
+
+There is a lot more to package documentation!
+
+There is another module!
+
+]
+
+???
+
+but getting the DESCRIPTION completed is a good start.
+
+---
+class: middle
+
+# License your package
+
+---
+## `LICENSE`
+
+
+A license provides legally binding guidelines for the use and distribution of software.
+
+Technically, without a license people do not have permission to download and use your package.
+
+--
+
+The MIT license is commonly used for open source software. 
+
+
+.footnote[.small[
+Other licenses are available. See GitHub's [Choose an open source license](https://choosealicense.com/)
+]]
+
+???
+Add speaker notes
+
+---
+## `LICENSE`
+
+We can add the MIT license using the helper function `usethis::use_mit_license()`
+.your-turn[
+
+Add a MIT license.
+
+]
+
+```r
+usethis::use_mit_license("Emma Rand")
+```
+
+---
+
+```r
+√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
+√ Setting License field in DESCRIPTION to 'MIT + file LICENSE'
+√ Writing 'LICENSE.md'
+√ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+√ Writing 'LICENSE'
+```
+
+---
+## `LICENSE`
+
+.your-turn[
+
+What has changed?
+
+]
+
+
+???
+Add speaker notes
+
+---
+## `LICENSE`
+
+Using `usethis::use_mit_license()`:
+
+-  creates a `LICENSE` file
+
+-  adds a copy of the full license, `LICENSE.Md`
+   -   you can open `LICENSE.Md` to see what rights you're granting.
+   
+-  adds these files to `.Rbuildignore`
+
+
+---
+## `devtools::check()`
+
+
+.your-turn[
+Check your package
+]
+
+```r
+devtools::check()
+```
+---
+## `devtools::check()`
+
+We've fixed an error!
+
+```r
+-- R CMD check results -------------------- mypackage 0.0.0.9000 ----
+Duration: 10.8s
+
+> checking dependencies in R code ... WARNING
+  '::' or ':::' import not declared from: 'assertthat'
+
+0 errors √ | 1 warning x | 0 notes √
+```
+
+--
+
+Package dependencies are covered in another module.
+
+---
+## Use Git
+
+First, make sure Git is configured:
+
+Tools | Shell...
+
+```r
+git config --global --list
+```
+
+```
+user.name=3mmaRand
+user.email=emma.rand@york.ac.uk
+```
+
+
+.footnote[.small[
+[Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference `r Cite(myBib, "Bryan_Happy_Git")`.
+]]
+
+???
+To configure if needed
+
+git config --global user.name 'Emma Rand'
+git config --global user.email 'emma.rand@york.ac.uk'
+
+
+---
+## Use Git
+To make our project a Git repository, or 'repo' on our local machine we use `usethis::use_git()`
+
+.your-turn[
+Make your package a Git repo
+]
+
+```r
+usethis::use_git()
+```
+
+---
+```r
+√ Initialising Git repo
+√ Adding '.Rhistory', '.RData' to '.gitignore'
+There are 8 uncommitted files:
+• '.gitignore'
+• '.Rbuildignore'
+• 'DESCRIPTION'
+• 'LICENSE'
+• 'LICENSE.md'
+• 'mypackage.Rproj'
+• 'NAMESPACE'
+• 'R/'
+Is it ok to commit them?
+
+1: Yeah
+2: Absolutely not
+3: No
+
+```
+
+Choose the Yes option
+
+---
+```r
+√ Adding files
+√ Commit with message 'Initial commit'
+• A restart of RStudio is required to activate the Git pane
+Restart now?
+
+1: Nope
+2: Definitely
+3: No
+
+```
+Choose the Yes option
+
+---
+## Use GitHub
+To create a copy on GitHub we use `usethis::use_github()`
+
+This takes a local project, creates an associated repo on GitHub, adds it to your local repo as the "origin remote", and makes an initial "push" to synchronize.
+
+
+---
+## Use GitHub
+
+.your-turn[
+Copy your local repo to GitHub
+]
+
+```r
+usethis::use_github()
+```
+
+--
+
+You get an error 
+---
+## Use GitHub
+
+```r
+√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
+√ Checking that current branch is 'master'
+Error: No GitHub `auth_token` is available.
+See `browse_github_token()` for help storing a token as an environment variable.
+```
+
+
+because authentication is also required.
+
+---
+## Authentication
+
+A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. You can do this with `usethis::browse_github_token()`
+
+
+.your-turn[
+Get a GitHub PAT
+]
+
+```r
+usethis::browse_github_token()
+```
+---
+## Authentication
+
+This opens a browser window for you to log in to GitHub.
+
+```r
+√ Opening URL 'https://github.com/settings/tokens/new?scopes=repo,gist,user:email&description=R:GITHUB_PAT'
+• Call `usethis::edit_r_environ()` to open '.Renviron'.
+• Store your PAT (personal access token) with a line like:
+  GITHUB_PAT=xxxyyyzzz
+  [Copied to clipboard]
+• Make sure '.Renviron' ends with a newline!
+```
+
+---
+## Authentication
+.your-turn[
+Click generate token.
+
+Copy it.
+
+Leave this page open for the time being.
+]
+
+---
+## Authentication
+.your-turn[
+Go back to RStudio
+
+Edit `.Renviron`
+]
+
+```r
+usethis::edit_r_environ()
+```
+```r
+• Modify 'C:/Users/er13/.Renviron'
+• Restart R for changes to take effect
+```
+
+---
+## Authentication
+
+.Renviron will open. 
+.your-turn[
+Add a line like:
+
+GITHUB_PAT=xxxyyyzzz
+]
+Where xxxyyyzzz is pasted from the clipboard.
+
+--
+
+Make sure `.Renviron` ends with a newline!
+
+Save and close .Renviron
+
+---
+## Use GitHub
+
+.your-turn[
+Restart R
+
+Instruct R to make a copy of your local repo on GitHub
+]
+
+```r
+usethis::use_github()
+```
+
+---
+
+```r
+✔ Checking that current branch is 'master'
+Which git protocol to use? (enter 0 to exit) 
+1: ssh   <-- presumes that you have set up ssh keys
+2: https <-- choose this if you don't have ssh keys (or don't know if you do)
+```
+
+Choose 2 at the moment.
+
+
+---
+## Use GitHub
+
+```r
+√ Checking that current branch is 'master'
+• Check title and description
+  Name:        mypackage
+  Description: Prints a Sentence in the Form the Animal Goes Sound
+Are title and description ok?
+
+1: Absolutely not
+2: No
+3: Definitely
+
+
+```
+Choose the Yes option
+
+
+---
+## Use GitHub
+
+```r
+√ Creating GitHub repository
+√ Setting remote 'origin' to 'https://github.com/3mmaRand/mypackage.git'
+√ Adding GitHub links to DESCRIPTION
+√ Setting URL field in DESCRIPTION to 'https://github.com/3mmaRand/mypackage'
+√ Setting BugReports field in DESCRIPTION to 'https://github.com/3mmaRand/mypackage/issues'
+√ Pushing 'master' branch to GitHub and setting remote tracking branch
+√ Opening URL 'https://github.com/3mmaRand/mypackage'
+```
+
+---
+class: middle
+
+# `r emo::ji("package")` Woohoo, you did it! `r emo::ji("package")`
+
+---
+class: middle
+
+# Summary
+
+---
+## Summary
+
+-   bb
+-   bb
+-   bb
+-   bb
+-   bb
+-   bb
+
+
+---
+class: middle
+
+# Where next?
+
+
+
+---
+
+## Where next?
+
+Package Documentation
+
+Pack dependencies
+
+Unit testing
+
+
+???
+
+Add speaker notes
+
+---
+
+Slides made with:  **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
+
+Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+## References
+
+.small[
+```{r refs1, echo=FALSE, results="asis"}
+PrintBibliography(myBib, start = 1, end = 5)
+```
+]
+
+---
+
+## References
+
+.small[
+```{r refs2, echo=FALSE, results="asis"}
+PrintBibliography(myBib, start = 6, end = 10)
+```
+]
+
+
+
+---
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+
+
+
