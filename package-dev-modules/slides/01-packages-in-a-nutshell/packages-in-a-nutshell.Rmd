@@ -159,6 +159,14 @@ RStudio
 [Forwards](https://forwards.github.io/) Teaching Team Leads
 ]
 
+???
+Hello and welcome to Packages in a Nutshell!
+We are Emma Rand and Mine Çetinkaya-Rundel and we are part of R Forwards which is an R Foundation task force to address underrepresentation in the R community and particularly the developer community.
+
+Forwards have delivered face-to-face one-day workshops in Package development, supported by a grant from the R Consortium, for several years. These are heavily based on the R packages book by Hadley Wickham and Jenny Bryan. Recently we have been modularising our workshop materials with the aim of increasing our ability to reach the many people who can't travel to a one-day workshop and make it easier for others to teach with our materials.
+
+
+
 ---
 
 ## Summary
@@ -173,8 +181,9 @@ This workshop explains what a package is and why you might want to write one.
 
 ???
 
-This workshop explains what a package is and why you might want to write one. It covers where packages come from, where they live on your computer and the different states a package can be in. We will explore the key components of a package using an example and outline the Forwards approach to package development process.
-
+This workshop explains what a package is and why you might want to write one.
+It covers where packages come from, where they live on your computer and the different states a package can be in. 
+We will explore the key components of a package using an example and outline the Forwards approach to package development process.
 
 ---
 
@@ -184,13 +193,32 @@ Before starting this module you should have:
 
 -  [installed R and RStudio](../prerequisite-guides/install-r-rstudio.md)
 
--  had some experience of coding in R and it will help to have previously installed and loaded packages
+-  had some experience of coding in R 
+
+-  and it will help to have previously installed and loaded packages
+
+I suggest opening RStudio if you want to code along
+
+???
+ The coding will be fairly short commands  - you will not need a lot of space and can split your screen with zoom and RStudio.
 
 
+---
+
+## Be excellent to each other!
+
+`r emo::ji("yellow_heart")` Please use the chat!
+
+`r emo::ji("purple_heart")` Be kind
+
+`r emo::ji("green_heart")` Be respectful
 
 ???
 
-Add speaker notes
+Our intention is make time for asking questions. Please use the chat.
+We hope you will feel comfortable posting your questions 'To everyone'
+because that will help create a supportive learning space for all of us but if you feel more comfortable messaging me or Mine, that's fine.
+
 
 ---
 
@@ -221,13 +249,13 @@ class: middle, inverse
 
 ---
 
-## Why resuable components
-
--  You want to **test** it
+## Why reusable components
 
 -  You want to **generalise** it
 
 -  You want to **document** it
+
+-  You want to **test** it
 
 -  You want to **share** it
 
@@ -235,6 +263,12 @@ class: middle, inverse
 
 
 ???
+
+Making a package helps you make your work more reusable. If you find your self copying and pasting chunks of code and changing a few variable names it means you are doing some thing that could be generalised. You may have written functions to save yourself some copying and pasting.
+
+Making a package takes that a step further. You do not need to make a package for others to use - it can be just for your use.
+
+The conventions and infrastructure around a package encourage you to document and test your functions.
 
 These aspects allow you to work reproducibly, collaborate with others and disseminate your work more easily.
 
@@ -245,7 +279,7 @@ This helps you gain recognition and create impact from your work.
 ## The bad news
 
 .... it may be frustrating
-```{r, echo = FALSE, out.width = "500px"}
+```{r, echo = FALSE, out.width = "500px", fig.alt = "cartoon of a distressed being wrapped in a blanket"}
 knitr::include_graphics("images/allie_brosh_argh.png")
 ```
 
@@ -256,14 +290,14 @@ COPYRIGHT: Allie Brosh  http://hyperboleandahalf.blogspot.com/2010/09/four-level
 
 ???
 
-Add speaker notes
+It may be frustrating because working in a new way and learning new things is frustrating.
 
 ---
 
 ## The good news!
 
 .... frustration is normal and temporary.
-```{r, echo = FALSE, out.width = "500px"}
+```{r, echo = FALSE, out.width = "500px", fig.alt = "cartoon of a happy being sat at a desk and typing on laptop at 03:17"}
 knitr::include_graphics("images/allie_brosh_happy.png")
 ```
 
@@ -282,16 +316,27 @@ class: middle, inverse
 
 # Where do packages live?
 
+
+???
+
+Let us start by thinking about where packages live on your computer
+
 ---
 ## R packages live in a library
 
-```{r, out.width = "500px", echo = FALSE}
+```{r, out.width = "500px", echo = FALSE, fig.alt = "photo of a library with a  central atrium from ground to top floor flanked by six floors of shelved books"}
 knitr::include_graphics("images/library.png")
 ```
 
 --
 
 Where's the library?
+
+
+???
+This is the sort of statement experts make! What *is* a library?
+A directory into which packages are installed.
+We can start to answer this by learning more about our R installation.
 
 ---
 ## Get to know your R installation.
@@ -308,7 +353,9 @@ R.version
 
 ???
 
-Add speaker notes
+It's your turn. Type R.version to see what version of R you are using.
+
+Post your version in chat.
 
 ---
 ## Get to know your R installation.
@@ -323,9 +370,13 @@ R.home()
 
 The R home directory is the top-level directory of the R installation being run.
 
+--
+
 Note: this is **not** the same as your working directory.
 
 ???
+
+Now type R.home().
 
 The name of the home directory will be the version you are using.
 
@@ -341,7 +392,6 @@ You working directory is where R will look for your files.
 .your-turn[
 What is in R's home directory?
 ]
-The home directory contains these files and folders:
 
 ```{r}
 list.files(R.home())
@@ -350,12 +400,12 @@ list.files(R.home())
 
 ???
 
-Add speaker notes
+Now do list.files(R.home())
+
+The home directory contains these files and folders. Notice one of these is library. That library is your default library
 
 ---
-
 ## Get to know your R library
-
 
 .your-turn[
 What is the default R library?
@@ -370,7 +420,17 @@ The default library is in the home directory
 
 ???
 
-Add speaker notes
+It contains a folder for each package
+
+---
+## Get to know your R library
+
+.scroll-output-height[
+```{r}
+dir(.Library)
+```
+]
+
 ---
 
 ## Get to know your R library
@@ -385,8 +445,11 @@ What libraries does R know about?
 
 
 ???
+How many libraries do you have access to? Post in chat
 
-Add speaker notes
+In my case I have the default library where all the packages that come with the base distribution go.
+
+I also have a user level library where I can install other packages.
 
 ---
 
@@ -398,15 +461,22 @@ For many R users `.Library` and `.libPaths()` are the same.
 
 Other R users maintain, or have access to, multiple libraries.
 
+
+
 --
 .tip[
 You may not have write access to the default library.
 ]
+
+???
+If you are working on a work machine or networked machine you may not have write access to the default library. That is, if someone else had to install R and Rstudio on the machine you are using, the chances are you won't have access.
+
+
 ---
 
 ## Where do R packages come from?
 
-```{r, echo = FALSE, out.width = "400px"}
+```{r, echo = FALSE, out.width = "400px", fig.alt = "cartoon of a stork with baby suspended in  blanket from its beak"}
 knitr::include_graphics("images/stork.png")
 ```
 
@@ -418,8 +488,6 @@ Add speaker notes
 
 ## Where do R packages come from?
 
-CRAN and GitHub, mostly
-
 CRAN:
 ```{r, eval=FALSE}
 install.packages("praise")
@@ -430,10 +498,14 @@ GitHub:
 remotes::install_github("rladies/praise")
 ```
 
-
+Bioconductor
+```{r, eval=FALSE}
+BiocManager::install("celaref")
+```
 
 ???
 
+CRAN and GitHub, mostly but also some specialised package repositories such as Bioconductor.
 You can often find the latest features for a package in development on GitHub. Some packages never make it to CRAN. Not necessarily 'bad' packages, the author just hasn't done the paperwork required.
 
 To install to a particular library:
@@ -461,7 +533,9 @@ I have `r dim(installed.packages())[1]` packages installed
 
 ???
 
-Add speaker notes
+Post how many packages you have installed to chat.
+
+Don't delete packages you don't recognise - they may be important for other packages.
 
 ---
 
@@ -476,7 +550,7 @@ View(installed.packages())
 ```
 ???
 
-Add speaker notes
+You can see which library a package is installed in 
 
 ---
 
@@ -491,7 +565,15 @@ colnames(installed.packages())
 
 ???
 
-Add speaker notes
+These column are documentations says what a package needs to work.
+
+Depends is used to indicate dependency on a particular version of R, and on packages that are to be loaded (with library()) whenever your package is loaded. 
+
+Imports is used for packages that are needed by a package but that don’t need to be loaded with library(). Any package listed in Imports will need to be installed with your package
+
+Suggests is for packages that aren’t really necessary, but that are used in  examples, vignettes, or tests. Packages listed in Suggests do not need to be installed with your package.
+
+When writing a package, these are things that need to be included
 
 ---
 ## Startup files
@@ -517,13 +599,17 @@ Settings for R
 ???
 
 Help you manage your library paths (amongst other things).
-You will edit these in set up
+You will edit these in set up.
 
 ---
 
 class: middle, inverse
 
 # Developing a script vs developing a package
+
+???
+We now have more understanding of what packages are and where they come from and live on your computer. Now we will consider the differences between developing a script and developing a package
+
 
 ---
 ## Different
@@ -550,7 +636,12 @@ class: middle, inverse
 
 ???
 
-Add speaker notes
+When you are writing a script you load packages with a library() call and document your code with comments using a #. The code is used for a one-off analysis and is stored in a .R file. The code is one off in the sense that it directly references your dataframes and variables
+
+When you write a package, your code is written to be reusable - functions are generalisable - their argument types are defined by the exact instance is not.
+A package is defined by the presence of a DESCRIPTION file (at least in RStudio).
+It is in this file that you say what the package does, who wrote it and what dependencies it has. Required packages are made available not through a library call, but through the NAMESPACE file. 
+As this hints at, the documentation is different - their is package and function level documentation.
 
 ---
 ## Same
@@ -559,6 +650,9 @@ Iterate early and often!
 
 Change it, try it, change it, try it, 
 
+???
+
+However, the logic of the process is similar. You write something, try it out, change it, try it out, change it. A lot.
 
 ---
 
@@ -605,9 +699,14 @@ There are five states a package can be in:
 -  installed
 
 -  in-memory
+
+???
+
+Having a understanding of the different states a package can be in is helpful in understanding package development. 
+
 ---
 
-```{r, out.width = "870px", echo = FALSE}
+```{r, out.width = "870px", echo = FALSE, fig.alt = "schematic of package states and the functions that move them between states. One the horizontal axis: source, bundle, binary, installed, in memory. One the vertical axis the functions install.packages, R CMD install, install, build, install_github"}
 knitr::include_graphics("images/annotated_installation.png")
 ```
 
@@ -617,7 +716,13 @@ https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
 ???
-You already know some of the functions that put packages into these states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
+
+when you develop a package, you write Source code. When you use a package you use it is in the memory.
+
+Functions moved packages between states.
+
+You already know some of the functions move packages between states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
+
 The `library()` function loads an installed package into memory, making it available for immediate and direct use.
 
 ---
@@ -649,7 +754,7 @@ We examined the source of the demoPackage
 
 ???
 
-Add speaker notes
+Now we examine these states in a little more detail.
 ---
 
 ## Package states
@@ -660,8 +765,14 @@ Visit the CRAN landing page for `readxl`:  https://cran.r-project.org/package=re
 And the GitHub repository where `readxl` is developed in the open: 
 https://github.com/tidyverse/readxl
 ]
----
 
+???
+
+Encourage people to do this if there is time.
+
+
+
+---
 ## Package states
 
 .pull-left-narrow[
@@ -728,6 +839,10 @@ Package developers submit a bundle to CRAN; CRAN makes and distributes binaries
 
 ???
 
+A package in binary form is Platform specific.
+If you write a package for distribution on CRAN, you submit a bundle to CRAN then CRAN makes and distributes binaries
+
+
 `install.packages()` is usually downloading the binary
 
 To understand the difference between package bundle and a package binary see https://r-pkgs.org/package-structure-state.html
@@ -761,7 +876,7 @@ Command line tool `R CMD INSTALL` powers all package installation
 Add speaker notes
 ---
 
-```{r, out.width = "900px", echo = FALSE}
+```{r, out.width = "900px", echo = FALSE, fig.alt = "schematic of package states and the functions that move them between states. One the horizontal axis: source, bundle, binary, installed, in memory. One the vertical axis the functions install.packages, R CMD install, install, build, install_github"}
 knitr::include_graphics("images/installation.png")
 ```
 
@@ -809,10 +924,13 @@ class: middle, inverse
 
 # Workflow
 
+
+???
+What is the workflow we use in writing packages?
 ---
 # Workflow
 
-```{r, out.width = "800px", echo = FALSE}
+```{r, out.width = "800px", echo = FALSE, fig.alt = "schematic of package states: source, bundle, binary, installed, in memory. It shows the load_all() function making a direct line from source to in-memory"}
 knitr::include_graphics("images/annotated_load_all.png")
 ```
 
@@ -829,16 +947,16 @@ devtools::load_all() simulates package installation, i.e., it puts the package i
 ---
 # Workflow
 
-```{r, out.width = "800px", echo = FALSE}
+```{r, out.width = "800px", echo = FALSE, fig.alt = "schematic of package states: source, bundle, binary, installed, in memory. It shows Install and Restart making a direct line from source to installed and then installed to in-memory"}
 knitr::include_graphics("images/annotated_install_and_restart.png")
 ```
 
 
-RStudio’s Install & Restart is to package development  
-as  
-`source()` or
+RStudio’s Install & Restart is to package development
 
-RStudio’s "Source" or `Rscript foo.R` is to script development
+as
+
+`source()` is to script development
 
 ???
 
@@ -874,6 +992,9 @@ We follow the approach used in [R Packages](https://r-pkgs.org/) `r Cite(myBib, 
 -  version controlled using git
 -  hosted on GitHub
 
+???
+
+This approach makes package development a little easier by automating some of the steps, i.e., there are packages to make package development easier! 
 ---
 class: middle, inverse
 
@@ -884,8 +1005,8 @@ class: middle, inverse
 ## Summary
 
 -  packages allow you to generalise, test, document and share your code
--  packages come from CRAN and GitHub (mainly)
--  they live in libraries on your pc
+-  packages come from CRAN and GitHub (mainly) but some other specialised repositories
+-  they live in libraries (folders) on your pc
 -  you write source, submit bundles, install binaries (mainly), and use in-memory
 -  we use `devtools::load_all()` during development a lot
 
@@ -911,6 +1032,7 @@ R Forwards modules
 -  [Your first package!](https://www.eventbrite.co.uk/e/r-forwards-package-development-module-your-first-package-tickets-132115738731)
 
 Other sources
+-  [Writing R Extensions](https://cran.r-project.org/doc/manuals/R-exts.html) 1999–2020 R Core Team
 -  [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
 -  Hillary Parker's [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
 -  Karl Broman's [R package primer a minimal tutorial](https://kbroman.org/pkg_primer/)
@@ -918,6 +1040,8 @@ Other sources
 ???
 Setting up your system sign up close 1800 GMT Monday
 Your first package! sign up close 1800 GMT Tuesday
+
+note - Writing R Extensions is not a tutorial, it's a reference. I was directed here years ago and decided I couldn't write a package. Then, a few years later, I read Hilary Parker's post.
 
 ---
 
