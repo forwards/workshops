@@ -2,6 +2,7 @@
 title: "Package Development modules"
 subtitle: "Overview and Index"
 author: "<br>Forwards"
+date: "<br>🔗 [link to slides](https://3mmarand.github.io/workshops/package-dev-modules/slides/index.html)"
 output:
   xaringan::moon_reader:
     css: ["style-xaringanthemer.css", "style-custom.css"]
@@ -104,14 +105,14 @@ BibOptions(check.entries = FALSE,
            dashed = FALSE,
            longnamesfirst = FALSE,
            max.names = 2)
-myBib <- ReadBib("../bibliography.bib", check = FALSE)
+myBib <- ReadBib("bibliography.bib", check = FALSE)
 ```
 
 layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
+<a href="https://3mmarand.github.io/workshops/package-dev-modules/slides/index.html" target="_blank">🔗 Link to slides</a>
 </span>
 </div> 
 
@@ -121,10 +122,10 @@ layout: true
 
 .pull-left[
 
--  [Packages in a nutshell](packages-in-a-nutshell.html)
--  [Setting up your system (mac)]()
--  [Setting up your system (windows)]()
--  [Your first package!]()
+-  [Packages in a nutshell](01-packages-in-a-nutshell/packages-in-a-nutshell.html)
+-  [Setting up your system (mac)](02-setting-up-system-mac/setting-up-system-mac.html)
+-  [Setting up your system (windows)](02-setting-up-system-windows/setting-up-system-windows.html)
+-  [Your first package!](03-your-first-package/your-first-package.html)
 
 ]
 
@@ -135,6 +136,41 @@ layout: true
 -  
 -  
 
+]
+
+---
+
+class: middle, inverse
+
+# Acknowledgements
+
+---
+## Acknowledgements
+
+Slides made with: **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
+
+Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+
+## References
+
+.small[
+```{r refs1, echo = FALSE, results  ="asis"}
+PrintBibliography(myBib, start = 1, end = 5)
+```
+]
+
+---
+
+## References
+
+.small[
+```{r refs2, echo = FALSE, results = "asis"}
+PrintBibliography(myBib, start = 6, end = 10)
+```
 ]
 
 
