@@ -1,0 +1,46 @@
+# Preliminaries.
+
+## Before we start:
+
+Make sure you have recent versions of:
+
+    .pull-left[
+        `devtools`
+        `pkgdown`
+        `roxygen2`
+    ]
+
+.pull-right[
+    `testthat`
+    `tidyverse`
+    `usethis`
+]
+
+--
+
+    Load `devtools`
+
+```{r}
+library(devtools)
+```
+
+---
+    # Preliminaries.
+
+    ## The goal.
+
+    We are going to write a package called `mypackage`<sup>1</sup>. `mypackage` has some simple utilities for a single large sample.
+
+.footnote[
+    [1] Or be more creative, silly or serious!
+]
+--
+
+    It will:
+    * calculate the sums of squares
+* calculate the standard error
+* carry out a one-sample z-test
+
+--
+
+    The package itself is not very useful or wholy original. But what the package does is not the point!
