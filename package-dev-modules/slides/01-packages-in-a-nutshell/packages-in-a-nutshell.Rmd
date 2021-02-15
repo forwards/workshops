@@ -118,13 +118,7 @@ layout: true
 </span>
 </div> 
 
-
----
-
-class: middle, inverse
-
-# Overview
-
+<!-- Presenting on zoom or similar? Press C to clone you slides, then P for presenter mode for one set. You can share the whole screen version of the slides while still seeing you presenter view -->
 ---
 
 ## Welcome!
@@ -160,6 +154,8 @@ RStudio
 ]
 
 ???
+
+
 Hello and welcome to Packages in a Nutshell!
 We are Emma Rand and Mine Çetinkaya-Rundel and we are part of R Forwards which is an R Foundation task force to address underrepresentation in the R community and particularly the developer community.
 
@@ -322,6 +318,7 @@ class: middle, inverse
 Let us start by thinking about where packages live on your computer
 
 ---
+
 ## R packages live in a library
 
 ```{r, out.width = "500px", echo = FALSE, fig.alt = "photo of a library with a  central atrium from ground to top floor flanked by six floors of shelved books"}
@@ -339,6 +336,7 @@ A directory into which packages are installed.
 We can start to answer this by learning more about our R installation.
 
 ---
+
 ## Get to know your R installation.
 
 .your-turn[
@@ -353,11 +351,14 @@ R.version
 
 ???
 
+These green boxes are to indicate it is your turn to do something.
+
 It's your turn. Type R.version to see what version of R you are using.
 
 Post your version in chat.
 
 ---
+
 ## Get to know your R installation.
 
 .your-turn[
@@ -369,8 +370,6 @@ R.home()
 ```
 
 The R home directory is the top-level directory of the R installation being run.
-
---
 
 Note: this is **not** the same as your working directory.
 
@@ -405,6 +404,7 @@ Now do list.files(R.home())
 The home directory contains these files and folders. Notice one of these is library. That library is your default library
 
 ---
+
 ## Get to know your R library
 
 .your-turn[
@@ -423,6 +423,7 @@ The default library is in the home directory
 It contains a folder for each package
 
 ---
+
 ## Get to know your R library
 
 .scroll-output-height[
@@ -554,7 +555,6 @@ You can see which library a package is installed in
 
 ---
 
-
 ## Your installed packages
 
 The columns give some information about each package:
@@ -576,6 +576,7 @@ Suggests is for packages that aren’t really necessary, but that are used in  e
 When writing a package, these are things that need to be included
 
 ---
+
 ## Startup files
 
 .pull-left[
@@ -612,6 +613,7 @@ We now have more understanding of what packages are and where they come from and
 
 
 ---
+
 ## Different
 
 .pull-left-narrow[
@@ -644,6 +646,7 @@ It is in this file that you say what the package does, who wrote it and what dep
 As this hints at, the documentation is different - their is package and function level documentation.
 
 ---
+
 ## Same
 
 Iterate early and often!  
@@ -686,7 +689,9 @@ This looks like a lot of files to get right! Fortunately the devtools approach w
 class: middle, inverse
 
 # Package states
+
 ---
+
 ## Package states
 
 There are five states a package can be in:
@@ -773,6 +778,7 @@ Encourage people to do this if there is time.
 
 
 ---
+
 ## Package states
 
 .pull-left-narrow[
@@ -888,6 +894,8 @@ https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
 ???
+
+
 ---
 
 ## Package states
@@ -928,7 +936,8 @@ class: middle, inverse
 ???
 What is the workflow we use in writing packages?
 ---
-# Workflow
+
+## Workflow
 
 ```{r, out.width = "800px", echo = FALSE, fig.alt = "schematic of package states: source, bundle, binary, installed, in memory. It shows the load_all() function making a direct line from source to in-memory"}
 knitr::include_graphics("images/annotated_load_all.png")
@@ -945,6 +954,7 @@ interactive “stepping through” code is to script development
 
 devtools::load_all() simulates package installation, i.e., it puts the package in to memory.
 ---
+
 # Workflow
 
 ```{r, out.width = "800px", echo = FALSE, fig.alt = "schematic of package states: source, bundle, binary, installed, in memory. It shows Install and Restart making a direct line from source to installed and then installed to in-memory"}
@@ -963,7 +973,8 @@ as
 Add speaker notes
 
 ---
-# Workflow
+
+## Workflow
 
 Use `devtools::load_all( )` a lot!  
 
@@ -1023,8 +1034,6 @@ class: middle, inverse
 ---
 
 ## Where next?
-
-<!-- list some follow-up resources -->
 
 R Forwards modules
 
