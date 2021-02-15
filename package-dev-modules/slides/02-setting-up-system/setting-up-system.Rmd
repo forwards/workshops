@@ -190,25 +190,6 @@ This workshop walks you through setting up your system for developing an R packa
 
 ---
 
-## Lesson plan
-
--  0 - 5: Introduction  
-    -  Prerequisites  
-    -  Learning Objectives  
--  5 - 25: Section 1: Live code-along-coding  
--  25 - 30: Additional exercises based on Section 1  
--  30 - 45: Section 2: Live code-along-coding  
--  45 - 50: Additional exercises based on Section 2  
--  50 - 55: Wrap-up, where next, additional exercises  
-
-<!-- Speaker notes -->
-
-???
-
-Add speaker notes
-
----
-
 ## Module Prerequisites
 
 Before starting this module you should complete the first module in the Forwards package development series: **Packages in a nutshell**
@@ -606,16 +587,27 @@ class: middle
 
 ## Love potion: RStudio projects
 
-```{r echo=FALSE, out.width="100%"}
+```{r echo = FALSE, out.width = "100%", fig.alt = "Side-by-side comparison of project folders on your computer and repositories on GitHub."}
 knitr::include_graphics("images/folder-repo.png")
 ```
 
+???
+
+A the project folder on your computer, that contains the files needed to make an R package, is a repository on GitHub. You should only house one package per repository.
+
 ---
 
-## add screenshot of Git pane in RStudio
+## RStudio Git pane
+
+```{r echo = FALSE, out.width = "80%", fig.alt = "RStudio Git pane screenshot"}
+knitr::include_graphics("images/rstudio-git-pane.png")
+```
+
+???
+
+When working in an RStudio project that is Git tracked, you can use the Git pane in RStudio to commit, pull, push, etc., i.e. to communicate with GitHub.
 
 ---
-
 
 class: middle
 
@@ -624,6 +616,13 @@ class: middle
 ---
 
 ## Where next?
+
+- Next module: Your first package!
+- Everything you might want to know about using R, RStudio, Git, and GitHub: [Happy Git with R](https://happygitwithr.com/)
+- Setting up for Git tracked package development:
+  - [usethis setup
+](https://usethis.r-lib.org/articles/articles/usethis-setup.html)
+  - [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html)
 
 <!-- which module in the curriculum could follow -->
 <!-- list some follow-up resources -->
