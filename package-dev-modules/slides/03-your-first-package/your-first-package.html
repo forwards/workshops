@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # Your first package
 ## Forwards Package Development module
 ### <br>Emma Rand
-### <br>🔗 <a href="https://forwards.github.io/">link to slides</a>
+### <br>🔗 <a href="https://3mmarand.github.io/workshops/package-dev-modules/slides/03-your-first-package/your-first-package.html">link to slides</a>
 
 ---
 
@@ -28,7 +28,7 @@ layout: true
   
 &lt;div class="my-footer"&gt;
 &lt;span&gt;
-&lt;a href="https://forwards.github.io/" target="_blank"&gt;🔗 Link to slides&lt;/a&gt;
+&lt;a href="https://3mmarand.github.io/workshops/package-dev-modules/slides/03-your-first-package/your-first-package.html" target="_blank"&gt;🔗 Link to slides&lt;/a&gt;
 &lt;/span&gt;
 &lt;/div&gt; 
 
@@ -83,36 +83,8 @@ RStudio
 
 ## Summary
 
-This workshop walks you through 
+This workshop walks you through  making a minimal version controlled package linked to a remote repository on GitHub using the devtools approach.
 
-- 
-- 
-
-
-
-
-???
-
-add speaker notes
-
----
-
-## Lesson plan
-
--  00 - 05: Introduction  
-    -  Prerequisites  
-    -  Learning Objectives  
--  05 - 25:   
--  25 - 30:   
--  30 - 45:   
--  45 - 50:   
--  50 - 55: Wrap-up, where next  
-
-&lt;!-- Edit appropriately --&gt;
-
-???
-
-Add speaker notes
 
 ---
 
@@ -120,9 +92,9 @@ Add speaker notes
 
 Before starting this module we will assume that you have
 
--   "Packages in a nutshell" or equivalent experience
+-   "[Packages in a nutshell](../01-packages-in-a-nutshell/packages-in-a-nutshell.html" or equivalent experience
 
--   "Setting up your system" or equivalent experience
+-   "Setting up your system [mac](../02-setting-up-system-mac/setting-up-system-mac.html)/[windows](../02-setting-up-system-windows/setting-up-system-windows.html)" or equivalent experience
    -   the packages `devtools`, `roxygen2`, `testthat` and `assertthat` installed
    -   R build toolchain: Rtools(windows) or XCode (mac) or r-base-dev
    -   git installed, a GitHub account and verified they can talk to RStudio
@@ -133,6 +105,17 @@ Before starting this module we will assume that you have
 
 Add speaker notes
 
+What if you have not got R, RStudio, Rtools/xcode, Git installed? You can still code along using https://rstudio.cloud/.
+RStudio cloud is a browser based version of RStudio - it looks and works just like the desktop version
+You will need to set up an account but have 15 hrs / month for free
+
+
+devtools - needed today and irreplaceable
+assertthat - we use in the package we make. it would be possible to avoid using if installation is problematic for any reason
+roxygen2 - will be needed for documentation
+testthat - will be needed for a later module for testing
+
+
 ---
 
 ## Learning Objectives
@@ -141,13 +124,10 @@ At the end of this module the successful learner will be able to:
 
 -   create a simple version-controlled package
 -   explain the key components of a minimal package  
--   use the package interactively with `load_all()`
+-   use the package interactively with `devtools::load_all()`
 -   link a local version controlled package to a remote repository on GitHub 
--   create and document a function with `roxygen2` and `document()`  
 -   use `check()` to execute R CMD check
--   create `DESCRIPTION` and `LICENSE` files 
-
-&lt;!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives--&gt;
+-   populate `DESCRIPTION` and `LICENSE` files 
 
 ???
 
@@ -168,7 +148,8 @@ Do not nest inside another RStudio project, R package or git repo.
 ]
 
 ???
-Add speaker notes
+
+On our next slide, we will create a package on the Desktop. You may want to write a different path especially if you are working on a networked machine.
 
 
 ---
@@ -184,6 +165,17 @@ Verify that you can create a package with:
 ```r
 usethis::create_package("~/Desktop/mypackage")
 ```
+
+???
+You may want to use a different path.
+
+The usethis package is part of the devtools set of packages.
+devtools was previously a single package. it has not been reorganised into several packages. But installing devtools installs all of them
+
+https://www.tidyverse.org/blog/2018/10/devtools-2-0-0/
+
+
+
 ---
 .small[
 
@@ -213,12 +205,11 @@ RoxygenNote: 7.1.1
 ```
 ]
 
-
----
-What other files and directories are created?
-
 ???
-Add speaker notes
+Take a moment to examine the output.
+You can see that a folder, mypackage, has been created with an R/ folder and some files inside.
+
+You will be meeting these files today
 
 ---
 ## `create_package()`
@@ -234,7 +225,11 @@ What happens when we run `create_package()`?
 -   start the RStudio Build pane
 
 ???
-Add speaker notes
+
+We will look at some of this infrastructure on the next slide.
+
+You may find the Build pane has not appeared on the top right window. If you closed the Project and reopen it, it will probably appear. However, do not worry if it does not - the Build Pane provides some menu options for the commands that we will use but there is nothing that you can't do with a command.
+
 
 ---
 ## `create_package()`
@@ -242,14 +237,16 @@ Add speaker notes
 What happens when we run `create_package()`?
 
 -   `mypackage.Rproj` is the file that makes this directory an RStudio Project.
--   The `R/` directory is where we will put `.R` files with function definitions.
 -   `DESCRIPTION` provides metadata about your package. 
+-   The `R/` directory is where we will put `.R` files with function definitions.
 -   `NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages.
 
-continued
+.right[....continued]
 
 ???
-DESCRIPTION We will need to edit this.
+If you have used RStudio Projects before you will be familiar with the .RProj file
+
+DESCRIPTION  - this is the file that makes the directory a package. We will need to edit this.
 
 ---
 ## `create_package()`
@@ -261,8 +258,9 @@ What happens when we run `create_package()`?
 
 ???
 
-.Rbuildignore e.g., the `.Rproj` file and the LICENSE
+.Rbuildignore e.g., the `.Rproj` file 
 
+See the linein the output: √ Adding '^mypackage\\.Rproj$', '^\\.Rproj\\.user$' to '.Rbuildignore'
 
 ---
 ## What to put in it?
@@ -277,14 +275,18 @@ usethis::use_r("file-name")
 
 --
 
-`usethis::use_r()` adds the file extension.
+`usethis::use_r()` adds the file extension (you don't need to).
 
 
 ???
+What are we going to put in our package? The functions we make will go in .R script files that are in the R/ directory
+
+Putting each of the functions of a package in their own `.R` is a good place to start. As your package complexity increases, you might group related functions.
+
 Organize files so that related code lives together. If you can give a file
 a concise and informative name, it's probably about right.
 
-Putting each of the functions in a package in their own `.R` is a good place to start. As your package complexity increases,  you might group related functions.
+
 
 ---
 ## `usethis::use_r()`
@@ -301,6 +303,8 @@ Create a new R file in your package called `animalSounds.R`
 usethis::use_r("animalSounds")
 ```
 
+--
+
 ```r
 √ Setting active project to 'C:/Users/er13/Desktop/mypackage'
 • Modify 'R/animalSounds.R'
@@ -309,7 +313,6 @@ usethis::use_r("animalSounds")
 
 ???
 Add speaker notes
-
 
 ---
 ## `usethis::use_r()`
@@ -333,11 +336,10 @@ usethis::use_r("animalSounds")
 ```
 
 ???
-writing tests will be the subject of another module
-
+Ignore this line "Call `use_test()` to create a matching test file"  for today. A later module will cover testing.
 
 ---
-## Add a function
+## Add the function
 
 .your-turn[
 
@@ -363,12 +365,48 @@ We do not cover writing functions here but you can learn more in the Functions c
 
 This function takes two strings. using the `assertthat` package, it checks both inputs are strings and then prints a statement.
 
+---
+## Add the function
+
+.your-turn[
+
+Put the following code into your script:
+
+]
+
+```r
+animalSounds &lt;- function(animal, sound){
+*  assertthat::assert_that(
+*    assertthat::is.string(animal),
+*    assertthat::is.string(sound))
+  paste0("The ", animal, " goes ", sound, "!")
+}
+```
+
+.footnote[.small[
+We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) ([Wickham and Grolemund, 2017](#bib-Wickham2017RDS3086927))
+]]
+
+
+???
+
+If you don't have assertthat installed you can remove these lines.
+With assertthat:
+  animalSounds(2, "woof")
+will give
+"Error: animal is not a string (a length one character vector)."
+
+Without assertthat you will get '[1] "The 2 goes woof!"'
 
 ---
 
 class: middle
 
 ## Test your function
+
+???
+In writing any code we will want to test it out. How do we do that when that code is in a package?
+
 
 ---
 ## Development workflow
@@ -379,9 +417,13 @@ In a normal script, you might use:
 source("R/animalSounds.R")
 ``` 
 
+--
+
 but when building packages, we use a `devtools` approach.
 
+???
 
+Add speaker notes
 
 ---
 ## Development workflow
@@ -416,6 +458,10 @@ devtools::load_all()
 Loading mypackage
 ``` 
 
+???
+
+You should see a message telling you: Loading mypackage
+
 ---
 ## test
 
@@ -427,6 +473,15 @@ animalSounds("dog", "woof")
 [1] "The dog goes woof!"
 ``` 
 
+???
+You can now use the animalSounds() function in the console.
+
+Note: differs in other languages!
+spanish: guau
+
+Notice that the function is not in your workspace (as would happen with source()) but is installed and loaded for use as though you have done install.packages() and library()
+
+
 ---
 ## `devtools::load_all()`
 
@@ -435,16 +490,16 @@ Change some tiny thing about your function - maybe the animal “says” instead
 of “goes”?
 ]
 
+???
+Now you try making a change to the function.
+You can change some of the words - like this suggests - or have the animal repeat the noise several times: "the dog goes woof, woof, woof!"
+
 ---
 ## `devtools::load_all()`
 
 .your-turn[ 
 Load with `devtools::load_all()` and test the updated function.
 ]
-
-???
-Add speaker notes
-
 
 
 ---
@@ -459,7 +514,11 @@ class: middle
 
 --
 
-It is a programme that is executed in the shell. However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
+It is a programme that is executed in the shell. 
+
+However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
+
+🎂
 
 ---
 ## `devtools::check()`
@@ -476,6 +535,7 @@ devtools::check()
 ???
 
 On running `check()` you may get an error if you are using a networked drive.
+There's a fix coming in a few slides.
 
 
 ---
@@ -526,7 +586,7 @@ Duration: 12.5s
 ```
 ???
 
-Warns us 
+Warns us we havn't included a license
 
 ---
 ## `devtools::check()`
@@ -551,7 +611,7 @@ Duration: 12.5s
 
 ???
 
-Warns us 
+Warns us we've used a package with explicitly declaring it
 
 ---
 ## An aside in case of error
@@ -592,6 +652,9 @@ class: middle
 
 # Document your package!
 
+???
+For the the purposes of this workshop, we will only cover documentation very briefly. Package documentation is covered in another module and could be the subject of many!
+
 ---
 ## Naming a Package
 
@@ -608,7 +671,9 @@ Tips:
 
 
 ???
-Let's go back to the start. Before creating our package we need a name.
+First of all, Let's go back to the start. Before creating our package we need a name.
+
+Here we used mypackage but later you will want to name your packages more meaningfully
 
 ---
 ## Metadata in `DESCRIPTION`
@@ -621,7 +686,8 @@ Let's go back to the start. Before creating our package we need a name.
 
 
 ???
-Add speaker notes
+The are two types of documentation: package level and function level.
+The DESCRIPTION file provides some of the package level documentation (or metadata)
 
 ---
 ## Metadata in `DESCRIPTION`
@@ -635,7 +701,7 @@ of the paragraph to 80 characters; indent subsequent lines with 4 spaces.
 ???
 Add speaker notes
 
-
+lazy loading means that data is only loaded if needed.
 
 ---
 ## Update `DESCRIPTION`
@@ -733,7 +799,7 @@ What has changed?
 
 
 ???
-Add speaker notes
+Have a look around your files
 
 ---
 ## `LICENSE`
@@ -746,6 +812,11 @@ Using `usethis::use_mit_license()`:
    -   you can open `LICENSE.Md` to see what rights you're granting.
    
 -  adds these files to `.Rbuildignore`
+
+???
+The LICENSE file gives the owner and the date.
+The full details of the license are given in LICENSE.Md
+These files are not part of the package functions/machinery are not part of the build.
 
 
 ---
@@ -778,6 +849,18 @@ Duration: 10.8s
 
 Package dependencies are covered in another module.
 
+??? The error about the missing license has gone. We still have the error about the package dependencies. That willl be covered in another module
+
+---
+class: middle
+
+# Use Git
+
+??? 
+Now will make our package a version controlled project on our local machine and then put it on GitHub.
+
+devtools has function to help with this.
+
 ---
 ## Use Git
 
@@ -800,6 +883,8 @@ user.email=emma.rand@york.ac.uk
 ]]
 
 ???
+This should already be done if the previous module was done.
+
 To configure if needed
 
 git config --global user.name 'Emma Rand'
@@ -808,6 +893,7 @@ git config --global user.email 'emma.rand@york.ac.uk'
 
 ---
 ## Use Git
+
 To make our project a Git repository, or 'repo' on our local machine we use `usethis::use_git()`
 
 .your-turn[
@@ -1029,12 +1115,14 @@ class: middle
 ---
 ## Summary
 
--   bb
--   bb
--   bb
--   bb
--   bb
--   bb
+-   `usethis::create_package()` starts a package with infrastructure as an RStudio Project
+-   functions go in `.R` files in the `\R` directory and `usethis::use_r()` will open a file for editing
+-   `devtools::load_all()` loads your package for testing and we use it often
+-   `devtools::check()` runs the command line tool `R CMD check` from within R and checks your package in in working order
+-   `DESCRIPTION` contains metadata about your package and its presence is the defining feature of a package
+-   `usethis::use_mit_license()` is a helper for adding a MIT license (others are available)
+-   there is a lot more to package documentation and package dependencies
+-   `usethis::use_git()` and `usethis::use_github()` are helper functions for version control
 
 
 ---
