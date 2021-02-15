@@ -2,7 +2,7 @@
 title: "Your first package"
 subtitle: "Forwards Package Development module"
 author: "<br>Emma Rand"
-date: "<br>🔗 [link to slides](https://3mmarand.github.io/workshops/package-dev-modules/slides/03-your-first-package/your-first-package.html)"
+date: "<br>🔗 [bit.ly/pkg-dev-3](http://bit.ly/pkg-dev-3)"
 output:
   xaringan::moon_reader:
     css: ["style-xaringanthemer.css", "style-custom.css"]
@@ -112,7 +112,7 @@ layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://3mmarand.github.io/workshops/package-dev-modules/slides/03-your-first-package/your-first-package.html" target="_blank">🔗 Link to slides</a>
+<a href="http://bit.ly/pkg-dev-3" target="_blank">🔗 bit.ly/pkg-dev-3</a>
 </span>
 </div> 
 
