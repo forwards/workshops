@@ -135,11 +135,28 @@ class: middle
 
 ---
 
+class: middle
+```{r eval = FALSE}
+if (your_system == "Mac") {
+  print("You're in the right place!")
+} else {
+  print("Join the parallel workshop!")
+}
+```
+
+<!-- Speaker notes -->
+
+??? 
+
+Before we get started -- if you're on a Mac, you're in the right place. If you're on a Windows machine, you should join the parallel workshop titled "Setting up your system for Windows users" instead. While there is no difference between how you develop packages on Windows and Mac, there are differences between how you set up your computer with the tools that you will need for package development and version control, therefore it's important that you join the workshop that matches your system setup in order to get the most out of today. I should also admit that I'm not very proficient in setting up a Windows machine, so I wouldn't be able to answer Windows specific questions efficiently.
+
+---
+
 ## Welcome!
 
 .pull-left[
 .center[
-```{r echo = FALSE, out.width = "45%"}
+```{r echo = FALSE, out.width = "45%", fig.alt = "Emma Rand headshot"}
 knitr::include_graphics("images/emma-rand.png")
 ```
 Emma Rand  
@@ -151,7 +168,7 @@ Department of Biology, University of York, UK
 ]
 .pull-right[
 .center[
-```{r echo = FALSE, out.width = "45%"}
+```{r echo = FALSE, out.width = "45%", fig.alt = "Mine Çetinkaya-Rundel headshot"}
 knitr::include_graphics("images/mine.jpg")
 ```
 Dr. Mine Çetinkaya-Rundel 
@@ -167,6 +184,12 @@ RStudio
 [Forwards](https://forwards.github.io/) Teaching Team Leads
 ]
 
+<!-- Speaker notes -->
+
+???
+
+Hello and welcome! The package development workshop modules by R Forwards have been designed and developed by Emma Rand and Mine Çetinkaya-Rundel. I'm Mine, and Emma is running the parallel workshop on setting up your system on a Windows machine. I'm a Senior Lecturer at the University of Edinburgh and I am also part of the Education team at RStudio.  
+
 ---
 
 ## Summary
@@ -176,12 +199,11 @@ This workshop walks you through setting up your system
 - for developing an R package and
 - for version control with Git with repositories hosted on GitHub
 
-In this workshop we assume `your system = Mac` -- if you're on a Windows machine, take the parallel workshop *Setting up your system for Windows users*
-
+<!-- Speaker notes -->
 
 ???
 
-This workshop walks you through setting up your system for developing an R package and for version control with Git with repositories hosted on GitHub. Our goal is to get your system ready for actual package development in the next module.
+This workshop walks you through setting up your system for developing an R package and for version control with Git with repositories hosted on GitHub. Our goal is to get your system ready for actual package development in the next module. And, once again, we're assuming that you're working on a Mac, not a Windows machine. 
 
 ---
 
@@ -196,7 +218,7 @@ This workshop walks you through setting up your system for developing an R packa
 -  45 - 50: Additional exercises based on Section 2  
 -  50 - 55: Wrap-up, where next, additional exercises  
 
-<!-- Edit appropriately -->
+<!-- Speaker notes -->
 
 ???
 
@@ -206,7 +228,7 @@ Add speaker notes
 
 ## Module Prerequisites
 
-Before starting this module you should complete the first module in the Forwards package development series: Packages in a nutshell.
+Before starting this module you should complete the first module in the Forwards package development series: **Packages in a nutshell**
 
 We will assume that you have
 
