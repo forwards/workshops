@@ -2,7 +2,7 @@
 title: "Setting up your system"
 subtitle: "Forwards Package Development module"
 author: "<br>Mine Çetinkaya-Rundel"
-date: "<br>🔗 [link to slides](https://forwards.github.io/)"
+date: "<br>🔗 [bit.ly/pkg-dev-2](http://bit.ly/pkg-dev-2)"
 output:
   xaringan::moon_reader:
     css: ["style-xaringanthemer.css", "style-custom.css"]
@@ -112,7 +112,7 @@ layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
+<a href="http://bit.ly/pkg-dev-2" target="_blank">🔗 bit.ly/pkg-dev-2</a>
 </span>
 </div> 
 
