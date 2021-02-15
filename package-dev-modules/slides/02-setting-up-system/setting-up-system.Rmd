@@ -607,7 +607,7 @@ class: middle
 ## Love potion: RStudio projects
 
 ```{r echo=FALSE, out.width="100%"}
-knitr::include_graphics("images/folder-repo-mac.png")
+knitr::include_graphics("images/folder-repo.png")
 ```
 
 ---
