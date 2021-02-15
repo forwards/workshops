@@ -411,6 +411,39 @@ We're providing these for reference, but expect that by now you're all set up wi
 
 class: middle
 
+# GitHub
+
+---
+
+## stuff about setting up GitHub account
+
+---
+
+## git sitrep...
+
+---
+
+class: middle
+
+# R & RStudio `r emo::ji("purple_heart")` Git & GitHub
+
+---
+
+## Love potion: RStudio projects
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("images/folder-repo-mac.png")
+```
+
+---
+
+## stuff about RStudio projects
+
+---
+
+
+class: middle
+
 # Where next?
 
 ---
