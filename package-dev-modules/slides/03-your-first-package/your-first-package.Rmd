@@ -953,14 +953,16 @@ Duration: 10.8s
 
 Package dependencies are covered in another module.
 
-??? The error about the missing license has gone. We still have the error about the package dependencies. That willl be covered in another module
+???
+
+The error about the missing license has gone. We still have the error about the package dependencies. That willl be covered in another module
 
 ---
 class: middle
 
 # Use Git
 
-??? 
+???
 Now will make our package a version controlled project on our local machine and then put it on GitHub.
 
 devtools has function to help with this.
@@ -1065,7 +1067,7 @@ usethis::use_github()
 
 --
 
-You get an error 
+You may get an error 
 ---
 ## Use GitHub
 

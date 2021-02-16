@@ -55,7 +55,7 @@ class: middle
 
 .pull-left[
 .center[
-&lt;img src="images/emma-rand.png" title="Emma Rand headshot" alt="Emma Rand headshot" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/emma-rand.png" width="45%" style="display: block; margin: auto;" /&gt;
 Emma Rand  
 .small[
 Senior Lecturer (Prof)  
@@ -65,7 +65,7 @@ Department of Biology, University of York, UK
 ]
 .pull-right[
 .center[
-&lt;img src="images/mine.jpg" title="Mine Çetinkaya-Rundel headshot" alt="Mine Çetinkaya-Rundel headshot" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/mine.jpg" width="45%" style="display: block; margin: auto;" /&gt;
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
@@ -169,7 +169,7 @@ class: middle, inverse
 - Once installed, binary and source packages are identical
 ]
 .pull-right-narrow[
-&lt;img src="images/installation.png" title="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." alt="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/installation.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -331,7 +331,7 @@ which git
 ```
 
 ```
-## /usr/bin/git
+## /c/Users/er13/AppData/Local/Programs/Git/cmd/git
 ```
 ]
 .pull-right[
@@ -343,7 +343,7 @@ git --version
 ```
 
 ```
-## git version 2.24.3 (Apple Git-128)
+## git version 2.20.1.windows.1
 ```
 ]
 
@@ -504,10 +504,266 @@ class: middle, inverse
 
 # .hand[on Windows]
 
+
 ---
 
-## add windows slides here
+class: middle
 
+
+```r
+if (your_system == "Windows") {
+  print("You're in the right place!")
+} else {
+  print("Join the parallel workshop!")
+}
+```
+
+&lt;!-- Speaker notes --&gt;
+
+???
+
+Before we get started -- if you're on a Windows machine, you're in the right place. If you're on a Mac machine, you should join the other breakout room instead. While there is no difference between how you develop packages on Windows and Mac, there are differences between how you set up your computer with the tools that you will need for package development and version control, therefore it's important that you join the workshop that matches your system setup in order to get the most out of today. I should also admit that I'm not very proficient in setting up a Mac, so I wouldn't be able to answer Windows specific questions efficiently.
+
+---
+
+class: middle, inverse
+
+# Setting up your system for development
+
+---
+
+## RTools
+
+Download the latest (recommended) Rtools installer, rtools40. from https://cran.r-project.org/bin/windows/Rtools/
+
+
+- **For Windows with no admin rights:** 
+  - Run the installer keeping the default settings.
+ 
+- **For Windows with admin rights:** 
+  - Run the installer making the following selections: keep the default settings for the installation location and components to install; check the box to add rtools to the system PATH.
+
+???
+R for Windows installs the precompiled “binary packages” from CRAN, for which you do not need rtools.
+However, if you want to build packages with C/C++/Fortran code from source or build your own packages you need RTools
+
+IMPORTANT: rtools40 is the current version used for R 4.0.0 and newer. For information about previous versions of Rtools that can be used with R 3.6.3 or older, please visit https://cran.r-project.org/bin/windows/Rtools/history.html.
+---
+
+## Developer tools
+
+.your-turn[
+Verify system setup. Run the following in the *Console*.
+]
+
+
+```r
+install.packages(devtools)
+```
+
+
+```r
+library(devtools)
+```
+
+
+```r
+has_devel()
+```
+
+```
+## Your system is ready to build packages!
+```
+
+---
+
+## What's next?
+
+- Creating a package is as easy as...
+
+
+```r
+create_package()
+```
+
+- But we're going to do a bit more setup first!
+  - Use version control during development with **Git**
+  - Host your package on **GitHub**
+
+---
+
+class: middle
+
+# Git
+
+---
+
+## Check Git
+
+.your-turn[
+Check if Git is already installed. Run the following in the *Terminal*.
+]
+
+.pull-left[
+- Check if Git is installed
+
+
+```bash
+which git
+```
+
+```
+## /c/Users/er13/AppData/Local/Programs/Git/cmd/git
+```
+]
+.pull-right[
+- Check the version of your Git
+
+
+```bash
+git --version
+```
+
+```
+## git version 2.20.1.windows.1
+```
+]
+
+
+???
+
+Add speaker notes
+
+
+---
+
+## Installing Git
+
+Download the installer from https://git-scm.com/downloads and run keeping all the default settings. If the installer hangs with the progress bar at 100%, close the installer with Task Manager (press Ctrl + Alt + Delete; select Task Manager; find Git for Windows installer and close).
+
+Open RStudio. In the menus go to Tools &gt; Global Options &gt; Git/SVN. 
+
+Check RStudio has found git under "Git executable:" 
+
+You may need to click Browse and find the git executable.
+
+It may be under C:\Users\username\AppData\Local\Programs\Git\ - remember if file extensions are hidden it will show as git rather than git.exe. Restart RStudio before trying to use git.
+
+
+
+
+???
+
+We're providing these for reference, but expect that by now you're all set up with Git!
+
+---
+
+class: middle
+
+# GitHub
+
+---
+
+## GitHub
+
+.to-do[
+Register a GitHub account at [github.com](https://github.com/).
+]
+
+.small[
+- Incorporate your actual name!
+- Reuse your username from other contexts.
+- Pick a username you will be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. 
+- Avoid words laden with special meaning in programming.
+- Use all lower case letters.
+]
+
+.footnote[
+.small[
+Advice from [Happy Git with R](https://happygitwithr.com/github-acct.html).
+]
+]
+
+---
+
+class: middle
+
+# Git and GitHub
+
+---
+
+## Configure Git
+
+.your-turn[
+Configure `user.name` and `user.email`.
+]
+
+
+```r
+library(usethis)
+use_git_config(
+  user.name = "Jane Doe",          # actual first and last name
+  user.email = "jane@example.com"  # email associated with GitHub account
+  )
+```
+
+---
+
+## Check Git configuration
+
+.your-turn[
+Ask for a **sit**uation **rep**ort.
+]
+
+
+```r
+git_sitrep()
+```
+
+---
+
+## Personal access token
+
+- Communicating with GitHub will require authentication
+
+- Instead of typing in your username and password each time, use a **PAT** (personal access token)
+
+- The [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html) vignette in the **usethis** package has all the details on PATs!
+
+---
+
+## Create a PAT
+
+.your-turn[
+- Create a PAT
+- Give the token a descriptive name
+- Copy and also store this token somewhere (you won't be able to see it again!)
+]
+
+
+```r
+usethis::create_github_token()
+```
+
+---
+
+## Store your PAT
+
+.your-turn[
+Put your PAT into the Git credential store
+]
+
+
+```r
+gitcreds::gitcreds_set()
+```
+
+.tip[
+You may need to install **gitcreds**
+]
 ---
 
 class: middle, inverse
@@ -524,7 +780,7 @@ class: middle
 
 ## Love potion: RStudio projects
 
-&lt;img src="images/folder-repo.png" title="Side-by-side comparison of project folders on your computer and repositories on GitHub." alt="Side-by-side comparison of project folders on your computer and repositories on GitHub." width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/folder-repo.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -534,7 +790,7 @@ A the project folder on your computer, that contains the files needed to make an
 
 ## RStudio Git pane
 
-&lt;img src="images/rstudio-git-pane.png" title="RStudio Git pane screenshot" alt="RStudio Git pane screenshot" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/rstudio-git-pane.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -566,9 +822,9 @@ Add speaker notes
 
 ---
 
-Slides made with:  **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
+Slides made with:  **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
 
-Referencing with **`RefManageR`** .
+Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
 
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
