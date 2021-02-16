@@ -1067,7 +1067,7 @@ usethis::use_github()
 
 --
 
-You get an error 
+You may get an error 
 ---
 ## Use GitHub
 
