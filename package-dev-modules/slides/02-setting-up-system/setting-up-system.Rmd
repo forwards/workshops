@@ -1,8 +1,8 @@
 ---
-title: "Setting up your system <br>for Mac users"
+title: "Setting up your system"
 subtitle: "Forwards Package Development module"
 author: "<br>Mine Çetinkaya-Rundel"
-date: "<br>🔗 [link to slides](https://forwards.github.io/)"
+date: "<br>🔗 [bit.ly/pkg-dev-2](http://bit.ly/pkg-dev-2)"
 output:
   xaringan::moon_reader:
     css: ["style-xaringanthemer.css", "style-custom.css"]
@@ -112,7 +112,7 @@ layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://forwards.github.io/" target="_blank">🔗 Link to slides</a>
+<a href="http://bit.ly/pkg-dev-2" target="_blank">🔗 bit.ly/pkg-dev-2</a>
 </span>
 </div> 
 
@@ -132,23 +132,6 @@ layout: true
 class: middle
 
 # Overview
-
----
-
-class: middle
-```{r eval = FALSE}
-if (your_system == "Mac") {
-  print("You're in the right place!")
-} else {
-  print("Join the parallel workshop!")
-}
-```
-
-<!-- Speaker notes -->
-
-??? 
-
-Before we get started -- if you're on a Mac, you're in the right place. If you're on a Windows machine, you should join the parallel workshop titled "Setting up your system for Windows users" instead. While there is no difference between how you develop packages on Windows and Mac, there are differences between how you set up your computer with the tools that you will need for package development and version control, therefore it's important that you join the workshop that matches your system setup in order to get the most out of today. I should also admit that I'm not very proficient in setting up a Windows machine, so I wouldn't be able to answer Windows specific questions efficiently.
 
 ---
 
@@ -207,25 +190,6 @@ This workshop walks you through setting up your system for developing an R packa
 
 ---
 
-## Lesson plan
-
--  0 - 5: Introduction  
-    -  Prerequisites  
-    -  Learning Objectives  
--  5 - 25: Section 1: Live code-along-coding  
--  25 - 30: Additional exercises based on Section 1  
--  30 - 45: Section 2: Live code-along-coding  
--  45 - 50: Additional exercises based on Section 2  
--  50 - 55: Wrap-up, where next, additional exercises  
-
-<!-- Speaker notes -->
-
-???
-
-Add speaker notes
-
----
-
 ## Module Prerequisites
 
 Before starting this module you should complete the first module in the Forwards package development series: **Packages in a nutshell**
@@ -243,6 +207,21 @@ We will assume that you have
 ???
 
 Add speaker notes
+
+---
+
+## Be excellent to each other!
+
+`r emo::ji("yellow_heart")` Please use the chat!
+
+`r emo::ji("purple_heart")` Be kind
+
+`r emo::ji("green_heart")` Be respectful
+
+???
+
+Our intention is make time for asking questions. Please use the chat.
+We hope you will feel comfortable posting your questions 'To everyone' because that will help create a supportive learning space for all of us but if you feel more comfortable messaging me or Emma, that's fine.
 
 ---
 
@@ -284,12 +263,14 @@ knitr::include_graphics("images/installation.png")
 ]
 
 
+.footnote[
 .tiny[
-Figure from [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`
-https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
+Figure from [R Packages](https://r-pkgs.org/) by Wickham and Bryan, original [here](https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png).
+]
 ]
 
 ???
+
 You already know some of the functions that put packages into these states. For example, `install.packages()` and `devtools::install_github()` move a package from source, bundled, or binary states into the installed state. 
 The `library()` function loads an installed package into memory, making it available for immediate and direct use.
 
@@ -318,22 +299,55 @@ Using the devtools package is not a requirement for developing or installing fro
 
 class: middle, inverse
 
+# .hand[on Mac]
+
+---
+
+class: middle
+
+```{r eval = FALSE}
+if (your_system == "Mac") {
+  print("You're in the right place!")
+} else {
+  print("Join the parallel workshop!")
+}
+```
+
+<!-- Speaker notes -->
+
+???
+
+Before we get started -- if you're on a Mac, you're in the right place. If you're on a Windows machine, you should join the other breakout room instead. While there is no difference between how you develop packages on Windows and Mac, there are differences between how you set up your computer with the tools that you will need for package development and version control, therefore it's important that you join the workshop that matches your system setup in order to get the most out of today. I should also admit that I'm not very proficient in setting up a Windows machine, so I wouldn't be able to answer Windows specific questions efficiently.
+
+---
+
+class: middle, inverse
+
 # Setting up your system for development
 
 ---
 
 ## Xcode
 
-Install the Xcode command line tools:
+.your-turn[
+Install Xcode command line tools.
+]
 
-- **Option 1:** 
-  - [Register as an Apple developer](https://developer.apple.com/programs/register/)
-  - In the Terminal:
-  ```
-  xcode-select --install
-  ```
+.pull-left[
+**Option 1:** 
 
-- **Option 2:** Install the current release of full [Xcode from the Mac App Store](https://itunes.apple.com/ca/app/xcode/id497799835?mt=12)
+- [Register as an Apple developer](https://developer.apple.com/programs/register/)
+- In the *Terminal*:
+
+```{bash eval = FALSE}
+xcode-select --install
+```
+]
+.pull-right[
+**Option 2:** 
+
+Install the current release of full [Xcode from the Mac App Store](https://itunes.apple.com/ca/app/xcode/id497799835?mt=12)
+]
 
 ???
 
@@ -341,7 +355,15 @@ Option 2 is convenient since you can just get it off the App Store, but it inclu
 
 ---
 
-## Verify system setup
+## Developer tools
+
+.your-turn[
+Verify system setup. Run the following in the *Console*.
+]
+
+```{r eval = FALSE}
+install.packages(devtools)
+```
 
 ```{r}
 library(devtools)
@@ -373,9 +395,11 @@ class: middle
 
 ---
 
-## Check Git status
+## Check Git
 
-In the **Terminal**
+.your-turn[
+Check if Git is already installed. Run the following in the *Terminal*.
+]
 
 .pull-left[
 - Check if Git is installed
@@ -402,9 +426,11 @@ Add speaker notes
 
 ---
 
-## Installing Git
+## Instal Git
 
-If `which git` didn't find Git installed, and if you weren't prompted to install it, you can run the following in the Terminal
+.your-turn[
+If `which git` didn't find Git installed, and if you weren't prompted to install it, run the following in the *Terminal*.
+]
 
 ```{bash, eval = FALSE}
 xcode-select --install
@@ -414,20 +440,25 @@ xcode-select --install
 
 ## Other options for installing Git
 
-We're providing these for reference, but expect that by now you're all set up with Git!
-
+.midi[
 - Recommended if you don't want to use the Terminal:
   - Download and install from https://git-scm.com/downloads
   - If you're developing version controlled packages, you should get to using the Terminal
 
 - Recommended if you do lots of scientific computing and using software that needs to be installed and updated regularly:
+  - You might first need to install Homebrew if this is your first time using it, see [brew.sh](https://brew.sh/) for instructions
   - Use Homebrew: Run the following in the Terminal
 
   ```{bash, eval = FALSE}
   brew install git
   ```
   
-  - You might first need to install Homebrew if this is your first time using it, see [brew.sh](https://brew.sh/) for instructions
+]
+
+
+???
+
+We're providing these for reference, but expect that by now you're all set up with Git!
 
 ---
 
@@ -437,11 +468,114 @@ class: middle
 
 ---
 
-## stuff about setting up GitHub account
+## GitHub
+
+.to-do[
+Register a GitHub account at [github.com](https://github.com/).
+]
+
+.small[
+- Incorporate your actual name!
+- Reuse your username from other contexts.
+- Pick a username you will be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. 
+- Avoid words laden with special meaning in programming.
+- Use all lower case letters.
+]
+
+.footnote[
+.small[
+Advice from [Happy Git with R](https://happygitwithr.com/github-acct.html).
+]
+]
 
 ---
 
-## git sitrep...
+class: middle
+
+# Git and GitHub
+
+---
+
+## Configure Git
+
+.your-turn[
+Configure `user.name` and `user.email`.
+]
+
+```{r eval = FALSE}
+library(usethis)
+use_git_config(
+  user.name = "Jane Doe",          # actual first and last name
+  user.email = "jane@example.com"  # email associated with GitHub account
+  )
+```
+
+---
+
+## Check Git configuration
+
+.your-turn[
+Ask for a **sit**uation **rep**ort.
+]
+
+```{r eval = FALSE}
+git_sitrep()
+```
+
+---
+
+## Personal access token
+
+- Communicating with GitHub will require authentication
+
+- Instead of typing in your username and password each time, use a **PAT** (personal access token)
+
+- The [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html) vignette in the **usethis** package has all the details on PATs!
+
+---
+
+## Create a PAT
+
+.your-turn[
+- Create a PAT
+- Give the token a descriptive name
+- Copy and also store this token somewhere (you won't be able to see it again!)
+]
+
+```{r eval = FALSE}
+usethis::create_github_token()
+```
+
+---
+
+## Store your PAT
+
+.your-turn[
+Put your PAT into the Git credential store
+]
+
+```{r eval = FALSE}
+gitcreds::gitcreds_set()
+```
+
+---
+
+class: middle, inverse
+
+# .hand[on Windows]
+
+---
+
+## add windows slides here
+
+---
+
+class: middle, inverse
+
+# .hand[back together!]
 
 ---
 
@@ -453,16 +587,27 @@ class: middle
 
 ## Love potion: RStudio projects
 
-```{r echo=FALSE, out.width="100%"}
-knitr::include_graphics("images/folder-repo-mac.png")
+```{r echo = FALSE, out.width = "100%", fig.alt = "Side-by-side comparison of project folders on your computer and repositories on GitHub."}
+knitr::include_graphics("images/folder-repo.png")
 ```
 
+???
+
+A the project folder on your computer, that contains the files needed to make an R package, is a repository on GitHub. You should only house one package per repository.
+
 ---
 
-## stuff about RStudio projects
+## RStudio Git pane
+
+```{r echo = FALSE, out.width = "80%", fig.alt = "RStudio Git pane screenshot"}
+knitr::include_graphics("images/rstudio-git-pane.png")
+```
+
+???
+
+When working in an RStudio project that is Git tracked, you can use the Git pane in RStudio to commit, pull, push, etc., i.e. to communicate with GitHub.
 
 ---
-
 
 class: middle
 
@@ -471,6 +616,13 @@ class: middle
 ---
 
 ## Where next?
+
+- Next module: Your first package!
+- Everything you might want to know about using R, RStudio, Git, and GitHub: [Happy Git with R](https://happygitwithr.com/)
+- Setting up for Git tracked package development:
+  - [usethis setup
+](https://usethis.r-lib.org/articles/articles/usethis-setup.html)
+  - [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html)
 
 <!-- which module in the curriculum could follow -->
 <!-- list some follow-up resources -->
@@ -488,27 +640,7 @@ Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
 ---
-## References
 
-.small[
-```{r refs1, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 1, end = 5)
-```
-]
-
----
-
-## References
-
-.small[
-```{r refs2, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 6, end = 10)
-```
-]
-
-
-
----
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
