@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Setting up your system</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Mine Çetinkaya-Rundel" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="style-xaringanthemer.css" type="text/css" />
+    <link rel="stylesheet" href="style-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Setting up your system
+## Forwards Package Development module
+### <br>Mine Çetinkaya-Rundel
+### <br>🔗 <a href="http://bit.ly/pkg-dev-2">bit.ly/pkg-dev-2</a>
+
+---
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="http://bit.ly/pkg-dev-2" target="_blank"&gt;🔗 bit.ly/pkg-dev-2&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+
+
+&lt;!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added --&gt;
+
+&lt;!-- Instructions creating a new module--&gt;
+&lt;!-- Guiding principles for module design are here: 
+../README.md --&gt;
+&lt;!-- Edit Title, subtitle, Author and link --&gt;
+&lt;!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed --&gt;
+
+
+---
+
+class: middle
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+.center[
+&lt;img src="images/emma-rand.png" title="Emma Rand headshot" alt="Emma Rand headshot" width="45%" style="display: block; margin: auto;" /&gt;
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+]
+]
+.pull-right[
+.center[
+&lt;img src="images/mine.jpg" title="Mine Çetinkaya-Rundel headshot" alt="Mine Çetinkaya-Rundel headshot" width="45%" style="display: block; margin: auto;" /&gt;
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+School of Maths, University of Edinburgh, UK   
+RStudio
+]
+]
+]
+
+.center[
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+]
+
+&lt;!-- Speaker notes --&gt;
+
+???
+
+Hello and welcome! The package development workshop modules by R Forwards have been designed and developed by Emma Rand and Mine Çetinkaya-Rundel. I'm Mine, and Emma is running the parallel workshop on setting up your system on a Windows machine. I'm a Senior Lecturer at the University of Edinburgh and I am also part of the Education team at RStudio.  
+
+---
+
+## Summary
+
+This workshop walks you through setting up your system
+
+- for developing an R package and
+- for version control with Git with repositories hosted on GitHub
+
+&lt;!-- Speaker notes --&gt;
+
+???
+
+This workshop walks you through setting up your system for developing an R package and for version control with Git with repositories hosted on GitHub. Our goal is to get your system ready for actual package development in the next module. And, once again, we're assuming that you're working on a Mac, not a Windows machine. 
+
+---
+
+## Module Prerequisites
+
+Before starting this module you should complete the first module in the Forwards package development series: **Packages in a nutshell**
+
+We will assume that you have
+
+-  [installed R and RStudio](../prerequisite-guides/install-r-rstudio.md)
+
+-  some experience of coding in R
+
+-  installed and loaded a package
+
+&lt;!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+## Be excellent to each other!
+
+💛 Please use the chat!
+
+💜 Be kind
+
+💚 Be respectful
+
+???
+
+Our intention is make time for asking questions. Please use the chat.
+We hope you will feel comfortable posting your questions 'To everyone' because that will help create a supportive learning space for all of us but if you feel more comfortable messaging me or Emma, that's fine.
+
+---
+
+## Learning Objectives
+
+At the end of this module the successful learner will be able to:
+
+- set up their system to create and develop an R package (that does not use C or C++ code)
+
+- set up their system to use version control with Git 
+
+- set up their RStudio environment to communicate with GitHub
+
+&lt;!-- Here you list specific LO for the module. The LOs describe what someone will be able to to do after undertaking the module. “Bloom's Taxonomy of Educational Objectives (published in 1956 and revised in 2001) provides a useful model for thinking about LO. More here: http://teachtogether.tech/en/#s:process-objectives--&gt;
+
+???
+
+Add speaker notes
+
+---
+
+class: middle, inverse
+
+# Review
+
+---
+
+# Types of R packages
+
+.pull-left-wide[
+- Installing released packages from CRAN using `install.packages()` -- **binary**
+- Installing development packages using `devtools::install_github()` -- **source**
+- Once installed, binary and source packages are identical
+]
+.pull-right-narrow[
+&lt;img src="images/installation.png" title="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." alt="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.footnote[
+.tiny[
+Figure from [R Packages](https://r-pkgs.org/) by Wickham and Bryan, original [here](https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png).
+]
+]
+
+???
+
+You already know some of the functions that put packages into these states. For example, `install.packages()` and `devtools::install_github()` move a package from source, bundled, or binary states into the installed state. 
+The `library()` function loads an installed package into memory, making it available for immediate and direct use.
+
+---
+
+## devtools
+
+&gt; "The aim of devtools is to make package development easier by providing R functions that simplify and expedite common tasks."
+&gt; [devtools.r-lib.org](https://devtools.r-lib.org/)
+
+
+```r
+install.packages("devtools")
+library(devtools)
+```
+
+Use devtools to
+
+- install source packages from GitHub and elsewhere
+- install and develop packages you write
+
+???
+
+Using the devtools package is not a requirement for developing or installing from source R packages, but it's a convenient, user-friendly, and well-documented approach.
+
+---
+
+class: middle, inverse
+
+# .hand[on Mac]
+
+---
+
+class: middle
+
+
+```r
+if (your_system == "Mac") {
+  print("You're in the right place!")
+} else {
+  print("Join the parallel workshop!")
+}
+```
+
+&lt;!-- Speaker notes --&gt;
+
+???
+
+Before we get started -- if you're on a Mac, you're in the right place. If you're on a Windows machine, you should join the other breakout room instead. While there is no difference between how you develop packages on Windows and Mac, there are differences between how you set up your computer with the tools that you will need for package development and version control, therefore it's important that you join the workshop that matches your system setup in order to get the most out of today. I should also admit that I'm not very proficient in setting up a Windows machine, so I wouldn't be able to answer Windows specific questions efficiently.
+
+---
+
+class: middle, inverse
+
+# Setting up your system for development
+
+---
+
+## Xcode
+
+.your-turn[
+Install Xcode command line tools.
+]
+
+.pull-left[
+**Option 1:** 
+
+- [Register as an Apple developer](https://developer.apple.com/programs/register/)
+- In the *Terminal*:
+
+
+```bash
+xcode-select --install
+```
+]
+.pull-right[
+**Option 2:** 
+
+Install the current release of full [Xcode from the Mac App Store](https://itunes.apple.com/ca/app/xcode/id497799835?mt=12)
+]
+
+???
+
+Option 2 is convenient since you can just get it off the App Store, but it includes a great deal that you do not need.
+
+---
+
+## Developer tools
+
+.your-turn[
+Verify system setup. Run the following in the *Console*.
+]
+
+
+```r
+install.packages(devtools)
+```
+
+
+```r
+library(devtools)
+```
+
+
+```r
+has_devel()
+```
+
+```
+## Your system is ready to build packages!
+```
+
+---
+
+## What's next?
+
+- Creating a package is as easy as...
+
+
+```r
+create_package()
+```
+
+- But we're going to do a bit more setup first!
+  - Use version control during development with **Git**
+  - Host your package on **GitHub**
+
+---
+
+class: middle
+
+# Git
+
+---
+
+## Check Git
+
+.your-turn[
+Check if Git is already installed. Run the following in the *Terminal*.
+]
+
+.pull-left[
+- Check if Git is installed
+
+
+```bash
+which git
+```
+
+```
+## /usr/bin/git
+```
+]
+.pull-right[
+- Check the version of your Git
+
+
+```bash
+git --version
+```
+
+```
+## git version 2.24.3 (Apple Git-128)
+```
+]
+
+.tip[
+If asked to install the Xcode command line tools, say yes!
+]
+
+???
+
+Add speaker notes
+
+---
+
+## Instal Git
+
+.your-turn[
+If `which git` didn't find Git installed, and if you weren't prompted to install it, run the following in the *Terminal*.
+]
+
+
+```bash
+xcode-select --install
+```
+
+---
+
+## Other options for installing Git
+
+.midi[
+- Recommended if you don't want to use the Terminal:
+  - Download and install from https://git-scm.com/downloads
+  - If you're developing version controlled packages, you should get to using the Terminal
+
+- Recommended if you do lots of scientific computing and using software that needs to be installed and updated regularly:
+  - You might first need to install Homebrew if this is your first time using it, see [brew.sh](https://brew.sh/) for instructions
+  - Use Homebrew: Run the following in the Terminal
+
+  
+  ```bash
+  brew install git
+  ```
+  
+]
+
+
+???
+
+We're providing these for reference, but expect that by now you're all set up with Git!
+
+---
+
+class: middle
+
+# GitHub
+
+---
+
+## GitHub
+
+.to-do[
+Register a GitHub account at [github.com](https://github.com/).
+]
+
+.small[
+- Incorporate your actual name!
+- Reuse your username from other contexts.
+- Pick a username you will be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. 
+- Avoid words laden with special meaning in programming.
+- Use all lower case letters.
+]
+
+.footnote[
+.small[
+Advice from [Happy Git with R](https://happygitwithr.com/github-acct.html).
+]
+]
+
+---
+
+class: middle
+
+# Git and GitHub
+
+---
+
+## Configure Git
+
+.your-turn[
+Configure `user.name` and `user.email`.
+]
+
+
+```r
+library(usethis)
+use_git_config(
+  user.name = "Jane Doe",          # actual first and last name
+  user.email = "jane@example.com"  # email associated with GitHub account
+  )
+```
+
+---
+
+## Check Git configuration
+
+.your-turn[
+Ask for a **sit**uation **rep**ort.
+]
+
+
+```r
+git_sitrep()
+```
+
+---
+
+## Personal access token
+
+- Communicating with GitHub will require authentication
+
+- Instead of typing in your username and password each time, use a **PAT** (personal access token)
+
+- The [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html) vignette in the **usethis** package has all the details on PATs!
+
+---
+
+## Create a PAT
+
+.your-turn[
+- Create a PAT
+- Give the token a descriptive name
+- Copy and also store this token somewhere (you won't be able to see it again!)
+]
+
+
+```r
+usethis::create_github_token()
+```
+
+---
+
+## Store your PAT
+
+.your-turn[
+Put your PAT into the Git credential store
+]
+
+
+```r
+gitcreds::gitcreds_set()
+```
+
+---
+
+class: middle, inverse
+
+# .hand[on Windows]
+
+---
+
+## add windows slides here
+
+---
+
+class: middle, inverse
+
+# .hand[back together!]
+
+---
+
+class: middle
+
+# R &amp; RStudio 💜 Git &amp; GitHub
+
+---
+
+## Love potion: RStudio projects
+
+&lt;img src="images/folder-repo.png" title="Side-by-side comparison of project folders on your computer and repositories on GitHub." alt="Side-by-side comparison of project folders on your computer and repositories on GitHub." width="100%" style="display: block; margin: auto;" /&gt;
+
+???
+
+A the project folder on your computer, that contains the files needed to make an R package, is a repository on GitHub. You should only house one package per repository.
+
+---
+
+## RStudio Git pane
+
+&lt;img src="images/rstudio-git-pane.png" title="RStudio Git pane screenshot" alt="RStudio Git pane screenshot" width="80%" style="display: block; margin: auto;" /&gt;
+
+???
+
+When working in an RStudio project that is Git tracked, you can use the Git pane in RStudio to commit, pull, push, etc., i.e. to communicate with GitHub.
+
+---
+
+class: middle
+
+# Where next?
+
+---
+
+## Where next?
+
+- Next module: Your first package!
+- Everything you might want to know about using R, RStudio, Git, and GitHub: [Happy Git with R](https://happygitwithr.com/)
+- Setting up for Git tracked package development:
+  - [usethis setup
+](https://usethis.r-lib.org/articles/articles/usethis-setup.html)
+  - [Managing Git(Hub) Credentials](https://usethis.r-lib.org/articles/articles/git-credentials.html)
+
+&lt;!-- which module in the curriculum could follow --&gt;
+&lt;!-- list some follow-up resources --&gt;
+
+???
+
+Add speaker notes
+
+---
+
+Slides made with:  **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
+
+Referencing with **`RefManageR`** .
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Module: fill in the module name&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

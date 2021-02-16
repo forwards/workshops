@@ -2,7 +2,7 @@
 title: "Packages in a nutshell"
 subtitle: "A Forwards Package Development module"
 author: "<br>Emma Rand"
-date: "<br>🔗 [link to slides](https://3mmarand.github.io/workshops/package-dev-modules/slides/01-packages-in-a-nutshell/packages-in-a-nutshell.html)"
+date: "<br>🔗 [bit.ly/pkg-dev-1](http://bit.ly/pkg-dev-1)"
 output:
   xaringan::moon_reader:
     css: ["style-xaringanthemer.css", "style-custom.css"]
@@ -114,7 +114,7 @@ layout: true
   
 <div class="my-footer">
 <span>
-<a href="https://3mmarand.github.io/workshops/package-dev-modules/slides/01-packages-in-a-nutshell/packages-in-a-nutshell.html" target="_blank">🔗 Link to slides</a>
+<a href="http://bit.ly/pkg-dev-1" target="_blank">🔗 bit.ly/pkg-dev-1</a>
 </span>
 </div> 
 
