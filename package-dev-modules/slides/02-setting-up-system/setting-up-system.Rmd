@@ -561,6 +561,10 @@ Put your PAT into the Git credential store
 gitcreds::gitcreds_set()
 ```
 
+.tip[
+You may need to install **gitcreds** with `install.packages(gitcreds)`.
+]
+
 ---
 
 class: middle, inverse
@@ -810,8 +814,9 @@ gitcreds::gitcreds_set()
 ```
 
 .tip[
-You may need to install **gitcreds**
+You may need to install **gitcreds** with `install.packages(gitcreds)`.
 ]
+
 ---
 
 class: middle, inverse
