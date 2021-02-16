@@ -55,7 +55,7 @@ class: middle
 
 .pull-left[
 .center[
-&lt;img src="images/emma-rand.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/emma-rand.png" title="Emma Rand headshot" alt="Emma Rand headshot" width="45%" style="display: block; margin: auto;" /&gt;
 Emma Rand  
 .small[
 Senior Lecturer (Prof)  
@@ -65,7 +65,7 @@ Department of Biology, University of York, UK
 ]
 .pull-right[
 .center[
-&lt;img src="images/mine.jpg" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/mine.jpg" title="Mine Çetinkaya-Rundel headshot" alt="Mine Çetinkaya-Rundel headshot" width="45%" style="display: block; margin: auto;" /&gt;
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
@@ -169,7 +169,7 @@ class: middle, inverse
 - Once installed, binary and source packages are identical
 ]
 .pull-right-narrow[
-&lt;img src="images/installation.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/installation.png" title="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." alt="Various stages of R packages (source, bundle, binary, installed, and in memory) on the x-axis and the various installation options (install.packages, R CMD install, install, build, install_github)." width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -331,7 +331,7 @@ which git
 ```
 
 ```
-## /c/Users/er13/AppData/Local/Programs/Git/cmd/git
+## /usr/bin/git
 ```
 ]
 .pull-right[
@@ -343,7 +343,7 @@ git --version
 ```
 
 ```
-## git version 2.20.1.windows.1
+## git version 2.24.3 (Apple Git-128)
 ```
 ]
 
@@ -498,6 +498,10 @@ Put your PAT into the Git credential store
 gitcreds::gitcreds_set()
 ```
 
+.tip[
+You may need to install **gitcreds** with `install.packages(gitcreds)`.
+]
+
 ---
 
 class: middle, inverse
@@ -613,7 +617,7 @@ which git
 ```
 
 ```
-## /c/Users/er13/AppData/Local/Programs/Git/cmd/git
+## /usr/bin/git
 ```
 ]
 .pull-right[
@@ -625,7 +629,7 @@ git --version
 ```
 
 ```
-## git version 2.20.1.windows.1
+## git version 2.24.3 (Apple Git-128)
 ```
 ]
 
@@ -770,8 +774,9 @@ gitcreds::gitcreds_set()
 ```
 
 .tip[
-You may need to install **gitcreds**
+You may need to install **gitcreds** with `install.packages(gitcreds)`.
 ]
+
 ---
 
 class: middle, inverse
@@ -788,7 +793,7 @@ class: middle
 
 ## Love potion: RStudio projects
 
-&lt;img src="images/folder-repo.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/folder-repo.png" title="Side-by-side comparison of project folders on your computer and repositories on GitHub." alt="Side-by-side comparison of project folders on your computer and repositories on GitHub." width="100%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -798,7 +803,7 @@ A the project folder on your computer, that contains the files needed to make an
 
 ## RStudio Git pane
 
-&lt;img src="images/rstudio-git-pane.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/rstudio-git-pane.png" title="RStudio Git pane screenshot" alt="RStudio Git pane screenshot" width="80%" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -830,9 +835,9 @@ Add speaker notes
 
 ---
 
-Slides made with:  **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
+Slides made with:  **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
 
-Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
+Referencing with **`RefManageR`** .
 
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
