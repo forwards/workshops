@@ -266,7 +266,7 @@ Verify that you can create a package with:
 ]
 
 
-```r
+```{r eval = FALSE}
 usethis::create_package("~/Desktop/mypackage")
 ```
 
@@ -321,7 +321,7 @@ You will be meeting these files today
 
 What happens when we run `create_package()`?
 
--   R will create a folder called `mypackage` which is a package and an RStudio project.
+-   R will create a folder called `mypackage` which is a package and an RStudio project
 
 -   restart R in the new project
 
@@ -377,8 +377,8 @@ Functions will go in an `.R` file.
 
 There's a `usethis` helper for adding `.R` files!
 
-```r
-usethis::use_r("file-name")
+```{r eval = FALSE}
+usethis::use_r("file_name")
 ```
 
 --
@@ -402,21 +402,21 @@ a concise and informative name, it's probably about right.
 
 .your-turn[
 
-Create a new R file in your package called `animalSounds.R`
+Create a new R file in your package called `animal_sounds.R`
 
 ]
 
 --
 
-```r
-usethis::use_r("animalSounds")
+```{r eval = FALSE}
+usethis::use_r("animal_sounds")
 ```
 
 --
 
-```r
+```{r eval = FALSE}
 √ Setting active project to 'C:/Users/er13/Desktop/mypackage'
-• Modify 'R/animalSounds.R'
+• Modify 'R/animal_sounds.R'
 • Call `use_test()` to create a matching test file
 ```
 
@@ -429,19 +429,19 @@ Add speaker notes
 
 .your-turn[
 
-Create a new R file in your package called `animalSounds.R`
+Create a new R file in your package called `animal_sounds.R`
 
 ]
 
 
 
-```r
-usethis::use_r("animalSounds")
+```{r eval = FALSE}
+usethis::use_r("animal_sounds")
 ```
 
-```r
+```{r eval = FALSE}
 √ Setting active project to 'C:/Users/er13/Desktop/mypackage'
-• Modify 'R/animalSounds.R'  
+• Modify 'R/animal_sounds.R'  
 *• Call `use_test()` to create a matching test file 
 ```
 
@@ -458,11 +458,12 @@ Put the following code into your script:
 
 ]
 
-```r
-animalSounds <- function(animal, sound){
+```{r eval = FALSE}
+animal_sounds <- function(animal, sound) {
   assertthat::assert_that(
     assertthat::is.string(animal),
-    assertthat::is.string(sound))
+    assertthat::is.string(sound)
+  )
   paste0("The ", animal, " goes ", sound, "!")
 }
 ```
@@ -477,6 +478,7 @@ We do not cover writing functions here but you can learn more in the Functions c
 This function takes two strings. using the `assertthat` package, it checks both inputs are strings and then prints a statement.
 
 ---
+
 ## Add the function
 
 .your-turn[
@@ -485,11 +487,12 @@ Put the following code into your script:
 
 ]
 
-```r
-animalSounds <- function(animal, sound){
+```{r eval = FALSE}
+animal_sounds <- function(animal, sound) {
 *  assertthat::assert_that(
 *    assertthat::is.string(animal),
-*    assertthat::is.string(sound))
+*    assertthat::is.string(sound)
+*  )
   paste0("The ", animal, " goes ", sound, "!")
 }
 ```
@@ -503,7 +506,7 @@ We do not cover writing functions here but you can learn more in the Functions c
 
 If you don't have assertthat installed you can remove these lines.
 With assertthat:
-  animalSounds(2, "woof")
+  animal_sounds(2, "woof")
 will give
 "Error: animal is not a string (a length one character vector)."
 
@@ -525,8 +528,8 @@ In writing any code we will want to test it out. How do we do that when that cod
 
 In a normal script, you might use:
 
-```r
-source("R/animalSounds.R")
+```{r eval = FALSE}
+source("R/animal_sounds.R")
 ``` 
 
 --
@@ -562,15 +565,15 @@ A shortcut is Cmd/Ctrl + Shift + L
 
 .your-turn[
 
-Load with `devtools::load_all()`. Test the `animalSounds()` function.
+Load with `devtools::load_all()`. Test the `animal_sounds()` function.
 ]
 
 --
 
-```r
+```{r eval = FALSE}
 devtools::load_all()
 ``` 
-```r
+```{r eval = FALSE}
 Loading mypackage
 ``` 
 
@@ -582,16 +585,16 @@ You should see a message telling you: Loading mypackage
 
 ## test
 
-```r
-animalSounds("dog", "woof")
+```{r eval = FALSE}
+animal_sounds("dog", "woof")
 ```
 
-```r
+```{r eval = FALSE}
 [1] "The dog goes woof!"
 ``` 
 
 ???
-You can now use the animalSounds() function in the console.
+You can now use the animal_sounds() function in the console.
 
 Note: differs in other languages!
 spanish: guau
@@ -648,7 +651,7 @@ However, `devtools` has the `check()` function to allow you to run this without 
 Check your package
 ]
 
-```r
+```{r eval = FALSE}
 devtools::check()
 ```
 
@@ -665,7 +668,7 @@ There's a fix coming in a few slides.
 
 You will get lots of output. It will end with:
 
-```r
+```{r eval = FALSE}
 -- R CMD check results -------------------- mypackage 0.0.0.9000 ----
 Duration: 12.5s
 
@@ -692,7 +695,7 @@ Warnings mean the package will work but is not minimally documented
 
 You will get lots of output. It will end with:
 
-```r
+```{r eval = FALSE}
 -- R CMD check results -------------------- mypackage 0.0.0.9000 ----
 Duration: 12.5s
 
@@ -717,7 +720,7 @@ Warns us we haven't included a license
 
 You will get lots of output. It will end with:
 
-```r
+```{r eval = FALSE}
 -- R CMD check results -------------------- mypackage 0.0.0.9000 ----
 Duration: 12.5s
 
@@ -739,38 +742,38 @@ Warns us we've used a package with explicitly declaring it
 
 ---
 
-## An aside in case of error
+## Aside: in case of error
 
 On running `devtools::check()` you may get an error if you are using a networked drive.
 
 ```
 Updating mypackage documentation  
 Error: The specified file is not readable: path-to\mypackage\NAMESPACE  
-
 ```
+
 --
 
 This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
 
 ---
 
-## An aside: a fix for networked drives.
+## Aside: a fix for networked drives
 
 Save a copy of this file:
 
 [fix_for_networked_drives.R](fix_for_networked_drives.R)
 
-Save it somewhere other than the `mypackage` directory.
+Save it somewhere other than the `mypackage` directory
 
 --
 
-Open the file from the `mypackage` project session.
+Open the file from the `mypackage` project session
 
 --
 
-Run the whole file.
+Run the whole file
 
-You should now find that `devtools::check()` proceeds normally.
+You should now find that `devtools::check()` proceeds normally
 
 
 ---
@@ -907,13 +910,13 @@ Add a MIT license.
 
 ]
 
-```r
+```{r eval = FALSE}
 usethis::use_mit_license("Emma Rand")
 ```
 
 ---
 
-```r
+```{r eval = FALSE}
 √ Setting active project to 'C:/Users/er13/Desktop/mypackage'
 √ Setting License field in DESCRIPTION to 'MIT + file LICENSE'
 √ Writing 'LICENSE.md'
@@ -964,16 +967,17 @@ These files are not part of the package functions/machinery are not part of the 
 Check your package
 ]
 
-```r
+```{r eval = FALSE}
 devtools::check()
 ```
+
 ---
 
 ## `devtools::check()`
 
 We've fixed an error!
 
-```r
+```{r eval = FALSE}
 -- R CMD check results -------------------- mypackage 0.0.0.9000 ----
 Duration: 10.8s
 
@@ -1035,12 +1039,13 @@ To make our project a Git repository, or 'repo' on our local machine we use `use
 Make your package a Git repo
 ]
 
-```r
+```{r eval = FALSE}
 usethis::use_git()
 ```
 
 ---
-```r
+
+```{r eval = FALSE}
 √ Initialising Git repo
 √ Adding '.Rhistory', '.RData' to '.gitignore'
 There are 8 uncommitted files:
@@ -1057,13 +1062,12 @@ Is it ok to commit them?
 1: Yeah
 2: Absolutely not
 3: No
-
 ```
 
 Choose the Yes option
 
 ---
-```r
+```{r eval = FALSE}
 √ Adding files
 √ Commit with message 'Initial commit'
 • A restart of RStudio is required to activate the Git pane
@@ -1072,8 +1076,8 @@ Restart now?
 1: Nope
 2: Definitely
 3: No
-
 ```
+
 Choose the Yes option
 
 ???
@@ -1085,7 +1089,6 @@ To create a copy on GitHub we use `usethis::use_github()`
 
 This takes a local project, creates an associated repo on GitHub, adds it to your local repo as the "origin remote", and makes an initial "push" to synchronize.
 
-
 ---
 
 ## Use GitHub
@@ -1094,7 +1097,7 @@ This takes a local project, creates an associated repo on GitHub, adds it to you
 Copy your local repo to GitHub
 ]
 
-```r
+```{r eval = FALSE}
 usethis::use_github()
 ```
 
@@ -1102,7 +1105,7 @@ usethis::use_github()
 
 If you get this:
 
-```r
+```{r eval = FALSE}
 ✔ Checking that current branch is 'master'
 Which git protocol to use? (enter 0 to exit) 
 1: ssh   <-- presumes that you have set up ssh keys
@@ -1120,7 +1123,7 @@ You might get this or it might default to https
 
 ## Use GitHub
 
-```r
+```{r eval = FALSE}
 i Defaulting to 'https' Git protocol
 √ Creating GitHub repository
 √ Setting remote 'origin' to 'https://github.com/3mmaRand/mypackage.git'
@@ -1132,6 +1135,7 @@ i Defaulting to 'https' Git protocol
 ```
 
 ---
+
 class: middle
 
 # `r emo::ji("package")` Woohoo, you did it! `r emo::ji("package")`
@@ -1159,8 +1163,6 @@ class: middle
 class: middle
 
 # Where next?
-
-
 
 ---
 
