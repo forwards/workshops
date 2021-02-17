@@ -94,8 +94,8 @@ Before starting this module we will assume that you have
 
 -   "[Packages in a nutshell](../01-packages-in-a-nutshell/packages-in-a-nutshell.html)" or equivalent experience
 
--   "Setting up your system [mac](../02-setting-up-system-mac/setting-up-system-mac.html)/[windows](../02-setting-up-system-windows/setting-up-system-windows.html)" or equivalent experience
-   -   the packages `devtools`, `roxygen2`, `testthat` and `assertthat` installed
+-   "[Setting up your system](../02-setting-up-system/setting-up-system.html)" or equivalent experience
+   -   the packages `devtools` and `assertthat` installed
    -   R build toolchain: Rtools(windows) or XCode (mac) or r-base-dev
    -   git installed, a GitHub account and verified they can talk to RStudio
 
@@ -112,8 +112,8 @@ You will need to set up an account but have 15 hrs / month for free
 
 devtools - needed today and irreplaceable
 assertthat - we use in the package we make. it would be possible to avoid using if installation is problematic for any reason
-roxygen2 - will be needed for documentation
-testthat - will be needed for a later module for testing
+
+If Git/GitHub set up has been tricky, you will still be able to do the majority of the workshop
 
 ---
 
@@ -153,6 +153,7 @@ class: middle
 ## Create a package!
 
 ---
+
 ## Create a package!
 
 .tip[
@@ -167,6 +168,7 @@ On our next slide, we will create a package on the Desktop. You may want to writ
 
 
 ---
+
 ## Create a package!
 
 .your-turn[
@@ -226,6 +228,7 @@ You can see that a folder, mypackage, has been created with an R/ folder and som
 You will be meeting these files today
 
 ---
+
 ## `create_package()`
 
 What happens when we run `create_package()`?
@@ -246,6 +249,7 @@ You may find the Build pane has not appeared on the top right window. If you clo
 
 
 ---
+
 ## `create_package()`
 
 What happens when we run `create_package()`?
@@ -263,6 +267,7 @@ If you have used RStudio Projects before you will be familiar with the .RProj fi
 DESCRIPTION  - this is the file that makes the directory a package. We will need to edit this.
 
 ---
+
 ## `create_package()`
 
 What happens when we run `create_package()`?
@@ -277,6 +282,7 @@ What happens when we run `create_package()`?
 See the linein the output: √ Adding '^mypackage\\.Rproj$', '^\\.Rproj\\.user$' to '.Rbuildignore'
 
 ---
+
 ## What to put in it?
 
 Functions will go in an `.R` file.
@@ -303,6 +309,7 @@ a concise and informative name, it's probably about right.
 
 
 ---
+
 ## `usethis::use_r()`
 
 .your-turn[
@@ -329,6 +336,7 @@ usethis::use_r("animalSounds")
 Add speaker notes
 
 ---
+
 ## `usethis::use_r()`
 
 .your-turn[
@@ -353,6 +361,7 @@ usethis::use_r("animalSounds")
 Ignore this line "Call `use_test()` to create a matching test file"  for today. A later module will cover testing.
 
 ---
+
 ## Add the function
 
 .your-turn[
@@ -371,7 +380,7 @@ animalSounds &lt;- function(animal, sound){
 ```
 
 .footnote[.small[
-We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) 
+We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) &lt;a name=cite-Wickham2017RDS3086927&gt;&lt;/a&gt;([Wickham and Grolemund, 2017](#bib-Wickham2017RDS3086927))
 ]]
 
 
@@ -398,7 +407,7 @@ animalSounds &lt;- function(animal, sound){
 ```
 
 .footnote[.small[
-We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) 
+We do not cover writing functions here but you can learn more in the Functions chapter of [R for Data Science](https://r4ds.had.co.nz/) ([Wickham and Grolemund, 2017](#bib-Wickham2017RDS3086927))
 ]]
 
 
@@ -423,6 +432,7 @@ In writing any code we will want to test it out. How do we do that when that cod
 
 
 ---
+
 ## Development workflow
 
 In a normal script, you might use:
@@ -440,9 +450,10 @@ but when building packages, we use a `devtools` approach.
 Add speaker notes
 
 ---
+
 ## Development workflow
 
-&lt;img src="images/dev_cycle_before_testing.png" title="schematic of the development workflow. there are three boxes with arrow joining them clockwise. The boxes are (clockwise from 3' oclock) 'devtools::load_all() Cmd/Ctrl + Shift +L', 'Explore in console' and 'Modify code'" alt="schematic of the development workflow. there are three boxes with arrow joining them clockwise. The boxes are (clockwise from 3' oclock) 'devtools::load_all() Cmd/Ctrl + Shift +L', 'Explore in console' and 'Modify code'" width="600px" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/dev_cycle_before_testing.png" width="600px" style="display: block; margin: auto;" /&gt;
 
 --
 .center[
@@ -456,6 +467,7 @@ devtools::load_all() simulates package installation so that you can test your fu
 A shortcut is Cmd/Ctrl + Shift + L
 
 ---
+
 ## `devtools::load_all()`
 
 .your-turn[
@@ -477,6 +489,7 @@ Loading mypackage
 You should see a message telling you: Loading mypackage
 
 ---
+
 ## test
 
 ```r
@@ -497,6 +510,7 @@ Notice that the function is not in your workspace (as would happen with source()
 
 
 ---
+
 ## `devtools::load_all()`
 
 .your-turn[
@@ -509,6 +523,7 @@ Now you try making a change to the function.
 You can change some of the words - like this suggests - or have the animal repeat the noise several times: "the dog goes woof, woof, woof!"
 
 ---
+
 ## `devtools::load_all()`
 
 .your-turn[ 
@@ -522,6 +537,7 @@ class: middle
 ## Check your package!
 
 ---
+
 ## `devtools::check()`
 
 `R CMD check` is the gold standard for checking that an R package is in full working order.
@@ -535,6 +551,7 @@ However, `devtools` has the `check()` function to allow you to run this without 
 🥳
 
 ---
+
 ## `devtools::check()`
 
 .your-turn[
@@ -553,6 +570,7 @@ There's a fix coming in a few slides.
 
 
 ---
+
 ## `devtools::check()`
 
 You will get lots of output. It will end with:
@@ -579,6 +597,7 @@ Errors mean the package won't work until fixed
 Warnings mean the package will work but is not minimally documented
 
 ---
+
 ## `devtools::check()`
 
 You will get lots of output. It will end with:
@@ -600,9 +619,10 @@ Duration: 12.5s
 ```
 ???
 
-Warns us we havn't included a license
+Warns us we haven't included a license
 
 ---
+
 ## `devtools::check()`
 
 You will get lots of output. It will end with:
@@ -628,6 +648,7 @@ Duration: 12.5s
 Warns us we've used a package with explicitly declaring it
 
 ---
+
 ## An aside in case of error
 
 On running `devtools::check()` you may get an error if you are using a networked drive.
@@ -642,6 +663,7 @@ Error: The specified file is not readable: path-to\mypackage\NAMESPACE
 This is covered [here](https://stackoverflow.com/questions/40530968/overwriting-namespace-and-rd-with-roxygen2) and can be fixed.
 
 ---
+
 ## An aside: a fix for networked drives.
 
 Save a copy of this file:
@@ -670,6 +692,7 @@ class: middle
 For the the purposes of this workshop, we will only cover documentation very briefly. Package documentation is covered in another module and could be the subject of many!
 
 ---
+
 ## Naming a Package
 
 Can only contain the characters [A-Z, a-z, 0-9, .]
@@ -690,6 +713,7 @@ First of all, Let's go back to the start. Before creating our package we need a 
 Here we used mypackage but later you will want to name your packages more meaningfully
 
 ---
+
 ## Metadata in `DESCRIPTION`
 
 -  *Title*: One line, title case, with no period. Fewer than 65 characters.
@@ -704,6 +728,7 @@ The are two types of documentation: package level and function level.
 The DESCRIPTION file provides some of the package level documentation (or metadata)
 
 ---
+
 ## Metadata in `DESCRIPTION`
 
 -  *Description*: One paragraph describing what the package does. Keep the width 
@@ -718,6 +743,7 @@ Add speaker notes
 lazy loading means that data is only loaded if needed.
 
 ---
+
 ## Update `DESCRIPTION`
 
 .tip[
@@ -731,7 +757,7 @@ You can use Ctrl/Command + . and start typing a file name to open a file for edi
 
 1. Add a title and description.
 
-2. Add yourself as an author and maintainer.
+2. Add yourself as an author and creator.
 
 ]
 
@@ -739,6 +765,7 @@ You can use Ctrl/Command + . and start typing a file name to open a file for edi
 Add speaker notes
 
 ---
+
 ## Document your package
 
 .tip[
@@ -759,6 +786,7 @@ class: middle
 # License your package
 
 ---
+
 ## `LICENSE`
 
 
@@ -779,6 +807,7 @@ Other licenses are available. See GitHub's [Choose an open source license](https
 Add speaker notes
 
 ---
+
 ## `LICENSE`
 
 We can add the MIT license using the helper function `usethis::use_mit_license()`
@@ -803,6 +832,7 @@ usethis::use_mit_license("Emma Rand")
 ```
 
 ---
+
 ## `LICENSE`
 
 .your-turn[
@@ -813,9 +843,11 @@ What has changed?
 
 
 ???
-Have a look around your files
+Have a look around your files.
+What files have appeared? Look at the description file
 
 ---
+
 ## `LICENSE`
 
 Using `usethis::use_mit_license()`:
@@ -834,6 +866,7 @@ These files are not part of the package functions/machinery are not part of the 
 
 
 ---
+
 ## `devtools::check()`
 
 
@@ -845,6 +878,7 @@ Check your package
 devtools::check()
 ```
 ---
+
 ## `devtools::check()`
 
 We've fixed an error!
@@ -877,29 +911,24 @@ Now will make our package a version controlled project on our local machine and 
 
 devtools has function to help with this.
 
----
-## Use Git
+## Check Git configuration
 
-First, make sure Git is configured:
+.your-turn[
+Ask for a **sit**uation **rep**ort.
+]
 
-Tools | Shell...
 
 ```r
-git config --global --list
-```
-
-```
-user.name=3mmaRand
-user.email=emma.rand@york.ac.uk
+git_sitrep()
 ```
 
 
 .footnote[.small[
-[Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference .
+[Happy Git and GitHub for the useR](https://happygitwithr.com/) is an excellent reference &lt;a name=cite-Bryan_Happy_Git&gt;&lt;/a&gt;([Bryan and Hester, ](#bib-Bryan_Happy_Git)).
 ]]
 
 ???
-This should already be done if the previous module was done.
+This should be done if the previous module was done.
 
 To configure if needed
 
@@ -908,6 +937,7 @@ git config --global user.email 'emma.rand@york.ac.uk'
 
 
 ---
+
 ## Use Git
 
 To make our project a Git repository, or 'repo' on our local machine we use `usethis::use_git()`
@@ -957,6 +987,9 @@ Restart now?
 ```
 Choose the Yes option
 
+???
+ You should find the git pane has opened.
+
 ---
 ## Use GitHub
 To create a copy on GitHub we use `usethis::use_github()`
@@ -965,6 +998,7 @@ This takes a local project, creates an associated repo on GitHub, adds it to you
 
 
 ---
+
 ## Use GitHub
 
 .your-turn[
@@ -975,106 +1009,9 @@ Copy your local repo to GitHub
 usethis::use_github()
 ```
 
---
-
-You get an error 
 ---
-## Use GitHub
 
-```r
-√ Setting active project to 'C:/Users/er13/Desktop/mypackage'
-√ Checking that current branch is 'master'
-Error: No GitHub `auth_token` is available.
-See `browse_github_token()` for help storing a token as an environment variable.
-```
-
-
-because authentication is also required.
-
----
-## Authentication
-
-A new GitHub repo will be created via the GitHub API, therefore you must make a GitHub personal access token (PAT) available. You can do this with `usethis::browse_github_token()`
-
-
-.your-turn[
-Get a GitHub PAT
-]
-
-```r
-usethis::browse_github_token()
-```
----
-## Authentication
-
-This opens a browser window for you to log in to GitHub.
-
-```r
-√ Opening URL 'https://github.com/settings/tokens/new?scopes=repo,gist,user:email&amp;description=R:GITHUB_PAT'
-• Call `usethis::edit_r_environ()` to open '.Renviron'.
-• Store your PAT (personal access token) with a line like:
-  GITHUB_PAT=xxxyyyzzz
-  [Copied to clipboard]
-• Make sure '.Renviron' ends with a newline!
-```
-
----
-## Authentication
-.your-turn[
-Click generate token.
-
-Copy it.
-
-Leave this page open for the time being.
-]
-
----
-## Authentication
-.your-turn[
-Go back to RStudio
-
-Edit `.Renviron`
-]
-
-```r
-usethis::edit_r_environ()
-```
-```r
-• Modify 'C:/Users/er13/.Renviron'
-• Restart R for changes to take effect
-```
-
----
-## Authentication
-
-.Renviron will open. 
-.your-turn[
-Add a line like:
-
-GITHUB_PAT=xxxyyyzzz
-]
-Where xxxyyyzzz is pasted from the clipboard.
-
---
-
-Make sure `.Renviron` ends with a newline!
-
-Save and close .Renviron
-
----
-## Use GitHub
-
-.your-turn[
-Restart R
-
-Instruct R to make a copy of your local repo on GitHub
-]
-
-```r
-usethis::use_github()
-```
-
----
+If you get this:
 
 ```r
 ✔ Checking that current branch is 'master'
@@ -1085,30 +1022,17 @@ Which git protocol to use? (enter 0 to exit)
 
 Choose 2 at the moment.
 
+??? 
+You might get this or it might default to https
 
----
-## Use GitHub
-
-```r
-√ Checking that current branch is 'master'
-• Check title and description
-  Name:        mypackage
-  Description: Prints a Sentence in the Form the Animal Goes Sound
-Are title and description ok?
-
-1: Absolutely not
-2: No
-3: Definitely
-
-
-```
-Choose the Yes option
 
 
 ---
+
 ## Use GitHub
 
 ```r
+i Defaulting to 'https' Git protocol
 √ Creating GitHub repository
 √ Setting remote 'origin' to 'https://github.com/3mmaRand/mypackage.git'
 √ Adding GitHub links to DESCRIPTION
@@ -1166,9 +1090,9 @@ Add speaker notes
 
 ---
 
-Slides made with:  **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
+Slides made with:  **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
 
-Referencing with **`RefManageR`** .
+Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
 
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
@@ -1176,7 +1100,33 @@ Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma R
 ## References
 
 .small[
-NULL
+&lt;a name=bib-countdown&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-countdown) (2020b). _countdown: A Countdown
+Timer for R Markdown HTML Presentations and Documents_. R
+package version 0.3.5. URL:
+[https://github.com/gadenbuie/countdown](https://github.com/gadenbuie/countdown).
+
+&lt;a name=bib-xaringanExtra&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanExtra) (2020c). _xaringanExtra: Extras
+And Extensions for Xaringan Slides_. R package version
+0.2.3.9000. URL:
+[https://github.com/gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra).
+
+&lt;a name=bib-xaringanthemer&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanthemer) (2020a). _xaringanthemer:
+Custom 'xaringan' CSS Themes_. R package version 0.3.0.
+URL:
+[https://CRAN.R-project.org/package=xaringanthemer](https://CRAN.R-project.org/package=xaringanthemer).
+
+&lt;a name=bib-markdown1&gt;&lt;/a&gt;[Allaire, J., Y. Xie, et
+al.](#cite-markdown1) (2019). _rmarkdown: Dynamic
+Documents for R_. R package version 1.16. URL:
+[https://github.com/rstudio/rmarkdown](https://github.com/rstudio/rmarkdown).
+
+&lt;a name=bib-Bryan_Happy_Git&gt;&lt;/a&gt;[Bryan, J. and J.
+Hester](#cite-Bryan_Happy_Git) _Happy Git and GitHub for
+the useR_. &lt;URL: https://happygitwithr.com/&gt;. Accessed:
+2019-11-22.
 ]
 
 ---
@@ -1184,7 +1134,36 @@ NULL
 ## References
 
 .small[
-NULL
+&lt;a name=bib-McLean-2017&gt;&lt;/a&gt;[McLean, M.
+W.](#cite-McLean-2017) (2017). "RefManageR: Import and
+Manage BibTeX and BibLaTeX References in R". In: _The
+Journal of Open Source Software_. DOI:
+[10.21105/joss.00338](https://doi.org/10.21105%2Fjoss.00338).
+
+&lt;a name=bib-Wickham2017RDS3086927&gt;&lt;/a&gt;[Wickham, H. and G.
+Grolemund](#cite-Wickham2017RDS3086927) (2017). _R for
+Data Science: Import, Tidy, Transform, Visualize, and
+Model Data_. 1st. O'Reilly Media, Inc. ISBN: 1491910399,
+9781491910399. URL:
+[https://r4ds.had.co.nz/](https://r4ds.had.co.nz/).
+
+&lt;a name=bib-knitr3&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr3) (2014).
+"knitr: A Comprehensive Tool for Reproducible Research in
+R". In: _Implementing Reproducible Computational
+Research_. Ed. by V. Stodden, F. Leisch and R. D. Peng.
+ISBN 978-1466561595. Chapman and Hall/CRC. URL:
+[http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595).
+
+&lt;a name=bib-knitr2&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr2) (2015).
+_Dynamic Documents with R and knitr_. 2nd. ISBN
+978-1498716963. Boca Raton, Florida: Chapman and
+Hall/CRC. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-knitr1&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr1) (2020).
+_knitr: A General-Purpose Package for Dynamic Report
+Generation in R_. R package version 1.30. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
 ]
 
 
