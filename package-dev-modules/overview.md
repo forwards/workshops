@@ -93,7 +93,11 @@ At the end of this module the successful learner will be able to:
 
 #### Prerequisites
 
+##### Other modules
+
 * Packages in a nutshell or equivalent - desirable but not essential
+
+##### Sytem
 * git installed
 * github account
 
@@ -109,7 +113,7 @@ load devtools
 describe pkg to be built; 
 using workflow: Existing project, GitHub last: create_package, use_git, use_github, make a function, load_all(), check(), add roxygen, document(), alter DESCRIPTION, add a LICENSE (refer to package documentation module)
 
-Ref: Packages Chapter 2 The whole game; Happy Git and GitHub for the useR Chapter ..
+Ref: Packages Chapter 2 The whole game; Happy Git and GitHub for the useR Chapter 
 
 #### Learning Objectives
 
@@ -125,12 +129,18 @@ At the end of this module the successful learner will be able to:
 
 #### Prerequisites
 
+##### Other modules
+
+* Packages in a nutshell or equivalent - desirable but not essential
+* Setting up your system
+
+##### Sytem
+
 * r and rstudio installed
 * git installed, github acc, github use authorised
 * devtools, roxygen2, testthat, knitr  
 * R build toolchain: Rtools(windows) or XCode (mac) or `r-base-dev`
 
-See Packages in a nutshell and Setting up your system...  
 
 ---
 
@@ -152,16 +162,33 @@ Ref:
 
 At the end of this module the successful learner will be able to:  
 
-*   
-*   
-*   
+* recognise the different levels of package documentation: Metadata,  Object documentation and Vignettes
+* explain, create and populate a DESCRIPTION file
+* know how to add package dependencies with `usethis::use_package()` and the difference between Imports and Suggests
+* explain the components of a LICENSE file 
+* add object documentation using `roxygen2`, `devtools::document()`  
+* explain what a vignette is and create one with `usethis::use_vignette()`  
 *   
 
 #### Prerequisites
 
-* 
-* 
-* 
+##### Other modules
+
+* Packages in a nutshell or equivalent - desirable but not essential
+* Setting up your system
+* Your first package or equivalent
+
+##### Sytem
+
+* git installed
+* github account
+* r and rstudio installed
+* git installed, github acc, github use authorised
+* devtools, roxygen2, testthat, knitr  
+* R build toolchain: Rtools(windows) or XCode (mac) or `r-base-dev`
+
+
+Ref: Packages Chapter 8 Package metadata
 
 ---
 
