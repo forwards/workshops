@@ -118,7 +118,7 @@ layout: true
 </span>
 </div> 
 
-<!-- Presenting on zoom or similar? Press C to clone you slides, then P for presenter mode for one set. You can share the whole screen version of the slides while still seeing you presenter view -->
+<!-- Presenting on zoom or similar? Press C to clone your slides, then P for presenter mode for one set. You can share the whole screen version of the slides while still seeing you presenter view -->
 ---
 
 ## Welcome!
@@ -143,8 +143,8 @@ knitr::include_graphics("images/mine.jpg")
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK   
-RStudio
+Department of Statistical Science at Duke University, USA  
+ducator and Data Scientist at RStudio
 ]
 ]
 ]
@@ -260,7 +260,7 @@ class: middle, inverse
 
 ???
 
-Making a package helps you make your work more reusable. If you find your self copying and pasting chunks of code and changing a few variable names it means you are doing some thing that could be generalised. You may have written functions to save yourself some copying and pasting.
+Making a package helps you to make your work more reusable. If you find yourself copying and pasting chunks of code and changing a few variable names it means you are doing some thing that could be generalised. You may have written functions to save yourself some copying and pasting.
 
 Making a package takes that a step further. You do not need to make a package for others to use - it can be just for your use.
 
@@ -371,7 +371,7 @@ R.home()
 
 The R home directory is the top-level directory of the R installation being run.
 
-Note: this is **not** the same as your working directory.
+Note: this is **not** the same as your working directory or your home directory.
 
 ???
 
@@ -448,9 +448,6 @@ What libraries does R know about?
 ???
 How many libraries do you have access to? Post in chat
 
-In my case I have the default library where all the packages that come with the base distribution go.
-
-I also have a user level library where I can install other packages.
 
 ---
 
@@ -640,7 +637,7 @@ We now have more understanding of what packages are and where they come from and
 
 When you are writing a script you load packages with a library() call and document your code with comments using a #. The code is used for a one-off analysis and is stored in a .R file. The code is one off in the sense that it directly references your dataframes and variables
 
-When you write a package, your code is written to be reusable - functions are generalisable - their argument types are defined by the exact instance is not.
+When you write a package, your code is written to be reusable - functions are generalisable - their argument types are defined 
 A package is defined by the presence of a DESCRIPTION file (at least in RStudio).
 It is in this file that you say what the package does, who wrote it and what dependencies it has. Required packages are made available not through a library call, but through the NAMESPACE file. 
 As this hints at, the documentation is different - their is package and function level documentation.
@@ -722,11 +719,11 @@ https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 
 ???
 
-when you develop a package, you write Source code. When you use a package you use it is in the memory.
+when you develop a package, you write Source code. When you use a package, it is in the memory.
 
-Functions moved packages between states.
+Functions move packages between states.
 
-You already know some of the functions move packages between states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
+You already know some of the functions that move packages between states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
 
 The `library()` function loads an installed package into memory, making it available for immediate and direct use.
 
@@ -915,7 +912,7 @@ https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 .pull-right-wide[
 .tip[
 
-If a package is installed `library()` makes its function available by loading the package into memory and attaching it to the search path.
+If a package is installed, `library()` makes its function available by loading the package into memory and attaching it to the search path.
 
 We do not use `library()` for packages we are working on
 
@@ -999,7 +996,7 @@ class: middle, inverse
 We follow the approach used in [R Packages](https://r-pkgs.org/) `r Cite(myBib, "Wickham_Bryan")`:
 
 -  uses `devtools` 
--  in RStudio
+-  in RStudio but commands rather than menus
 -  version controlled using git
 -  hosted on GitHub
 
@@ -1076,31 +1073,12 @@ Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma R
 
 ## References
 
-.small[
+.tiny[
 ```{r refs1, echo = FALSE, results  ="asis"}
-PrintBibliography(myBib, start = 1, end = 5)
+PrintBibliography(myBib)
 ```
 ]
 
----
-
-## References
-
-.small[
-```{r refs2, echo = FALSE, results = "asis"}
-PrintBibliography(myBib, start = 6, end = 10)
-```
-]
-
----
-
-## References
-
-.small[
-```{r refs3, echo = FALSE, results = "asis"}
-PrintBibliography(myBib, start = 11)
-```
-]
 
 ---
 
