@@ -32,7 +32,7 @@ layout: true
 &lt;/span&gt;
 &lt;/div&gt; 
 
-&lt;!-- Presenting on zoom or similar? Press C to clone you slides, then P for presenter mode for one set. You can share the whole screen version of the slides while still seeing you presenter view --&gt;
+&lt;!-- Presenting on zoom or similar? Press C to clone your slides, then P for presenter mode for one set. You can share the whole screen version of the slides while still seeing you presenter view --&gt;
 ---
 
 ## Welcome!
@@ -53,8 +53,8 @@ Department of Biology, University of York, UK
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK   
-RStudio
+Department of Statistical Science at Duke University, USA  
+ducator and Data Scientist at RStudio
 ]
 ]
 ]
@@ -170,7 +170,7 @@ class: middle, inverse
 
 ???
 
-Making a package helps you make your work more reusable. If you find your self copying and pasting chunks of code and changing a few variable names it means you are doing some thing that could be generalised. You may have written functions to save yourself some copying and pasting.
+Making a package helps you to make your work more reusable. If you find yourself copying and pasting chunks of code and changing a few variable names it means you are doing some thing that could be generalised. You may have written functions to save yourself some copying and pasting.
 
 Making a package takes that a step further. You do not need to make a package for others to use - it can be just for your use.
 
@@ -255,20 +255,20 @@ R.version
 
 ```
 ##                _                           
-## platform       x86_64-apple-darwin17.0     
+## platform       x86_64-w64-mingw32          
 ## arch           x86_64                      
-## os             darwin17.0                  
-## system         x86_64, darwin17.0          
+## os             mingw32                     
+## system         x86_64, mingw32             
 ## status                                     
 ## major          4                           
-## minor          0.3                         
-## year           2020                        
-## month          10                          
+## minor          1.1                         
+## year           2021                        
+## month          08                          
 ## day            10                          
-## svn rev        79318                       
+## svn rev        80725                       
 ## language       R                           
-## version.string R version 4.0.3 (2020-10-10)
-## nickname       Bunny-Wunnies Freak Out
+## version.string R version 4.1.1 (2021-08-10)
+## nickname       Kick Things
 ```
 ]
 
@@ -294,12 +294,12 @@ R.home()
 ```
 
 ```
-## [1] "/Library/Frameworks/R.framework/Resources"
+## [1] "C:/PROGRA~1/R/R-41~1.1"
 ```
 
 The R home directory is the top-level directory of the R installation being run.
 
-Note: this is **not** the same as your working directory.
+Note: this is **not** the same as your working directory or your home directory.
 
 ???
 
@@ -326,10 +326,12 @@ list.files(R.home())
 ```
 
 ```
-##  [1] "bin"          "COPYING"      "doc"          "etc"         
-##  [5] "fontconfig"   "include"      "Info.plist"   "lib"         
-##  [9] "library"      "man1"         "modules"      "R"           
-## [13] "Rscript"      "share"        "SVN-REVISION" "tests"
+##  [1] "bin"            "CHANGES"        "COPYING"       
+##  [4] "doc"            "etc"            "include"       
+##  [7] "library"        "MD5"            "modules"       
+## [10] "README"         "README.R-4.1.1" "share"         
+## [13] "src"            "Tcl"            "tests"         
+## [16] "unins000.dat"   "unins000.exe"
 ```
 
 
@@ -354,7 +356,7 @@ What is the default R library?
 ```
 
 ```
-## [1] "/Library/Frameworks/R.framework/Resources/library"
+## [1] "C:/PROGRA~1/R/R-41~1.1/library"
 ```
 
 The default library is in the home directory
@@ -374,207 +376,81 @@ dir(.Library)
 ```
 
 ```
-##   [1] "_cache"            "abind"             "academyapi"       
-##   [4] "addmins"           "airports"          "akima"            
-##   [7] "animation"         "anytime"           "AsioHeaders"      
-##  [10] "askpass"           "assertthat"        "audio"            
-##  [13] "available"         "backports"         "BAS"              
-##  [16] "base"              "base64enc"         "BayesFactor"      
-##  [19] "bayesplot"         "BBmisc"            "beeswarm"         
-##  [22] "bench"             "BH"                "BHH2"             
-##  [25] "BiocManager"       "bit"               "bit64"            
-##  [28] "bitops"            "blob"              "blogdown"         
-##  [31] "bookdown"          "boot"              "brew"             
-##  [34] "brio"              "broom"             "broom.mixed"      
-##  [37] "BRRR"              "bslib"             "cachem"           
-##  [40] "callr"             "car"               "carData"          
-##  [43] "caret"             "cellranger"        "checklist"        
-##  [46] "checkmate"         "cherryblossom"     "class"            
-##  [49] "classInt"          "cli"               "cliapp"           
-##  [52] "clipr"             "clisymbols"        "cluster"          
-##  [55] "coda"              "codetools"         "colorspace"       
-##  [58] "colourpicker"      "colourvalues"      "combinat"         
-##  [61] "commonmark"        "compiler"          "conflicted"       
-##  [64] "conquer"           "contfrac"          "coronavirus"      
-##  [67] "corrplot"          "countdown"         "covr"             
-##  [70] "cowplot"           "cpp11"             "crancache"        
-##  [73] "cranlike"          "crayon"            "credentials"      
-##  [76] "crosstalk"         "crul"              "cubature"         
-##  [79] "cubelyr"           "curl"              "DAAG"             
-##  [82] "data.table"        "datadrivencv"      "datasauRus"       
-##  [85] "datasets"          "DBI"               "dbplyr"           
-##  [88] "dcurver"           "debugme"           "decor"            
-##  [91] "Deriv"             "desc"              "deSolve"          
-##  [94] "devtools"          "DiagrammeR"        "dials"            
-##  [97] "DiceDesign"        "dichromat"         "diffobj"          
-## [100] "digest"            "discrim"           "distro"           
-## [103] "doParallel"        "downlit"           "downloader"       
-## [106] "dplyr"             "dsbox"             "DT"               
-## [109] "dtt"               "dygraphs"          "e1071"            
-## [112] "ellipse"           "ellipsis"          "elliptic"         
-## [115] "emo"               "enc"               "evaluate"         
-## [118] "extrafont"         "extrafontdb"       "fansi"            
-## [121] "farver"            "fastmap"           "fastmatch"        
-## [124] "fastmatrix"        "filelock"          "fivethirtyeight"  
-## [127] "flair"             "flexdashboard"     "flipbookr"        
-## [130] "FNN"               "fontawesome"       "fontBitstreamVera"
-## [133] "fontLiberation"    "fontquiver"        "forcats"          
-## [136] "foreach"           "foreign"           "Formula"          
-## [139] "freetypeharfbuzz"  "friends"           "fs"               
-## [142] "furrr"             "future"            "future.apply"     
-## [145] "fwdbrand"          "gapminder"         "gargle"           
-## [148] "gdtools"           "generics"          "genius"           
-## [151] "geojsonsf"         "geometries"        "gert"             
-## [154] "GGally"            "gganimate"         "ggbeeswarm"       
-## [157] "ggdendro"          "ggforce"           "ggformula"        
-## [160] "ggfortify"         "gggibbous"         "gghighlight"      
-## [163] "ggimage"           "ggmap"             "ggmosaic"         
-## [166] "ggpattern"         "ggplot2"           "ggplotify"        
-## [169] "ggpubr"            "ggrepel"           "ggridges"         
-## [172] "ggsci"             "ggsignif"          "ggstance"         
-## [175] "ggtext"            "ggthemes"          "ggthreed"         
-## [178] "ggvis"             "gh"                "ghclass"          
-## [181] "ghql"              "gifski"            "gistr"            
-## [184] "git2r"             "gitcreds"          "gld"              
-## [187] "glmnet"            "globals"           "glue"             
-## [190] "gmailr"            "gmhelper"          "googledrive"      
-## [193] "googlePolylines"   "googlesheets4"     "gower"            
-## [196] "GPArotation"       "gpclib"            "GPfit"            
-## [199] "gradethis"         "graphics"          "graphql"          
-## [202] "grDevices"         "grid"              "gridExtra"        
-## [205] "gridGeometry"      "gridGraphics"      "gridtext"         
-## [208] "gsheet"            "gssr"              "gt"               
-## [211] "gtable"            "gtools"            "gutenbergr"       
-## [214] "hardhat"           "haven"             "here"             
-## [217] "hexbin"            "highlight"         "highr"            
-## [220] "HistData"          "Hmisc"             "hms"              
-## [223] "htmlTable"         "htmltools"         "htmlwidgets"      
-## [226] "httpcode"          "httpuv"            "httr"             
-## [229] "hunspell"          "hypergeo"          "icon"             
-## [232] "ids"               "igraph"            "infer"            
-## [235] "influenceR"        "ini"               "inline"           
-## [238] "ipred"             "iptools"           "isoband"          
-## [241] "ISOcodes"          "iterators"         "janeaustenr"      
-## [244] "janitor"           "jpeg"              "jqr"              
-## [247] "jquerylib"         "jsonify"           "jsonlite"         
-## [250] "kableExtra"        "KernSmooth"        "klaR"             
-## [253] "knitr"             "L1pack"            "labeling"         
-## [256] "labelled"          "Lahman"            "later"            
-## [259] "lattice"           "latticeExtra"      "lava"             
-## [262] "lazyeval"          "leafem"            "leaflet"          
-## [265] "leaflet.extras"    "leaflet.providers" "leafpm"           
-## [268] "leafpop"           "leafsync"          "learnr"           
-## [271] "learnrhash"        "lexicon"           "lhs"              
-## [274] "lifecycle"         "listenv"           "lme4"             
-## [277] "lmom"              "loo"               "lpSolve"          
-## [280] "lubridate"         "lwgeom"            "magick"           
-## [283] "magrittr"          "mapdeck"           "mapedit"          
-## [286] "mapproj"           "maps"              "maptools"         
-## [289] "mapview"           "markdown"          "MASS"             
-## [292] "Matrix"            "MatrixModels"      "matrixStats"      
-## [295] "measurements"      "memoise"           "methods"          
-## [298] "mgcv"              "microbenchmark"    "mime"             
-## [301] "miniCRAN"          "miniUI"            "minqa"            
-## [304] "mirt"              "mlr"               "mnormt"           
-## [307] "modeldata"         "ModelMetrics"      "modelr"           
-## [310] "modeltools"        "mosaic"            "mosaicCore"       
-## [313] "mosaicData"        "munsell"           "mvtnorm"          
-## [316] "naniar"            "NHANES"            "nlme"             
-## [319] "nloptr"            "NLP"               "nnet"             
-## [322] "numDeriv"          "nycflights13"      "nycsquirrels18"   
-## [325] "oibiostat"         "openintro"         "openssl"          
-## [328] "openxlsx"          "ozmaps.data"       "packrat"          
-## [331] "pagedown"          "PairedData"        "pak"              
-## [334] "paletteer"         "palmerpenguins"    "papaja"           
-## [337] "parallel"          "parallelly"        "parallelMap"      
-## [340] "ParamHelpers"      "parsedate"         "parsermd"         
-## [343] "parsnip"           "patchwork"         "pbapply"          
-## [346] "pbkrtest"          "pdftools"          "permute"          
-## [349] "pillar"            "pkgbuild"          "pkgcache"         
-## [352] "pkgconfig"         "pkgdown"           "pkgload"          
-## [355] "plogr"             "plotly"            "plyr"             
-## [358] "png"               "polite"            "polyclip"         
-## [361] "polynom"           "praise"            "prettycode"       
-## [364] "prettyunits"       "prismatic"         "pROC"             
-## [367] "processx"          "prodlim"           "productplots"     
-## [370] "profmem"           "profvis"           "progress"         
-## [373] "promises"          "pryr"              "ps"               
-## [376] "psych"             "purrr"             "qpdf"             
-## [379] "quantreg"          "questionr"         "R.cache"          
-## [382] "R.methodsS3"       "R.oo"              "R.utils"          
-## [385] "R6"                "ragg"              "ranger"           
-## [388] "RANN"              "rapidjsonr"        "rappdirs"         
-## [391] "raster"            "ratelimitr"        "rcmdcheck"        
-## [394] "RColorBrewer"      "Rcpp"              "RcppArmadillo"    
-## [397] "RcppEigen"         "RcppParallel"      "RCurl"            
-## [400] "reactable"         "reactlog"          "reactR"           
-## [403] "readr"             "readxl"            "recipes"          
-## [406] "RefManageR"        "regexplain"        "rematch"          
-## [409] "rematch2"          "remotes"           "renv"             
-## [412] "repr"              "reprex"            "reshape"          
-## [415] "reshape2"          "revdepcheck"       "rex"              
-## [418] "rgdal"             "rgeos"             "RgoogleMaps"      
-## [421] "rhub"              "rio"               "rJava"            
-## [424] "rjson"             "rLakeAnalyzer"     "rlang"            
-## [427] "rmarkdown"         "rmdfiltr"          "robotstxt"        
-## [430] "ROSE"              "roxygen2"          "roxygen2md"       
-## [433] "rpart"             "rprojroot"         "rsample"          
-## [436] "rscloud"           "rsconnect"         "RSQLite"          
-## [439] "rstan"             "rstanarm"          "rstantools"       
-## [442] "rstatix"           "rstudioapi"        "rticles"          
-## [445] "Rttf2pt1"          "rtweet"            "rvcheck"          
-## [448] "rversions"         "rvest"             "sass"             
-## [451] "satellite"         "scales"            "schrute"          
-## [454] "scico"             "selectr"           "servr"            
-## [457] "sessioninfo"       "sf"                "sfheaders"        
-## [460] "shape"             "shiny"             "shinyBS"          
-## [463] "shinycssloaders"   "shinydashboard"    "shinyjs"          
-## [466] "shinystan"         "shinythemes"       "shinyWidgets"     
-## [469] "showtext"          "showtextdb"        "skimr"            
-## [472] "slam"              "slider"            "snakecase"        
-## [475] "SnowballC"         "sourcetools"       "sp"               
-## [478] "SparseM"           "spatial"           "spatialwidget"    
-## [481] "spelling"          "spiderbar"         "splines"          
-## [484] "splus2R"           "SQUAREM"           "StanHeaders"      
-## [487] "stars"             "Stat2Data"         "statmod"          
-## [490] "stats"             "stats4"            "statsr"           
-## [493] "stopwords"         "stringdist"        "stringi"          
-## [496] "stringr"           "styler"            "sugrrants"        
-## [499] "suncalc"           "survival"          "svglite"          
-## [502] "sys"               "sysfonts"          "systemfonts"      
-## [505] "syuzhet"           "tcltk"             "tesseract"        
-## [508] "testthat"          "textdata"          "textrecipes"      
-## [511] "textshape"         "textshaping"       "thematic"         
-## [514] "themis"            "threed"            "threejs"          
-## [517] "tibble"            "tidymirt"          "tidymodels"       
-## [520] "tidyposterior"     "tidypredict"       "tidyr"            
-## [523] "tidyselect"        "tidytemplate"      "tidytext"         
-## [526] "tidytuesdayR"      "tidyverse"         "timeDate"         
-## [529] "tinytex"           "tm"                "tmap"             
-## [532] "tmaptools"         "TMB"               "Tmisc"            
-## [535] "tmvnsim"           "tokenizers"        "tools"            
-## [538] "topicmodels"       "transformr"        "translations"     
-## [541] "triebeard"         "tufte"             "tune"             
-## [544] "tweenr"            "udapi"             "ukbabynames"      
-## [547] "unbalanced"        "uni"               "units"            
-## [550] "unvotes"           "UpSetR"            "urltools"         
-## [553] "usdata"            "usethis"           "utf8"             
-## [556] "utf8splain"        "utils"             "uuid"             
-## [559] "V8"                "vctrs"             "vdiffr"           
-## [562] "vegan"             "vembedr"           "vip"              
-## [565] "vipor"             "viridis"           "viridisLite"      
-## [568] "visdat"            "visNetwork"        "vroom"            
-## [571] "waffle"            "waiter"            "waldo"            
-## [574] "warp"              "webshot"           "websocket"        
-## [577] "whisker"           "whoami"            "widgetframe"      
-## [580] "withr"             "wordcloud"         "wordcloud2"       
-## [583] "workflows"         "wqTools"           "writexl"          
-## [586] "xaringan"          "xaringanExtra"     "xaringanthemer"   
-## [589] "xfun"              "xkcd"              "XLConnect"        
-## [592] "xlsx"              "xlsxjars"          "XML"              
-## [595] "xml2"              "xopen"             "xtable"           
-## [598] "xts"               "yaml"              "yardstick"        
-## [601] "yesno"             "zip"               "zoo"
+##   [1] "askpass"        "assertthat"     "backports"     
+##   [4] "base"           "base64enc"      "bibtex"        
+##   [7] "bit"            "bit64"          "blob"          
+##  [10] "bookdown"       "boot"           "brew"          
+##  [13] "brio"           "broom"          "bslib"         
+##  [16] "cachem"         "callr"          "cellranger"    
+##  [19] "circlize"       "class"          "cli"           
+##  [22] "clipr"          "cluster"        "codetools"     
+##  [25] "colorspace"     "commonmark"     "compiler"      
+##  [28] "countdown"      "covr"           "cpp11"         
+##  [31] "crayon"         "credentials"    "crosstalk"     
+##  [34] "curl"           "data.table"     "datasets"      
+##  [37] "DBI"            "dbplyr"         "dendextend"    
+##  [40] "desc"           "devtools"       "diffobj"       
+##  [43] "digest"         "downlit"        "dplyr"         
+##  [46] "DT"             "dtplyr"         "ellipsis"      
+##  [49] "emmeans"        "emo"            "estimability"  
+##  [52] "evaluate"       "fansi"          "farver"        
+##  [55] "fastmap"        "forcats"        "foreign"       
+##  [58] "fs"             "gargle"         "generics"      
+##  [61] "gert"           "GGally"         "gganimate"     
+##  [64] "ggplot2"        "ggsignif"       "gh"            
+##  [67] "gitcreds"       "GlobalOptions"  "glue"          
+##  [70] "googledrive"    "googlesheets4"  "graphics"      
+##  [73] "grDevices"      "grid"           "gridExtra"     
+##  [76] "gtable"         "haven"          "highr"         
+##  [79] "hms"            "htmltools"      "htmlwidgets"   
+##  [82] "httpuv"         "httr"           "ids"           
+##  [85] "ini"            "isoband"        "jquerylib"     
+##  [88] "jsonlite"       "jtools"         "kableExtra"    
+##  [91] "KernSmooth"     "knitr"          "koRpus"        
+##  [94] "koRpus.lang.en" "labeling"       "later"         
+##  [97] "lattice"        "lazyeval"       "lifecycle"     
+## [100] "likert"         "lsmeans"        "lubridate"     
+## [103] "magrittr"       "markdown"       "MASS"          
+## [106] "Matrix"         "memoise"        "methods"       
+## [109] "mgcv"           "mime"           "miniUI"        
+## [112] "minqa"          "mitools"        "mnormt"        
+## [115] "modelr"         "multcompView"   "munsell"       
+## [118] "mvtnorm"        "nlme"           "nnet"          
+## [121] "numDeriv"       "openssl"        "pander"        
+## [124] "parallel"       "patchwork"      "pillar"        
+## [127] "pkgbuild"       "pkgconfig"      "pkgload"       
+## [130] "plotly"         "plyr"           "praise"        
+## [133] "prettyunits"    "processx"       "progress"      
+## [136] "promises"       "ps"             "psych"         
+## [139] "purrr"          "R6"             "rappdirs"      
+## [142] "rcmdcheck"      "RColorBrewer"   "Rcpp"          
+## [145] "readr"          "readxl"         "RefManageR"    
+## [148] "rematch"        "rematch2"       "remotes"       
+## [151] "reprex"         "reshape"        "reshape2"      
+## [154] "rex"            "rlang"          "rmarkdown"     
+## [157] "RNHANES"        "roxygen2"       "rpart"         
+## [160] "rprojroot"      "rstudioapi"     "rversions"     
+## [163] "rvest"          "sass"           "scales"        
+## [166] "selectr"        "servr"          "sessioninfo"   
+## [169] "shape"          "shiny"          "shinydashboard"
+## [172] "showtext"       "showtextdb"     "sourcetools"   
+## [175] "spatial"        "splines"        "stats"         
+## [178] "stats4"         "stringi"        "stringr"       
+## [181] "survey"         "survival"       "svglite"       
+## [184] "sylly"          "sylly.en"       "sys"           
+## [187] "sysfonts"       "systemfonts"    "tcltk"         
+## [190] "testthat"       "tibble"         "tidyHeatmap"   
+## [193] "tidyr"          "tidyselect"     "tidyverse"     
+## [196] "tinytex"        "tmvnsim"        "tools"         
+## [199] "translations"   "tweenr"         "tzdb"          
+## [202] "usethis"        "utf8"           "utils"         
+## [205] "uuid"           "vctrs"          "viridis"       
+## [208] "viridisLite"    "vroom"          "waldo"         
+## [211] "webshot"        "whisker"        "withr"         
+## [214] "wordcountaddin" "xaringan"       "xaringanExtra" 
+## [217] "xaringanthemer" "xfun"           "xml2"          
+## [220] "xopen"          "xtable"         "yaml"          
+## [223] "zip"
 ```
 ]
 
@@ -592,16 +468,14 @@ What libraries does R know about?
 ```
 
 ```
-## [1] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"
+## [1] "C:/Program Files/R/R-4.1.1/library"
+## [2] "C:/Users/er13/R/win-library/4.1"
 ```
 
 
 ???
 How many libraries do you have access to? Post in chat
 
-In my case I have the default library where all the packages that come with the base distribution go.
-
-I also have a user level library where I can install other packages.
 
 ---
 
@@ -680,14 +554,14 @@ dim(installed.packages())
 ```
 
 ```
-## [1] 601  16
+## [1] 223  16
 ```
 --
 The output of `installed.packages()` is a matrix; each row is a package
 
 --
 
-I have 601 packages installed
+I have 223 packages installed
 
 ???
 
@@ -809,7 +683,7 @@ We now have more understanding of what packages are and where they come from and
 
 When you are writing a script you load packages with a library() call and document your code with comments using a #. The code is used for a one-off analysis and is stored in a .R file. The code is one off in the sense that it directly references your dataframes and variables
 
-When you write a package, your code is written to be reusable - functions are generalisable - their argument types are defined by the exact instance is not.
+When you write a package, your code is written to be reusable - functions are generalisable - their argument types are defined 
 A package is defined by the presence of a DESCRIPTION file (at least in RStudio).
 It is in this file that you say what the package does, who wrote it and what dependencies it has. Required packages are made available not through a library call, but through the NAMESPACE file. 
 As this hints at, the documentation is different - their is package and function level documentation.
@@ -883,17 +757,17 @@ Having a understanding of the different states a package can be in is helpful in
 &lt;img src="images/annotated_installation.png" title="schematic of package states and the functions that move them between states. One the horizontal axis: source, bundle, binary, installed, in memory. One the vertical axis the functions install.packages, R CMD install, install, build, install_github" alt="schematic of package states and the functions that move them between states. One the horizontal axis: source, bundle, binary, installed, in memory. One the vertical axis the functions install.packages, R CMD install, install, build, install_github" width="870px" style="display: block; margin: auto;" /&gt;
 
 .tiny[
-Figure from [R Packages](https://r-pkgs.org/) 
+Figure from [R Packages](https://r-pkgs.org/) &lt;a name=cite-Wickham_Bryan&gt;&lt;/a&gt;([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
 https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
 ???
 
-when you develop a package, you write Source code. When you use a package you use it is in the memory.
+when you develop a package, you write Source code. When you use a package, it is in the memory.
 
-Functions moved packages between states.
+Functions move packages between states.
 
-You already know some of the functions move packages between states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
+You already know some of the functions that move packages between states. For example, `install.packages()` and `remotes::install_github()` move a package from source, bundled, or binary states into the installed state. 
 
 The `library()` function loads an installed package into memory, making it available for immediate and direct use.
 
@@ -1054,7 +928,7 @@ Add speaker notes
 There's more than one route (tool) for installation.
 
 .tiny[
-Figure from [R Packages](https://r-pkgs.org/) 
+Figure from [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
 https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 ]
 
@@ -1080,7 +954,7 @@ https://github.com/hadley/r-pkgs/blob/master/diagrams/installation.png
 .pull-right-wide[
 .tip[
 
-If a package is installed `library()` makes its function available by loading the package into memory and attaching it to the search path.
+If a package is installed, `library()` makes its function available by loading the package into memory and attaching it to the search path.
 
 We do not use `library()` for packages we are working on
 
@@ -1157,10 +1031,10 @@ class: middle, inverse
 
 ## Approach
 
-We follow the approach used in [R Packages](https://r-pkgs.org/) :
+We follow the approach used in [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan)):
 
 -  uses `devtools` 
--  in RStudio
+-  in RStudio but commands rather than menus
 -  version controlled using git
 -  hosted on GitHub
 
@@ -1203,7 +1077,7 @@ R Forwards modules
 
 Other sources
 -  [Writing R Extensions](https://cran.r-project.org/doc/manuals/R-exts.html) 1999–2020 R Core Team
--  [R Packages](https://r-pkgs.org/) 
+-  [R Packages](https://r-pkgs.org/) ([Wickham and Bryan, 2020](#bib-Wickham_Bryan))
 -  Hillary Parker's [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
 -  Karl Broman's [R package primer a minimal tutorial](https://kbroman.org/pkg_primer/)
 
@@ -1227,9 +1101,9 @@ class: middle, inverse
 
 ---
 
-Slides made with: **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
+Slides made with: **`knitr`** &lt;a name=cite-knitr1&gt;&lt;/a&gt;&lt;a name=cite-knitr2&gt;&lt;/a&gt;&lt;a name=cite-knitr3&gt;&lt;/a&gt;([Xie, 2020](#bib-knitr1); [Xie, 2015](#bib-knitr2); [Xie, 2014](#bib-knitr3)),**`R Markdown`** &lt;a name=cite-markdown1&gt;&lt;/a&gt;&lt;a name=cite-markdown2&gt;&lt;/a&gt;([Allaire Xie, et al., 2019](#bib-markdown1); [Xie Allaire, et al., 2018](#bib-markdown2)), **`xaringan`** &lt;a name=cite-xaringan&gt;&lt;/a&gt;([Xie, 2019](#bib-xaringan)), **`xaringanthemer`** &lt;a name=cite-xaringanthemer&gt;&lt;/a&gt;([Aden-Buie, 2020a](#bib-xaringanthemer)), **`xaringanExtra`** &lt;a name=cite-xaringanExtra&gt;&lt;/a&gt;([Aden-Buie, 2020c](#bib-xaringanExtra)), **`countdown`** &lt;a name=cite-countdown&gt;&lt;/a&gt;([Aden-Buie, 2020b](#bib-countdown)). 
 
-Referencing with **`RefManageR`** .
+Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McLean, 2017](#bib-McLean-2017)).
 
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
@@ -1237,25 +1111,71 @@ Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma R
 
 ## References
 
-.small[
-NULL
+.tiny[
+&lt;a name=bib-countdown&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-countdown) (2020b). _countdown: A Countdown
+Timer for R Markdown HTML Presentations and Documents_. R
+package version 0.3.5. URL:
+[https://github.com/gadenbuie/countdown](https://github.com/gadenbuie/countdown).
+
+&lt;a name=bib-xaringanExtra&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanExtra) (2020c). _xaringanExtra: Extras
+And Extensions for Xaringan Slides_. R package version
+0.2.3.9000. URL:
+[https://github.com/gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra).
+
+&lt;a name=bib-xaringanthemer&gt;&lt;/a&gt;[Aden-Buie,
+G.](#cite-xaringanthemer) (2020a). _xaringanthemer:
+Custom 'xaringan' CSS Themes_. R package version 0.3.0.
+URL:
+[https://CRAN.R-project.org/package=xaringanthemer](https://CRAN.R-project.org/package=xaringanthemer).
+
+&lt;a name=bib-markdown1&gt;&lt;/a&gt;[Allaire, J., Y. Xie, et
+al.](#cite-markdown1) (2019). _rmarkdown: Dynamic
+Documents for R_. R package version 1.16. URL:
+[https://github.com/rstudio/rmarkdown](https://github.com/rstudio/rmarkdown).
+
+&lt;a name=bib-McLean-2017&gt;&lt;/a&gt;[McLean, M.
+W.](#cite-McLean-2017) (2017). "RefManageR: Import and
+Manage BibTeX and BibLaTeX References in R". In: _The
+Journal of Open Source Software_. DOI:
+[10.21105/joss.00338](https://doi.org/10.21105%2Fjoss.00338).
+
+&lt;a name=bib-Wickham_Bryan&gt;&lt;/a&gt;[Wickham, H. and J.
+Bryan](#cite-Wickham_Bryan) (2020). _R Packages_. the
+work-in-progress 2nd edition. Online. URL:
+[https://r-pkgs.org/index.html](https://r-pkgs.org/index.html).
+
+&lt;a name=bib-knitr3&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr3) (2014).
+"knitr: A Comprehensive Tool for Reproducible Research in
+R". In: _Implementing Reproducible Computational
+Research_. Ed. by V. Stodden, F. Leisch and R. D. Peng.
+ISBN 978-1466561595. Chapman and Hall/CRC. URL:
+[http://www.crcpress.com/product/isbn/9781466561595](http://www.crcpress.com/product/isbn/9781466561595).
+
+&lt;a name=bib-knitr2&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr2) (2015).
+_Dynamic Documents with R and knitr_. 2nd. ISBN
+978-1498716963. Boca Raton, Florida: Chapman and
+Hall/CRC. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-xaringan&gt;&lt;/a&gt;[Xie, Y.](#cite-xaringan)
+(2019). _xaringan: Presentation Ninja_. R package version
+0.12. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
+
+&lt;a name=bib-knitr1&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr1) (2020).
+_knitr: A General-Purpose Package for Dynamic Report
+Generation in R_. R package version 1.30. URL:
+[https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-markdown2&gt;&lt;/a&gt;[Xie, Y., J. Allaire, et
+al.](#cite-markdown2) (2018). _R Markdown: The Definitive
+Guide_. ISBN 9781138359338. Boca Raton, Florida: Chapman
+and Hall/CRC. URL:
+[https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
 ]
 
----
-
-## References
-
-.small[
-NULL
-]
-
----
-
-## References
-
-.small[
-NULL
-]
 
 ---
 
