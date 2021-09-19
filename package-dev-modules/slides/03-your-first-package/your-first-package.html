@@ -69,8 +69,8 @@ Department of Biology, University of York, UK
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK   
-RStudio
+Department of Statistical Science at Duke University, USA  
+Educator and Data Scientist at RStudio
 ]
 ]
 ]
@@ -182,6 +182,8 @@ Verify that you can create a package with:
 ```r
 usethis::create_package("~/Desktop/mypackage")
 ```
+
+.tip[You may want to use a different path!]
 
 ???
 You may want to use a different path.
@@ -465,7 +467,7 @@ Add speaker notes
 
 ## Development workflow
 
-&lt;img src="images/dev_cycle_before_testing.png" width="600px" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/dev_cycle_before_testing.png" title="schematic of the development workflow. there are three boxes with arrow joining them clockwise. The boxes are (clockwise from 3' oclock) 'devtools::load_all() Cmd/Ctrl + Shift +L', 'Explore in console' and 'Modify code'" alt="schematic of the development workflow. there are three boxes with arrow joining them clockwise. The boxes are (clockwise from 3' oclock) 'devtools::load_all() Cmd/Ctrl + Shift +L', 'Explore in console' and 'Modify code'" width="600px" style="display: block; margin: auto;" /&gt;
 
 --
 .center[
@@ -564,7 +566,7 @@ It is a programme that is executed in the shell.
 
 However, `devtools` has the `check()` function to allow you to run this without leaving your R session.
 
-🥳
+🎈
 
 ---
 
@@ -738,12 +740,20 @@ Here we used mypackage but later you will want to name your packages more meanin
 
 -  *Title*: One line, title case, with no period. Fewer than 65 characters.
 -  *Version*
-    - for release: x.y.z where x= major version, y = minor version, z = patch version.
-    - for development version building on version x.y.z, use: x.y.z.9000
+    - for release: MAJOR.MINOR.PATCH version.
+    - for development version building on version MAJOR.MINOR.PATCH, use: MAJOR.MINOR.PATCH.9000
 - *Authors@R*: "aut" means author, "cre" means creator, "ctb" means contributor.
 
 
 ???
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards compatible manner, and
+PATCH version when you make backwards compatible bug fixes.
+
+
 The are two types of documentation: package level and function level.
 The DESCRIPTION file provides some of the package level documentation (or metadata)
 
@@ -905,7 +915,7 @@ devtools::check()
 
 ## `devtools::check()`
 
-We've fixed an error!
+We've fixed a warning!
 
 
 ```r
@@ -932,9 +942,15 @@ class: middle
 # Use Git
 
 ???
+
+
 Now will make our package a version controlled project on our local machine and then put it on GitHub.
 
 devtools has function to help with this.
+
+---
+
+## Use Git
 
 ## Check Git configuration
 
@@ -957,9 +973,8 @@ This should be done if the previous module was done.
 
 To configure if needed
 
-git config --global user.name 'Emma Rand'
-git config --global user.email 'emma.rand@york.ac.uk'
-
+usethis::use_git_config(user.name = "Emma Rand",
+                        user.email = "emma.rand@york.ac.uk")
 
 ---
 
@@ -1038,22 +1053,19 @@ usethis::use_github()
 ```
 
 ---
+## Use GitHub
 
 If you get this:
 
 
 ```r
-✔ Checking that current branch is 'master'
+✔ Checking that current branch is 'main'
 Which git protocol to use? (enter 0 to exit) 
 1: ssh   &lt;-- presumes that you have set up ssh keys
 2: https &lt;-- choose this if you don't have ssh keys (or don't know if you do)
 ```
 
 Choose 2 at the moment.
-
-??? 
-You might get this or it might default to https
-
 
 
 ---
@@ -1126,9 +1138,10 @@ Referencing with **`RefManageR`** &lt;a name=cite-McLean-2017&gt;&lt;/a&gt;([McL
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
 ---
+
 ## References
 
-.small[
+.tiny[
 &lt;a name=bib-countdown&gt;&lt;/a&gt;[Aden-Buie,
 G.](#cite-countdown) (2020b). _countdown: A Countdown
 Timer for R Markdown HTML Presentations and Documents_. R
@@ -1156,13 +1169,7 @@ Documents for R_. R package version 1.16. URL:
 Hester](#cite-Bryan_Happy_Git) _Happy Git and GitHub for
 the useR_. &lt;URL: https://happygitwithr.com/&gt;. Accessed:
 2019-11-22.
-]
 
----
-
-## References
-
-.small[
 &lt;a name=bib-McLean-2017&gt;&lt;/a&gt;[McLean, M.
 W.](#cite-McLean-2017) (2017). "RefManageR: Import and
 Manage BibTeX and BibLaTeX References in R". In: _The
@@ -1188,11 +1195,27 @@ _Dynamic Documents with R and knitr_. 2nd. ISBN
 978-1498716963. Boca Raton, Florida: Chapman and
 Hall/CRC. URL:
 [https://yihui.org/knitr/](https://yihui.org/knitr/).
+]
+---
+
+## References
+
+.tiny[
+&lt;a name=bib-xaringan&gt;&lt;/a&gt;[Xie, Y.](#cite-xaringan)
+(2019). _xaringan: Presentation Ninja_. R package version
+0.12. URL:
+[https://CRAN.R-project.org/package=xaringan](https://CRAN.R-project.org/package=xaringan).
 
 &lt;a name=bib-knitr1&gt;&lt;/a&gt;[Xie, Y.](#cite-knitr1) (2020).
 _knitr: A General-Purpose Package for Dynamic Report
 Generation in R_. R package version 1.30. URL:
 [https://yihui.org/knitr/](https://yihui.org/knitr/).
+
+&lt;a name=bib-markdown2&gt;&lt;/a&gt;[Xie, Y., J. Allaire, et
+al.](#cite-markdown2) (2018). _R Markdown: The Definitive
+Guide_. ISBN 9781138359338. Boca Raton, Florida: Chapman
+and Hall/CRC. URL:
+[https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown).
 ]
 
 

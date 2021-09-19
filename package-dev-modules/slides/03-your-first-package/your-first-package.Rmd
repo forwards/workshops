@@ -157,8 +157,8 @@ knitr::include_graphics("images/mine.jpg")
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK   
-RStudio
+Department of Statistical Science at Duke University, USA  
+Educator and Data Scientist at RStudio
 ]
 ]
 ]
@@ -269,6 +269,8 @@ Verify that you can create a package with:
 ```{r eval = FALSE}
 usethis::create_package("~/Desktop/mypackage")
 ```
+
+.tip[You may want to use a different path!]
 
 ???
 You may want to use a different path.
@@ -811,12 +813,20 @@ Here we used mypackage but later you will want to name your packages more meanin
 
 -  *Title*: One line, title case, with no period. Fewer than 65 characters.
 -  *Version*
-    - for release: x.y.z where x= major version, y = minor version, z = patch version.
-    - for development version building on version x.y.z, use: x.y.z.9000
+    - for release: MAJOR.MINOR.PATCH version.
+    - for development version building on version MAJOR.MINOR.PATCH, use: MAJOR.MINOR.PATCH.9000
 - *Authors@R*: "aut" means author, "cre" means creator, "ctb" means contributor.
 
 
 ???
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards compatible manner, and
+PATCH version when you make backwards compatible bug fixes.
+
+
 The are two types of documentation: package level and function level.
 The DESCRIPTION file provides some of the package level documentation (or metadata)
 
@@ -975,7 +985,7 @@ devtools::check()
 
 ## `devtools::check()`
 
-We've fixed an error!
+We've fixed a warning!
 
 ```{r eval = FALSE}
 -- R CMD check results -------------------- mypackage 0.0.0.9000 ----
@@ -1001,9 +1011,15 @@ class: middle
 # Use Git
 
 ???
+
+
 Now will make our package a version controlled project on our local machine and then put it on GitHub.
 
 devtools has function to help with this.
+
+---
+
+## Use Git
 
 ## Check Git configuration
 
@@ -1025,9 +1041,8 @@ This should be done if the previous module was done.
 
 To configure if needed
 
-git config --global user.name 'Emma Rand'
-git config --global user.email 'emma.rand@york.ac.uk'
-
+usethis::use_git_config(user.name = "Emma Rand",
+                        user.email = "emma.rand@york.ac.uk")
 
 ---
 
@@ -1102,21 +1117,18 @@ usethis::use_github()
 ```
 
 ---
+## Use GitHub
 
 If you get this:
 
 ```{r eval = FALSE}
-✔ Checking that current branch is 'master'
+✔ Checking that current branch is 'main'
 Which git protocol to use? (enter 0 to exit) 
 1: ssh   <-- presumes that you have set up ssh keys
 2: https <-- choose this if you don't have ssh keys (or don't know if you do)
 ```
 
 Choose 2 at the moment.
-
-??? 
-You might get this or it might default to https
-
 
 
 ---
@@ -1188,21 +1200,21 @@ Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
 Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
 
 ---
+
 ## References
 
-.small[
-```{r refs1, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 1, end = 5)
+.tiny[
+```{r refs1, echo = FALSE, results  ="asis"}
+PrintBibliography(myBib, start = 1, end = 9)
 ```
 ]
-
 ---
 
 ## References
 
-.small[
-```{r refs2, echo=FALSE, results="asis"}
-PrintBibliography(myBib, start = 6, end = 10)
+.tiny[
+```{r refs2, echo = FALSE, results  ="asis"}
+PrintBibliography(myBib, start = 10)
 ```
 ]
 

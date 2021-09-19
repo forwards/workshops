@@ -144,7 +144,7 @@ Dr. Mine Çetinkaya-Rundel
 .small[
 Senior lecturer (Prof)  
 Department of Statistical Science at Duke University, USA  
-ducator and Data Scientist at RStudio
+Educator and Data Scientist at RStudio
 ]
 ]
 ]
