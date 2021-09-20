@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Package documentation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Mine Çetinkaya-Rundel" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="style-xaringanthemer.css" type="text/css" />
+    <link rel="stylesheet" href="style-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Package documentation
+## Forwards Package Development module
+### <br>Mine Çetinkaya-Rundel
+### <br>🔗 <a href="http://bit.ly/pkg-dev-4">bit.ly/pkg-dev-4</a>
+
+---
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="http://bit.ly/pkg-dev-4" target="_blank"&gt;🔗 bit.ly/pkg-dev-4&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+
+
+&lt;!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added --&gt;
+
+&lt;!-- Instructions creating a new module--&gt;
+&lt;!-- Guiding principles for module design are here: 
+../README.md --&gt;
+&lt;!-- Edit Title, subtitle, Author and link --&gt;
+&lt;!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed --&gt;
+
+
+---
+
+class: middle, inverse
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+.center[
+&lt;img src="images/emma-rand.png" width="45%" style="display: block; margin: auto;" /&gt;
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+]
+]
+.pull-right[
+.center[
+&lt;img src="images/mine.jpg" width="45%" style="display: block; margin: auto;" /&gt;
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+Department of Statistical Science at Duke University, USA  
+Educator and Data Scientist at RStudio
+]
+]
+]
+
+.center[
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+]
+
+---
+
+## Summary
+
+This workshop walks you through documenting functions in your packages as well as writing package level documentation as a vignette.
+
+---
+
+## Module Prerequisites
+
+Before starting this module we will assume that you have
+
+-   "[Packages in a nutshell](../01-packages-in-a-nutshell/packages-in-a-nutshell.html)" or equivalent experience
+
+-   "[Setting up your system](../02-setting-up-system/setting-up-system.html)" or equivalent experience
+   -   the packages `devtools` and `assertthat` installed
+   -   R build toolchain: Rtools(windows) or XCode (mac) or r-base-dev
+   -   git installed, a GitHub account and verified they can talk to RStudio
+
+-   "[Your first package](../03-your-first-package/your-first-package.html)" or equivalent experience
+
+&lt;!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. --&gt;
+
+???
+
+Add speaker notes
+
+What if you have not got R, RStudio, Rtools/xcode, Git installed? You can still code along using https://rstudio.cloud/.
+RStudio cloud is a browser based version of RStudio - it looks and works just like the desktop version
+You will need to set up an account but have 15 hrs / month for free
+
+devtools - needed today and irreplaceable
+
+If Git/GitHub set up has been tricky, you will still be able to do the majority of the workshop
+
+---
+
+## Be excellent to each other!
+
+💛 Please use the chat!
+
+💜 Be kind
+
+💚 Be respectful
+
+???
+
+Our intention is make time for asking questions. Please use the chat.
+We hope you will feel comfortable posting your questions 'To everyone'
+because that will help create a supportive learning space for all of us but if you feel more comfortable messaging me or Emma, that's fine.
+
+---
+
+## Learning Objectives
+
+.small[
+At the end of this module the successful learner will be able to:
+
+-   recognise the different levels of package documentation: Metadata, Object documentation, Vignettes and pkgdown sites
+-   explain, create and populate a DESCRIPTION file
+-   know how to add package dependencies with `usethis::use_package()` and the difference between Imports and Suggests
+-   explain the components of a LICENSE file
+-   add object documentation using **roxygen2** and `devtools::document()`
+-   explain what a vignette is and create one with `usethis::use_vignette()`
+-   know how pkgdown sites can be created
+]
+
+---
+
+class: middle, inverse
+
+# Package documentation
+
+---
+
+## Different levels of package documentation
+
+-   Metadata
+-   Object documentation
+-   Vignettes
+-   pkgdown sites
+
+---
+
+class: middle, inverse
+
+# What is in a DESCRIPTION?
+
+---
+
+class: middle, inverse
+
+# Package dependencies
+
+---
+
+class: middle, inverse
+
+# What is in a LICENSE?
+
+---
+
+class: middle, inverse
+
+# Object documentation
+
+---
+
+class: middle, inverse
+
+# What is in a vignette?
+
+---
+
+class: middle, inverse
+
+# What is in a pkgdown site?
+
+---
+
+## A website for your package with pkgdown
+
+---
+
+class: middle, inverse
+
+# 📦 Woohoo, you did it! 📦
+
+---
+
+class: middle, inverse
+
+# Summary
+
+---
+
+## Summary
+
+.small[
+In this workshop you've learned about
+
+-   the different levels of package documentation: Metadata, Object documentation, Vignettes and pkgdown sites
+-   the DESCRIPTION and LICENSE files
+-   how to add package dependencies with `usethis::use_package()` and the difference between Imports and Suggests
+-   how to add object documentation using **roxygen2** and `devtools::document()`
+-   what a vignette is and how to create one with `usethis::use_vignette()`
+-   how pkgdown sites can be created
+]
+
+---
+
+class: middle, inverse
+
+# Where next?
+
+---
+
+## Where next?
+
+Package dependencies
+
+Testing and test coverage
+
+???
+
+---
+
+Slides made with:  **`knitr`** ,**`R Markdown`** , **`xaringan`** , **`xaringanthemer`** , **`xaringanExtra`** , **`countdown`** . 
+
+Referencing with **`RefManageR`** .
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+
+## References
+
+.tiny[
+NULL
+]
+---
+
+## References
+
+.tiny[
+NULL
+]
+
+
+
+---
+
+## License
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"&gt;Package Development Module: fill in the module name&lt;/span&gt; by &lt;span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"&gt;Forwards&lt;/span&gt; is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

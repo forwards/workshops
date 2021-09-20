@@ -1,0 +1,372 @@
+---
+title: "Package documentation"
+subtitle: "Forwards Package Development module"
+author: "<br>Mine Çetinkaya-Rundel"
+date: "<br>🔗 [bit.ly/pkg-dev-4](http://bit.ly/pkg-dev-4)"
+output:
+  xaringan::moon_reader:
+    css: ["style-xaringanthemer.css", "style-custom.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r define-style, include = FALSE}
+# xaringanthemer ---------------------------------------------------------------
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#AD4475", # soft pink
+  secondary_color = "#8D377C", # purple
+  link_color = "#4485ad", # blue
+  code_highlight_color = "#F9E5AF", # light-yellow
+  code_inline_color = "#A7A7A7", # gray
+  base_font_size = "35px",
+  header_h1_font_size = "2.5rem",
+  header_h2_font_size = "2rem",
+  header_h3_font_size = "1.75rem",
+  text_font_google = google_font("Source Sans Pro"),
+  text_font_family = xaringanthemer_font_default("text_font_family"),
+  text_font_weight = xaringanthemer_font_default("text_font_weight"),
+  text_font_url = xaringanthemer_font_default("text_font_url"),
+  text_font_family_fallback = xaringanthemer_font_default("text_font_family_fallback"),
+  text_font_base = "sans-serif",
+  code_font_google = google_font("Source Sans Code"),
+  code_font_family = xaringanthemer_font_default("code_font_family"),
+  code_font_size = "25px",
+  code_font_url = xaringanthemer_font_default("code_font_url"),
+  code_font_family_fallback = xaringanthemer_font_default("code_font_family_fallback"),
+  outfile = "style-xaringanthemer.css"
+)
+
+# R options --------------------------------------------------------------------
+options(
+  htmltools.dir.version = FALSE,
+  dplyr.print_min = 6,
+  dplyr.print_max = 6,
+  tibble.width = 65,
+  width = 65
+)
+
+# figure height, width, dpi ----------------------------------------------------
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 8,
+  fig.asp = 0.618,
+  out.width = "60%",
+  fig.align = "center",
+  dpi = 300,
+  message = FALSE
+)
+
+# ggplot2 ----------------------------------------------------------------------
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 18))
+
+# countdown --------------------------------------------------------------------
+library(countdown)
+
+# xaringanExtra ----------------------------------------------------------------
+library(xaringanExtra)
+xaringanExtra::use_panelset()
+
+# hook for setting output number of lines --------------------------------------
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options)) # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines) == 1) { # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+
+
+# Referencing ------------------------------------------------------------------
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "authoryear",
+           style = "markdown",
+           hyperlink = TRUE,
+           dashed = FALSE,
+           longnamesfirst = FALSE,
+           max.names = 2)
+myBib <- ReadBib("bibliography.bib", check = FALSE)
+```
+
+layout: true
+  
+<div class="my-footer">
+<span>
+<a href="http://bit.ly/pkg-dev-4" target="_blank">🔗 bit.ly/pkg-dev-4</a>
+</span>
+</div> 
+
+
+
+<!-- Based on https://github.com/forwards/fwdbrand/blob/master/inst/rmarkdown/templates/xaringan/skeleton/skeleton.Rmd with module template added -->
+
+<!-- Instructions creating a new module-->
+<!-- Guiding principles for module design are here: 
+../README.md -->
+<!-- Edit Title, subtitle, Author and link -->
+<!-- Complete the sections in the module template and add your teaching material using the Format templates as a guide where needed -->
+
+
+---
+
+class: middle, inverse
+
+# Overview
+
+---
+
+## Welcome!
+
+.pull-left[
+.center[
+```{r echo = FALSE, out.width = "45%"}
+knitr::include_graphics("images/emma-rand.png")
+```
+Emma Rand  
+.small[
+Senior Lecturer (Prof)  
+Department of Biology, University of York, UK 
+]
+]
+]
+.pull-right[
+.center[
+```{r echo = FALSE, out.width = "45%"}
+knitr::include_graphics("images/mine.jpg")
+```
+Dr. Mine Çetinkaya-Rundel 
+.small[
+Senior lecturer (Prof)  
+Department of Statistical Science at Duke University, USA  
+Educator and Data Scientist at RStudio
+]
+]
+]
+
+.center[
+[Forwards](https://forwards.github.io/) Teaching Team Leads
+]
+
+---
+
+## Summary
+
+This workshop walks you through documenting functions in your packages as well as writing package level documentation as a vignette.
+
+---
+
+## Module Prerequisites
+
+Before starting this module we will assume that you have
+
+-   "[Packages in a nutshell](../01-packages-in-a-nutshell/packages-in-a-nutshell.html)" or equivalent experience
+
+-   "[Setting up your system](../02-setting-up-system/setting-up-system.html)" or equivalent experience
+   -   the packages `devtools` and `assertthat` installed
+   -   R build toolchain: Rtools(windows) or XCode (mac) or r-base-dev
+   -   git installed, a GitHub account and verified they can talk to RStudio
+
+-   "[Your first package](../03-your-first-package/your-first-package.html)" or equivalent experience
+
+<!-- Here you list the prerequisites for instructors and learners. Most prerequisites should be references to other modules. You can include additional prerequisites but minimise the number and complexity of them. If there are many, consider writing a new module. -->
+
+???
+
+Add speaker notes
+
+What if you have not got R, RStudio, Rtools/xcode, Git installed? You can still code along using https://rstudio.cloud/.
+RStudio cloud is a browser based version of RStudio - it looks and works just like the desktop version
+You will need to set up an account but have 15 hrs / month for free
+
+devtools - needed today and irreplaceable
+
+If Git/GitHub set up has been tricky, you will still be able to do the majority of the workshop
+
+---
+
+## Be excellent to each other!
+
+`r emo::ji("yellow_heart")` Please use the chat!
+
+`r emo::ji("purple_heart")` Be kind
+
+`r emo::ji("green_heart")` Be respectful
+
+???
+
+Our intention is make time for asking questions. Please use the chat.
+We hope you will feel comfortable posting your questions 'To everyone'
+because that will help create a supportive learning space for all of us but if you feel more comfortable messaging me or Emma, that's fine.
+
+---
+
+## Learning Objectives
+
+.small[
+At the end of this module the successful learner will be able to:
+
+-   recognise the different levels of package documentation: Metadata, Object documentation, Vignettes and pkgdown sites
+-   explain, create and populate a DESCRIPTION file
+-   know how to add package dependencies with `usethis::use_package()` and the difference between Imports and Suggests
+-   explain the components of a LICENSE file
+-   add object documentation using **roxygen2** and `devtools::document()`
+-   explain what a vignette is and create one with `usethis::use_vignette()`
+-   know how pkgdown sites can be created
+]
+
+---
+
+class: middle, inverse
+
+# Package documentation
+
+---
+
+## Different levels of package documentation
+
+-   Metadata
+-   Object documentation
+-   Vignettes
+-   pkgdown sites
+
+---
+
+class: middle, inverse
+
+# What is in a DESCRIPTION?
+
+---
+
+class: middle, inverse
+
+# Package dependencies
+
+---
+
+class: middle, inverse
+
+# What is in a LICENSE?
+
+---
+
+class: middle, inverse
+
+# Object documentation
+
+---
+
+class: middle, inverse
+
+# What is in a vignette?
+
+---
+
+class: middle, inverse
+
+# What is in a pkgdown site?
+
+---
+
+## A website for your package with pkgdown
+
+---
+
+class: middle, inverse
+
+# `r emo::ji("package")` Woohoo, you did it! `r emo::ji("package")`
+
+---
+
+class: middle, inverse
+
+# Summary
+
+---
+
+## Summary
+
+.small[
+In this workshop you've learned about
+
+-   the different levels of package documentation: Metadata, Object documentation, Vignettes and pkgdown sites
+-   the DESCRIPTION and LICENSE files
+-   how to add package dependencies with `usethis::use_package()` and the difference between Imports and Suggests
+-   how to add object documentation using **roxygen2** and `devtools::document()`
+-   what a vignette is and how to create one with `usethis::use_vignette()`
+-   how pkgdown sites can be created
+]
+
+---
+
+class: middle, inverse
+
+# Where next?
+
+---
+
+## Where next?
+
+Package dependencies
+
+Testing and test coverage
+
+???
+
+---
+
+Slides made with:  **`knitr`** `r Cite(myBib, c("knitr1", "knitr2", "knitr3"))`,**`R Markdown`** `r Cite(myBib, c("markdown1", "markdown2"))`, **`xaringan`** `r Cite(myBib, "xaringan")`, **`xaringanthemer`** `r Cite(myBib, "xaringanthemer")`, **`xaringanExtra`** `r Cite(myBib, "xaringanExtra")`, **`countdown`** `r Cite(myBib, "countdown")`. 
+
+Referencing with **`RefManageR`** `r Cite(myBib, "McLean-2017")`.
+
+Designed by: [Mine Çetinkaya-Rundel](https://twitter.com/minebocek) and [Emma Rand](https://twitter.com/er13_r)
+
+---
+
+## References
+
+.tiny[
+```{r refs1, echo = FALSE, results  ="asis"}
+PrintBibliography(myBib, start = 1, end = 9)
+```
+]
+---
+
+## References
+
+.tiny[
+```{r refs2, echo = FALSE, results  ="asis"}
+PrintBibliography(myBib, start = 10)
+```
+]
+
+
+
+---
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+
+
+
