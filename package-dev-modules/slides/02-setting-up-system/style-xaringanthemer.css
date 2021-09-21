@@ -15,7 +15,7 @@
  *    - xaringan wiki: https://github.com/yihui/xaringan/wiki
  *    - remarkjs wiki: https://github.com/gnab/remark/wiki
  *
- *  Version: 0.3.0
+ *  Version: 0.4.0
  *
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap);
@@ -31,6 +31,7 @@
   --text-font-base: sans-serif;
   --header-font-family: Cabin;
   --header-font-is-google: 1;
+  --header-font-family-fallback: Georgia, serif;
   --code-font-family: 'Source Sans Code';
   --code-font-is-google: 1;
   --base-font-size: 35px;
@@ -51,6 +52,7 @@
   --inverse-text-color: #FFFFFF;
   --inverse-background-color: #8D377C;
   --inverse-header-color: #FFFFFF;
+  --inverse-link-color: #4485ad;
   --title-slide-background-color: #AD4475;
   --title-slide-text-color: #FFFFFF;
   --header-background-color: #AD4475;
@@ -71,7 +73,7 @@ body {
   color: var(--text-color);
 }
 h1, h2, h3 {
-  font-family: var(--header-font-family);
+  font-family: var(--header-font-family), var(--header-font-family-fallback);
   font-weight: 600;
   color: var(--header-color);
 }
@@ -104,9 +106,12 @@ h1, h2, h3 {
 .remark-slide-number {
   color: #AD4475;
   opacity: 1;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
-strong { color: var(--text-bold-color); }
+strong {
+  font-weight: bold;
+  color: var(--text-bold-color);
+}
 a, a > code {
   color: var(--link-color);
   text-decoration: none;
@@ -127,6 +132,9 @@ a, a > code {
 }
 .inverse h1, .inverse h2, .inverse h3 {
   color: var(--inverse-header-color);
+}
+.inverse a, .inverse a > code {
+  color: var(--inverse-link-color);
 }
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
   color: var(--title-slide-text-color);
@@ -162,7 +170,7 @@ a, a > code {
   float: right;
   width: 47%;
 }
-.pull-right ~ * {
+.pull-right + * {
   clear: both;
 }
 img, video, iframe {
