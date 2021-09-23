@@ -157,7 +157,7 @@ knitr::include_graphics("images/mine.jpg")
 Dr. Mine Çetinkaya-Rundel 
 .small[
 Senior lecturer (Prof)  
-School of Maths, University of Edinburgh, UK   
+Duke University, Durham, NC, USA   
 RStudio
 ]
 ]
