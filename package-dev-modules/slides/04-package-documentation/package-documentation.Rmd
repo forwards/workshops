@@ -372,10 +372,6 @@ animal_sounds <- function(animal, sound) {
 }
 ```
 
---
-
-Answer: `Imports`
-
 ---
 
 ## Importing other packages
@@ -389,9 +385,6 @@ usethis::use_package("assertthat") # Defaults to imports
 #> ✓ Adding 'assertthat' to Imports field in DESCRIPTION
 #> • Refer to functions with `assertthat::fun()`
 ```
-
---
-Note: For adding to `Suggests` instead, add `type = "Suggests"` argument
 
 ---
 
