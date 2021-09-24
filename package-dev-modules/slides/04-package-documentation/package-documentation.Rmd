@@ -244,16 +244,77 @@ class: middle, inverse
 
 ## Different levels of package documentation
 
--   Metadata
--   Object documentation
--   Vignettes
--   pkgdown sites
+-   Metadata: The `DESCRIPTION` file -- an overview of "what's in this package?"
+-   Object documentation: Documentation for each of the exported functions and datasets in the package, along with examples of usage
+-   Vignettes: Long form documentation, generally discussing how to use a number of functions from the package together and/or how a package fits into a larger ecosystem of packages
+-   pkgdown sites: Websites for your package!
 
 ---
 
 class: middle, inverse
 
-# What is in a DESCRIPTION?
+# What is in a `DESCRIPTION`?
+
+---
+
+## Sample `DESCRIPTION`s
+
+.question[
+Take a look at the DESCRIPTIONs for the following packages. What's common? What's different?
+
+- **ggplot2**: https://cran.r-project.org/web/packages/ggplot2/index.html
+- **openintro**: https://cran.r-project.org/web/packages/openintro/index.html
+- **sf**: https://cran.r-project.org/web/packages/sf/index.html
+]
+
+---
+
+## The `DESCRIPTION`
+
+.small[
+```{r eval = FALSE}
+Package: animalsoundr
+Title: Print sounds for animals
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Mine",
+           family = "Çetinkaya-Rundel",
+           role = c("aut", "cre"),
+           email = "cetinkaya.mine@gmail.com",
+           comment = c(ORCID = "0000-0001-6452-2420"))
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+URL: https://github.com/mine-cetinkaya-rundel/animalsoundr
+BugReports: https://github.com/mine-cetinkaya-rundel/animalsoundr/issues
+```
+]
+
+---
+
+## Tip: Set up your `.Rprofile`
+
+- You can edit your `.Rprofile` with `usethis::edit_r_profile` to set (your version of) the following options:
+
+.small[
+```{r eval = FALSE}
+options(
+  usethis.full_name = "Mine Çetinkaya-Rundel",
+  usethis.description = list(
+    `Authors@R` = 'person("Mine", "Çetinkaya-Rundel",
+                   email = "cetinkaya.mine@gmail.com",
+                   role = c("aut", "cre"),
+                   comment = c(ORCID = "0000-0001-6452-2420"))',
+    License = "MIT + file LICENSE",
+    Version = "0.0.0.9000"
+  )
+)
+```
+]
+
+- Once you update `.Rprofile`, restart R for changes to take effect
 
 ---
 
@@ -263,9 +324,118 @@ class: middle, inverse
 
 ---
 
+## Remember this?
+
+.question[
+What does this mean?
+]
+
+.small[
+```{r eval = FALSE}
+── R CMD check results ───────────────── animalsoundr 0.0.0.9000 ────
+Duration: 13.7s
+
+> checking dependencies in R code ... WARNING
+  '::' or ':::' import not declared from: ‘assertthat’
+
+0 errors ✓ | 1 warning x | 0 notes ✓
+```
+]
+
+--
+- We have used a function from the **assertthat** package in a function in our package
+- But we haven't declared that officially, we need to do that
+
+---
+
+## Package dependencies
+
+- **Imports:** Packages listed here must be installed for your package to work. If they're not, they will get installed along with the package you're installing.
+- **Suggests:** Packages listed here are used by your package, but not required for your package. You might use suggested packages for example datasets, to run tests, build vignettes, or maybe there’s only one function that needs the package.
+- **Depends:** Avoid where possible, but you might use it to require a specific version of R, e.g. `Depends: R (>= 3.4.0)`. Think critically before doing this as it will have downstream effects on other packages that depend on your package.
+
+---
+
+## Choosing a level of depencency
+
+.question[
+Which of the following should **assertthat** be listed under for our package? `Imports`, `Suggests`, or `Depends`?
+]
+
+```{r eval = FALSE}
+animal_sounds <- function(animal, sound) {
+  assertthat::assert_that(
+    assertthat::is.string(animal),
+    assertthat::is.string(sound)
+  )
+  paste0("The ", animal, " says ", sound, "!")
+}
+```
+
+--
+
+Answer: `Imports`
+
+---
+
+## Importing other packages
+
+.your-turn[
+Use `usethis::use_package()` to add the **assertthat** package to `Imports`, and observe how your `DESCRIPTION` file changed.
+]
+
+```{r eval = FALSE}
+usethis::use_package("assertthat") # Defaults to imports
+#> ✓ Adding 'assertthat' to Imports field in DESCRIPTION
+#> • Refer to functions with `assertthat::fun()`
+```
+
+--
+Note: For adding to `Suggests` instead, add `type = "Suggests"` argument
+
+---
+
+## Check again
+
+.your-turn[
+Run `devtools::check()` again.
+]
+
+--
+
+.small[
+```{r eval = FALSE}
+── R CMD check results ───────────────── animalsoundr 0.0.0.9000 ────
+Duration: 8.3s
+
+0 errors ✓ | 0 warnings ✓ | 0 notes ✓
+```
+]
+
+---
+
 class: middle, inverse
 
 # What is in a LICENSE?
+
+---
+
+## `LICENSE` options
+
+- Three licenses to consider:
+  - MIT: Simple and permissive license that lets people use and freely distribute your code
+  - GPL-2 or GPL-3: "Copy-left" licenses
+  - CC0: Relinquishes all your rights on the code and data so that it can be freely used by anyone for any purpose
+
+- If using a license other than these, make sure to read make sure you read the "Writing R Extensions" [section on licensing](https://cran.r-project.org/doc/manuals/R-exts.html#Licensing)
+
+---
+
+## Add a `LICENSE`
+
+.your-turn[
+If you haven't yet done so, add a license with `usethis::use_mit_license("Mine Çetinkaya-Rundel")` (but your name instead of mine). How did the `DESCRIPTION` file change?
+]
 
 ---
 
@@ -275,9 +445,88 @@ class: middle, inverse
 
 ---
 
+## Object documentation
+
+- Object documentation is what you see when you use `?` or `help()` to find out more about a function or a dataset in a package.
+
+- We will create object documentation using Roxygen comments, which start with `#'`
+
+- Much of the work is done by the **roxygen2** package, but we won't directly run **roxygen2** functions, instead run functions from **devtools** that call them
+
+---
+
+## Documentation workflow
+
+- Add roxygen comments to your `.R` files.
+
+- Run `devtools::document()` to convert roxygen comments to `.Rd` files.
+
+- Load the current version fo the package with `devtools::load_all()`
+
+- Preview documentation with `?`.
+
+- Rinse and repeat until the documentation looks the way you want.
+
+---
+
+## Document your function
+
+.your-turn[
+- Open `animal_sounds.R`
+- Go to Code > Insert Roxygen Documentation
+- Fill in the documentation: Give your function a title, then, in a new paragraph, a brief description, define the two parameters, and finally, describe what the function returns
+- Save `animal_sounds.R`, run `devtools::document()` followed by `devtools::load_all()`
+- Preview the documentation with `?animal_sounds` and edit your documentation if anything needs to be changed
+- When done, commit and push all changes
+]
+
+---
+
+## Add examples
+
+.your-turn[
+- Under `@examples`, add one example for using your function
+- Save `animal_sounds.R`, run `devtools::document()` followed by `devtools::load_all()`
+- Preview the documentation with `?animal_sounds` and edit your documentation if anything needs to be changed
+- When done, commit and push all changes
+]
+
+---
+
 class: middle, inverse
 
 # What is in a vignette?
+
+---
+
+## Vignettes
+
+- A vignette is a long-form guide to your package
+- It can be a helpful introduction to the package and/or a deep dive into particular workflows accomplished by a group of functions
+- Some examples:
+  - **tidyr** pivoting: https://tidyr.tidyverse.org/articles/pivot.html
+  - **usethis** Managing Git(Hub) credentials: https://usethis.r-lib.org/articles/articles/git-credentials.html
+
+---
+
+## Add a vignette
+
+.your-turn[
+- Make sure you've committed (and pushed) all changes so far
+- Add a vignette titled *"Making animal sounds"* in a file called `making-animal-sounds` with `usethis::use_vignette("making-animal-sounds", title = "Making animal sounds")`
+- Observe all the changes to your package (these will be highlighted in the Git pane)
+]
+
+---
+
+## Edit & build vignette
+
+.your-turn[
+- Open `vignettes/making-animal-sounds.Rmd`
+- Add some text to your vignette and save the document
+- Run `devtools::build_vignettes()()` to build the package with the vignette
+- View the vignette with `vignette("making-animal-sounds")`
+]
 
 ---
 
@@ -288,6 +537,60 @@ class: middle, inverse
 ---
 
 ## A website for your package with pkgdown
+
+- The **pkgdown** package is designed to make it quick and easy to build a website for your package
+
+- Why have a website for your package?
+  - Google-ability
+  - Examples with output!
+
+---
+
+## Components of a pkgdown site
+
+- Homepage: `README.md` of your package (which we still need to create)
+- Reference: Documentation of each exported function and dataset
+- Articles: Vignettes
+
+---
+
+## A `README` for your package
+
+.your-turn[
+- Install your package with `devtools::install()`
+- Run `usethis::use_readme_rmd()` and update its contents adding an example, and knit the document
+- Commit and push all changes
+]
+
+---
+
+## Make a website for your package
+
+.your-turn[
+- Create the files needed for your website with `usethis::use_pkgdown()`
+- Build the site with `devtools::build_site()`
+]
+
+---
+
+## Hosting your website
+
+- You can host your website directly from its GitHub repo
+- The recommended approach is to let GitHub build your page, instead of committing and pushing the artifacts of the built page (i.e., html files) to GitHub
+- `usethis::use_github_action("pkgdown")` will add an action to your GitHub repo to be run automatically every time you push to it to rebuild the site
+- See https://pkgdown.r-lib.org/articles/pkgdown.html#publishing-1 for more on this
+
+---
+
+## Hosting your website
+
+.your-turn[
+- Run `usethis::use_github_action("pkgdown")` and commit and push all changes
+- Go to your repo on GitHub and click on the Actions tab
+- Once the action completes running, go to Settings > Pages (scroll down on the left) and change the Source to `gh-pages`
+- Click on the link provided on that page to see your packagedown website
+- Bonus: Add this link to the `DESCRIPTION` of your package in a new `URL` field
+]
 
 ---
 
@@ -326,11 +629,11 @@ class: middle, inverse
 
 ## Where next?
 
-Package dependencies
+Thinking critically about package dependencies
 
 Testing and test coverage
 
-???
+Releasing your package on CRAN
 
 ---
 
@@ -366,7 +669,3 @@ PrintBibliography(myBib, start = 10)
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Package Development Module: fill in the module name</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Forwards</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-
-
-
-
