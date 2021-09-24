@@ -31,7 +31,7 @@ The third version is in development and modularizes the 1 day course into 1-hour
 * [Packages in a nutshell](http://bit.ly/pkg-dev-1) (complete)
 * [Setting up your system](http://bit.ly/pkg-dev-2) (complete)
 * [Your first package](http://bit.ly/pkg-dev-3) (complete)
-* [Package documentation](http://bit.ly/pkg-dev-4) (soon)
+* [Package documentation](http://bit.ly/pkg-dev-4) (complete)
 * Git and GitHub (planned)
 
 For more details, see https://github.com/forwards/workshops/tree/master/package-dev-modules.
