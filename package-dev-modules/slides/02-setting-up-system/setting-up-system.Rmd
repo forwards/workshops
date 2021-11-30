@@ -362,7 +362,7 @@ Verify system setup. Run the following in the *Console*.
 ]
 
 ```{r eval = FALSE}
-install.packages(devtools)
+install.packages("devtools")
 ```
 
 ```{r}
@@ -562,7 +562,7 @@ gitcreds::gitcreds_set()
 ```
 
 .tip[
-You may need to install **gitcreds** with `install.packages(gitcreds)`.
+You may need to install **gitcreds** with `install.packages("gitcreds")`.
 ]
 
 ---
@@ -623,7 +623,7 @@ Verify system setup. Run the following in the *Console*.
 ]
 
 ```{r eval = FALSE}
-install.packages(devtools)
+install.packages("devtools")
 ```
 
 ```{r}
@@ -814,7 +814,7 @@ gitcreds::gitcreds_set()
 ```
 
 .tip[
-You may need to install **gitcreds** with `install.packages(gitcreds)`.
+You may need to install **gitcreds** with `install.packages("gitcreds")`.
 ]
 
 ---
