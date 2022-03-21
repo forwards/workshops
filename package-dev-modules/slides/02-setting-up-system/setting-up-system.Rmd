@@ -404,14 +404,14 @@ Check if Git is already installed. Run the following in the *Terminal*.
 .pull-left[
 - Check if Git is installed
 
-```{bash}
+```{bash, eval = FALSE}
 which git
 ```
 ]
 .pull-right[
 - Check the version of your Git
 
-```{bash}
+```{bash, eval = FALSE}
 git --version
 ```
 ]
@@ -426,7 +426,7 @@ Add speaker notes
 
 ---
 
-## Instal Git
+## Install Git
 
 .your-turn[
 If `which git` didn't find Git installed, and if you weren't prompted to install it, run the following in the *Terminal*.
@@ -665,14 +665,14 @@ Check if Git is already installed. Run the following in the *Terminal*.
 .pull-left[
 - Check if Git is installed
 
-```{bash}
-which git
+```{bash, eval = FALSE}
+where git
 ```
 ]
 .pull-right[
 - Check the version of your Git
 
-```{bash}
+```{bash, eval = FALSE}
 git --version
 ```
 ]
